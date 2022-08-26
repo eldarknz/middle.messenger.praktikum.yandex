@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Messenger",
   "main": "index.js",
+  "source": "static/index.html",
   "scripts": {
-    "dev": "parcel ./static/index.html",
-    "build": "parcel build ./static/index.html --no-source-maps --no-cache",
-    "start": "parcel ./static/index.html --port 3000 && node ./server.js"
+    "dev": "parcel --port 3000",
+    "build": "parcel build --no-source-maps --no-cache",
+    "start": "parcel --port 3000 && node ./server.js"
   },
   "repository": {
     "type": "git",
@@ -23,9 +24,8 @@
   },
   "devDependencies": {
     "express": "^4.18.1",
-    "parcel-bundler": "^1.12.5",
+    "parcel": "^2.7.0",
     "sass": "^1.53.0"
   },
-  "dependencies": {},
-  "homepage": "https://github.com/eldarknz/middle.messenger.praktikum.yandex#readme",
+  "homepage": "https://github.com/eldarknz/middle.messenger.praktikum.yandex#readme"
 }

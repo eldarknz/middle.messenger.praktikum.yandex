@@ -1,4 +1,4 @@
-import { HomePage } from './home-page';
+/*import { HomePage } from './home-page';
 import { FeedPage } from './feed';
 import { FeedOrderPage } from './feed-order';
 import { IngredientPage } from './ingredient-page';
@@ -22,4 +22,4 @@ export {
     ProfilePage,
     ProfileOrderPage,
     PageNotFoundPage
-};
+};*/
