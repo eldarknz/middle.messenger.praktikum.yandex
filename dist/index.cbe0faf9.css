@@ -1,0 +1,476 @@
+:root {
+  --color-white: #fff;
+  --color-gray-1: #d2d2db;
+  --color-gray-2: #8893a6;
+  --color-gray-3: #495767;
+  --color-gray-4: #121a23;
+  --color-black: #000;
+  --color-blue-light: #dcecff;
+  --color-blue: #3369f3;
+  --color-blue-dark: #0350a8;
+  --color-red-light: #ffe5ea;
+  --color-red: #e31c1c;
+  --color-red-dark: #b80020;
+  --color-green-light: #ddf3e4;
+  --color-green: #4caf50;
+  --color-green-dark: #2f6a31;
+  --color-orange-light: #ffe0b3;
+  --color-orange: #f90;
+  --color-orange-dark: #cc7a00;
+  --color-violet-light: #dabef4;
+  --color-purple: #8f3cdd;
+  --color-purple-dark: #681fad;
+  --color-cyan-light: #c1f0f0;
+  --color-cyan: #2eb8b8;
+  --color-cyan-dark: #248f8f;
+  --color-crimson-light: #ffd6e7;
+  --color-crimson: #ff307c;
+  --color-crimson-dark: #d10065;
+  --primary: var(--color-blue);
+  --secondary: var(--color-crimson);
+  --danger: var(--color-red);
+  --success: var(--color-green);
+  --warning: var(--color-orange);
+  --info: var(--color-cyan);
+  --white: var(--color-white);
+  --light: var(--color-gray-1);
+  --silver: var(--color-gray-2);
+  --gray: var(--color-gray-3);
+  --dark: var(--color-gray-4);
+  --black: var(--color-black);
+  --body-bg: var(--color-white);
+  --body-color: var(--color-black);
+  --link-primary-color: var(--primary);
+  --link-primary-color-hover: #0e4ef1;
+  --link-decoration: none;
+  --btn-primary-color: var(--primary);
+  --btn-primary-color-hover: #0e4ef1;
+  --input-text-color: #292929;
+  --spacing-1: 1px;
+  --spacing-2: calc(2 * var(--spacing-1));
+  --spacing-3: calc(3 * var(--spacing-1));
+  --spacing-4: calc(4 * var(--spacing-1));
+  --spacing-5: calc(5 * var(--spacing-1));
+  --spacing-6: calc(6 * var(--spacing-1));
+  --spacing-7: calc(7 * var(--spacing-1));
+  --spacing-8: calc(8 * var(--spacing-1));
+  --spacing-9: calc(9 * var(--spacing-1));
+  --spacing-10: calc(10 * var(--spacing-1));
+  --spacing-11: calc(11 * var(--spacing-1));
+  --spacing-12: calc(12 * var(--spacing-1));
+  --spacing-13: calc(13 * var(--spacing-1));
+  --spacing-14: calc(14 * var(--spacing-1));
+  --spacing-15: calc(15 * var(--spacing-1));
+  --spacing-16: calc(16 * var(--spacing-1));
+  --spacing-17: calc(17 * var(--spacing-1));
+  --spacing-18: calc(18 * var(--spacing-1));
+  --spacing-19: calc(19 * var(--spacing-1));
+  --spacing-20: calc(20 * var(--spacing-1));
+  --spacing-25: calc(25 * var(--spacing-1));
+  --spacing-30: calc(30 * var(--spacing-1));
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-base: var(--font-family-sans-serif);
+  --font-size-10: 10px;
+  --font-size-12: 12px;
+  --font-size-14: 14px;
+  --font-size-15: 15px;
+  --font-size-16: 16px;
+  --font-size-18: 18px;
+  --font-size-20: 20px;
+  --font-size-22: 22px;
+  --font-size-24: 24px;
+  --font-size-26: 26px;
+  --font-size-28: 28px;
+  --font-size-30: 30px;
+  --radius-1: 1px;
+  --radius-2: 2px;
+  --radius-3: 3px;
+  --radius-4: 4px;
+  --radius-5: 5px;
+  --radius-6: 6px;
+  --radius-7: 7px;
+  --radius-8: 8px;
+  --radius-9: 9px;
+  --radius-10: 10px;
+  --box-shadow: 0px 1px 2px #0000001f;
+  --opacity-25: .25;
+  --opacity-50: .5;
+  --opacity-75: .75;
+  --opacity-100: 1;
+  --common-transition: all .3s ease-in;
+  --zindex-modal: 5000;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+  outline: 0;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  font-size: var(--font-size-14);
+  background-color: var(--body-bg);
+  color: var(--body-color);
+}
+
+a {
+  color: var(--link-primary-color);
+  text-decoration: var(--link-decoration);
+  transition: color .15s ease-out;
+}
+
+a:hover {
+  color: var(--link-primary-color-hover);
+  text-decoration: var(--link-decoration);
+}
+
+:root {
+  --color-white: #fff;
+  --color-gray-1: #d2d2db;
+  --color-gray-2: #8893a6;
+  --color-gray-3: #495767;
+  --color-gray-4: #121a23;
+  --color-black: #000;
+  --color-blue-light: #dcecff;
+  --color-blue: #3369f3;
+  --color-blue-dark: #0350a8;
+  --color-red-light: #ffe5ea;
+  --color-red: #e31c1c;
+  --color-red-dark: #b80020;
+  --color-green-light: #ddf3e4;
+  --color-green: #4caf50;
+  --color-green-dark: #2f6a31;
+  --color-orange-light: #ffe0b3;
+  --color-orange: #f90;
+  --color-orange-dark: #cc7a00;
+  --color-violet-light: #dabef4;
+  --color-purple: #8f3cdd;
+  --color-purple-dark: #681fad;
+  --color-cyan-light: #c1f0f0;
+  --color-cyan: #2eb8b8;
+  --color-cyan-dark: #248f8f;
+  --color-crimson-light: #ffd6e7;
+  --color-crimson: #ff307c;
+  --color-crimson-dark: #d10065;
+  --primary: var(--color-blue);
+  --secondary: var(--color-crimson);
+  --danger: var(--color-red);
+  --success: var(--color-green);
+  --warning: var(--color-orange);
+  --info: var(--color-cyan);
+  --white: var(--color-white);
+  --light: var(--color-gray-1);
+  --silver: var(--color-gray-2);
+  --gray: var(--color-gray-3);
+  --dark: var(--color-gray-4);
+  --black: var(--color-black);
+  --body-bg: var(--color-white);
+  --body-color: var(--color-black);
+  --link-primary-color: var(--primary);
+  --link-primary-color-hover: #0e4ef1;
+  --link-decoration: none;
+  --btn-primary-color: var(--primary);
+  --btn-primary-color-hover: #0e4ef1;
+  --input-text-color: #292929;
+  --spacing-1: 1px;
+  --spacing-2: calc(2 * var(--spacing-1));
+  --spacing-3: calc(3 * var(--spacing-1));
+  --spacing-4: calc(4 * var(--spacing-1));
+  --spacing-5: calc(5 * var(--spacing-1));
+  --spacing-6: calc(6 * var(--spacing-1));
+  --spacing-7: calc(7 * var(--spacing-1));
+  --spacing-8: calc(8 * var(--spacing-1));
+  --spacing-9: calc(9 * var(--spacing-1));
+  --spacing-10: calc(10 * var(--spacing-1));
+  --spacing-11: calc(11 * var(--spacing-1));
+  --spacing-12: calc(12 * var(--spacing-1));
+  --spacing-13: calc(13 * var(--spacing-1));
+  --spacing-14: calc(14 * var(--spacing-1));
+  --spacing-15: calc(15 * var(--spacing-1));
+  --spacing-16: calc(16 * var(--spacing-1));
+  --spacing-17: calc(17 * var(--spacing-1));
+  --spacing-18: calc(18 * var(--spacing-1));
+  --spacing-19: calc(19 * var(--spacing-1));
+  --spacing-20: calc(20 * var(--spacing-1));
+  --spacing-25: calc(25 * var(--spacing-1));
+  --spacing-30: calc(30 * var(--spacing-1));
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-base: var(--font-family-sans-serif);
+  --font-size-10: 10px;
+  --font-size-12: 12px;
+  --font-size-14: 14px;
+  --font-size-15: 15px;
+  --font-size-16: 16px;
+  --font-size-18: 18px;
+  --font-size-20: 20px;
+  --font-size-22: 22px;
+  --font-size-24: 24px;
+  --font-size-26: 26px;
+  --font-size-28: 28px;
+  --font-size-30: 30px;
+  --radius-1: 1px;
+  --radius-2: 2px;
+  --radius-3: 3px;
+  --radius-4: 4px;
+  --radius-5: 5px;
+  --radius-6: 6px;
+  --radius-7: 7px;
+  --radius-8: 8px;
+  --radius-9: 9px;
+  --radius-10: 10px;
+  --box-shadow: 0px 1px 2px #0000001f;
+  --opacity-25: .25;
+  --opacity-50: .5;
+  --opacity-75: .75;
+  --opacity-100: 1;
+  --common-transition: all .3s ease-in;
+  --zindex-modal: 5000;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+  outline: 0;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  font-size: var(--font-size-14);
+  background-color: var(--body-bg);
+  color: var(--body-color);
+}
+
+a {
+  color: var(--link-primary-color);
+  text-decoration: var(--link-decoration);
+  transition: color .15s ease-out;
+}
+
+a:hover {
+  color: var(--link-primary-color-hover);
+  text-decoration: var(--link-decoration);
+}
+
+.btn {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-14);
+  color: var(--dark);
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: #0000;
+  border: 1px solid #0000;
+  border-radius: .375rem;
+  padding: .75rem 1.25rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  display: inline-block;
+}
+
+.btn-block {
+  width: 100%;
+  display: block;
+}
+
+.btn-primary {
+  background-color: var(--btn-primary-color);
+  border-color: var(--btn-primary-color);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-primary-color-hover);
+  border-color: var(--btn-primary-color-hover);
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.login-block {
+  max-width: 360px;
+  width: 100%;
+  border-radius: 12px;
+  flex-direction: column;
+  padding: 40px 30px;
+  display: flex;
+  box-shadow: 0 0 6px #00000024;
+}
+
+.login-form {
+  position: relative;
+}
+
+.login-form + .text-block {
+  margin-top: 20px;
+}
+
+.text-block {
+  text-align: center;
+  font-size: var(--font-size-12);
+}
+
+.title {
+  font-size: var(--font-size-20);
+  font-family: var(--font-family-base);
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+
+.input-fields {
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 50px;
+  display: flex;
+}
+
+.input-contain {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+input {
+  font-family: var(--font-family-base);
+  height: 40px;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid;
+  border-bottom-color: var(--btn-primary-color);
+  margin: auto;
+  font-weight: 400;
+}
+
+input:focus {
+  border-color: var(--color-purple);
+  outline: none;
+}
+
+input:focus + .placeholder-text .text, :not(input[value=""]) + .placeholder-text .text {
+  background-color: --white;
+  font-size: var(--font-size-10);
+  color: var(--silver);
+  transform: translate(0, -145%);
+}
+
+input:focus + .placeholder-text .text {
+  border-color: var(--color-purple);
+  color: var(--color-purple);
+}
+
+.placeholder-text {
+  pointer-events: none;
+  background-color: #0000;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  inset: 0;
+}
+
+.placeholder-text .text {
+  font-size: var(--font-size-14);
+  color: var(--silver);
+  background-color: #0000;
+  transition: transform .15s ease-out, font-size .15s ease-out, background-color .2s ease-out, color .15s ease-out;
+  transform: translate(0);
+}
+
+input, .placeholder-text {
+  font-size: var(--font-size-14);
+}
+
+.text-gray {
+  color: var(--gray);
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.input-field {
+  font-family: var(--font-family-base);
+  height: 40px;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid;
+  border-bottom-color: var(--btn-primary-color);
+  margin: auto;
+  font-weight: 400;
+}
+
+.input-field:focus {
+  border-color: var(--color-purple);
+  outline: none;
+}
+
+.input-field:focus + .placeholder-text .text, :not(.input-field[value=""]) + .placeholder-text .text {
+  background-color: --white;
+  font-size: var(--font-size-10);
+  color: var(--silver);
+  transform: translate(0, -145%);
+}
+
+.input-field:focus + .placeholder-text .text {
+  border-color: var(--color-purple);
+  color: var(--color-purple);
+}
+
+.placeholder-text {
+  pointer-events: none;
+  background-color: #0000;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  inset: 0;
+}
+
+.placeholder-text .text {
+  font-size: var(--font-size-14);
+  color: var(--silver);
+  background-color: #0000;
+  transition: transform .15s ease-out, font-size .15s ease-out, background-color .2s ease-out, color .15s ease-out;
+  transform: translate(0);
+}
+
+.input-field, .placeholder-text {
+  font-size: var(--font-size-14);
+}
+
+/*# sourceMappingURL=index.cbe0faf9.css.map */

@@ -1,0 +1,58 @@
+.form-group {
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+.input-field {
+    font-family: var(--font-family-base);
+    font-weight: 400;
+    height: 40px;
+    width: 100%;
+    border: 0;
+    border-bottom-width: 1px; /* Толщина линии внизу */
+    border-bottom-style: solid; /* Стиль линии внизу */
+    border-bottom-color: var(--btn-primary-color); /* Цвет линии внизу */
+    margin: auto;
+}
+
+.input-field:focus{
+    outline: none;
+    border-color: var(--color-purple);
+}
+
+.input-field:focus + .placeholder-text .text, :not(.input-field[value=""]) + .placeholder-text .text{
+    background-color: --white;
+    font-size: var(--font-size-10);
+    color: var(--silver);
+    transform: translate(0, -145%);
+}
+
+.input-field:focus + .placeholder-text .text{
+    border-color: var(--color-purple);
+    color: var(--color-purple);
+}
+
+.placeholder-text {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+
+    & .text {
+        font-size: var(--font-size-14);
+        background-color: transparent;
+        transform: translate(0);
+        color: var(--silver);
+        transition: transform 0.15s ease-out, font-size 0.15s ease-out, background-color 0.2s ease-out, color 0.15s ease-out;
+    }
+}
+
+.input-field, .placeholder-text{
+    font-size: var(--font-size-14);
+}
