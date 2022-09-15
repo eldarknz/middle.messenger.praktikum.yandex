@@ -1,0 +1,68 @@
+.icon {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    border: 0;
+    position: relative;
+}
+
+.icon-add {
+    background-image: url(./icons/add.svg);
+}
+
+.icon-arrow-left {
+    background-image: url(./icons/arrow_left.svg);
+}
+
+.icon-arrow-right {
+    background-image: url(./icons/arrow_right.svg);
+}
+
+.icon-attachment {
+    background-image: url(./icons/attachment.svg);
+}
+
+.icon-delete {
+    background-image: url(./icons/delete.svg);
+}
+
+.icon-done {
+    background-image: url(./icons/done.svg);
+}
+
+.icon-dots {
+    background-image: url(./icons/dots.svg);
+}
+
+.icon-file {
+    background-image: url(./icons/file.svg);
+}
+
+.icon-location {
+    background-image: url(./icons/location.svg);
+}
+
+.icon-media {
+    background-image: url(./icons/media.svg);
+}
+
+.icon-profile {
+    background-image: url(./icons/profile.svg);
+}
+
+.icon-search {
+    background-image: url(./icons/search.svg);
+}
+
+.icon_size_s {
+    width: 8px;
+    height: 8px;
+}
+
+.icon_size_l {
+    width: 20px;
+    height: 20px;
+}

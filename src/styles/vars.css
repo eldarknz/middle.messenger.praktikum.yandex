@@ -1,0 +1,89 @@
+:root {
+    /* COLORS */
+    --color-white: #FFFFFF;
+    --color-gray-1: #F5F5F5;
+    --color-gray-2: #CACACA;
+    --color-gray-3: #929292;
+    --color-gray-4: #565656;
+    --color-black: #333333;
+
+    --body-bg: var(--color-gray-1);
+    --body-color: var(--color-black);
+
+    --link-primary-color: #8585AD;
+    --link-secondary-color: #4C4CFF;
+    --link-hover-color: var(--color-white);
+    --link-decoraion: none;
+
+    --button-background-color-yellow: #FFE445;
+    --button-background-color-hover-yellow: #FFC745;
+
+    --tag-background-color-violet: #EEE1FD;
+    --tag-background-color-green: #BAF8CF;
+    --tag-background-color-green-light: #D8FCB0;
+    --tag-background-color-red: #FED6CC;
+    --tag-background-color-orange: #FFDCB6;
+    --tag-background-color-blue: #B8E6FF;
+    --tag-background-color-blue-dark: #C6D9FF;
+    --tag-background-color-yellow: #FFF4C7;
+
+    --select-background-color: #E3E3E3;
+    --select-background-color-hover: #CCCCCC; 
+
+    --input-text-color: #292929;
+
+    /* SPACING */
+    --spacing-1: 1px;
+    --spacing-2: calc(2 * var(--spacing-1));
+    --spacing-3: calc(3 * var(--spacing-1));
+    --spacing-4: calc(4 * var(--spacing-1));
+    --spacing-5: calc(5 * var(--spacing-1));
+    --spacing-6: calc(6 * var(--spacing-1));
+    --spacing-7: calc(7 * var(--spacing-1));
+    --spacing-8: calc(8 * var(--spacing-1));
+    --spacing-9: calc(9 * var(--spacing-1));
+    --spacing-10: calc(10 * var(--spacing-1));
+    --spacing-15: calc(15 * var(--spacing-1));
+    --spacing-20: calc(20 * var(--spacing-1));
+    --spacing-25: calc(25 * var(--spacing-1));
+    --spacing-30: calc(30 * var(--spacing-1));
+
+    /* TYPOGRAPHY */
+    --font-size-12: 12px;
+    --font-size-14: 14px;
+    --font-size-16: 16px;
+    --font-size-18: 18px;
+    --font-size-20: 20px;
+    --font-size-22: 22px;
+    --font-size-24: 24px;
+    --font-size-26: 26px;
+    --font-size-28: 28px;
+    --font-size-30: 30px;
+
+    /* BORDER-RADIUS */
+    --radius-1: 1px;
+    --radius-2: 2px;
+    --radius-3: 3px;
+    --radius-4: 4px;
+    --radius-5: 5px;
+    --radius-6: 6px;
+    --radius-7: 7px;
+    --radius-8: 8px;
+    --radius-9: 9px;
+    --radius-10: 10px;
+
+    /* SHADOW */
+    --box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+
+    /* OPACITY */
+    --opacity-25: 0.25;
+    --opacity-50: 0.5;
+    --opacity-75: 0.75;
+    --opacity-100: 1;
+
+    /* TRANSITION */
+    --common-transition: all .3s ease-in;
+
+    /* Z-INDEX */
+    --zindex-modal: 5000;
+}

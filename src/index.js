@@ -1,7 +1,11 @@
 import { ROUTES } from "./utils/constants";
 
-import { 
-    LoginPage
+import {
+    ChatPage,
+    LoginPage,
+    RegistrationPage,
+    PageNotFoundPage,
+    ServerErrorPage,
 } from "./pages";
 
 import "./styles/globals.scss";
@@ -17,7 +21,11 @@ import "./styles/globals.scss";
  } from './const/routes';*/
 
 const routes = {
+    [ROUTES.home.path]: ChatPage,
     [ROUTES.login.path]: LoginPage,
+    [ROUTES.register.path]: RegistrationPage,
+    [ROUTES.error_404.path]: PageNotFoundPage,
+    [ROUTES.error_500.path]: ServerErrorPage
 }
 
 const app = document.getElementById("root");

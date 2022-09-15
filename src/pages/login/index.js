@@ -1,7 +1,8 @@
 import Handlebars from "handlebars";
 import template from "./login.tmpl";
 import "../../components/button";
-import "../../components/input";
+import "../../components/input_search";
+import "../../components/label";
 import "./styles.scss";
 
 export default () => {
@@ -14,7 +15,5 @@ export default () => {
 
     let html = compiled(data);
 
-    //let compiledFloatingContainer = Handlebars.compile('{{> floatingContainer }}');
-    //let htmlContainer = compiledFloatingContainer({ floatingContainer: html })
     return html;
 };

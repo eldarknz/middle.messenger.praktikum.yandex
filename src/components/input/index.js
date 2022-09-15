@@ -5,4 +5,4 @@ import { inputHandler } from "./modules/index"
 
 inputHandler();
 
-Handlebars.registerPartial('input', template);
+Handlebars.registerPartial("input", template);

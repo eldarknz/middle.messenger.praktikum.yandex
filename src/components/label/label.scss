@@ -1,0 +1,21 @@
+.label {
+    display: inline-block;
+    padding: var(--spacing-5);
+    border-radius: var(--spacing-20);
+    background-color: var(--light);
+    color: var(--silver);
+    font-size: var(--font-size-10);
+    font-weight: 500;
+    line-height: 1;
+}
+
+.label_circle {
+    width: var(--spacing-20);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.label_primary {
+    background-color: var(--primary);
+    color: var(--white);
+}

@@ -1,0 +1,15 @@
+.tag {
+    display: inline-block;
+    width: 40px;
+    height: 18px;
+    border-radius: var(--radius-2);
+}
+
+.violet { background-color: #EEE1FD; }
+.green { background-color: #BAF8CF; }
+.green-light { background-color: #D8FCB0; }
+.red { background-color: #FED6CC; }
+.orange { background-color: #FFDCB6; }
+.blue { background-color: #B8E6FF; }
+.blue-dark { background-color: #C6D9FF; }
+.yellow { background-color: #FFF4C7; }

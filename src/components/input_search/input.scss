@@ -1,0 +1,65 @@
+.form-group {
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+.input-search {
+    display: block;
+    width: 100%;
+    height: 40px;
+    border: 1px solid transparent;
+    background-color: var(--light);
+    border-radius: var(--spacing-10);
+    padding: 0 0 0 40px;
+}
+
+.input-search-placeholder {
+    height: 40px;
+    font-family: var(--font-family-base);
+    font-weight: 400;
+    border-radius: var(--spacing-10);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.input-search-placeholder__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-search-placeholder__text {
+    margin: 0 0 0 5px;
+    color: var(--silver);
+}
+
+.input-search:focus{
+    outline: none;
+}
+
+.input-search:focus + .input-search-placeholder {
+    justify-content: flex-start;
+}
+
+.input-search:focus + .input-search-placeholder,
+:not(.input-search[value=""]) + .input-search-placeholder {
+    justify-content: flex-start;
+}
+
+.input-search:focus + .input-search-placeholder .input-search-placeholder__text,
+:not(.input-search[value=""]) + .input-search-placeholder .input-search-placeholder__text{
+    opacity: 0;
+}
+
+.input-search:focus + .input-search-placeholder .input-search-placeholder__text {
+    opacity: 0;
+}
