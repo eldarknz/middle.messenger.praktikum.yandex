@@ -1,1 +1,0 @@
-{"mappings":"","sources":["src/script.js"],"sourcesContent":[null],"names":[],"version":3,"file":"index.44983732.js.map","sourceRoot":"/__parcel_source_root/"}
