@@ -15,7 +15,7 @@ export default `
                     {{> input type="password" placeholder="Пароль (еще раз)" name="password_2" id="password_2" value="" }}
                 </div>
 
-                {{> button className="btn btn-primary btn-block" }}
+                {{> button className="btn btn-primary btn-block" content="Зарегистрироваться" }}
             </form>
             <div class="sign-container__text-block">
                 <span class="text-gray">Уже есть учетная запись? </span>

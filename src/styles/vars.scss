@@ -56,6 +56,9 @@
 
     --input-text-color: #292929;
 
+    --chat-card-background-color: var(--white);
+    --chat-card-background-color-hover: #F5F6FA;
+
     /* SPACING */
     --spacing-1: 1px;
     --spacing-2: calc(2 * var(--spacing-1));
@@ -81,7 +84,7 @@
     --spacing-30: calc(30 * var(--spacing-1));
 
     /* FONTS */
-    --font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-sans-serif:      'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --font-family-base:            var(--font-family-sans-serif);
 
@@ -113,6 +116,7 @@
 
     /* SHADOW */
     --box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+    --box-shadow-dropdown-menu: 0px 0px 6px rgba(0, 0, 0, 0.14);
 
     /* OPACITY */
     --opacity-25: 0.25;

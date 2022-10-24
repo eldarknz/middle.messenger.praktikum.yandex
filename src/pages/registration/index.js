@@ -1,15 +1,14 @@
 import Handlebars from "handlebars";
 import template from "./registration.tmpl";
-import "../../components/button";
-import "../../components/input";
+import "../../components/ui/button";
+import "../../components/ui/input";
 import "./styles.scss";
 
 export default () => {
     let compiled = Handlebars.compile(template);
 
     let data = {
-        title: "Регистрация",
-        buttonText: "Зарегистрироваться",
+        title: "Регистрация"
     };
 
     let html = compiled(data);
