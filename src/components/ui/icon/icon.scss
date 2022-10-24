@@ -13,16 +13,28 @@
     height: 16px;
 }
 
-.icon-size-s,
-.icon-size-s svg {
+.icon-size-xs,
+.icon-size-xs svg {
     width: 8px;
     height: 8px;
 }
 
-.icon-size-l,
-.icon-size-l svg {
+.icon-size-m,
+.icon-size-m svg {
     width: 20px;
     height: 20px;
+}
+
+.icon-size-l,
+.icon-size-l svg {
+    width: 24px;
+    height: 24px;
+}
+
+.icon-size-xl,
+.icon-size-xl svg {
+    width: 24px;
+    height: 24px;
 }
 
 .icon-primary svg path {

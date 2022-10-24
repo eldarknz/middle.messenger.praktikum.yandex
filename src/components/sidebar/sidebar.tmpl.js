@@ -9,12 +9,17 @@ export default `
                 </div>
             </div>
             <a href="/profile">
-                {{> icon_profile className="icon-size-l" }}
+                {{> icon_message className="icon-size-m" }}
             </a>
         </div>
         <div class="sidebar__search">
             {{> input_search type="text" placeholder="Поиск" name="search" id="search" value="" }}
         </div>
         <div class="sidebar__content">{{{content}}}</div>
+        <div class="sidebar__footer">
+            <div class="menu-actions">
+                {{{ nav }}}
+            </div>
+        </div>
     </div>
 `

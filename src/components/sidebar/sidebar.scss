@@ -15,13 +15,14 @@
 
 .sidebar__header,
 .sidebar__search {
+    display: flex;
+    align-items: center;
     width: 100%;
     height: 60px;
+    background: var(--white);
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: var(--light);
-    display: flex;
-    align-items: center;
 }
 
 .sidebar__header {
@@ -34,9 +35,10 @@
     justify-content: center;
 }
 
+
 .sidebar__content {
-    padding: 10px 10px 0;
-    height: calc(100% - 120px);
+    padding: 10px;
+    height: calc(100% - 180px);
     overflow-y: scroll;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
@@ -44,6 +46,20 @@
 
 .sidebar__content::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
+}
+
+.sidebar__footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--white);
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: var(--light);
 }
 
 .logo-container {
@@ -69,4 +85,14 @@
     height: 100%;
     width: 100%;
     cursor: pointer;
+}
+
+.menu-actions {
+    width: 100%;
+    
+    & .nav {
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 var(--spacing-16);
+    }
 }

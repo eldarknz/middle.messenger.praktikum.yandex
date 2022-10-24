@@ -4,7 +4,8 @@
     padding: var(--spacing-15);
     background-color: var(--chat-card-background-color);
     border-radius: var(--spacing-10);
-    &:hover {
+    &:hover,
+    .active {
         background-color: var(--chat-card-background-color-hover);
         cursor: pointer;
     }

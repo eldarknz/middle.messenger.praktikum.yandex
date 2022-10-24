@@ -19,7 +19,7 @@ const header = () => {
     let data = {
         dropdown: dropdown(
             "btn btn-circle",
-            icon_dots("icon-size-l"),
+            icon_dots("icon-size-m"),
             [
                 {link: "#", content: `${icon_add("icon-size-l icon-primary")} Добавить пользователя`},
                 {link: "#", content: `${icon_delete("icon-size-l icon-primary")} Удалить пользователя`}
