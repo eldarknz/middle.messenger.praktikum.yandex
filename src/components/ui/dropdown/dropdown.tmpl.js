@@ -1,7 +1,7 @@
 // language=hbs
 
 export default `
-    <div class="dropdown">
+    <div class="dropdown{{#if dropdownClassName}} {{dropdownClassName}}{{/if}}">
         {{> button className=btnClassName id="dropdownMenuButton" content=btnContent }}
         <div class="dropdown-menu">
             {{#each menuList}}

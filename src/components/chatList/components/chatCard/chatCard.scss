@@ -5,7 +5,7 @@
     background-color: var(--chat-card-background-color);
     border-radius: var(--spacing-10);
     &:hover,
-    .active {
+    &.active {
         background-color: var(--chat-card-background-color-hover);
         cursor: pointer;
     }
@@ -40,6 +40,7 @@
     font-weight: 500;
     line-height: 14px;
     text-overflow: ellipsis;
+    overflow: hidden;
     color: var(--color-gray-2);
 }
 

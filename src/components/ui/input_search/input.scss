@@ -27,6 +27,11 @@
     bottom: 0;
     padding: 0 20px;
     cursor: text;
+
+    &.center .input-search-placeholder__content {
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+    }
 }
 
 .input-search-placeholder__content {
@@ -35,8 +40,8 @@
     justify-content: center;
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    left: 20px;
+    transform: translateY(-50%);
 }
 
 .input-search-placeholder__text {

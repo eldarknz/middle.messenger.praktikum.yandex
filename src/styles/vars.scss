@@ -54,13 +54,16 @@
     --btn-primary-color: var(--primary);
     --btn-primary-color-hover: #0e4ef1;
 
+    --btn-gray-color: #F5F6FA;
+    --btn-gray-color-hover: var(--color-gray-1);
+
     --input-text-color: #292929;
 
     --chat-card-background-color: var(--white);
     --chat-card-background-color-hover: #F5F6FA;
 
     --nav-link-background-color: var(--white);
-    --nav-link-background-color-hover: #F5F6FA;
+    --nav-link-background-color-hover: var(--color-gray-1);
 
     /* SPACING */
     --spacing-1: 1px;

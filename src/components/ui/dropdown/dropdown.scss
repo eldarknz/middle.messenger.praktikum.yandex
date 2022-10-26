@@ -1,6 +1,13 @@
 .dropdown {
     position: relative;
     display: inline-block;
+
+    &.up .dropdown-menu {
+        top: auto;
+        right: auto;
+        left: 0;
+        bottom: calc(100% + 34px);
+    }
 }
 
 .dropdown-menu {

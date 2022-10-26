@@ -7,24 +7,18 @@ import "../ui/avatar"
 import "../ui/button"
 import "./header.scss";
 
-//Handlebars.registerPartial("header", template);
-
-//export default (className, content) => {
-//    return Handlebars.compile(template)({className, content}));
-//}
-
 const header = () => {
     let compiled = Handlebars.compile(template);
 
     let data = {
-        dropdown: dropdown(
-            "btn btn-circle",
-            icon_dots("icon-size-m"),
-            [
+        dropdown: dropdown({
+            btnClassName: "btn btn-circle",
+            btnContent: icon_dots("icon-size-m"),
+            menuList: [
                 {link: "#", content: `${icon_add("icon-size-l icon-primary")} Добавить пользователя`},
                 {link: "#", content: `${icon_delete("icon-size-l icon-primary")} Удалить пользователя`}
             ]
-        )
+        })
     }
 
     let html = compiled(data);

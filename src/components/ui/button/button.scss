@@ -1,19 +1,17 @@
 .btn {
-    display: inline-block;
-    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
     font-family: var(--font-family-base);
     font-size: var(--font-size-14);
     font-weight: 400;
     color: var(--dark);
-    text-align: center;
     text-decoration: none;
-    vertical-align: middle;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     user-select: none;
     border: 1px solid transparent;
-    border-radius: 0.375rem;
+    border-radius: var(--spacing-10);
     background-color: transparent;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 
@@ -29,9 +27,18 @@
 }
 
 .btn-circle {
-    height: 24px;
-    width: 24px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-square {
+    height: 40px;
+    width: 40px;
     padding: 0;
     display: flex;
     align-items: center;
@@ -46,5 +53,16 @@
     &:hover {
         background-color: var(--btn-primary-color-hover);
         border-color: var(--btn-primary-color-hover);
+    }
+}
+
+.btn-gray {
+    background-color: var(--btn-gray-color);
+    border-color: var(--btn-gray-color);
+    color: var(--color-gray-4);
+
+    &:hover {
+        background-color: var(--btn-gray-color-hover);
+        border-color: var(--btn-gray-color-hover);
     }
 }
