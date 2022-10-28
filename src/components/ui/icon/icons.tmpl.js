@@ -37,6 +37,14 @@ const icon_attachment = `
     </div>
 `;
 
+const icon_close = `
+    <div class="icon{{#if className}} {{className}}{{/if}}">
+        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.20673e-05 18.5875L1.41425 20.0017L10.0008 11.4151L18.5875 20.0017L20.0017 18.5875L11.415 10.0009L20.0017 1.41421L18.5875 0L10.0008 8.58667L1.41421 6.15524e-05L0 1.41428L8.58661 10.0009L3.20673e-05 18.5875Z" fill="#121A23"/>
+        </svg>       
+    </div>
+`;
+
 const icon_delete = `
     <div class="icon{{#if className}} {{className}}{{/if}}">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -143,6 +151,7 @@ export {
     icon_arrow_left,
     icon_arrow_right,
     icon_attachment,
+    icon_close,
     icon_delete,
     icon_done,
     icon_dots,

@@ -13,12 +13,12 @@ export default `
             </a>
         </div>
         <div class="sidebar__search">
-            {{> input_search type="text" placeholder="Поиск" placeholderPosition="center" name="search" id="search" value="" }}
+            {{{inputSearch}}}
         </div>
         <div class="sidebar__content">{{{content}}}</div>
         <div class="sidebar__footer">
             <div class="menu-actions">
-                {{{ nav }}}
+                {{{nav}}}
             </div>
         </div>
     </div>

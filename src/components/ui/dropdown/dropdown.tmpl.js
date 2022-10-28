@@ -5,7 +5,26 @@ export default `
         {{> button className=btnClassName id="dropdownMenuButton" content=btnContent }}
         <div class="dropdown-menu">
             {{#each menuList}}
-                <a class="dropdown-item" href="{{this.link}}">{{{this.content}}}</a>
+                {{# if this.link}}
+                    <a
+                        class="dropdown-item"
+                        {{#if this.onClick}}onClick="{{this.onClick}}"{{/if}}
+                        {{#if this.dataToggle}}data-toggle="{{this.dataToggle}}"{{/if}}
+                        {{#if this.dataTarget}}data-target="{{this.dataTarget}}"{{/if}}
+                        href="{{this.link}}"
+                    >
+                        {{{this.content}}}
+                    </a>
+                {{else}}
+                    <div
+                        class="dropdown-item"
+                        {{#if this.onClick}}onClick="{{this.onClick}}"{{/if}}
+                        {{#if this.dataToggle}}data-toggle="{{this.dataToggle}}"{{/if}}
+                        {{#if this.dataTarget}}data-target="{{this.dataTarget}}"{{/if}}
+                    >
+                        {{{this.content}}}
+                    </div>
+                {{/if}}
             {{/each}}
         </div>
     </div>

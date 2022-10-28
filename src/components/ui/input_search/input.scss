@@ -12,7 +12,7 @@
     background-color: var(--light);
     color: var(--silver);
     border-radius: var(--spacing-10);
-    padding: 0 0 0 40px;
+    padding: 0 0 0 20px;
 }
 
 .input-search-placeholder {
@@ -45,8 +45,12 @@
 }
 
 .input-search-placeholder__text {
-    margin: 0 0 0 5px;
+    margin: 0;
     color: var(--silver);
+}
+
+.input-search-placeholder__icon + .input-search-placeholder__text {
+    margin-left: var(--spacing-5);
 }
 
 .input-search-placeholder__icon svg path {
@@ -60,15 +64,16 @@
 
 .input-search:focus + .input-search-placeholder .input-search-placeholder__content,
 :not(.input-search[value=""]) + .input-search-placeholder .input-search-placeholder__content {
-    top: 50%;
-    left: 20px;
-    transform: translateX(0) translateY(-50%);
+    opacity: 0;
+    /*top: 50%;
+    left: 10px;
+    transform: translateX(0) translateY(-50%);*/
 }
 
-.input-search:focus + .input-search-placeholder .input-search-placeholder__text,
-:not(.input-search[value=""]) + .input-search-placeholder .input-search-placeholder__text{
+/*.input-search:focus + .input-search-placeholder .input-search-placeholder__text,
+:not(.input-search[value=""]) + .input-search-placeholder .input-search-placeholder__text {
     opacity: 0;
-}
+}*/
 
 .input-search:focus + .input-search-placeholder .input-search-placeholder__content .input-search-placeholder__icon svg path {
     fill: var(--color-gray-4);

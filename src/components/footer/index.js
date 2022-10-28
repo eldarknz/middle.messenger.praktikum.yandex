@@ -2,6 +2,7 @@ import Handlebars from "handlebars";
 import template from "./footer.tmpl";
 import dropdown from "../ui/dropdown";
 import { icon_attachment, icon_arrow_right, icon_media, icon_file, icon_location } from "../ui/icon/icons";
+import inputSearch from "../../components/ui/input_search";
 import "../../components/ui/input_search"
 import "../ui/button"
 import "./footer.scss";
@@ -19,6 +20,11 @@ const footer = () => {
                 {link: "#", content: `${icon_file("icon-size-l icon-primary")} Файл`},
                 {link: "#", content: `${icon_location("icon-size-l icon-primary")} Локация`}
             ]
+        }),
+        inputMessage: inputSearch({
+            id: "message",
+            name: "message",
+            placeholderText: "Сообщение",
         }),
         btnSend: icon_arrow_right("icon-white icon-size-m")
     }

@@ -39,6 +39,7 @@
 
 .dropdown .dropdown-item:hover {
     color: var(--link-primary-color-hover);
+    cursor: pointer;
 }
 
 .dropdown.show .dropdown-menu {

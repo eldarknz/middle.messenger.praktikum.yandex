@@ -6,4 +6,21 @@ import "../icon/icons";
 
 inputHandler();
 
-Handlebars.registerPartial("input_search", template);
+const inputSearch = (props) => {
+
+    let compiled = Handlebars.compile(template);
+
+    let html = compiled({
+        className: props.className,
+        id: props.id,
+        name: props.name,
+        value: props.value,
+        placeholderText: props.placeholderText,
+        placeholderPosition: props.placeholderPosition,
+        placeholderIcon: props.placeholderIcon
+    });
+
+    return html;
+};
+
+export default inputSearch

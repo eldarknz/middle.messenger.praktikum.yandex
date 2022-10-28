@@ -31,18 +31,13 @@
     width: 40px;
     border-radius: 50%;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .btn-square {
     height: 40px;
     width: 40px;
+    min-width: 40px;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .btn-primary {

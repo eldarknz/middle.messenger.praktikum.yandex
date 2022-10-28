@@ -123,3 +123,25 @@ a {
         color: var(--silver);
     }
 }
+
+/* SCROLLBAEL */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gray-1) var(--white);
+}
+  
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--white);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--color-gray-1);
+    border-radius: 0;
+    border: 0
+}
