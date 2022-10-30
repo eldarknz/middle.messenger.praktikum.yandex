@@ -1,15 +1,15 @@
 import Handlebars from "handlebars";
 import template from "./sidebar.tmpl";
 import nav from "../ui/nav";
-import inputSearch from "../../components/ui/input_search";
-import "../../components/ui/icon/icons"
+import input from "../../components/ui/input";
+import "../../components/ui/icon"
 import "./sidebar.scss";
 import { 
     icon_profile,
     icon_talks,
     icon_settings,
     icon_search
-} from "../../components/ui/icon/icons";
+} from "../../components/ui/icon";
 
 const sidebar = (content) => {
     let compiled = Handlebars.compile(template);
@@ -21,7 +21,7 @@ const sidebar = (content) => {
             {link: "/", content: icon_talks("icon-size-l")},
             {link: "javascript:void(0);", content: icon_settings("icon-size-l")}
         ]),
-        inputSearch: inputSearch({
+        inputSearch: input({
             id: "search",
             name: "search",
             placeholderText: "Поиск",

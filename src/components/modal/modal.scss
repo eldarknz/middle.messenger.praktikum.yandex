@@ -43,13 +43,13 @@
     font-weight: 500;
 }
 
-.modal-container__close-Button {
+.modal-container__close-button {
     position: absolute;
     top: var(--spacing-15);
-    right: var(--spacing-10);
+    right: var(--spacing-15);
     font-size: 0;
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
     cursor: pointer;
 }
 

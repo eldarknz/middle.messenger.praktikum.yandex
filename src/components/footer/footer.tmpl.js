@@ -6,7 +6,7 @@ export default `
             <div class="footer__container__content">
                 {{{ dropdown }}}
                 {{{ inputMessage }}}
-                {{> button className="btn btn-square btn-primary" content=btnSend }}
+                {{> button className="btn btn-square btn-primary" content=btnSendContent }}
             </div>
         </div>
     </div>

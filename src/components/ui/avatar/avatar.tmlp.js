@@ -1,5 +1,5 @@
 // language=hbs
 
 export default `
-    <div class="avatar{{#if className}} {{className}}{{/if}}"></div>
+    <div class="avatar{{#if className}} {{className}}{{/if}}">{{{content}}}</div>
 `

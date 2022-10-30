@@ -1,6 +1,6 @@
 import Handlebars from "handlebars";
 import template from "./modal.tmpl";
-import { icon_close } from "../ui/icon/icons";
+import { icon_close } from "../ui/icon";
 import "./modal.scss";
 
 const modal = (props) => {
@@ -8,9 +8,10 @@ const modal = (props) => {
 
     let html = compiled({
         id: props.id,
-        title: "Добавить пользователя",
+        title: props.title ? props.title : "Title",
         icon_close: icon_close(),
-        content: "Контент"
+        content: props.content,
+        style: props.style
     });
 
     return html;

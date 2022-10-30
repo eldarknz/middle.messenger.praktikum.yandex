@@ -3,11 +3,11 @@
 export default `
     <div class="wrapper">
         {{{sidebar}}}
-        <div class="main">
+        <div class="chat">
             {{{header}}}
             {{{footer}}}
-            <div class="chat empty">
-                <span class="text-silver">Выберите чат чтобы отправить сообщение</span>
+            <div class="chat-container empty">
+                <span class="text-silver">Сообщения отсутствуют</span>
             </div>
         </div>
     </div>

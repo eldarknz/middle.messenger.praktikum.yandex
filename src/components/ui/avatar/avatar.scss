@@ -3,7 +3,9 @@
     width: 34px;
     background-color: var(--color-gray-1);
     border-radius: 50%;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .avatar_size_m {

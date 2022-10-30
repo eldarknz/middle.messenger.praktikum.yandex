@@ -2,6 +2,7 @@ import { ROUTES } from "./utils/constants";
 
 import {
     ChatPage,
+    ProfilePage,
     LoginPage,
     RegistrationPage,
     PageNotFoundPage,
@@ -10,18 +11,9 @@ import {
 
 import "./styles/globals.scss";
 
-/*import { 
-    ERROR_404,
-    ERROR_500,
-    ROUTES_LIST,
-    LOGIN, REGISTER,
-    PROFILE,
-    CHANGE_PASSWORD,
-    INSTANT_MESSENGER
- } from './const/routes';*/
-
 const routes = {
     [ROUTES.home.path]: ChatPage,
+    [ROUTES.profile.path]: ProfilePage,
     [ROUTES.login.path]: LoginPage,
     [ROUTES.register.path]: RegistrationPage,
     [ROUTES.error_404.path]: PageNotFoundPage,

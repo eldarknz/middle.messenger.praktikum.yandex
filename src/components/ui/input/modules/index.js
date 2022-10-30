@@ -1,8 +1,15 @@
 export const inputHandler = () => {
     window.addEventListener('DOMContentLoaded', (event) => {
-        let inputFields = document.querySelectorAll(".input-field");
+        let inputFieldsBase = document.querySelectorAll(".input-base");
+        let inputFieldsAlt = document.querySelectorAll(".input-alt");
 
-        inputFields && inputFields.forEach((el) => {
+        inputFieldsBase && inputFieldsBase.forEach((el) => {
+            el.addEventListener("keyup", () => {
+                el.setAttribute("value", el.value);
+            })
+        });
+
+        inputFieldsAlt && inputFieldsAlt.forEach((el) => {
             el.addEventListener("keyup", () => {
                 el.setAttribute("value", el.value);
             })

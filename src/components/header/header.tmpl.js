@@ -14,4 +14,5 @@ export default `
             </div>
         </div>
     </div>
+    {{{modal}}}
 `

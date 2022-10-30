@@ -6,8 +6,8 @@ export default `
             <h3 class="sign-container__title">{{title}}</h3>
             <form method="post" class="sign-container__form">
                 <div class="sign-container__form__input-group">
-                    {{> input type="text" placeholder="Логин" name="login" id="login" value="" }}
-                    {{> input type="password" placeholder="Пароль" name="password" id="password" value="" }}
+                    {{{loginInput}}}
+                    {{{passwordInput}}}
                 </div>
 
                 {{> button className="btn btn-primary btn-block" content="Авторизоваться" }}
