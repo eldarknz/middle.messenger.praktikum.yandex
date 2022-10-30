@@ -1,5 +1,5 @@
 import Handlebars from "handlebars";
-import template from "./chat.tmpl";
+import template from "./chat.tmpl.js";
 import header from "../../components/header";
 import footer from "../../components/footer";
 import sidebar from "../../components/sidebar";

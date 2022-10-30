@@ -2,30 +2,37 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "description": "Messenger",
-  "main": "src/index.js",
   "scripts": {
     "dev": "parcel static/index.html --open --port 3000",
     "build": "parcel build static/index.html --no-source-maps --no-cache",
-    "start": "parcel --port 3000 && node ./server.js"
+    "start": "npm run build && node ./server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eldarknz/middle.messenger.praktikum.yandex.git"
   },
+  "targets": {
+    "web": {
+      "context": "browser",
+      "publicUrl": "./",
+      "distDir": "dist"
+    }
+  },
   "keywords": [],
   "author": "Eldar Kanzafarov",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/eldarknz/middle.messenger.praktikum.yandex/issues"
-  },
   "engines": {
     "node": ">=12"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "parcel": "^2.7.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.7.0",
     "express": "^4.18.1",
-    "handlebars": "^4.7.7",
-    "parcel": "^2.7.0"
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "parcel-transformer-hbs": "^1.0.4"
   },
   "homepage": "https://github.com/eldarknz/middle.messenger.praktikum.yandex#readme"
 }
