@@ -12,9 +12,9 @@ import "../ui/button"
 import "./header.scss";
 
 const header = () => {
-    let compiled = Handlebars.compile(template);
+    const compiled = Handlebars.compile(template);
 
-    let data = {
+    const data = {
         dropdown: dropdown({
             btnClassName: "btn btn-circle",
             btnContent: icon_dots("icon-size-m"),
@@ -44,7 +44,7 @@ const header = () => {
         })
     }
 
-    let html = compiled(data);
+    const html = compiled(data);
 
     dropdownHandler();
     modalHandler();

@@ -3,12 +3,11 @@ import template from "./registration.tmpl";
 import input from "../../components/ui/input";
 import "../../components/ui/button";
 import "../../components/ui/input";
-import "./styles.scss";
 
 export default () => {
-    let compiled = Handlebars.compile(template);
+    const compiled = Handlebars.compile(template);
 
-    let data = {
+    const html = compiled({
         title: "Регистрация",
         emailInput: input({
             type: "email", placeholderText: "Почта", name: "email", id: "email", alternative: "true"
@@ -31,9 +30,7 @@ export default () => {
         passwordConfirmInput: input({
             type: "password", placeholderText: "Пароль (еще раз)", name: "password_2", id: "password_2", alternative: "true"
         })
-    };
-
-    let html = compiled(data);
+    });
 
     return html;
 };

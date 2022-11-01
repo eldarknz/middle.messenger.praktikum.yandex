@@ -10,7 +10,7 @@ export const dropdownHandler = () => {
     }
   
     window.addEventListener('DOMContentLoaded', () => {
-        let dropdowns = document.querySelectorAll('.dropdown');
+        const dropdowns = document.querySelectorAll('.dropdown');
 
         dropdowns.forEach(dropdown => {
             let button = dropdown.querySelector('#dropdownMenuButton');
@@ -38,4 +38,4 @@ export const dropdownHandler = () => {
             dropdownHide(dropdowns);
         }
   });
-}
+};

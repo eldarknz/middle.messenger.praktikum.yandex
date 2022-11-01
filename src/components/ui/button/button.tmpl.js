@@ -23,4 +23,4 @@ export default `
             {{{content}}}
         </button>
     {{/ if}}
-`;
+`

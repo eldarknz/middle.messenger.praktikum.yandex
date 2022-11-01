@@ -11,15 +11,13 @@ import "../../components/ui/icon";
 import "./styles.scss";
 
 export default () => {
-    let compiled = Handlebars.compile(template);
+    const compiled = Handlebars.compile(template);
 
-    let data = {
+    const html = compiled({
         header: header(),
         footer: footer(),
         sidebar: sidebar(chatList(chats))
-    }
-
-    let html = compiled(data);
+    });
 
     return html;
 };

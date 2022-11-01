@@ -4,9 +4,9 @@ import { icon_close } from "../ui/icon";
 import "./modal.scss";
 
 const modal = (props) => {
-    let compiled = Handlebars.compile(template);
+    const compiled = Handlebars.compile(template);
 
-    let html = compiled({
+    const html = compiled({
         id: props.id,
         title: props.title ? props.title : "Title",
         icon_close: icon_close(),

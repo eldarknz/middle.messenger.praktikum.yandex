@@ -5,4 +5,4 @@ export const userData = [
     { title: "Фамилия", value: "Иванов"},
     { title: "Имя в чате", value: "Иван"},
     { title: "Телефон", value: "+7 (909) 967 30 30"}
-]
+];

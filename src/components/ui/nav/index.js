@@ -3,9 +3,9 @@ import template from "./nav.tmpl";
 import "./nav.scss";
 
 const nav = (list) => {
-    let compiled = Handlebars.compile(template);
+    const compiled = Handlebars.compile(template);
 
-    let html = compiled({list});
+    const html = compiled({list});
 
     return html;
 };

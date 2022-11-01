@@ -8,9 +8,9 @@ import "../ui/button"
 import "./footer.scss";
 
 const footer = () => {
-    let compiled = Handlebars.compile(template);
+    const compiled = Handlebars.compile(template);
 
-    let data = {
+    const data = {
         dropdown: dropdown({
             dropdownClassName: "up",
             btnClassName: "btn btn-square btn-gray",
@@ -29,7 +29,7 @@ const footer = () => {
         btnSendContent: icon_arrow_right("icon-white icon-size-m")
     }
 
-    let html = compiled(data);
+    const html = compiled(data);
 
     return html;
 };

@@ -12,9 +12,9 @@ import {
 } from "../../components/ui/icon";
 
 const sidebar = (content) => {
-    let compiled = Handlebars.compile(template);
+    const compiled = Handlebars.compile(template);
 
-    let html = compiled({
+    const html = compiled({
         content: content,
         nav: nav(            [
             {link: "/profile", content: icon_profile("icon-size-l")},

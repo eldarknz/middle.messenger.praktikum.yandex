@@ -1,6 +1,6 @@
 export const modalHandler = () => {
     const modalClose = () => {
-        let modals = document.querySelectorAll('.modal');
+        const modals = document.querySelectorAll('.modal');
         modals.forEach(modal => {
             if (modal.style.display === "block") {
                 modal.style.display = "none";
@@ -9,7 +9,7 @@ export const modalHandler = () => {
     }
     
     window.addEventListener('DOMContentLoaded', () => {
-        let modalButtons = document.querySelectorAll('[data-toggle="modal"]');
+        const modalButtons = document.querySelectorAll('[data-toggle="modal"]');
   
         modalButtons.forEach(button => {
             button.onclick = () => {
@@ -35,4 +35,4 @@ export const modalHandler = () => {
             }
         }
     });
-}
+};

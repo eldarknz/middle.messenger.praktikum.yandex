@@ -4,9 +4,9 @@ import "./components/chatCard";
 import "./chatList.scss";
 
 const chatList = (list) => {
-    let compiled = Handlebars.compile(template);
+    const compiled = Handlebars.compile(template);
 
-    let html = compiled({list});
+    const html = compiled({list});
 
     return html;
 };

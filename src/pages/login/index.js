@@ -2,13 +2,12 @@ import Handlebars from "handlebars";
 import template from "./login.tmpl";
 import "../../components/ui/button";
 import "../../components/ui/label";
-import "./styles.scss";
 import input from "../../components/ui/input";
 
 export default () => {
-    let compiled = Handlebars.compile(template);
+    const compiled = Handlebars.compile(template);
 
-    let data = {
+    const html = compiled({
         title: "Вход",
         loginInput: input({
             alternative: true,
@@ -23,9 +22,7 @@ export default () => {
             type: "password",
             placeholderText: "Пароль",
         })
-    };
-
-    let html = compiled(data);
+    });
 
     return html;
 };

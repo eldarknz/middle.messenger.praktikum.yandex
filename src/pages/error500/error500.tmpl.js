@@ -10,4 +10,4 @@ export default `
             <a href="/">Назад к чатам</a>
         </div>
     </div>
-`;
+`

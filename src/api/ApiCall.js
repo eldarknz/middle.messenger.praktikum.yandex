@@ -10,4 +10,4 @@ export function getChats() {
     }).catch((error) => {
         console.error('Ошибка:', error);
     });
-}
+};

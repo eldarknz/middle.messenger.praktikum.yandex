@@ -6,9 +6,9 @@ import "./input.scss";
 inputHandler();
 
 const input = (props) => {
-    let compiled = Handlebars.compile(template);
+    const compiled = Handlebars.compile(template);
 
-    let html = compiled({
+    const html = compiled({
         alternative: props.alternative,
         className: props.className,
         type: props.type ? props.type : "text",

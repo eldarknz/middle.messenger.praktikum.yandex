@@ -4,9 +4,9 @@ import "./dropdown.scss";
 
 const dropdown = (props) => {
 
-    let compiled = Handlebars.compile(template);
+    const compiled = Handlebars.compile(template);
 
-    let html = compiled({
+    const html = compiled({
         dropdownClassName: props.dropdownClassName,
         btnClassName: props.btnClassName,
         btnContent: props.btnContent,
