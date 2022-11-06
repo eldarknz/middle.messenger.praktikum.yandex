@@ -1,13 +1,12 @@
 import Handlebars from "handlebars";
-import template from "./nav.tmpl";
-import "./nav.scss";
+import template from "./Nav.tmpl";
+import { NavItem } from "./components/NavItem";
+import "./Nav.scss";
 
-const nav = (list) => {
+export const Nav = (list) => {
     const compiled = Handlebars.compile(template);
 
     const html = compiled({list});
 
     return html;
 };
-
-export default nav
