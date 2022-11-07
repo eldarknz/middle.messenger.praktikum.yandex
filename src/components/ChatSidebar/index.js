@@ -1,15 +1,15 @@
 import Handlebars from "handlebars";
 import template from "./sidebar.tmpl";
-import nav from "../ui/nav";
-import input from "../../components/ui/input";
-import "../../components/ui/icon"
+import { nav } from "../ui/Nav"
+import input from "../../components/ui/Input";
+import "../../components/ui/Icon"
 import "./sidebar.scss";
 import { 
     icon_profile,
     icon_talks,
     icon_settings,
     icon_search
-} from "../../components/ui/icon";
+} from "../../components/ui/Icon";
 
 const sidebar = (content) => {
     const compiled = Handlebars.compile(template);

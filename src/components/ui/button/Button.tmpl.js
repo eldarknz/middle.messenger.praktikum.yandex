@@ -1,6 +1,6 @@
 // language=hbs
 
-const template = `
+export default `
     {{# if href}}
         <a
             href="{{href}}"
@@ -23,6 +23,4 @@ const template = `
             {{{content}}}
         </button>
     {{/ if}}
-`;
-
-export default template
+`

@@ -1,11 +1,11 @@
 import Handlebars from "handlebars";
 import template from "./chat.tmpl.js";
-import header from "../../components/header";
-import footer from "../../components/footer";
-import sidebar from "../../components/sidebar";
+import header from "../../components/ChatHeader";
+import footer from "../../components/ChatFooter";
+import sidebar from "../../components/ChatSidebar";
 import chatList from "../../components/ChatList";
 import { data as chats } from "../../data/data";
-import "../../components/footer";
+import "../../components/ChatFooter";
 import "../../components/ui/Input";
 import "../../components/ui/Icon";
 import "./styles.scss";

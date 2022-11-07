@@ -1,11 +1,11 @@
 import Handlebars from "handlebars";
-import template from "./input.tmpl";
+import template from "./Input.tmpl";
 import { inputHandler } from "./modules/index"
-import "./input.scss";
+import "./Input.scss";
 
 inputHandler();
 
-const input = (props) => {
+const Input = (props) => {
     const compiled = Handlebars.compile(template);
 
     const html = compiled({
@@ -23,4 +23,4 @@ const input = (props) => {
     return html;
 };
 
-export default input
+export default Input

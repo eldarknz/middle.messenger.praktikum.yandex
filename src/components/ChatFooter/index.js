@@ -1,32 +1,34 @@
 import Handlebars from "handlebars";
-import template from "./footer.tmpl";
-import dropdown from "../ui/dropdown";
-import { icon_attachment, icon_arrow_right, icon_media, icon_file, icon_location } from "../ui/icon";
-import input from "../../components/ui/input";
-import "../../components/ui/input"
-import "../ui/button"
-import "./footer.scss";
+import template from "./ChatFooter.tmpl";
+import Dropdown from "../ui/Dropdown";
+import { IconAttachment, IconArrowRight, IconMedia, IconFile, IconLocation } from "../ui/Icon";
+import Input from "../../components/ui/Input";
+import Button from "../ui/Button";
+import "./ChatFooter.scss";
 
-const footer = () => {
+const ChatFooter = () => {
     const compiled = Handlebars.compile(template);
 
     const data = {
-        dropdown: dropdown({
+        dropdown: Dropdown({
             dropdownClassName: "up",
             btnClassName: "btn btn-square btn-gray",
-            btnContent: icon_attachment("icon-size-m"),
+            btnContent: IconAttachment("icon-size-m"),
             menuList: [
-                {link: "#", content: `${icon_media("icon-size-l icon-primary")} Фото или видео`},
-                {link: "#", content: `${icon_file("icon-size-l icon-primary")} Файл`},
-                {link: "#", content: `${icon_location("icon-size-l icon-primary")} Локация`}
+                {link: "#", content: `${IconMedia("icon-size-l icon-primary")} Фото или видео`},
+                {link: "#", content: `${IconFile("icon-size-l icon-primary")} Файл`},
+                {link: "#", content: `${IconLocation("icon-size-l icon-primary")} Локация`}
             ]
         }),
-        inputMessage: input({
+        inputMessage: Input({
             id: "message",
             name: "message",
             placeholderText: "Сообщение",
         }),
-        btnSendContent: icon_arrow_right("icon-white icon-size-m")
+        btnSend: Button({
+            className:"btn btn-square btn-primary",
+            content: IconArrowRight("icon-white icon-size-m")
+        })
     }
 
     const html = compiled(data);
@@ -34,4 +36,4 @@ const footer = () => {
     return html;
 };
 
-export default footer
+export default ChatFooter

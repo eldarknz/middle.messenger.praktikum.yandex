@@ -1,40 +1,39 @@
 import Handlebars from "handlebars";
-import template from "./header.tmpl";
-import dropdown from "../ui/Dropdown";
-import { icon_add, icon_delete, icon_dots } from "../ui/Icon";
-import { dropdownHandler } from "../../modules/dropdown";
-import { modalHandler } from "../../modules/modal";
-import modal from "../Modal";
-import input from "../ui/Input";
-import button from "../ui/Button";
-import "../ui/Avatar"
-import "../ui/Button"
-import "./header.scss";
+import template from "./ChatHeader.tmpl";
+import Dropdown from "../ui/Dropdown";
+import { IconAdd, IconDelete, IconDots } from "../ui/Icon";
+import Modal from "../Modal";
+import Input from "../ui/Input";
+import Button from "../ui/Button";
+import Avatar from "../ui/Avatar";
+import "./ChatHeader.scss";
+import { dropdownHandler, modalHandler } from "../../modules";
 
-const header = () => {
+const ChatHeader = () => {
     const compiled = Handlebars.compile(template);
 
     const data = {
-        dropdown: dropdown({
+        avatar: Avatar(),
+        dropdown: Dropdown({
             btnClassName: "btn btn-circle",
-            btnContent: icon_dots("icon-size-m"),
+            btnContent: IconDots("icon-size-m"),
             menuList: [
-                { dataToggle: "modal", dataTarget: "addUserModal", content: `${icon_add("icon-size-l icon-primary")} Добавить пользователя` },
-                { content: `${icon_delete("icon-size-l icon-primary")} Удалить пользователя` }
+                { dataToggle: "modal", dataTarget: "addUserModal", content: `${IconAdd("icon-size-l icon-primary")} Добавить пользователя` },
+                { content: `${IconDelete("icon-size-l icon-primary")} Удалить пользователя` }
             ]
         }),
-        modal: modal({
+        modal: Modal({
             id: "addUserModal",
             title: "Добавить пользователя",
             content: `
                 <div class="add-user-form">
-                    ${input({
+                    ${Input({
                         alternative: true,
                         id: "addUserLogin",
                         name: "addUserLogin",
                         placeholderText: "Логин",
                     })}
-                    ${button({
+                    ${Button({
                         className: "btn btn-block btn-primary",
                         content: "Добавить"
                     })}
@@ -52,4 +51,4 @@ const header = () => {
     return html;
 };
 
-export default header
+export default ChatHeader

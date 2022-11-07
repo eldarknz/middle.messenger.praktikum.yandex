@@ -1,8 +1,7 @@
 import Handlebars from "handlebars";
 import template from "./registration.tmpl";
-import input from "../../components/ui/input";
-import "../../components/ui/button";
-import "../../components/ui/input";
+import input from "../../components/ui/Input";
+import button from "../../components/ui/Button";
 
 export default () => {
     const compiled = Handlebars.compile(template);
@@ -29,6 +28,10 @@ export default () => {
         }),
         passwordConfirmInput: input({
             type: "password", placeholderText: "Пароль (еще раз)", name: "password_2", id: "password_2", alternative: "true"
+        }),
+        buttonSubmit: button({
+            className: "btn btn-primary btn-block",
+            content: "Зарегистрироваться"
         })
     });
 

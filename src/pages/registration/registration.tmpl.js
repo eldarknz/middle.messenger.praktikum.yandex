@@ -15,7 +15,7 @@ export default `
                     {{{passwordConfirmInput}}}
                 </div>
 
-                {{> button className="btn btn-primary btn-block" content="Зарегистрироваться" }}
+                {{{buttonSubmit}}}
             </form>
             <div class="sign-container__text-block">
                 <span class="text-gray">Уже есть учетная запись? </span>

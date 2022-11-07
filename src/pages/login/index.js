@@ -1,8 +1,8 @@
 import Handlebars from "handlebars";
 import template from "./login.tmpl";
-import "../../components/ui/button";
-import "../../components/ui/label";
-import input from "../../components/ui/input";
+import "../../components/ui/Button";
+import "../../components/ui/Label";
+import input from "../../components/ui/Input";
 
 export default () => {
     const compiled = Handlebars.compile(template);

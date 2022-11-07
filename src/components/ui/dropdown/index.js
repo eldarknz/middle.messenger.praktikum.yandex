@@ -1,8 +1,8 @@
 import Handlebars from "handlebars";
-import template from "./dropdown.tmpl";
-import "./dropdown.scss";
+import template from "./Dropdown.tmpl";
+import "./Dropdown.scss";
 
-const dropdown = (props) => {
+const Dropdown = (props) => {
 
     const compiled = Handlebars.compile(template);
 
@@ -16,4 +16,4 @@ const dropdown = (props) => {
     return html;
 };
 
-export default dropdown
+export default Dropdown

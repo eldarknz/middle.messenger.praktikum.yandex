@@ -1,6 +1,6 @@
 import Handlebars from "handlebars";
-import template from "./button.tmpl";
-import "./button.scss";
+import template from "./Button.tmpl";
+import "./Button.scss";
 
 Handlebars.registerPartial("button", template);
 

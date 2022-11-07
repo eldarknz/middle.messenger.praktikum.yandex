@@ -1,11 +1,11 @@
 // language=hbs
 
 export default `
-    <div class="header">
-        <div class="header__container">
-            <div class="header__container__content">
+    <div class="chat-header">
+        <div class="chat-header__container">
+            <div class="chat-header__container__content">
                 <div class="user-block">
-                    {{> avatar }}
+                    {{{ avatar }}}
                     <span class="user-block__name">Вадим</span>
                 </div>
                 <div class="action-block">

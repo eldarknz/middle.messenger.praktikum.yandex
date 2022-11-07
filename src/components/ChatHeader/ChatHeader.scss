@@ -1,4 +1,4 @@
-.header {
+.chat-header {
     width: 100%;
     height: 60px;
     transition: all 0.3s;
@@ -9,7 +9,7 @@
     z-index: 1;
 }
 
-.header__container {
+.chat-header__container {
     display: flex;
     align-items: center;
     margin: 0 16px;
@@ -20,7 +20,7 @@
     border-bottom-color: var(--light);
 }
 
-.header__container__content {
+.chat-header__container__content {
     width: 100%;
     display: flex;
     align-items: center;

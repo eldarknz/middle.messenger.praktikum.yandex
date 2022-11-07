@@ -1,6 +1,6 @@
 import Handlebars from "handlebars";
 import template from "./modal.tmpl";
-import { icon_close } from "../ui/icon";
+import { icon_close } from "../ui/Icon";
 import "./modal.scss";
 
 const modal = (props) => {
