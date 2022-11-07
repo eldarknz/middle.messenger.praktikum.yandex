@@ -1,0 +1,7 @@
+.eslintrc.json
+/dist
+**/*.min.js
+/node_modules
+**/*.config.js
+/.github
+server.js

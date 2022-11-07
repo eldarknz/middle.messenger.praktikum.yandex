@@ -1,14 +1,14 @@
 import Handlebars from "handlebars";
 import template from "./header.tmpl";
-import dropdown from "../ui/dropdown";
-import { icon_add, icon_delete, icon_dots } from "../ui/icon";
+import dropdown from "../ui/Dropdown";
+import { icon_add, icon_delete, icon_dots } from "../ui/Icon";
 import { dropdownHandler } from "../../modules/dropdown";
 import { modalHandler } from "../../modules/modal";
-import modal from "../modal";
-import input from "../ui/input";
-import button from "../ui/button";
-import "../ui/avatar"
-import "../ui/button"
+import modal from "../Modal";
+import input from "../ui/Input";
+import button from "../ui/Button";
+import "../ui/Avatar"
+import "../ui/Button"
 import "./header.scss";
 
 const header = () => {

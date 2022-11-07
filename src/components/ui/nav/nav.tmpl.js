@@ -1,6 +1,6 @@
 // language=hbs
 
-const template = `
+export default `
     <ul class="nav">
         {{#each list}}
             <li class="nav-item">
@@ -11,5 +11,3 @@ const template = `
         {{/each}}
     </ul>
 `
-
-export default template

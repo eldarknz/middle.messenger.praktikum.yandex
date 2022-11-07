@@ -1,7 +1,6 @@
 import Handlebars from "handlebars";
-import template from "./Nav.tmpl";
-import { NavItem } from "./components/NavItem";
-import "./Nav.scss";
+
+import "./nav.scss";
 
 export const Nav = (list) => {
     const compiled = Handlebars.compile(template);
