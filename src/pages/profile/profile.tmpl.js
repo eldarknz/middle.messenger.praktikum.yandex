@@ -17,7 +17,7 @@ export default `
                     <div class="user-name">{{userName}}</div>
                 </div>
                 <div class="profile-container__info">
-                    <div class="list">
+                    <div class="list list-flush">
                         {{#each userDataList }}
                             <div class="info-item list-item">
                                 <span class="info-item__title">{{this.title}}</span>
@@ -27,7 +27,7 @@ export default `
                     </div>
                 </div>
                 <div class="profile-container__actions">
-                    <div class="list">
+                    <div class="list list-flush">
                         <div class="list-item">
                             <a href="">Изменить данные</a>
                         </div>

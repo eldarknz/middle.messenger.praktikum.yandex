@@ -130,23 +130,6 @@ a {
     }
 }
 
-.list {
-    width: 100%;
-
-    & .list-item {
-        display: flex;
-        align-items: center;
-        height: 32px;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-        border-bottom-color: var(--light);
-    }
-    
-    & .list-item:last-child {
-        border-bottom-color: transparent;
-    }
-}
-
 /* SCROLLBAEL */
 
 * {
