@@ -8,7 +8,8 @@ export const CHANGE_PASSWORD   = '/change_password';
 export const INSTANT_MESSENGER = '/im';
 
 export const ROUTES = {
-    home: { title: "Мессенджер", path: "/" },
+    home: { title: "Главная", path: "/" },
+    chat: { title: "Мессенджер", path: "/chat" },
     login: { title: "Вход", path: "/login" },
     register: { title: "Регистрация", path: "/register" },
     forgot_password: { title: "Восстановление пароля", path: "/forgot-password" },

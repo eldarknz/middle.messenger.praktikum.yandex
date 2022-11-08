@@ -1,6 +1,7 @@
 import { ROUTES } from "./utils/constants";
 
 import {
+    MainPage,
     ChatPage,
     ProfilePage,
     LoginPage,
@@ -12,7 +13,8 @@ import {
 import "./styles/globals.scss";
 
 const routes = {
-    [ROUTES.home.path]: ChatPage,
+    [ROUTES.home.path]: MainPage,
+    [ROUTES.chat.path]: ChatPage,
     [ROUTES.profile.path]: ProfilePage,
     [ROUTES.login.path]: LoginPage,
     [ROUTES.register.path]: RegistrationPage,

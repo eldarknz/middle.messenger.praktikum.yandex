@@ -2,10 +2,10 @@
 
 export default `
     <div class="wrapper">
-        {{{sidebar}}}
+        {{{ sidebar }}}
         <div class="chat">
-            {{{header}}}
-            {{{footer}}}
+            {{{ header }}}
+            {{{ footer }}}
             <div class="chat-container empty">
                 <span class="text-silver">Сообщения отсутствуют</span>
             </div>

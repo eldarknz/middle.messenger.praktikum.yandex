@@ -1,4 +1,4 @@
-.sidebar {
+.chat-sidebar {
     width: 320px;
     position: fixed;
     top: 0;
@@ -12,8 +12,8 @@
     transition: all 0.3s;
 }
 
-.sidebar__header,
-.sidebar__search {
+.chat-sidebar__header,
+.chat-sidebar__search {
     display: flex;
     align-items: center;
     width: 100%;
@@ -24,25 +24,25 @@
     border-bottom-color: var(--light);
 }
 
-.sidebar__header {
+.chat-sidebar__header {
     padding: 0 16px;
     justify-content: space-between;
 }
 
-.sidebar__search {
+.chat-sidebar__search {
     padding: 0 10px;
     justify-content: center;
 }
 
 
-.sidebar__content {
+.chat-sidebar__content {
     padding: 10px;
     height: calc(100% - 180px);
     overflow-y: scroll;
     scrollbar-gutter: stable;
 }
 
-.sidebar__footer {
+.chat-sidebar__footer {
     display: flex;
     align-items: center;
     justify-content: center;

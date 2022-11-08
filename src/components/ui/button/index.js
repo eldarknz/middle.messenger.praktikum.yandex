@@ -2,9 +2,9 @@ import Handlebars from "handlebars";
 import template from "./Button.tmpl";
 import "./Button.scss";
 
-Handlebars.registerPartial("button", template);
+Handlebars.registerPartial("Button", template);
 
-const button = (props) => {
+const Button = (props) => {
 
     const compiled = Handlebars.compile(template);
 
@@ -12,10 +12,10 @@ const button = (props) => {
         className: props.className,
         id: props.id,
         content: props.content,
-        href: props.id
+        href: props.href
     });
 
     return html;
 };
 
-export default button
+export default Button

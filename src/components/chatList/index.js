@@ -1,9 +1,9 @@
 import Handlebars from "handlebars";
-import template from "./chatList.tmpl";
-import "./components/chatCard";
-import "./chatList.scss";
+import template from "./ChatList.tmpl";
+import "./components/ChatCard";
+import "./ChatList.scss";
 
-const chatList = (list) => {
+const ChatList = (list) => {
     const compiled = Handlebars.compile(template);
 
     const html = compiled({list});
@@ -11,4 +11,4 @@ const chatList = (list) => {
     return html;
 };
 
-export default chatList
+export default ChatList

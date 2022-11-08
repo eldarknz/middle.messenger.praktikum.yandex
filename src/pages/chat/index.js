@@ -1,22 +1,22 @@
 import Handlebars from "handlebars";
 import template from "./chat.tmpl.js";
-import header from "../../components/ChatHeader";
-import footer from "../../components/ChatFooter";
-import sidebar from "../../components/ChatSidebar";
-import chatList from "../../components/ChatList";
+import ChatHeader from "../../components/ChatHeader";
+import ChatFooter from "../../components/ChatFooter";
+import ChatSidebar from "../../components/ChatSidebar";
+import ChatList from "../../components/ChatList";
+//import "../../components/ChatFooter";
+//import "../../components/ui/Input";
+//import "../../components/ui/Icon";
 import { data as chats } from "../../data/data";
-import "../../components/ChatFooter";
-import "../../components/ui/Input";
-import "../../components/ui/Icon";
 import "./styles.scss";
 
 export default () => {
     const compiled = Handlebars.compile(template);
 
     const html = compiled({
-        header: header(),
-        footer: footer(),
-        sidebar: sidebar(chatList(chats))
+        header: ChatHeader(),
+        footer: ChatFooter(),
+        sidebar: ChatSidebar(ChatList(chats))
     });
 
     return html;

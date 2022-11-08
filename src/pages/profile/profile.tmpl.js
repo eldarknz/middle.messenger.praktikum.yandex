@@ -3,13 +3,13 @@
 export default `
     <div class="wrapper">
         <div class="profile-sidebar">
-            {{> button href="/" className="btn btn-circle btn-primary" content=btnBackContent }}
+            {{> Button href="/" className="btn btn-circle btn-primary" content=btnBackContent }}
         </div>
         <div class="profile">
             <div class="profile-container">
                 <div class="profile-container__header">
                     <div class="user-avatar">
-                        {{> avatar className="avatar_size_l" content=userAvatarIcon }}
+                        {{> Avatar className="avatar_size_l" content=userAvatarIcon }}
                         <div class="user-avatar__overlay">Поменять
                             аватар
                         </div>

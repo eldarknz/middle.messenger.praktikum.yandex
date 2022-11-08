@@ -2,7 +2,7 @@ import Handlebars from "handlebars";
 import template from "./Label.tmpl";
 import "./Label.scss";
 
-Handlebars.registerPartial("label", template);
+Handlebars.registerPartial("Label", template);
 
 const Label = (props) => {
 

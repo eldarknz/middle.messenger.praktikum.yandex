@@ -1,36 +1,37 @@
 import Handlebars from "handlebars";
-import template from "./sidebar.tmpl";
-import { nav } from "../ui/Nav"
-import input from "../../components/ui/Input";
-import "../../components/ui/Icon"
-import "./sidebar.scss";
-import { 
-    icon_profile,
-    icon_talks,
-    icon_settings,
-    icon_search
+import template from "./ChatSidebar.tmpl";
+import { Nav } from "../ui/Nav"
+import Input from "../../components/ui/Input";
+import {
+    IconMessage,
+    IconProfile,
+    IconTalks,
+    IconSettings,
+    IconSearch
 } from "../../components/ui/Icon";
+import "./ChatSidebar.scss";
 
-const sidebar = (content) => {
+const ChatSidebar = (content) => {
     const compiled = Handlebars.compile(template);
 
     const html = compiled({
         content: content,
-        nav: nav(            [
-            {link: "/profile", content: icon_profile("icon-size-l")},
-            {link: "/", content: icon_talks("icon-size-l")},
-            {link: "javascript:void(0);", content: icon_settings("icon-size-l")}
+        nav: Nav(            [
+            {link: "/profile", content: IconProfile("icon-size-l")},
+            {link: "/", content: IconTalks("icon-size-l")},
+            {link: "javascript:void(0);", content: IconSettings("icon-size-l")}
         ]),
-        inputSearch: input({
+        inputSearch: Input({
             id: "search",
             name: "search",
             placeholderText: "Поиск",
             placeholderPosition: "center",
-            placeholderIcon: icon_search()
+            placeholderIcon: IconSearch()
         }),
+        iconMessage: IconMessage("icon-size-m")
     });
 
     return html;
 };
 
-export default sidebar
+export default ChatSidebar

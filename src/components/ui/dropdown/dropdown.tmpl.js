@@ -2,7 +2,7 @@
 
 export default `
     <div class="dropdown{{#if dropdownClassName}} {{dropdownClassName}}{{/if}}">
-        {{> button className=btnClassName id="dropdownMenuButton" content=btnContent }}
+        {{{ dropdownButton }}}
         <div class="dropdown-menu">
             {{#each menuList}}
                 {{# if this.link}}

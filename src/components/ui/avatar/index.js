@@ -2,7 +2,7 @@ import Handlebars from "handlebars";
 import template from "./Avatar.tmlp";
 import "./Avatar.scss";
 
-Handlebars.registerPartial("avatar", template);
+Handlebars.registerPartial("Avatar", template);
 
 const Avatar = (props = {}) => {
 

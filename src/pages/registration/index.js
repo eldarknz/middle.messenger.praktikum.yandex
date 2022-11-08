@@ -1,35 +1,35 @@
 import Handlebars from "handlebars";
 import template from "./registration.tmpl";
-import input from "../../components/ui/Input";
-import button from "../../components/ui/Button";
+import Input from "../../components/ui/Input";
+import Button from "../../components/ui/Button";
 
 export default () => {
     const compiled = Handlebars.compile(template);
 
     const html = compiled({
         title: "Регистрация",
-        emailInput: input({
+        emailInput: Input({
             type: "email", placeholderText: "Почта", name: "email", id: "email", alternative: "true"
         }),
-        loginInput: input({
+        loginInput: Input({
             type: "text", placeholderText: "Логин", name: "login", id: "login", alternative: "true"
         }),
-        firstNameInput: input({
+        firstNameInput: Input({
             type: "text", placeholderText: "Имя", name: "first_name", id: "first_name", alternative: "true"
         }),
-        secondNameInput: input({
+        secondNameInput: Input({
             type: "text", placeholderText: "Фамилия", name: "second_name", id: "second_name", alternative: "true"
         }),
-        phoneInput: input({
+        phoneInput: Input({
             type: "text", placeholderText: "Телефон", name: "phone", id: "phone", alternative: "true"
         }),
-        passwordInput: input({
+        passwordInput: Input({
             type: "password", placeholderText: "Пароль", name: "password", id: "password", alternative: "true"
         }),
-        passwordConfirmInput: input({
+        passwordConfirmInput: Input({
             type: "password", placeholderText: "Пароль (еще раз)", name: "password_2", id: "password_2", alternative: "true"
         }),
-        buttonSubmit: button({
+        buttonSubmit: Button({
             className: "btn btn-primary btn-block",
             content: "Зарегистрироваться"
         })
