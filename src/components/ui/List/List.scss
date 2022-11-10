@@ -1,6 +1,4 @@
 .list {
-    width: 100%;
-
     & .list-item {
         display: flex;
         align-items: center;
@@ -17,5 +15,9 @@
         & .list-item:last-child {
             border-bottom-color: transparent;
         }
+    }
+
+    &.list-full {
+        width: 100%;
     }
 }

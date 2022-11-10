@@ -7,7 +7,9 @@
         "noUnusedParameters": true,
         "sourceMap": true,
         "strictNullChecks": false,
-        "removeComments": true
+        "removeComments": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true
     },
     "include": [
         "./src",
