@@ -8,6 +8,23 @@ import { IconArrowLeft, IconMedia } from "../../components/ui/Icon";
 import { userData } from "../../data/userdata";
 import "./styles.scss";
 
+interface ITextBlock {
+    attr?: any;
+    content: string;
+}
+
+class TextBlock extends Block {
+    constructor(props: ITextBlock) {
+        super('div', props);
+    }
+    
+    render() {
+        return this.compile(`{{{content}}}`, {
+            content: this.props.content
+        });
+    }
+}
+
 interface IProfile {
     attr?: any;
     buttonBack: Block;
@@ -27,23 +44,6 @@ class Profile extends Block {
             userAvatar: this.props.userAvatar,
             userName: this.props.userName,
             userDataList: this.props.userDataList
-        });
-    }
-}
-
-interface ITextBlock {
-    attr?: any;
-    content: any;
-}
-
-class TextBlock extends Block {
-    constructor(props: ITextBlock) {
-        super('div', props);
-    }
-    
-    render() {
-        return this.compile(`{{{content}}}`, {
-            content: this.props.content
         });
     }
 }

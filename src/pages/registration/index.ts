@@ -49,7 +49,6 @@ const RegistrationPage = new Registration({
             class: "form-group"
         },
         alternative: true,
-        type: "text",
         id: "email",
         name: "email",
         placeholderText: "Почта"
@@ -59,7 +58,6 @@ const RegistrationPage = new Registration({
             class: "form-group"
         },
         alternative: true,
-        type: "text",
         id: "login",
         name: "login",
         placeholderText: "Логин"
@@ -69,7 +67,6 @@ const RegistrationPage = new Registration({
             class: "form-group"
         },
         alternative: true,
-        type: "text",
         id: "first_name",
         name: "first_name",
         placeholderText: "Имя"
@@ -79,7 +76,6 @@ const RegistrationPage = new Registration({
             class: "form-group"
         },
         alternative: true,
-        type: "text",
         id: "second_name",
         name: "second_name",
         placeholderText: "Фамилия"
@@ -89,7 +85,6 @@ const RegistrationPage = new Registration({
             class: "form-group"
         },
         alternative: true,
-        type: "text",
         id: "phone",
         name: "phone",
         placeholderText: "Телефон"

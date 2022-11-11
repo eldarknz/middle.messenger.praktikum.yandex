@@ -1,12 +1,12 @@
 //import Handlebars from "handlebars";
 import Block from "../../../core/block";
 import template from "./Input.tmpl";
-//import { inputHandler } from "./modules/index"
+import { inputHandler } from "./modules/index"
 import "./Input.scss";
 
-/*inputHandler();
+inputHandler();
 
-const Input = (props) => {
+/*const Input = (props) => {
     const compiled = Handlebars.compile(template);
 
     const html = compiled({
@@ -27,7 +27,7 @@ const Input = (props) => {
 interface IInput {
     attr?: any;
     alternative?: boolean;
-    type: string;
+    type?: string;
     id: string;
     name: string;
     value?: string;

@@ -4,7 +4,7 @@ import "./Avatar.scss";
 
 interface IAvatar {
     attr?: any;
-    content: Block | string;
+    content?: Block | string;
 }
 
 class Avatar extends Block {

@@ -39,7 +39,6 @@ const LoginPage = new Login({
             class: "form-group"
         },
         alternative: true,
-        type: "text",
         id: "login",
         name: "login",
         placeholderText: "Логин"

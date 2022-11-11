@@ -4,7 +4,7 @@ import "./List.scss";
 
 interface IList {
   attr?: any;
-  content: Block | string;
+  content: Block[] | string[];
 }
 
 class List extends Block {
