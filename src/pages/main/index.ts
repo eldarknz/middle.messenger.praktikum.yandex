@@ -1,9 +1,8 @@
-//import Handlebars from "handlebars"
+import Block from "../../core/block";
+import { ROUTES } from "../../utils/constants";
 import template from "./main.tmpl";
 import List from "../../components/ui/List";
 import Link from "../../components/ui/Link";
-import { ROUTES } from "../../utils/constants";
-import Block from "../../core/block";
 
 interface IMain {
     attr?: any;
@@ -49,46 +48,3 @@ const MainPage = new Main({
 });
   
 export default MainPage
-
-/*export default () => {
-    const compiled = Handlebars.compile(template);
-
-    const html = compiled({
-        list: List({
-            list: [
-                { content: Link({
-                        href: "/login",
-                        content: "Логин"
-                    })
-                },
-                { content: Link({
-                        href: "/register",
-                        content: "Регистрация"
-                    })
-                },
-                { content: Link({
-                        href: "/chat",
-                        content: "Чат"
-                    })
-                },
-                { content: Link({
-                        href: "/profile",
-                        content: "Профиль"
-                    })
-                },
-                { content: Link({
-                        href: "/404",
-                        content: "404"
-                    })
-                },
-                { content: Link({
-                        href: "/500",
-                        content: "500"
-                    })
-                }
-            ]
-        })
-    });
-
-    return html;
-};*/

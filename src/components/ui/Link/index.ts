@@ -19,11 +19,10 @@ export default Link*/
 
 import Block from "../../../core/block";
 import template from "./Link.tmpl";
-import "./Link.scss";
 
 interface ILink {
   attr?: any;
-  content?: any;
+  content?: Block | string;
 }
 
 class Link extends Block {
