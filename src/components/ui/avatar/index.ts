@@ -20,5 +20,3 @@ class Avatar extends Block {
 }
 
 export default Avatar
-
-
