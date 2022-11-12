@@ -1,4 +1,3 @@
-//import Handlebars from "handlebars";
 import Block from "../../core/block";
 import template from "./modal.tmpl";
 import "./modal.scss";

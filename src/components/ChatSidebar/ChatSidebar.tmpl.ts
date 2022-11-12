@@ -9,7 +9,7 @@ export default `
                 </div>
             </div>
             <a href="/profile">
-                {{{ iconMessage }}}
+                {{{ newMessageIcon }}}
             </a>
         </div>
         <div class="chat-sidebar__search">

@@ -3,18 +3,15 @@ import template from "./ChatHeader.tmpl";
 import Dropdown from "../ui/Dropdown";
 import Button from "../ui/Button";
 import Avatar from "../ui/Avatar";
-import Modal from "../Modal";
-import { IconAdd, IconDelete, IconDots, IconClose } from "../ui/Icon";
+import { IconAdd, IconDelete, IconDots } from "../ui/Icon";
 import "./ChatHeader.scss";
-import { dropdownHandler, modalHandler } from "../../modules";
-import AddUserFormBlock from "./components/AddUserForm/AddUserForm";
+import UserActions from "./components/UserActions/UserActions";
 
 interface IChatHeader {
     attr?: any;
     userAvatar: Block;
     userName: string;
     dropdown: any;
-    modal?: Block;
 }
 
 class ChatHeader extends Block {
@@ -26,8 +23,7 @@ class ChatHeader extends Block {
         return this.compile(template, {
             userAvatar: this.props.userAvatar,
             userName: this.props.userName,
-            dropdown: this.props.dropdown,
-            modal: this.props.modal
+            dropdown: this.props.dropdown
         });
     }
 }
@@ -44,27 +40,13 @@ const ChatHeaderBlock = new ChatHeader({
             attr: { class: "btn btn-circle", id: "dropdownMenuButton" },
             content: new IconDots({ attr: { class: "icon icon-size-m" }})
         }),
-        dataToggle: "modal",
-        dataTarget: "addUserModal",
-        addUserIcon: new IconAdd({attr: { class: "icon icon-size-l icon-primary"}}),
-        deleteUserIcon: new IconDelete({attr: { class: "icon icon-size-l icon-primary"}})
-    }),
-    modal: new Modal({
-        attr: {
-            class: "modal",
-            id: "addUserModal",
-            style: "display: none",
-        },
-        iconClose: new IconClose({ attr: { class: "icon" }}),
-        title: "Добавить пользователя",
-        content: AddUserFormBlock
+        content: new UserActions({
+            dataToggle: "modal",
+            dataTarget: "addUserModal",
+            addUserIcon: new IconAdd({attr: { class: "icon icon-size-l icon-primary"}}),
+            deleteUserIcon: new IconDelete({attr: { class: "icon icon-size-l icon-primary"}})
+        })
     })
 })
 
-dropdownHandler();
-modalHandler();
-
-export {
-    ChatHeader,
-    ChatHeaderBlock
-}
+export default ChatHeaderBlock

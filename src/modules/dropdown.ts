@@ -1,8 +1,8 @@
 export const dropdownHandler = () => {
-    const dropdownHide = (dropdowns) => {
-        dropdowns.forEach(dropdown => {
+    const dropdownHide = (dropdowns: NodeListOf<HTMLElement>) => {
+        dropdowns.forEach((dropdown: HTMLElement) => {
             if (dropdown.classList.contains('show')) {
-                let button = dropdown.querySelector('#dropdownMenuButton');
+                let button = <HTMLElement>dropdown.querySelector('#dropdownMenuButton');
                 button.classList.remove('active');
                 dropdown.classList.remove('show');
             }
@@ -10,10 +10,10 @@ export const dropdownHandler = () => {
     }
   
     window.addEventListener('DOMContentLoaded', () => {
-        const dropdowns = document.querySelectorAll('.dropdown');
+        const dropdowns: NodeListOf<HTMLElement> = document.querySelectorAll('.dropdown');
 
         dropdowns.forEach(dropdown => {
-            let button = dropdown.querySelector('#dropdownMenuButton');
+            let button = <HTMLElement>dropdown.querySelector('#dropdownMenuButton');
             button.addEventListener("click", () => {
             if (dropdown.classList.contains('show')) {
                 dropdownHide(dropdowns);
@@ -28,9 +28,10 @@ export const dropdownHandler = () => {
 
         
 
-        window.onclick = (event) => {
-            if (event.target.closest('.dropdown-menu') || event.target.closest('#dropdownMenuButton')) {
-                if (!event.target.closest('.dropdown-item')) {
+        window.onclick = (event: Event) => {
+            const target = event.target as HTMLElement;
+            if (target.closest('.dropdown-menu') || target.closest('#dropdownMenuButton')) {
+                if (!target.closest('.dropdown-item')) {
                     return;
                 }
             };

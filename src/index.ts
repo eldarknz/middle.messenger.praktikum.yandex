@@ -32,6 +32,3 @@ for (const [key, value] of Object.entries(pages)) {
         render('#root', value);
     }
 }
-
-//const app = document.getElementById("root");
-//app.innerHTML = pagesPath[currentLocation]?.();

@@ -1,8 +1,8 @@
-import Block from "../../../../core/block";
+import Block from "../../core/block";
 import template from "./AddUserForm.tmpl";
-import "../../ChatHeader.scss";
-import Input from "../../../ui/Input";
-import Button from "../../../ui/Button";
+import Input from "../ui/Input";
+import Button from "../ui/Button";
+import "./AddUserForm.scss";
 
 interface IAddUserForm {
     attr?: any;

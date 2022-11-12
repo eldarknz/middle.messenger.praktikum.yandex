@@ -1,4 +1,3 @@
-//import Handlebars from "handlebars";
 import Block from "../../../core/block";
 import template from "./Label.tmpl";
 import "./Label.scss";

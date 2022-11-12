@@ -1,28 +1,9 @@
-//import Handlebars from "handlebars";
 import Block from "../../../core/block";
 import template from "./Input.tmpl";
 import { inputHandler } from "./modules/index"
 import "./Input.scss";
 
 inputHandler();
-
-/*const Input = (props) => {
-    const compiled = Handlebars.compile(template);
-
-    const html = compiled({
-        alternative: props.alternative,
-        className: props.className,
-        type: props.type ? props.type : "text",
-        id: props.id,
-        name: props.name,
-        value: props.value,
-        placeholderText: props.placeholderText,
-        placeholderPosition: props.placeholderPosition,
-        placeholderIcon: props.placeholderIcon
-    });
-
-    return html;
-};*/
 
 interface IInput {
     attr?: any;
@@ -31,9 +12,13 @@ interface IInput {
     id: string;
     name: string;
     value?: string;
-    placeholderText: string,
-    placeholderPosition?: string,
+    placeholderText: string;
+    placeholderPosition?: string;
     placeholderIcon?: Block;
+    events?: { 
+        blur?: (e: Event) => void;
+        focus?: (e: Event) => void;
+    };
 }
   
 class Input extends Block {
@@ -50,7 +35,8 @@ class Input extends Block {
             value: this.props.value,
             placeholderText: this.props.placeholderText,
             placeholderPosition: this.props.placeholderPosition,
-            placeholderIcon: this.props.placeholderIcon
+            placeholderIcon: this.props.placeholderIcon,
+            onblur: this.props.events
         });
     }
 }

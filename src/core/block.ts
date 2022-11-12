@@ -51,16 +51,12 @@ class Block {
     const props = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
-      //console.log("key, value: ", [key, value])
-      //console.log(Array.isArray(value));
       if (Array.isArray(value)) {
         children[key] = []
         value.forEach(element => {
           if (element instanceof Block) {
             children[key].push(element);
           }
-          //children[key] = element
-          //console.log(key, element);
         });
       } else {
         if (value instanceof Block) {
@@ -71,8 +67,6 @@ class Block {
       }
     });
 
-    //console.log("children: ", children);
-    //console.log("props: ", props)
     return { children, props };
   }
 
@@ -97,9 +91,7 @@ class Block {
   private _componentDidMount(): void {
     this.componentDidMount();
 
-    //console.log("AAAAA", Object.values(this.children))
     Object.values(this.children).forEach((child) => {
-      //child.dispatchComponentDidMount();
       if (Array.isArray(child)) {
         child.forEach(item => {
           item.dispatchComponentDidMount();
@@ -222,15 +214,8 @@ class Block {
 
   compile(template: string, props: object) {
     const propsAndStubs = { ...props };
-    //console.log(propsAndStubs)
-    //console.log("this.children: ", this.children);
-    //console.log("propsAndStubs: ", propsAndStubs)
-
-    //const size = Object.keys(this.children).length;
-    //console.log(size)
 
     Object.entries(this.children).forEach(([key, child]) => {
-      //console.log(key, child.element, child._id)
       if (Array.isArray(child)) {
         propsAndStubs[key] = []
         child.forEach(subchild => {
@@ -241,16 +226,9 @@ class Block {
       }
     });
 
-    //console.log("this.children: ", this.children);
-    //console.log("propsAndStubs: ", propsAndStubs)
-
     const fragment = this._createDocumentElement('template');
 
-    //console.log(template)
     fragment.innerHTML = Handlebars.compile(template)(propsAndStubs);
-    //console.log("template: ", fragment.content);
-
-    //console.log("fragment: ", fragment.content);
     Object.values(this.children).forEach((child) => {
       if (Array.isArray(child)) {
         child.forEach(subchild => {
@@ -261,12 +239,7 @@ class Block {
         const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
         stub.replaceWith(child.getContent());
       }
-      //console.log("_id: ", child._id);
-      //const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
-      //console.log(stub);
-      //stub.replaceWith(child.getContent());
     });
-    //console.log("-----------------------------")
     return fragment.content;
   }
 

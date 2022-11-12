@@ -2,6 +2,14 @@
     display: flex;
     position: relative;
     width: 100%;
+    flex-direction: column;
+}
+
+.input-block {
+    display: flex;
+    position: relative;
+    width: 100%;
+    flex-direction: column;
 }
 
 .input-base {
@@ -131,4 +139,16 @@
 
 .input-alt, .input-alt-placeholder {
     font-size: var(--font-size-14);
+}
+
+.hint {
+    font-size: var(--font-size-12);
+    font-weight: 400;
+    margin-top: var(--spacing-10);
+    color: var(--dark);
+    line-height: 1;
+}
+
+.error {
+    color: var(--danger);
 }

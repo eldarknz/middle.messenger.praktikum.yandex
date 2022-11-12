@@ -4,7 +4,7 @@ import "./Nav.scss";
 
 interface INav {
   attr?: any;
-  content: { link: string, content: Block | string }[];
+  content: any;
 }
 
 class Nav extends Block {
