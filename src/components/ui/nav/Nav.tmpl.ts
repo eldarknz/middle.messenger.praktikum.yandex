@@ -2,6 +2,6 @@
 
 export default `
     {{#each content}}
-        <li class="nav-item">{{{this}}}</li>
+        <div class="nav-item">{{{this}}}</div>
     {{/each}}
 `

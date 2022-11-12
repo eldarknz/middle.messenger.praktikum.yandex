@@ -1,5 +1,13 @@
 import { queryStringify } from "../helpres/queryStringify";
 
+type HTTPMethod = (url: string, options?: Options) => Promise<unknown>
+type Options = {
+    method?: METHOD;
+    timeout?: number;
+    headers?: { [key: string]: string };
+    data?: { [key: string]: string };
+};
+
 enum METHOD {
     GET = 'GET',
     POST = 'POST',
@@ -7,29 +15,22 @@ enum METHOD {
     DELETE = 'DELETE',
 }
 
-type Options = {
-    method: METHOD;
-    timeout?: number;
-    headers?: { [key: string]: string };
-    data?: { [key: string]: string };
-};
-
 class HTTPTransport {
-    get = (url: string, options: Options = { method: METHOD.GET }) => {
+    get: HTTPMethod = (url, options = {}) => {
         const query = options.data ? url + queryStringify(options.data) : url;
 
         return this.request(query, { ...options, method: METHOD.GET }, options.timeout);
     };
 
-    post = (url: string, options: Options = { method: METHOD.POST }) => {
+    post: HTTPMethod = (url, options = {}) => {
         return this.request(url, { ...options, method: METHOD.POST }, options.timeout);
     };
 
-    put = (url: string, options: Options = { method: METHOD.PUT }) => {
+    put: HTTPMethod = (url, options = {}) => {
         return this.request(url, { ...options, method: METHOD.PUT }, options.timeout);
     };
 
-    delete = (url: string, options: Options = { method: METHOD.DELETE }) => {
+    delete: HTTPMethod = (url, options = {}) => {
         return this.request(url, { ...options, method: METHOD.DELETE }, options.timeout);
     };
 

@@ -1,4 +1,5 @@
-import render from "./core/renderDom";
+import Block from "./core/block";
+import renderDOM from "./core/renderDom";
 import { ROUTES } from "./utils/constants";
 
 import {
@@ -15,7 +16,7 @@ import "./styles/globals.scss";
 
 const currentLocation: string = window.location.pathname;
 
-type TPages = { [key: string]: any };
+type TPages = { [key: string]: Block };
 
 const pages: TPages = {
     [ROUTES.home.path]: MainPage,
@@ -27,8 +28,8 @@ const pages: TPages = {
     [ROUTES.error_500.path]: ServerErrorPage
 }
 
-for (const [key, value] of Object.entries(pages)) {
-    if (currentLocation === key) {
-        render('#root', value);
+Object.entries(pages).forEach(([url, page]) => {
+    if (currentLocation === url) {
+        renderDOM('#root', page);
     }
-}
+});

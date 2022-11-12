@@ -9,7 +9,7 @@ interface INav {
 
 class Nav extends Block {
   constructor(props: INav) {
-    super('ul', props);
+    super('nav', props);
   }
   
   render() {
