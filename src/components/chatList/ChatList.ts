@@ -6,9 +6,10 @@ import "./components/ChatCard";
 import "./ChatList.scss";
 import Avatar from "../ui/Avatar";
 import Label from "../ui/Label";
+import { TBlockAttributes } from "../../../declarations";
 
 interface IChatList {
-    attr?: any;
+    attr?: TBlockAttributes;
     content: Block[];
 }
 

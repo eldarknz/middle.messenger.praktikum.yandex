@@ -2,11 +2,12 @@ import Block from "../../../core/block";
 import template from "./Input.tmpl";
 import { inputHandler } from "./modules/index"
 import "./Input.scss";
+import { TBlockAttributes } from "../../../../declarations";
 
 inputHandler();
 
 interface IInput {
-    attr?: any;
+    attr?: TBlockAttributes;
     alternative?: boolean;
     type?: string;
     id: string;

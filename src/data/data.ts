@@ -1,4 +1,6 @@
-export const data = [
+import { TChatData } from "../../declarations";
+
+export const data: TChatData[] = [
     {
         "_id":"60d3b41abdacab0026a733c6",
         "title":"Андрей",

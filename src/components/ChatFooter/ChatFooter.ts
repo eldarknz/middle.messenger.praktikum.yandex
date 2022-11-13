@@ -2,13 +2,14 @@ import Block from "../../core/block";
 import template from "./ChatFooter.tmpl";
 import Dropdown from "../ui/Dropdown";
 import { IconAttachment, IconArrowRight, IconMedia, IconFile, IconLocation } from "../ui/Icon";
-import Input from "../../components/ui/Input";
+import Input from "../ui/Input";
 import Button from "../ui/Button";
 import MediaActions from "./components/MediaActions/MediaActions";
 import "./ChatFooter.scss";
+import { TBlockAttributes } from "../../../declarations";
 
 interface IChatFooter {
-    attr?: any;
+    attr?: TBlockAttributes;
     dropdown?: Block;
     inputMessage?: Block;
     buttonSend?: Block;

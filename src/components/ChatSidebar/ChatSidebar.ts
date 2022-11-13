@@ -1,7 +1,9 @@
+import Block from "../../core/block";
 import template from "./ChatSidebar.tmpl";
 import Nav from "../ui/Nav";
 import Input from "../../components/ui/Input";
 import Link from "../ui/Link";
+import ChatListBlock from "../ChatList/ChatList";
 import {
     IconMessage,
     IconProfile,
@@ -9,12 +11,11 @@ import {
     IconSettings,
     IconSearch
 } from "../../components/ui/Icon";
+import { TBlockAttributes } from "../../../declarations";
 import "./ChatSidebar.scss";
-import Block from "../../core/block";
-import ChatListBlock from "../ChatList";
 
 interface IChatSidebar {
-    attr?: any;
+    attr?: TBlockAttributes;
     newMessageIcon: Block,
     inputSearch: Block;
     content: Block | string;
@@ -58,9 +59,9 @@ const ChatSidebarBlock = new ChatSidebar({
             class: "nav"
         },
         content: [
+            { url: "/chat", content: new IconTalks({ attr: { class: "icon icon-size-l" }})},
             { url: "/profile", content: new IconProfile({ attr: { class: "icon icon-size-l" }})},
-            { url: "/", content: new IconTalks({ attr: { class: "icon icon-size-l" }})},
-            { url: "javascript:void(0);", content: new IconSettings({ attr: { class: "icon icon-size-l" }})}
+            { url: "/profile/edit", content: new IconSettings({ attr: { class: "icon icon-size-l" }})}
         ].map(link => (
             new Link({
                 attr: { class: "nav-link", href: link.url },

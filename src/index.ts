@@ -6,6 +6,8 @@ import {
     MainPage,
     ChatPage,
     ProfilePage,
+    ProfileEditPage,
+    PasswordEditPage,
     LoginPage,
     RegistrationPage,
     NotFoundErrorPage,
@@ -16,12 +18,12 @@ import "./styles/globals.scss";
 
 const currentLocation: string = window.location.pathname;
 
-type TPages = { [key: string]: Block };
-
-const pages: TPages = {
+const pages: { [key: string]: Block } = {
     [ROUTES.home.path]: MainPage,
     [ROUTES.chat.path]: ChatPage,
     [ROUTES.profile.path]: ProfilePage,
+    [ROUTES.profileEdit.path]: ProfileEditPage,
+    [ROUTES.passwordEdit.path]: PasswordEditPage,
     [ROUTES.login.path]: LoginPage,
     [ROUTES.register.path]: RegistrationPage,
     [ROUTES.error_404.path]: NotFoundErrorPage,

@@ -1,9 +1,10 @@
 import Block from "../../../core/block";
 import template from "./Avatar.tmlp";
 import "./Avatar.scss";
+import { TBlockAttributes } from "../../../../declarations";
 
 interface IAvatar {
-    attr?: any;
+    attr?: TBlockAttributes;
     content?: Block | string;
 }
 

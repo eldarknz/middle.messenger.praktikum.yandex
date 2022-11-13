@@ -1,9 +1,10 @@
 import Block from "../../../core/block";
 import template from "./Dropdown.tmpl";
 import "./Dropdown.scss";
+import { TBlockAttributes } from "../../../../declarations";
 
 interface IDropdown {
-    attr?: any;
+    attr?: TBlockAttributes;
     dropdownButton: Block;
     content?: Block | string;
 }

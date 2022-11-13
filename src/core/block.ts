@@ -2,7 +2,9 @@ import Handlebars from 'handlebars';
 import { v4 as makeUUID } from 'uuid';
 import EventBus from './eventBus';
 
-class Block {
+class Block<Props extends Record<string, any> = any> {
+//class Block<P extends Record<string, any>, Refs extends Record<string, Block<any>> = {}> {
+//class Block {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -10,7 +12,7 @@ class Block {
     FLOW_RENDER: 'flow:render',
   };
 
-  private _element: HTMLElement;
+  private _element: Nullable<HTMLElement> = null;
 
   private _meta: { tagName: string; props: object; withInternalID?: boolean };
 
@@ -18,9 +20,9 @@ class Block {
 
   public children: object;
 
-  public props;
+  public props: {[key: string]: any}
 
-  public _id: string = null;
+  public _id: Nullable<string> = null;
 
   /** JSDoc
    * @param {string} tagName
@@ -46,9 +48,9 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _getChildren(propsAndChildren) {
-    const children = {};
-    const props = {};
+  private _getChildren(propsAndChildren: object = {}) {
+    const children: { [key: string]: any } = {};
+    const props: { [key: string]: any } = {}
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (Array.isArray(value)) {
@@ -70,7 +72,7 @@ class Block {
     return { children, props };
   }
 
-  private _registerEvents(eventBus): void {
+  private _registerEvents(eventBus: EventBus): void {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
@@ -108,14 +110,14 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate(oldProps, newProps): void {
+  private _componentDidUpdate(oldProps: Props, newProps: Props): void {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (response) {
       this._render();
     }
   }
 
-  componentDidUpdate(oldProps, newProps): boolean {
+  componentDidUpdate(oldProps: Props, newProps: Props): boolean {
     return true;
   }
 
@@ -124,12 +126,16 @@ class Block {
 
     Object.keys(events).forEach((eventName) => {
       if (eventName === 'focus' || eventName === 'blur') {
-        const elements = this._element.querySelectorAll('input');
-        elements.forEach((item) => {
-          item.addEventListener(eventName, events[eventName]);
-        });
+        if (this._element) {
+          const elements = this._element.querySelectorAll('input');
+          elements.forEach((item) => {
+            item.addEventListener(eventName, events[eventName]);
+          });
+        }
       } else {
-        this._element.addEventListener(eventName, events[eventName]);
+        if (this._element) {
+          this._element.addEventListener(eventName, events[eventName]);
+        }
       }
     });
   }
@@ -138,7 +144,9 @@ class Block {
     const { attr = {} } = this.props;
 
     Object.keys(attr).forEach((attrName) => {
-      this._element.setAttribute(attrName, attr[attrName]);
+      if (this._element) {
+        this._element.setAttribute(attrName, attr[attrName]);
+      }
     });
   }
 
@@ -147,17 +155,21 @@ class Block {
 
     Object.keys(events).forEach((eventName) => {
       if (eventName === 'focus' || eventName === 'blur') {
-        const elements = this._element.querySelectorAll('input');
-        elements.forEach((item) => {
-          item.removeEventListener(eventName, events[eventName]);
-        });
+        if (this._element) {
+          const elements = this._element.querySelectorAll('input');
+          elements.forEach((item) => {
+            item.removeEventListener(eventName, events[eventName]);
+          });
+        }
       } else {
-        this._element.removeEventListener(eventName, events[eventName]);
+        if (this._element) {
+          this._element.removeEventListener(eventName, events[eventName]);
+        }
       }
     });
   }
 
-  setProps = (nextProps) => {
+  setProps = (nextProps: Props) => {
     if (!nextProps) {
       return;
     }
@@ -165,30 +177,34 @@ class Block {
     Object.assign(this.props, nextProps);
   };
 
-  get element() : HTMLElement {
+  get element() {
     return this._element;
   }
 
-  private _render() : void {
+  private _render(): void {
     const block = this.render();
 
     this._removeEvents();
-    this._element.innerHTML = '';
-    this._element.appendChild(block);
+    if (this._element) {
+      this._element.innerHTML = '';
+      if (typeof block !== "string") {
+        this._element.appendChild(block);
+      }
+    }
 
     this._addAttributes();
     this._addEvents();
   }
 
-  render(): DocumentFragment {
-    return undefined;
+  render() {
+    return '';
   }
 
   getContent() {
     return this.element;
   }
 
-  private _makePropsProxy = (props) => {
+  private _makePropsProxy = (props: {[key: string|symbol]: any}) => {
     const self = this;
 
     return new Proxy(props, {
@@ -213,7 +229,7 @@ class Block {
   };
 
   compile(template: string, props: object) {
-    const propsAndStubs = { ...props };
+    const propsAndStubs: { [key: string]: any } = { ...props };
 
     Object.entries(this.children).forEach(([key, child]) => {
       if (Array.isArray(child)) {
@@ -227,8 +243,8 @@ class Block {
     });
 
     const fragment = this._createDocumentElement('template');
-
     fragment.innerHTML = Handlebars.compile(template)(propsAndStubs);
+
     Object.values(this.children).forEach((child) => {
       if (Array.isArray(child)) {
         child.forEach(subchild => {
@@ -240,23 +256,28 @@ class Block {
         stub.replaceWith(child.getContent());
       }
     });
+    //console.log(fragment.content);
     return fragment.content;
   }
 
-  private _createDocumentElement(tagName) {
+  private _createDocumentElement(tagName: string) {
     const element = document.createElement(tagName);
     if (this.props.settings?.withInternalID) {
-      element.setAttribute('data-id', this._id);
+      if (this._id) {
+        element.setAttribute('data-id', this._id);
+      }
     }
     return element;
   }
 
   show() {
-    this._element.style.display = 'block';
+    if (this._element)
+      this._element.style.display = 'block';
   }
 
   hide() {
-    this._element.style.display = 'none';
+    if (this._element)
+      this._element.style.display = 'none';
   }
 }
 

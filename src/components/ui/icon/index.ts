@@ -18,9 +18,10 @@ import {
     icon_talks
 } from "./Icons.tmpl";
 import "./Icon.scss";
+import { TBlockAttributes } from "../../../../declarations";
 
 interface IIcon {
-    attr?: any;
+    attr?: TBlockAttributes;
 }
 
 class IconAdd extends Block {

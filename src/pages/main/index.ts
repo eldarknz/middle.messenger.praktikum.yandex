@@ -1,12 +1,13 @@
 import Block from "../../core/block";
 import { ROUTES } from "../../utils/constants";
+import { TBlockAttributes } from "../../../declarations";
 import template from "./main.tmpl";
 import List from "../../components/ui/List";
 import Link from "../../components/ui/Link";
 
 interface IMain {
-    attr?: any;
-    content?: any;
+    attr?: TBlockAttributes;
+    content?: Block;
 }
 
 class Main extends Block {
@@ -21,13 +22,13 @@ class Main extends Block {
     }
 }
 
-const pages = [
-    { title: ROUTES.login.title, url: ROUTES.login.path },
-    { title: ROUTES.register.title, url: ROUTES.register.path },
-    { title: ROUTES.chat.title, url: ROUTES.chat.path },
-    { title: ROUTES.profile.title, url: ROUTES.profile.path },
-    { title: ROUTES.error_404.title, url: ROUTES.error_404.path },
-    { title: ROUTES.error_500.title, url: ROUTES.error_500.path }
+const pages: { title: string, path: string }[] = [
+    { title: ROUTES.login.title, path: ROUTES.login.path },
+    { title: ROUTES.register.title, path: ROUTES.register.path },
+    { title: ROUTES.chat.title, path: ROUTES.chat.path },
+    { title: ROUTES.profile.title, path: ROUTES.profile.path },
+    { title: ROUTES.error_404.title, path: ROUTES.error_404.path },
+    { title: ROUTES.error_500.title, path: ROUTES.error_500.path }
 ];
 
 const MainPage = new Main({
@@ -40,7 +41,7 @@ const MainPage = new Main({
         },
         content: pages.map(link => (
             new Link({
-                attr: { href: link.url },
+                attr: { href: link.path },
                 content: link.title
             })    
         ))

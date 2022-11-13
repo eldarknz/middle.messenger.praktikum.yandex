@@ -3,9 +3,10 @@ import template from "./AddUserForm.tmpl";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
 import "./AddUserForm.scss";
+import { TBlockAttributes } from "../../../declarations";
 
 interface IAddUserForm {
-    attr?: any;
+    attr?: TBlockAttributes;
     input: Block;
     buttonSubmit: Block;
 }

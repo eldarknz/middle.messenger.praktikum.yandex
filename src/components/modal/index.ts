@@ -1,12 +1,13 @@
 import Block from "../../core/block";
 import template from "./modal.tmpl";
 import "./modal.scss";
+import { TBlockAttributes } from "../../../declarations";
 
 interface IModal {
-    attr?: any;
+    attr?: TBlockAttributes;
     iconClose: Block | string;
     title?: string;
-    content?: any;
+    content?: Block | string;
 }
 
 class Modal extends Block {

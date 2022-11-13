@@ -6,12 +6,13 @@ import Avatar from "../ui/Avatar";
 import { IconAdd, IconDelete, IconDots } from "../ui/Icon";
 import "./ChatHeader.scss";
 import UserActions from "./components/UserActions/UserActions";
+import { TBlockAttributes } from "../../../declarations";
 
 interface IChatHeader {
-    attr?: any;
+    attr?: TBlockAttributes;
     userAvatar: Block;
     userName: string;
-    dropdown: any;
+    dropdown: Block;
 }
 
 class ChatHeader extends Block {

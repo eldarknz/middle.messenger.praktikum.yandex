@@ -1,8 +1,9 @@
+import { TBlockAttributes } from "../../../../../declarations";
 import Block from "../../../../core/block";
 import template from "./MediaActions.tmpl";
 
 interface IMediaActions {
-    attr?: any;
+    attr?: TBlockAttributes;
     addMediaIcon: Block,
     addFileIcon: Block,
     addLocationIcon: Block

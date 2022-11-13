@@ -1,9 +1,10 @@
 import Block from "../../core/block";
 import template from "./error500.tmpl";
 import Link from "../../components/ui/Link";
+import { TBlockAttributes } from "../../../declarations";
 
 interface IServerError {
-    attr?: any;
+    attr?: TBlockAttributes;
     title: string;
     text: string;
     link: Block;

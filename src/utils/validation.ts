@@ -1,8 +1,10 @@
-type TCheckFunction = (value: string) => boolean;
-type TCheckLength = (min: number, max: number, value: string) => boolean;
-type TCheckPasswordConfirm = (value_1: string, value_2: string) => boolean;
-type TShowError = (input: HTMLElement, selector: string, message?: string) => void;
-type THideError = (input: HTMLElement, selector: string) => void;
+import {
+    TCheckFunction,
+    TCheckLength,
+    TCheckPasswordConfirm,
+    TShowError,
+    THideError
+} from "../../declarations";
 
 class ValidationForm {
     checkEmptyValue: TCheckFunction = (value) => {

@@ -1,9 +1,10 @@
 import Block from "../../../core/block";
 import template from "./Label.tmpl";
 import "./Label.scss";
+import { TBlockAttributes } from "../../../../declarations";
 
 interface ILabel {
-    attr?: any;
+    attr?: TBlockAttributes;
     content: Block | string;
 }
 

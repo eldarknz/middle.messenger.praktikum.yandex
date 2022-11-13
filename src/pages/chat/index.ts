@@ -1,30 +1,17 @@
 import Block from "../../core/block";
 import template from "./chat.tmpl";
-import ChatHeaderBlock from "../../components/ChatHeader";
-import ChatFooterBlock from "../../components/ChatFooter";
-import ChatSidebarBlock from "../../components/ChatSidebar";
+import ChatHeaderBlock from "../../components/ChatHeader/ChatHeader";
+import ChatFooterBlock from "../../components/ChatFooter/ChatFooter";
+import ChatSidebarBlock from "../../components/ChatSidebar/ChatSidebar";
 import { IconClose } from "../../components/ui/Icon";
 import AddUserFormBlock from "../../components/AddUserForm/AddUserForm";
-//import ChatListBlock from "../../components/ChatList";
-import { dropdownHandler, modalHandler } from "../../modules"
-//import { data as chats } from "../../data/data";
-import "./styles.scss";
 import Modal from "../../components/Modal";
-
-/*export default () => {
-    const compiled = Handlebars.compile(template);
-
-    const html = compiled({
-        header: ChatHeader(),
-        footer: ChatFooter(),
-        sidebar: ChatSidebar(ChatList(chats))
-    });
-
-    return html;
-};*/
+import { dropdownHandler, modalHandler } from "../../modules"
+import { TBlockAttributes } from "../../../declarations";
+import "./styles.scss";
 
 interface IChat {
-    attr?: any;
+    attr?: TBlockAttributes;
     header: Block;
     footer?: Block;
     sidebar?: Block;

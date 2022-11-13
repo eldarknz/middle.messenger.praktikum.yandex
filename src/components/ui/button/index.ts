@@ -1,9 +1,10 @@
 import Block from "../../../core/block";
 import template from "./Button.tmpl";
 import "./Button.scss";
+import { TBlockAttributes } from "../../../../declarations";
 
 interface IButton {
-    attr?: any;
+    attr?: TBlockAttributes;
     content: Block | string;
     onClick?: () => void;
 }

@@ -1,10 +1,11 @@
 import Block from "../../../core/block"
 import template from "./Nav.tmpl";
 import "./Nav.scss";
+import { TBlockAttributes } from "../../../../declarations";
 
 interface INav {
-  attr?: any;
-  content: any;
+  attr?: TBlockAttributes;
+  content: Block[] | string[];
 }
 
 class Nav extends Block {

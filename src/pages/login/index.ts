@@ -4,11 +4,12 @@ import Button from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 import Link from "../../components/ui/Link";
 import ValidationForm from "../../utils/validation";
+import { TBlockAttributes } from "../../../declarations";
 
 const validation = new ValidationForm();
 
 interface ILogin {
-    attr?: any;
+    attr?: TBlockAttributes;
     title: string;
     loginInput: Block;
     passwordInput: Block;
@@ -97,7 +98,7 @@ const LoginPage = new Login({
             event.preventDefault();
             const target = event.target as HTMLInputElement;
             const inputFields = target.querySelectorAll('input');
-            const data = {};
+            const data: { [key: string]: string;} = {};
             inputFields.forEach((current) => {
                 if (current.name === 'login') {
                     if (!validation.checkLogin(current.value)) {

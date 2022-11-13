@@ -4,11 +4,12 @@ import Button from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 import Link from "../../components/ui/Link";
 import ValidationForm from "../../utils/validation";
+import { TBlockAttributes } from "../../../declarations";
 
 const validation = new ValidationForm();
 
 interface IRegistration {
-    attr?: any;
+    attr?: TBlockAttributes;
     title: string;
     emailInput: Block;
     loginInput: Block;
@@ -214,7 +215,7 @@ const RegistrationPage = new Registration({
             event.preventDefault();
             const target = event.target as HTMLInputElement;
             const inputFields = target.querySelectorAll('input');
-            const data = {};
+            const data: { [key: string]: string;} = {};
             inputFields.forEach((current) => {
                 if (current.name === 'email') {
                     if (!validation.checkEmail(current.value)) {

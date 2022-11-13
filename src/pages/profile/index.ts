@@ -6,10 +6,11 @@ import Link from "../../components/ui/Link";
 import List from "../../components/ui/List";
 import { IconArrowLeft, IconMedia } from "../../components/ui/Icon";
 import { userData } from "../../data/userdata";
+import { TBlockAttributes } from "../../../declarations";
 import "./styles.scss";
 
 interface ITextBlock {
-    attr?: any;
+    attr?: TBlockAttributes;
     content: string;
 }
 
@@ -26,11 +27,11 @@ class TextBlock extends Block {
 }
 
 interface IProfile {
-    attr?: any;
+    attr?: TBlockAttributes;
     buttonBack: Block;
     userAvatar?: Block;
     userName: string;
-    userDataList: any;
+    userDataList: Block;
 }
 
 class Profile extends Block {
@@ -54,7 +55,7 @@ const ProfilePage = new Profile({
     },
     buttonBack: new Link({
         attr: {
-            href: "/"
+            href: "/chat"
         },
         content: new Button({
             attr: {
