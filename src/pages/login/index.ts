@@ -3,10 +3,10 @@ import template from "./login.tmpl";
 import Button from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 import Link from "../../components/ui/Link";
-import ValidationForm from "../../utils/validation";
+import ValidationForm, { validateInput } from "../../utils/validation";
 import { TBlockAttributes } from "../../../declarations";
 
-const validation = new ValidationForm();
+const validation = new ValidationForm;
 
 interface ILogin {
     attr?: TBlockAttributes;
@@ -49,16 +49,7 @@ const LoginPage = new Login({
         name: "login",
         placeholderText: "Логин",
         events: {
-            blur: (event) => {
-                const target = event.target as HTMLInputElement;
-                if (target.name === 'login') {
-                    if (!validation.checkLogin(target.value)) {
-                        validation.showError(target, '.form-group');
-                    } else {
-                        validation.hideError(target, '.form-group');
-                    }
-                }
-            }
+            blur: (event) => validateInput(event.target as HTMLInputElement)
         }
     }),
     passwordInput: new Input({
@@ -71,16 +62,7 @@ const LoginPage = new Login({
         name: "password",
         placeholderText: "Пароль",
         events: {
-            blur: (event) => {
-                const target = event.target as HTMLInputElement;
-                if (target.name === 'password') {
-                    if (!validation.checkPassword(target.value)) {
-                        validation.showError(target, '.form-group');
-                    } else {
-                        validation.hideError(target, '.form-group');
-                    }
-                }
-            }
+            blur: (event) => validateInput(event.target as HTMLInputElement)
         }
     }),
     buttonSubmit: new Button({
@@ -101,15 +83,13 @@ const LoginPage = new Login({
             const data: { [key: string]: string;} = {};
             inputFields.forEach((current) => {
                 if (current.name === 'login') {
-                    if (!validation.checkLogin(current.value)) {
-                        validation.showError(current, '.form-group');
+                    if (!validateInput(current)) {
                         console.log('Логин введен неверно');
                     } else {
                         data[current.name] = current.value;
                     }
                 } else if (current.name === 'password') {
-                    if (!validation.checkPassword(current.value)) {
-                        validation.showError(current, '.form-group');
+                    if (!validateInput(current)) {
                         console.log('Пароль введен неверно');
                     } else {
                         data[current.name] = current.value;

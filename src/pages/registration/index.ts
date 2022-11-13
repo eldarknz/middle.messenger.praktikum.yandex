@@ -3,7 +3,7 @@ import template from "./registration.tmpl";
 import Button from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 import Link from "../../components/ui/Link";
-import ValidationForm from "../../utils/validation";
+import ValidationForm, { validateInput } from "../../utils/validation";
 import { TBlockAttributes } from "../../../declarations";
 
 const validation = new ValidationForm();
@@ -59,16 +59,7 @@ const RegistrationPage = new Registration({
         name: "email",
         placeholderText: "Почта",
         events: {
-            blur: (event) => {
-                const target = event.target as HTMLInputElement;
-                if (target.name === 'email') {
-                    if (!validation.checkEmail(target.value)) {
-                        validation.showError(target, '.form-group');
-                    } else {
-                        validation.hideError(target, '.form-group');
-                    }
-                }
-            }
+            blur: (event) => validateInput(event.target as HTMLInputElement)
         }
     }),
     loginInput: new Input({
@@ -80,16 +71,7 @@ const RegistrationPage = new Registration({
         name: "login",
         placeholderText: "Логин",
         events: {
-            blur: (event) => {
-                const target = event.target as HTMLInputElement;
-                if (target.name === 'login') {
-                    if (!validation.checkLogin(target.value)) {
-                        validation.showError(target, '.form-group');
-                    } else {
-                        validation.hideError(target, '.form-group');
-                    }
-                }
-            }
+            blur: (event) => validateInput(event.target as HTMLInputElement)
         }
     }),
     firstNameInput: new Input({
@@ -101,16 +83,7 @@ const RegistrationPage = new Registration({
         name: "first_name",
         placeholderText: "Имя",
         events: {
-            blur: (event) => {
-                const target = event.target as HTMLInputElement;
-                if (target.name === 'first_name') {
-                    if (!validation.checkName(target.value)) {
-                        validation.showError(target, '.form-group', "Неверный формат, либо имя с маленькой буквы");
-                    } else {
-                        validation.hideError(target, '.form-group');
-                    }
-                }
-            }
+            blur: (event) => validateInput(event.target as HTMLInputElement)
         }
     }),
     secondNameInput: new Input({
@@ -122,16 +95,7 @@ const RegistrationPage = new Registration({
         name: "second_name",
         placeholderText: "Фамилия",
         events: {
-            blur: (event) => {
-                const target = event.target as HTMLInputElement;
-                if (target.name === 'second_name') {
-                    if (!validation.checkName(target.value)) {
-                        validation.showError(target, '.form-group', "Неверный формат, либо фамилия с маленькой буквы");
-                    } else {
-                        validation.hideError(target, '.form-group');
-                    }
-                }
-            }
+            blur: (event) => validateInput(event.target as HTMLInputElement)
         }
     }),
     phoneInput: new Input({
@@ -143,16 +107,7 @@ const RegistrationPage = new Registration({
         name: "phone",
         placeholderText: "Телефон",
         events: {
-            blur: (event) => {
-                const target = event.target as HTMLInputElement;
-                if (target.name === 'phone') {
-                    if (!validation.checkPhone(target.value)) {
-                        validation.showError(target, '.form-group');
-                    } else {
-                        validation.hideError(target, '.form-group');
-                    }
-                }
-            }
+            blur: (event) => validateInput(event.target as HTMLInputElement)
         }
     }),
     passwordInput: new Input({
@@ -165,16 +120,7 @@ const RegistrationPage = new Registration({
         name: "password",
         placeholderText: "Пароль",
         events: {
-            blur: (event) => {
-                const target = event.target as HTMLInputElement;
-                if (target.name === 'password') {
-                    if (!validation.checkPassword(target.value)) {
-                        validation.showError(target, '.form-group', "Неверный формат, либо менее 8 символов");
-                    } else {
-                        validation.hideError(target, '.form-group');
-                    }
-                }
-            }
+            blur: (event) => validateInput(event.target as HTMLInputElement)
         }
     }),
     passwordConfirmInput: new Input({
@@ -188,15 +134,10 @@ const RegistrationPage = new Registration({
         placeholderText: "Пароль (еще раз)",
         events: {
             blur: (event) => {
-                const target = event.target as HTMLInputElement;
-                const password = document.querySelector("input[name=password]") as HTMLInputElement;
-                if (target.name === 'password_2') {
-                    if (!validation.checkPassword(target.value) || !validation.checkPasswordConfirm(target.value, password.value)) {
-                        validation.showError(target, '.form-group', "Неверный формат, либо пароли не совпадают");
-                    } else {
-                        validation.hideError(target, '.form-group');
-                    }
-                }
+                validateInput(
+                    event.target as HTMLInputElement,
+                    document.querySelector("input[name=password]") as HTMLInputElement
+                );
             }
         }
     }),
@@ -218,54 +159,43 @@ const RegistrationPage = new Registration({
             const data: { [key: string]: string;} = {};
             inputFields.forEach((current) => {
                 if (current.name === 'email') {
-                    if (!validation.checkEmail(current.value)) {
-                        validation.showError(current, '.form-group');
+                    if (!validateInput(current)) {
                         console.log('Адрес электронной почты введен неверно');
                     } else {
                         data[current.name] = current.value;
                     }
                 } else if (current.name === 'login') {
-                    if (!validation.checkLogin(current.value)) {
-                        validation.showError(current, '.form-group');
+                    if (!validateInput(current)) {
                         console.log('Логин введен неверно');
                     } else {
                         data[current.name] = current.value;
                     }
                 } else if (current.name === 'first_name') {
-                    if (!validation.checkName(current.value)) {
-                        validation.showError(current, '.form-group');
+                    if (!validateInput(current)) {
                         console.log('Имя введено неверно');
                     } else {
                         data[current.name] = current.value;
                     }
                 } else if (current.name === 'second_name') {
-                    if (!validation.checkName(current.value)) {
-                        validation.showError(current, '.form-group');
+                    if (!validateInput(current)) {
                         console.log('Фамилия введена неверно');
                     } else {
                         data[current.name] = current.value;
                     }
                 } else if (current.name === 'phone') {
-                    if (!validation.checkPhone(current.value)) {
-                        validation.showError(current, '.form-group');
+                    if (!validateInput(current)) {
                         console.log('Телефон введен неверно');
                     } else {
                         data[current.name] = current.value;
                     }
                 } else if (current.name === 'password') {
-                    if (!validation.checkPassword(current.value)) {
-                        validation.showError(current, '.form-group');
+                    if (!validateInput(current)) {
                         console.log('Пароль введен неверно');
                     } else {
                         data[current.name] = current.value;
                     }
                 } else if (current.name === 'password_2') {
-                    const password = document.querySelector("input[name=password]") as HTMLInputElement;
-                    if (!validation.checkPassword(current.value)) {
-                        validation.showError(current, '.form-group');
-                        console.log('Пароль введен неверно');
-                    } else if (!validation.checkPasswordConfirm(current.value, password.value)) {
-                        validation.showError(current, '.form-group');
+                    if (!validateInput(current, document.querySelector("input[name=password]") as HTMLInputElement)) {
                         console.log('Пароль и подтверждение пароля не совпадают');
                     } else {
                         data[current.name] = current.value;
