@@ -33,11 +33,13 @@ const pages: { title: string, path: string }[] = [
 
 const MainPage = new Main({
     attr: {
-        class: "container"
+        class: "container",
+        id: "sss"
     },
     content: new List({
         attr: {
-            class: "list"
+            class: "list",
+            id: "aaa"
         },
         content: pages.map(link => (
             new Link({
