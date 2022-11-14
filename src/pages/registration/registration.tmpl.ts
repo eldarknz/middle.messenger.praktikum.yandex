@@ -4,7 +4,7 @@ export default `
     <div class="container">
         <div class="sign-container">
             <h3 class="sign-container__title">{{ title }}</h3>
-            <form action={{events}} class="sign-container__form">
+            <form onsubmit={{{events}}} class="sign-container__form">
                 <div class="sign-container__form__input-group">
                     {{{ emailInput }}}
                     {{{ loginInput }}}

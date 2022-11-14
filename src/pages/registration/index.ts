@@ -3,10 +3,8 @@ import template from "./registration.tmpl";
 import Button from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 import Link from "../../components/ui/Link";
-import ValidationForm, { validateInput } from "../../utils/validation";
+import { validateInput } from "../../utils/validation";
 import { TBlockAttributes } from "../../../declarations";
-
-const validation = new ValidationForm();
 
 interface IRegistration {
     attr?: TBlockAttributes;
