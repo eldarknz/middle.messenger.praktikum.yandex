@@ -1,6 +1,6 @@
 import Block from "../../../core/block";
-import template from "./Dropdown.tmpl";
-import "./Dropdown.scss";
+import template from "./dropdown.tmpl";
+import "./dropdown.scss";
 import { TBlockAttributes } from "../../../../declarations";
 
 interface IDropdown {

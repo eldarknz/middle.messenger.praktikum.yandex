@@ -1,6 +1,6 @@
 import Block from "../../../core/block";
-import template from "./Label.tmpl";
-import "./Label.scss";
+import template from "./label.tmpl";
+import "./label.scss";
 import { TBlockAttributes } from "../../../../declarations";
 
 interface ILabel {

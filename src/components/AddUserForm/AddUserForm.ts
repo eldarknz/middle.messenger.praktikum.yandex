@@ -1,8 +1,8 @@
 import Block from "../../core/block";
-import template from "./AddUserForm.tmpl";
-import Input from "../ui/Input";
-import Button from "../ui/Button";
-import "./AddUserForm.scss";
+import template from "./addUserForm.tmpl";
+import Input from "../ui/input";
+import Button from "../ui/button";
+import "./addUserForm.scss";
 import { TBlockAttributes } from "../../../declarations";
 
 interface IAddUserForm {

@@ -1,6 +1,6 @@
 import Block from "../../../core/block";
-import template from "./Button.tmpl";
-import "./Button.scss";
+import template from "./button.tmpl";
+import "./button.scss";
 import { TBlockAttributes } from "../../../../declarations";
 
 interface IButton {

@@ -1,9 +1,9 @@
 import Block from "../../core/block";
 import template from "./profile.tmpl";
 import Avatar from "../../components/ui/avatar";
-import Button from "../../components/ui/Button";
-import Link from "../../components/ui/Link";
-import List from "../../components/ui/List";
+import Button from "../../components/ui/button";
+import Link from "../../components/ui/link";
+import List from "../../components/ui/list";
 import { IconArrowLeft, IconMedia } from "../../components/ui/icon";
 import { userData } from "../../data/userdata";
 import { TBlockAttributes } from "../../../declarations";

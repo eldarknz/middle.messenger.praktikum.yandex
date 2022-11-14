@@ -1,6 +1,6 @@
 import Block from "../../../../core/block";
-import template from "./ChatCard.tmpl";
-import "./ChatCard.scss";
+import template from "./chatCard.tmpl";
+import "./chatCard.scss";
 
 interface IChardCard {
     attr?: any;

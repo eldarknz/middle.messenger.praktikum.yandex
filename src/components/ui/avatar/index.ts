@@ -1,6 +1,6 @@
 import Block from "../../../core/block";
-import template from "./Avatar.tmlp";
-import "./Avatar.scss";
+import template from "./avatar.tmlp";
+import "./avatar.scss";
 import { TBlockAttributes } from "../../../../declarations";
 
 interface IAvatar {

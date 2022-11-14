@@ -1,6 +1,6 @@
 import Block from "../../../core/block"
-import template from "./List.tmpl";
-import "./List.scss";
+import template from "./list.tmpl";
+import "./list.scss";
 import { TBlockAttributes } from "../../../../declarations";
 
 interface IList {

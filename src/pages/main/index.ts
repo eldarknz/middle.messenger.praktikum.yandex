@@ -2,8 +2,8 @@ import Block from "../../core/block";
 import { ROUTES } from "../../utils/constants";
 import { TBlockAttributes } from "../../../declarations";
 import template from "./main.tmpl";
-import List from "../../components/ui/List";
-import Link from "../../components/ui/Link";
+import List from "../../components/ui/list";
+import Link from "../../components/ui/link";
 
 interface IMain {
     attr?: TBlockAttributes;

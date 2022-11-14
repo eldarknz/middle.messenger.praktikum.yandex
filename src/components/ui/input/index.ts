@@ -1,7 +1,7 @@
 import Block from "../../../core/block";
-import template from "./Input.tmpl";
-import { inputHandler } from "./modules/index"
-import "./Input.scss";
+import template from "./input.tmpl";
+import { inputHandler } from "./modules"
+import "./input.scss";
 import { TBlockAttributes } from "../../../../declarations";
 
 inputHandler();

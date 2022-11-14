@@ -1,6 +1,6 @@
 import Block from "../../../core/block"
-import template from "./Nav.tmpl";
-import "./Nav.scss";
+import template from "./nav.tmpl";
+import "./nav.scss";
 import { TBlockAttributes } from "../../../../declarations";
 
 interface INav {

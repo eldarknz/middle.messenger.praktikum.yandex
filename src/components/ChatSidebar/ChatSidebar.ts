@@ -1,18 +1,18 @@
 import Block from "../../core/block";
-import template from "./ChatSidebar.tmpl";
-import Nav from "../ui/Nav";
-import Input from "../../components/ui/Input";
-import Link from "../ui/Link";
-import ChatListBlock from "../ChatList/ChatList";
+import template from "./chatSidebar.tmpl";
+import Nav from "../ui/nav";
+import Input from "../ui/input";
+import Link from "../ui/link";
+import ChatListBlock from "../chatList/chatList";
 import {
     IconMessage,
     IconProfile,
     IconTalks,
     IconSettings,
     IconSearch
-} from "../../components/ui/Icon";
+} from "../ui/icon";
 import { TBlockAttributes } from "../../../declarations";
-import "./ChatSidebar.scss";
+import "./chatSidebar.scss";
 
 interface IChatSidebar {
     attr?: TBlockAttributes;
