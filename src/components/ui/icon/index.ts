@@ -16,8 +16,8 @@ import {
     icon_search,
     icon_settings,
     icon_talks
-} from "./Icons.tmpl";
-import "./Icon.scss";
+} from "./icons.tmpl";
+import "./icon.scss";
 import { TBlockAttributes } from "../../../../declarations";
 
 interface IIcon {

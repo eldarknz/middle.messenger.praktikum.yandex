@@ -1,6 +1,6 @@
 import { TBlockAttributes } from "../../../../../declarations";
 import Block from "../../../../core/block";
-import template from "./MediaActions.tmpl";
+import template from "./mediaActions.tmpl";
 
 interface IMediaActions {
     attr?: TBlockAttributes;

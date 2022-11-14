@@ -1,8 +1,8 @@
 import Block from "../../core/block";
 import template from "./registration.tmpl";
-import Button from "../../components/ui/Button";
-import Input from "../../components/ui/Input";
-import Link from "../../components/ui/Link";
+import Button from "../../components/ui/button";
+import Input from "../../components/ui/input";
+import Link from "../../components/ui/link";
 import { validateInput } from "../../utils/validation";
 import { TBlockAttributes } from "../../../declarations";
 

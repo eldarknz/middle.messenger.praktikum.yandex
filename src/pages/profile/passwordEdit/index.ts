@@ -1,10 +1,10 @@
 import Block from "../../../core/block";
 import template from "./passwordEdit.tmpl";
-import Avatar from "../../../components/ui/Avatar";
-import Button from "../../../components/ui/Button";
-import Link from "../../../components/ui/Link";
-import Input from "../../../components/ui/Input";
-import { IconArrowLeft, IconMedia } from "../../../components/ui/Icon";
+import Avatar from "../../../components/ui/avatar";
+import Button from "../../../components/ui/button";
+import Link from "../../../components/ui/link";
+import Input from "../../../components/ui/input";
+import { IconArrowLeft, IconMedia } from "../../../components/ui/icon";
 import { TBlockAttributes } from "../../../../declarations";
 import { validateInput } from "../../../utils/validation";
 import "../styles.scss";

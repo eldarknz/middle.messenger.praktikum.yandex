@@ -1,11 +1,11 @@
 import Block from "../../core/block";
-import template from "./ChatFooter.tmpl";
-import Dropdown from "../ui/Dropdown";
-import { IconAttachment, IconArrowRight, IconMedia, IconFile, IconLocation } from "../ui/Icon";
-import Input from "../ui/Input";
-import Button from "../ui/Button";
-import MediaActions from "./components/MediaActions/MediaActions";
-import "./ChatFooter.scss";
+import template from "./chatFooter.tmpl";
+import Dropdown from "../ui/dropdown";
+import { IconAttachment, IconArrowRight, IconMedia, IconFile, IconLocation } from "../ui/icon";
+import Input from "../ui/input";
+import Button from "../ui/button";
+import MediaActions from "./components/mediaActions/mediaActions";
+import "./chatFooter.scss";
 import { TBlockAttributes } from "../../../declarations";
 
 interface IChatFooter {

@@ -1,11 +1,11 @@
 import Block from "../../core/block";
-import template from "./ChatHeader.tmpl";
-import Dropdown from "../ui/Dropdown";
-import Button from "../ui/Button";
-import Avatar from "../ui/Avatar";
-import { IconAdd, IconDelete, IconDots } from "../ui/Icon";
-import "./ChatHeader.scss";
-import UserActions from "./components/UserActions/UserActions";
+import template from "./chatHeader.tmpl";
+import Dropdown from "../ui/dropdown";
+import Button from "../ui/button";
+import Avatar from "../ui/avatar";
+import { IconAdd, IconDelete, IconDots } from "../ui/icon";
+import "./chatHeader.scss";
+import UserActions from "./components/userActions/userActions";
 import { TBlockAttributes } from "../../../declarations";
 
 interface IChatHeader {

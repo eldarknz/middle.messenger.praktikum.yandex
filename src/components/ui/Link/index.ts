@@ -1,6 +1,6 @@
 import { TBlockAttributes } from "../../../../declarations";
 import Block from "../../../core/block";
-import template from "./Link.tmpl";
+import template from "./link.tmpl";
 
 interface ILink {
   attr?: TBlockAttributes;

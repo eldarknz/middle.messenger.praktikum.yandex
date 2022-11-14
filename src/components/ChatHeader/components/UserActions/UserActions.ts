@@ -1,6 +1,6 @@
 import { TBlockAttributes } from "../../../../../declarations";
 import Block from "../../../../core/block";
-import template from "./UserActions.tmpl";
+import template from "./userActions.tmpl";
 
 interface IUserActions {
     attr?: TBlockAttributes;
