@@ -1,7 +1,7 @@
 import Block from "../../core/block";
 import template from "./addUserForm.tmpl";
-import Input from "../ui/input";
 import Button from "../ui/button";
+import Input from "../ui/input";
 import "./addUserForm.scss";
 import { TBlockAttributes } from "../../../declarations";
 
