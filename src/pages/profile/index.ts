@@ -4,7 +4,7 @@ import Avatar from "../../components/ui/avatar";
 import Button from "../../components/ui/Button";
 import Link from "../../components/ui/Link";
 import List from "../../components/ui/List";
-import { IconArrowLeft, IconMedia } from "../../components/ui/Icon";
+import { IconArrowLeft, IconMedia } from "../../components/ui/icon";
 import { userData } from "../../data/userdata";
 import { TBlockAttributes } from "../../../declarations";
 import "./styles.scss";
