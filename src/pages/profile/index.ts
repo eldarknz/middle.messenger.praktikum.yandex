@@ -5,8 +5,8 @@ import Button from "../../components/ui/button";
 import Link from "../../components/ui/link";
 import List from "../../components/ui/list";
 import { IconArrowLeft, IconMedia } from "../../components/ui/icon";
-import { userData } from "../../data/userdata";
 import { TBlockAttributes } from "../../../declarations";
+import { userData } from "../../data/userdata";
 import "./styles.scss";
 
 interface ITextBlock {
