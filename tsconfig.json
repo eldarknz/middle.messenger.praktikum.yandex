@@ -1,6 +1,3 @@
-// https://www.typescriptlang.org/tsconfig
-// https://habr.com/ru/post/557738/
-
 {
     "compilerOptions": {
         // Emit
@@ -9,6 +6,7 @@
         "removeComments": true,
         // Language and Environment
         "target": "es2017",
+        "module": "commonjs",
         // Modules
         "moduleResolution": "node",
         // Type checking
@@ -21,7 +19,7 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         // Interop Constraints
-        "allowSyntheticDefaultImports": true
+        // "allowSyntheticDefaultImports": true
     },
     "include": [
         "./src",
