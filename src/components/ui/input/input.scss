@@ -107,7 +107,7 @@
 }
 
 .input-alt:focus + .input-alt-placeholder .input-alt-placeholder__text, :not(.input-alt[value=""]) + .input-alt-placeholder .input-alt-placeholder__text { 
-    background-color: --white;
+    background-color: var(--white);
     font-size: var(--font-size-10);
     color: var(--silver);
     transform: translate(0, -145%);

@@ -2,7 +2,7 @@ import Block from "../../core/block";
 import template from "./ChatHeader.tmpl";
 import Dropdown from "../ui/Dropdown";
 import Button from "../ui/Button";
-import { Avatar } from "../ui/Avatar";
+import Avatar from "../ui/Avatar";
 import { IconAdd, IconDelete, IconDots } from "../ui/Icon";
 import "./ChatHeader.scss";
 import UserActions from "./components/UserActions/UserActions";

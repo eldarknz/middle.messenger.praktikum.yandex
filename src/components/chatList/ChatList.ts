@@ -1,12 +1,11 @@
 import Block from "../../core/block";
 import template from "./ChatList.tmpl";
 import ChatCard from "./components/ChatCard";
-import { data } from "../../data/data";
-import "./components/ChatCard";
-import "./ChatList.scss";
-import { Avatar } from "../ui/Avatar";
+import Avatar from "../ui/Avatar";
 import Label from "../ui/Label";
 import { TBlockAttributes } from "../../../declarations";
+import { data } from "../../data/data";
+import "./ChatList.scss";
 
 interface IChatList {
     attr?: TBlockAttributes;
