@@ -10,6 +10,7 @@ import ServerErrorPage from "./error500";
 
 export {
     MainPage,
+    ChatPage,
     ProfilePage,
     ProfileEditPage,
     PasswordEditPage,

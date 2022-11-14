@@ -4,6 +4,7 @@ import { ROUTES } from "./utils/constants";
 
 import {
     MainPage,
+    ChatPage,
     ProfilePage,
     ProfileEditPage,
     PasswordEditPage,
@@ -19,6 +20,7 @@ const currentLocation: string = window.location.pathname;
 
 const pages: { [key: string]: Block } = {
     [ROUTES.home.path]: MainPage,
+    [ROUTES.chat.path]: ChatPage,
     [ROUTES.profile.path]: ProfilePage,
     [ROUTES.profileEdit.path]: ProfileEditPage,
     [ROUTES.passwordEdit.path]: PasswordEditPage,

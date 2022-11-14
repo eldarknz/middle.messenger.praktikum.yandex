@@ -4,8 +4,8 @@ import ChatHeaderBlock from "../../components/ChatHeader/ChatHeader";
 import ChatFooterBlock from "../../components/ChatFooter/ChatFooter";
 import ChatSidebarBlock from "../../components/ChatSidebar/ChatSidebar";
 import AddUserFormBlock from "../../components/AddUserForm/AddUserForm";
-import Modal from "../../components/Modal";
-import { IconClose } from "../../components/ui/Icon";
+import Modal from "../../components/Modal/index";
+import { IconClose } from "../../components/ui/Icon/index";
 import { dropdownHandler, modalHandler } from "../../modules"
 import { TBlockAttributes } from "../../../declarations";
 import "./styles.scss";

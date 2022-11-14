@@ -46,7 +46,7 @@ class IconAttachment extends Block {
 
 class IconClose extends Block {
     constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_close, {}); }
+    render() { return this.compile(icon_close, {});}
 }
 
 class IconDelete extends Block {
