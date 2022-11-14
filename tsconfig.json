@@ -1,17 +1,11 @@
-// https://www.typescriptlang.org/tsconfig
-// https://habr.com/ru/post/557738/
-
 {
     "compilerOptions": {
-        // Emit
         "outDir": "dist",
         "sourceMap": true,
         "removeComments": true,
-        // Language and Environment
         "target": "es2017",
-        // Modules
+        "module": "commonjs",
         "moduleResolution": "node",
-        // Type checking
         "noImplicitAny": true,
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
@@ -20,7 +14,6 @@
         "strictBindCallApply": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        // Interop Constraints
         "allowSyntheticDefaultImports": true
     },
     "include": [
