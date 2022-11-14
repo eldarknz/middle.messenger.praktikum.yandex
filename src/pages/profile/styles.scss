@@ -28,13 +28,22 @@
     border-right-color: var(--light);
 }
 
-.profile-container {
+.profile-container,
+.profile-container__form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+}
+
+.profile-container {
     gap: 60px;
-    width: 510px;
+    max-width: 510px;
+}
+
+.profile-container.edit-form {
+    max-width: 360;
 }
 
 .profile-container__header {
@@ -44,8 +53,16 @@
 }
 
 .profile-container__info,
-.profile-container__actions {
+.profile-container__actions,
+.profile-container__form__input-group {
     width: 100%;
+}
+
+.profile-container__form__input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 50px;
 }
 
 .info-item {

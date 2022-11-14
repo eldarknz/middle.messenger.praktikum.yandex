@@ -1,4 +1,5 @@
 export const dropdownHandler = () => {
+
     const dropdownHide = (dropdowns: NodeListOf<HTMLElement>) => {
         dropdowns.forEach((dropdown: HTMLElement) => {
             if (dropdown.classList.contains('show')) {
@@ -15,20 +16,18 @@ export const dropdownHandler = () => {
         dropdowns.forEach(dropdown => {
             let button = <HTMLElement>dropdown.querySelector('#dropdownMenuButton');
             button.addEventListener("click", () => {
-            if (dropdown.classList.contains('show')) {
                 dropdownHide(dropdowns);
-                button.classList.remove('active');
-                dropdown.classList.remove('show');
-            } else {
-                button.classList.add('active');
-                dropdown.classList.add('show');
-            }
+                if (dropdown.classList.contains('show')) {
+                    button.classList.remove('active');
+                    dropdown.classList.remove('show');
+                } else {
+                    button.classList.add('active');
+                    dropdown.classList.add('show');
+                }
             });
         });
 
-        
-
-        window.onclick = (event: Event) => {
+        const dropdowmHidehandler = (event: Event) => {
             const target = event.target as HTMLElement;
             if (target.closest('.dropdown-menu') || target.closest('#dropdownMenuButton')) {
                 if (!target.closest('.dropdown-item')) {
@@ -37,6 +36,8 @@ export const dropdownHandler = () => {
             };
 
             dropdownHide(dropdowns);
-        }
+        };
+
+        window.addEventListener('click', dropdowmHidehandler);
   });
 };
