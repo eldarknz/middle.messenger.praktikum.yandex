@@ -30,9 +30,7 @@ const icon_attachment = `
 `;
 
 const icon_close = `
-    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3.20673e-05 18.5875L1.41425 20.0017L10.0008 11.4151L18.5875 20.0017L20.0017 18.5875L11.415 10.0009L20.0017 1.41421L18.5875 0L10.0008 8.58667L1.41421 6.15524e-05L0 1.41428L8.58661 10.0009L3.20673e-05 18.5875Z" fill="#121A23"/>
-    </svg>       
+    <div></div>      
 `;
 
 const icon_delete = `
