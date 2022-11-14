@@ -1,10 +1,10 @@
 import Block from "../../core/block";
 import template from "./profile.tmpl";
-import Avatar from "../../components/ui/Avatar/index";
-import Button from "../../components/ui/Button/index";
-import Link from "../../components/ui/Link/index";
-import List from "../../components/ui/List/index";
-import { IconArrowLeft, IconMedia } from "../../components/ui/Icon/index";
+import { Avatar } from "../../components/ui/Avatar";
+import Button from "../../components/ui/Button";
+import Link from "../../components/ui/Link";
+import List from "../../components/ui/List";
+import { IconArrowLeft, IconMedia } from "../../components/ui/Icon";
 import { userData } from "../../data/userdata";
 import { TBlockAttributes } from "../../../declarations";
 import "./styles.scss";

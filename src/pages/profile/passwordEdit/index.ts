@@ -1,6 +1,6 @@
 import Block from "../../../core/block";
 import template from "./passwordEdit.tmpl";
-import Avatar from "../../../components/ui/Avatar";
+import { Avatar } from "../../../components/ui/Avatar";
 import Button from "../../../components/ui/Button";
 import Link from "../../../components/ui/Link";
 import Input from "../../../components/ui/Input";

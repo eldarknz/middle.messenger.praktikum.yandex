@@ -8,7 +8,7 @@ interface IAvatar {
     content?: Block | string;
 }
 
-class Avatar extends Block {
+export class Avatar extends Block {
     constructor(props: IAvatar) {
         super('div', props);
     }
@@ -19,5 +19,3 @@ class Avatar extends Block {
         });
     }
 }
-
-export default Avatar
