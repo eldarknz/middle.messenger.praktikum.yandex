@@ -21,10 +21,10 @@ export default `
             <div class="profile-container__actions">
                 <div class="list list-flush">
                     <div class="list-item">
-                        <a href="/profile/edit">Изменить данные</a>
+                        <a href="/profile-edit">Изменить данные</a>
                     </div>
                     <div class="list-item">
-                        <a href="/profile/password-edit">Изменить пароль</a>
+                        <a href="/password-edit">Изменить пароль</a>
                     </div>
                     <div class="list-item">
                         <a href="/" class="link-red">Выйти</a>
