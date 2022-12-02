@@ -70,7 +70,7 @@ const LoginPage = new Login({
         content: "Авторизоваться"
     }),
     link: new Link({
-        attr: { href: "/register" },
+        attr: { href: "./register" },
         content: "Создайте её сейчас"
     }),
     events: {

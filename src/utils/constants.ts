@@ -10,4 +10,5 @@ export const ROUTES: TRoutes = {
     passwordEdit: { title: "Изменение пароля", path: "/password-edit" },
     error_404: { title: "Ошибка 404", path: "/404"},
     error_500: { title: "Ошибка 500", path: "/500"},
+    test: { title: "Тестовая страница", path: "/test" }
 };

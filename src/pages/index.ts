@@ -5,8 +5,13 @@ import ProfileEditPage from "./profile/profileEdit";
 import PasswordEditPage from "./profile/passwordEdit";
 import LoginPage from "./login";
 import RegistrationPage from "./registration";
-import NotFoundErrorPage from "./error404";
-import ServerErrorPage from "./error500";
+//import NotFoundErrorPage from "./error404";
+//import ServerErrorPage from "./error500";
+//import TestPage from "./test";*/
+import { 
+    NotFoundErrorPage,
+    ServerErrorPage
+} from "./error";
 
 export {
     MainPage,
@@ -17,5 +22,6 @@ export {
     LoginPage,
     RegistrationPage,
     NotFoundErrorPage,
-    ServerErrorPage
+    ServerErrorPage,
+    //TestPage
 };

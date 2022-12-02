@@ -1,5 +1,9 @@
 // language=hbs
 
 export default `
-    {{{ content }}}
+    <div
+        class="{{ className }}"
+    >
+        {{{ content }}}
+    </div>
 `

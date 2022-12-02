@@ -1,6 +1,7 @@
 import Block from "./core/block";
-import renderDOM from "./core/renderDom";
+//import renderDOM from "./core/renderDom";
 import { ROUTES } from "./utils/constants";
+import Router from "./core/router";
 
 import {
     MainPage,
@@ -12,11 +13,12 @@ import {
     RegistrationPage,
     NotFoundErrorPage,
     ServerErrorPage,
+    //TestPage
 } from "./pages";
 
 import "./styles/globals.scss";
 
-const currentLocation: string = window.location.pathname;
+//const currentLocation: string = window.location.pathname;
 
 const pages: { [key: string]: Block } = {
     [ROUTES.home.path]: MainPage,
@@ -27,11 +29,52 @@ const pages: { [key: string]: Block } = {
     [ROUTES.login.path]: LoginPage,
     [ROUTES.register.path]: RegistrationPage,
     [ROUTES.error_404.path]: NotFoundErrorPage,
-    [ROUTES.error_500.path]: ServerErrorPage
+    [ROUTES.error_500.path]: ServerErrorPage,
+    //[ROUTES.test.path]: TestPage,
 }
 
-Object.entries(pages).forEach(([url, page]) => {
+/*Object.entries(pages).forEach(([url, page]) => {
     if (currentLocation === url) {
+        console.log(page);
         renderDOM('#root', page);
     }
+});*/
+
+const router = new Router("#root");
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    window.router = router;
+
+    Object.entries(pages).forEach(([url, page]) => {
+        console.log(page);
+        router.use(url, page);
+    });
+    router.start()
+
+    /*router
+        .use(ROUTES.home.path, MainPage)
+        .use(ROUTES.error_404.path, NotFoundErrorPage)
+        .use(ROUTES.error_500.path, ServerErrorPage)
+        .start()*/
+
+    //setTimeout(() => {
+    //    router.go(ROUTES.error_404.path);
+    //}, 5000);
+        
+
+    //setTimeout(() => {
+    //    router.go(ROUTES.home.path);
+    //}, 10000);
+
+    // А можно и назад
+    //setTimeout(() => {
+    //    router.back();
+    //}, 3000);
+    
+    // И снова вперёд
+    //setTimeout(() => {
+    //    router.forward();
+    //}, 5000);
+
 });

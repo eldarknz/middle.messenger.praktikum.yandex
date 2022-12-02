@@ -1,10 +1,12 @@
 import Block from "./block";
 
-const renderDOM = (dest: string, block: Block) => {
-  const root = document.querySelector(dest);
+const renderDOM = (query: string, block: Block) => {
+  //console.log("Вставка блока в DOM - RenderDOM", query, block);
+  const root = document.querySelector(query);
 
   root!.innerHTML = '';
-  root!.appendChild(block.getContent());
+  const blockContent = block.getContent();
+  root!.appendChild(blockContent);
   block.dispatchComponentDidMount();
 };
 

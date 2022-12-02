@@ -3,26 +3,31 @@ import { ROUTES } from "../../utils/constants";
 import { TBlockAttributes } from "../../../declarations";
 import template from "./main.tmpl";
 import List from "../../components/ui/list";
-import Link from "../../components/ui/link";
+import Link, { linkPathRedirect, routerGo } from "../../components/ui/link";
+import Router from "../../core/router";
+//import Text from "../../components/ui/text";
 
 interface IMain {
     attr?: TBlockAttributes;
-    content?: Block;
+    content?: Block | string;
+    className?: string;
 }
 
 class Main extends Block {
     constructor(props: IMain) {
-      super('div', props);
+        super(props);
     }
   
     render() {
         return this.compile(template, {
+            className: this.props.className,
             content: this.props.content,
         });
     }
 }
 
 const pages: { title: string, path: string }[] = [
+    { title: ROUTES.test.title, path: ROUTES.test.path },
     { title: ROUTES.login.title, path: ROUTES.login.path },
     { title: ROUTES.register.title, path: ROUTES.register.path },
     { title: ROUTES.chat.title, path: ROUTES.chat.path },
@@ -32,22 +37,35 @@ const pages: { title: string, path: string }[] = [
 ];
 
 const MainPage = new Main({
-    attr: {
+    className: "container",
+    content: new List({
+        className: "list",
+        content: pages.map(link => (
+            new Link({
+                href: link.path,
+                content: link.title,
+                events: {
+                    click: (event: MouseEvent) => routerGo(event, window.router, link.path)
+                }
+            })
+        )),
+    })
+    /*attr: {
         class: "container",
-        id: "sss"
     },
     content: new List({
         attr: {
             class: "list",
-            id: "aaa"
         },
         content: pages.map(link => (
             new Link({
-                attr: { href: link.path },
-                content: link.title
+                attr: { 
+                    href: "/",
+                },
+                content: link.title,
             })    
         ))
-    })
+    })*/
 });
   
 export default MainPage

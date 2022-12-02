@@ -1,19 +1,18 @@
-import Block from "../../../core/block"
-import template from "./list.tmpl";
-import "./list.scss";
 import { TBlockAttributes } from "../../../../declarations";
+import Block from "../../../core/block";
+import template from "./text.tmpl";
 
-interface IList {
+interface ILink {
   attr?: TBlockAttributes;
   className?: string;
-  content: Block[] | string[];
-}
+  content?: Block | string;
+};
 
-class List extends Block {
-  constructor(props: IList) {
+class Text extends Block {
+  constructor(props: ILink) {
     super(props);
   }
-  
+
   render() {
     return this.compile(template, {
       className: this.props.className,
@@ -22,4 +21,4 @@ class List extends Block {
   }
 }
 
-export default List
+export default Text
