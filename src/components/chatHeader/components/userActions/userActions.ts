@@ -1,9 +1,7 @@
-import { TBlockAttributes } from "../../../../../declarations";
 import Block from "../../../../core/block";
 import template from "./userActions.tmpl";
 
 interface IUserActions {
-    attr?: TBlockAttributes;
     dataToggle?: string,
     dataTarget?: string,
     addUserIcon: Block,
@@ -12,7 +10,7 @@ interface IUserActions {
 
 class UserActions extends Block {
     constructor(props: IUserActions) {
-        super('div', props)
+        super(props)
     }
 
     render() {

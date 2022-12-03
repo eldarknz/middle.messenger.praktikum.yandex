@@ -2,12 +2,10 @@ import Block from "../../../core/block";
 import template from "./input.tmpl";
 import { inputHandler } from "./modules"
 import "./input.scss";
-import { TBlockAttributes } from "../../../../declarations";
 
 inputHandler();
 
 interface IInput {
-    attr?: TBlockAttributes;
     alternative?: boolean;
     type?: string;
     id: string;
@@ -24,7 +22,7 @@ interface IInput {
   
 class Input extends Block {
     constructor(props: IInput) {
-        super('div', props);
+        super(props);
     }
     
     render() {

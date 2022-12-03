@@ -1,5 +1,4 @@
 import Block from "./core/block";
-//import renderDOM from "./core/renderDom";
 import { ROUTES } from "./utils/constants";
 import Router from "./core/router";
 
@@ -12,13 +11,10 @@ import {
     LoginPage,
     RegistrationPage,
     NotFoundErrorPage,
-    ServerErrorPage,
-    //TestPage
+    ServerErrorPage
 } from "./pages";
 
 import "./styles/globals.scss";
-
-//const currentLocation: string = window.location.pathname;
 
 const pages: { [key: string]: Block } = {
     [ROUTES.home.path]: MainPage,
@@ -29,16 +25,8 @@ const pages: { [key: string]: Block } = {
     [ROUTES.login.path]: LoginPage,
     [ROUTES.register.path]: RegistrationPage,
     [ROUTES.error_404.path]: NotFoundErrorPage,
-    [ROUTES.error_500.path]: ServerErrorPage,
-    //[ROUTES.test.path]: TestPage,
-}
-
-/*Object.entries(pages).forEach(([url, page]) => {
-    if (currentLocation === url) {
-        console.log(page);
-        renderDOM('#root', page);
-    }
-});*/
+    [ROUTES.error_500.path]: ServerErrorPage
+};
 
 const router = new Router("#root");
 

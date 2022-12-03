@@ -7,5 +7,3 @@ export default `
         {{/each}}
     </div>
 `
-
-/*//{{> ChatCard title=this.title message=this.message.text datetime=this.message.time_created }}*/

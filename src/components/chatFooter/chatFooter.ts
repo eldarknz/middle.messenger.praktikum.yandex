@@ -6,10 +6,8 @@ import Input from "../ui/input";
 import Button from "../ui/button";
 import MediaActions from "./components/mediaActions/mediaActions";
 import "./chatFooter.scss";
-import { TBlockAttributes } from "../../../declarations";
 
 interface IChatFooter {
-    attr?: TBlockAttributes;
     dropdown?: Block;
     inputMessage?: Block;
     buttonSend?: Block;
@@ -17,7 +15,7 @@ interface IChatFooter {
 
 class ChatFooter extends Block {
     constructor(props: IChatFooter) {
-        super('div', props);
+        super(props);
     }
     
     render() {
@@ -30,35 +28,28 @@ class ChatFooter extends Block {
 }
 
 const ChatFooterBlock = new ChatFooter({
-    attr: {
-        class: "chat-footer"
-    },
     dropdown: new Dropdown({
-        attr: { class: "dropdown up" },
+        className: "dropdown up",
         dropdownButton: new Button({
-            attr: { class: "btn btn-square btn-gray", id: "dropdownMenuButton" },
-            content: new IconAttachment({ attr: { class: "icon icon-size-m" }})
+            className: "btn btn-square btn-gray",
+            id: "dropdownMenuButton",
+            content: new IconAttachment({ className: "icon icon-size-m" })
         }),
         content: new MediaActions({
-            addMediaIcon: new IconMedia({attr: { class: "icon icon-size-l icon-primary"}}),
-            addFileIcon: new IconFile({attr: { class: "icon icon-size-l icon-primary"}}),
-            addLocationIcon: new IconLocation({attr: { class: "icon icon-size-l icon-primary"}}),
+            addMediaIcon: new IconMedia({ className: "icon icon-size-l icon-primary" }),
+            addFileIcon: new IconFile({ className: "icon icon-size-l icon-primary" }),
+            addLocationIcon: new IconLocation({ className: "icon icon-size-l icon-primary" }),
         })
     }),
     inputMessage: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: false,
         id: "message",
         name: "message",
         placeholderText: "Сообщение"
     }),
     buttonSend: new Button({
-        attr: {
-            class:"btn btn-square btn-primary",
-        },
-        content: new IconArrowRight({ attr: { class: "icon icon-white icon-size-m"}})
+        className:"btn btn-square btn-primary",
+        content: new IconArrowRight({ className: "icon icon-white icon-size-m" })
     })
 })
 

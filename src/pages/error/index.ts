@@ -1,11 +1,9 @@
 import Block from "../../core/block";
 import template from "./error.tmpl";
-import Link, { linkPathRedirect, routerGo } from "../../components/ui/link";
-import { TBlockAttributes } from "../../../declarations";
+import Link, { routerGo } from "../../components/ui/link";
 import { ROUTES } from "../../utils/constants";
 
 interface IErrorPage {
-    attr?: TBlockAttributes;
     title: string;
     text: string;
     link: Block;
@@ -14,7 +12,6 @@ interface IErrorPage {
 class ErrorPage extends Block {
     constructor(props: IErrorPage) {
         super(props)
-        //super('div', props)
     }
 
     render() {
@@ -32,9 +29,9 @@ export const NotFoundErrorPage = new ErrorPage({
     link: new Link({
         href: ROUTES.home.path,
         content: "Назад к чатам", 
-        events: {
-            click: (event: MouseEvent) => routerGo(event, window.router, ROUTES.home.path)
-        }
+        //events: {
+        //    click: (event: MouseEvent) => routerGo(event, window.router, ROUTES.home.path)
+        //}
     })
 });
 
@@ -44,9 +41,9 @@ export const ServerErrorPage = new ErrorPage({
     link: new Link({
         href: ROUTES.home.path,
         content: "Назад к чатам", 
-        events: {
-            click: (event: MouseEvent) => routerGo(event, window.router, ROUTES.home.path)
-        }
+        //events: {
+        //    click: (event: MouseEvent) => routerGo(event, window.router, ROUTES.home.path)
+        //}
     })
 });
 

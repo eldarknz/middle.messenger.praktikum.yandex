@@ -5,38 +5,47 @@ import Button from "../../components/ui/button";
 import Link from "../../components/ui/link";
 import List from "../../components/ui/list";
 import { IconArrowLeft, IconMedia } from "../../components/ui/icon";
-import { TBlockAttributes } from "../../../declarations";
 import { userData } from "../../data/userdata";
+import { ROUTES } from "../../utils/constants";
 import "./styles.scss";
 
+interface IProfile {
+    buttonBack: Block;
+    userAvatar?: Block;
+    userName: string;
+    userDataList: Block;
+    profileEdit: Block;
+    passwordEdit: Block;
+    logout: Block;
+}
+
 interface ITextBlock {
-    attr?: TBlockAttributes;
+    className?: string;
     content: string;
 }
 
 class TextBlock extends Block {
     constructor(props: ITextBlock) {
-        super('div', props);
+        super(props);
     }
     
     render() {
-        return this.compile(`{{{content}}}`, {
+        return this.compile(`
+            <div
+                {{#if className}}class="{{ className }}"{{/if}}
+            >
+                {{{content}}}
+            </div>
+        `, {
+            className: this.props.className,
             content: this.props.content
         });
     }
 }
 
-interface IProfile {
-    attr?: TBlockAttributes;
-    buttonBack: Block;
-    userAvatar?: Block;
-    userName: string;
-    userDataList: Block;
-}
-
 class Profile extends Block {
     constructor(props: IProfile) {
-        super('div', props);
+        super(props);
     }
     
     render() {
@@ -44,46 +53,48 @@ class Profile extends Block {
             buttonBack: this.props.buttonBack,
             userAvatar: this.props.userAvatar,
             userName: this.props.userName,
-            userDataList: this.props.userDataList
+            userDataList: this.props.userDataList,
+            profileEdit: this.props.profileEdit,
+            passwordEdit: this.props.passwordEdit,
+            logout: this.props.logout,
         });
     }
 }
 
 const ProfilePage = new Profile({
-    attr: {
-        class: "wrapper"
-    },
     buttonBack: new Link({
-        attr: {
-            href: "/chat"
-        },
+        href: ROUTES.chat.path,
         content: new Button({
-            attr: {
-                class: "btn btn-circle btn-primary"
-            },
-            content: new IconArrowLeft({ attr: { class: "icon icon-white" }})
+            className: "btn btn-circle btn-primary",
+            content: new IconArrowLeft({ className: "icon icon-white" })
         })
     }),
     userAvatar: new Avatar({
-        attr: {
-            class: "avatar avatar_size_l"
-        },
-        content: new IconMedia({ attr: { class:"icon icon-white icon-size-xxl"}})
+        className: "avatar avatar_size_l",
+        content: new IconMedia({ className:"icon icon-white icon-size-xxl"})
     }),
     userName: "Иван",
     userDataList: new List({
-        attr: {
-            class: "list list-flush list-full"
-        },
+        className: "list list-flush list-full",
         content: userData.map(item => ( 
             new TextBlock({
-                attr: {
-                    class: "info-item"
-                },
+                className: "info-item",
                 content: `<span class="info-item__title">${item.title}</span><span class="info-item__value">${item.value}</span>`
             })
         ))
-    })
+    }),
+    profileEdit: new Link({
+        href: ROUTES.profileEdit.path,
+        content: "Изменить данные"
+    }),
+    passwordEdit: new Link({
+        href: ROUTES.passwordEdit.path,
+        content: "Изменить пароль"
+    }),
+    logout: new Link({
+        href: ROUTES.home.path,
+        content: "Выйти"
+    }),
 });
 
 export default ProfilePage

@@ -1,21 +1,25 @@
 import Block from "../../../core/block";
 import template from "./button.tmpl";
-import { TBlockAttributes } from "../../../../declarations";
 import "./button.scss";
 
 interface IButton {
-    attr?: TBlockAttributes;
-    content: Block | string;
-    onClick?: () => void;
+    className?: string;
+    id?: string;
+    content?: Block | string;
+    events?: { 
+      click?: (e: Event) => void;
+    }
 }
   
 class Button extends Block {
     constructor(props: IButton) {
-        super('button', props);
+        super(props);
     }
     
     render() {
         return this.compile(template, {
+            className: this.props.className,
+            id: this.props.id,
             content: this.props.content
         });
     }

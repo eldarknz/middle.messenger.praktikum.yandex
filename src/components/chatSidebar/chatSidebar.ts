@@ -11,12 +11,12 @@ import {
     IconSettings,
     IconSearch
 } from "../ui/icon";
-import { TBlockAttributes } from "../../../declarations";
 import "./chatSidebar.scss";
+import { ROUTES } from "../../utils/constants";
 
 interface IChatSidebar {
-    attr?: TBlockAttributes;
-    newMessageIcon: Block,
+    logoLink: Block;
+    newMessageIcon: Block;
     inputSearch: Block;
     content: Block | string;
     nav: Block;
@@ -24,11 +24,12 @@ interface IChatSidebar {
 
 class ChatSidebar extends Block {
     constructor(props: IChatSidebar) {
-        super("div", props)
+        super(props)
     }
 
     render() {
         return this.compile(template, {
+            logoLink: this.props.logoLink,
             newMessageIcon: this.props.newMessageIcon,
             inputSearch: this.props.inputSearch,
             content: this.props.content,
@@ -38,33 +39,29 @@ class ChatSidebar extends Block {
 }
 
 const ChatSidebarBlock = new ChatSidebar({
-    attr: {
-        class: "chat-sidebar"
-    },
-    newMessageIcon: new IconMessage({ attr: { class: "icon icon-size-m" }}),
+    logoLink: new Link({
+        href: ROUTES.home.path
+    }),
+    newMessageIcon: new IconMessage({ className: "icon icon-size-m" }),
     inputSearch: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: false,
         id: "search",
         name: "search",
         placeholderText: "Поиск",
         placeholderPosition: "center",
-        placeholderIcon: new IconSearch({ attr: { class: "icon"}})
+        placeholderIcon: new IconSearch({ className: "icon" })
     }),
     content: ChatListBlock,
     nav: new Nav({
-        attr: {
-            class: "nav"
-        },
+        className: "nav",
         content: [
-            { url: "/chat", content: new IconTalks({ attr: { class: "icon icon-size-l" }})},
-            { url: "/profile", content: new IconProfile({ attr: { class: "icon icon-size-l" }})},
-            { url: "/profile/edit", content: new IconSettings({ attr: { class: "icon icon-size-l" }})}
+            { url: ROUTES.chat.path, content: new IconTalks({ className: "icon icon-size-l" })},
+            { url: ROUTES.profile.path, content: new IconProfile({ className: "icon icon-size-l" })},
+            { url: ROUTES.profileEdit.path, content: new IconSettings({ className: "icon icon-size-l" })}
         ].map(link => (
             new Link({
-                attr: { class: "nav-link", href: link.url },
+                className: "nav-link",
+                href: link.url,
                 content: link.content
             })
         ))

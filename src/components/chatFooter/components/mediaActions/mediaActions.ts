@@ -1,9 +1,7 @@
-import { TBlockAttributes } from "../../../../../declarations";
 import Block from "../../../../core/block";
 import template from "./mediaActions.tmpl";
 
 interface IMediaActions {
-    attr?: TBlockAttributes;
     addMediaIcon: Block,
     addFileIcon: Block,
     addLocationIcon: Block
@@ -11,7 +9,7 @@ interface IMediaActions {
 
 class MediaActions extends Block {
     constructor(props: IMediaActions) {
-        super('div', props)
+        super(props)
     }
 
     render() {

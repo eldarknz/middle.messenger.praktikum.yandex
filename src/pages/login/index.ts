@@ -2,12 +2,11 @@ import Block from "../../core/block";
 import template from "./login.tmpl";
 import Button from "../../components/ui/button";
 import Input from "../../components/ui/input";
-import Link from "../../components/ui/link";
+import Link, { routerGo } from "../../components/ui/link";
 import { validateInput } from "../../utils/validation";
-import { TBlockAttributes } from "../../../declarations";
+import { ROUTES } from "../../utils/constants";
 
 interface ILogin {
-    attr?: TBlockAttributes;
     title: string;
     loginInput: Block;
     passwordInput: Block;
@@ -18,7 +17,7 @@ interface ILogin {
 
 class Login extends Block {
     constructor(props: ILogin) {
-      super('div', props);
+      super(props);
     }
   
     render() {
@@ -34,14 +33,8 @@ class Login extends Block {
 }
 
 const LoginPage = new Login({
-    attr: {
-        class: "container"
-    },
     title: "Вход",
     loginInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         id: "login",
         name: "login",
@@ -51,9 +44,6 @@ const LoginPage = new Login({
         }
     }),
     passwordInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         type: "password",
         id: "password",
@@ -64,14 +54,15 @@ const LoginPage = new Login({
         }
     }),
     buttonSubmit: new Button({
-        attr: {
-            class: "btn btn-primary btn-block"
-        },
+        className: "btn btn-primary btn-block",
         content: "Авторизоваться"
     }),
     link: new Link({
-        attr: { href: "./register" },
-        content: "Создайте её сейчас"
+        href: ROUTES.register.path,
+        content: "Создайте её сейчас",
+        //events: {
+        //    click: (event: MouseEvent) => routerGo(event, window.router, ROUTES.register.path)
+        //}
     }),
     events: {
         submit: (event) => {

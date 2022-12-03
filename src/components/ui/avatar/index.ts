@@ -1,20 +1,20 @@
 import Block from "../../../core/block";
 import template from "./avatar.tmlp";
 import "./avatar.scss";
-import { TBlockAttributes } from "../../../../declarations";
 
 interface IAvatar {
-    attr?: TBlockAttributes;
+    className?: string;
     content?: Block | string;
 }
 
 class Avatar extends Block {
     constructor(props: IAvatar) {
-        super('div', props);
+        super(props);
     }
 
     render() {
         return this.compile(template, {
+            className: this.props.className,
             content: this.props.content
         });
     }

@@ -5,12 +5,11 @@ import Button from "../../../components/ui/button";
 import Link from "../../../components/ui/link";
 import Input from "../../../components/ui/input";
 import { IconArrowLeft, IconMedia } from "../../../components/ui/icon";
-import { TBlockAttributes } from "../../../../declarations";
 import { validateInput } from "../../../utils/validation";
+import { ROUTES } from "../../../utils/constants";
 import "../styles.scss";
 
 interface IPasswordEdit {
-    attr?: TBlockAttributes;
     buttonBack: Block;
     userAvatar: Block;
     oldPasswordInput: Block;
@@ -22,7 +21,7 @@ interface IPasswordEdit {
 
 class PasswordEdit extends Block {
     constructor(props: IPasswordEdit) {
-        super("div", props)
+        super(props)
     }
 
     render() {
@@ -38,30 +37,18 @@ class PasswordEdit extends Block {
 }
 
 const PasswordEditPage = new PasswordEdit({
-    attr: {
-        class: "wrapper"
-    },
     buttonBack: new Link({
-        attr: {
-            href: "/profile"
-        },
+        href: ROUTES.profile.path,
         content: new Button({
-            attr: {
-                class: "btn btn-circle btn-primary"
-            },
-            content: new IconArrowLeft({ attr: { class: "icon icon-white" }})
+            className: "btn btn-circle btn-primary",
+            content: new IconArrowLeft({ className: "icon icon-white" })
         })
     }),
     userAvatar: new Avatar({
-        attr: {
-            class: "avatar avatar_size_l"
-        },
-        content: new IconMedia({ attr: { class:"icon icon-white icon-size-xxl"}})
+        className: "avatar avatar_size_l",
+        content: new IconMedia({ className: "icon icon-white icon-size-xxl" })
     }),
     newPasswordInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         type: "password",
         id: "new_password",
@@ -72,9 +59,6 @@ const PasswordEditPage = new PasswordEdit({
         }
     }),
     oldPasswordInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         type: "password",
         id: "password",
@@ -85,9 +69,6 @@ const PasswordEditPage = new PasswordEdit({
         }
     }),
     passwordConfirmInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         type: "password",
         id: "password_2",
@@ -103,9 +84,7 @@ const PasswordEditPage = new PasswordEdit({
         }
     }),
     buttonSubmit: new Button({
-        attr: {
-            class: "btn btn-primary btn-block"
-        },
+        className: "btn btn-primary btn-block",
         content: "Сохранить изменения"
     }),
     events: {

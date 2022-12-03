@@ -1,10 +1,8 @@
 import Block from "../../../core/block"
 import template from "./list.tmpl";
 import "./list.scss";
-import { TBlockAttributes } from "../../../../declarations";
 
 interface IList {
-  attr?: TBlockAttributes;
   className?: string;
   content: Block[] | string[];
 }

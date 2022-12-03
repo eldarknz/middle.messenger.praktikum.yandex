@@ -1,13 +1,15 @@
 // language=hbs
 
 export default `
-    {{{ sidebar }}}
-    <div class="chat">
-        <div class="chat-container empty">
-            <span class="text-silver">Сообщения отсутствуют</span>
+    <div class="wrapper">
+        {{{ sidebar }}}
+        <div class="chat">
+            <div class="chat-container empty">
+                <span class="text-silver">Сообщения отсутствуют</span>
+            </div>
+            {{{ footer }}}
+            {{{ header }}}
         </div>
-        {{{ footer }}}
-        {{{ header }}}
+        {{{modal}}}
     </div>
-    {{{modal}}}
 `

@@ -18,90 +18,121 @@ import {
     icon_talks
 } from "./icons.tmpl";
 import "./icon.scss";
-import { TBlockAttributes } from "../../../../declarations";
 
 interface IIcon {
-    attr?: TBlockAttributes;
+    className?: string;
 }
 
 class IconAdd extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_add, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_add, {
+        className: this.props.className
+    }); }
 }
 
 class IconArrowLeft extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_arrow_left, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_arrow_left, {
+        className: this.props.className
+    }); }
 }
 
 class IconArrowRight extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_arrow_right, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_arrow_right, {
+        className: this.props.className
+    }); }
 }
 
 class IconAttachment extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_attachment, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_attachment, {
+        className: this.props.className
+    }); }
 }
 
 class IconClose extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_close, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_close, {
+        className: this.props.className
+    }); }
 }
 
 class IconDelete extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_delete, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_delete, {
+        className: this.props.className
+    }); }
 }
 
 class IconDone extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_done, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_done, {
+        className: this.props.className
+    }); }
 }
 
 class IconDots extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_dots, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_dots, {
+        className: this.props.className
+    }); }
 }
 
 class IconFile extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_file, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_file, {
+        className: this.props.className
+    }); }
 }
 
 class IconLocation extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_location, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_location, {
+        className: this.props.className
+    }); }
 }
 
 class IconMedia extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_media, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_media, {
+        className: this.props.className
+    }); }
 }
 
 class IconMessage extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_message, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_message, {
+        className: this.props.className
+    }); }
 }
 
 class IconProfile extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_profile, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_profile, {
+        className: this.props.className
+    }); }
 }
 
 class IconSearch extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_search, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_search, {
+        className: this.props.className
+    }); }
 }
 
 class IconSettings extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_settings, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_settings, {
+        className: this.props.className
+    }); }
 }
 
 class IconTalks extends Block {
-    constructor(props: IIcon) { super('div', props) }
-    render() { return this.compile(icon_talks, {}); }
+    constructor(props: IIcon) { super(props) }
+    render() { return this.compile(icon_talks, {
+        className: this.props.className
+    }); }
 }
 
 

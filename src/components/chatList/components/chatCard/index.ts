@@ -3,7 +3,6 @@ import template from "./chatCard.tmpl";
 import "./chatCard.scss";
 
 interface IChardCard {
-    attr?: any;
     avatar: Block;
     title: string;
     message: string;
@@ -13,7 +12,7 @@ interface IChardCard {
 
 class ChatCard extends Block {
     constructor(props: IChardCard) {
-        super("div", props);
+        super(props);
     }
 
     render() {

@@ -3,18 +3,16 @@ import template from "./chatList.tmpl";
 import ChatCard from "./components/chatCard";
 import Avatar from "../ui/avatar";
 import Label from "../ui/label";
-import { TBlockAttributes } from "../../../declarations";
 import { data } from "../../data/data";
 import "./chatList.scss";
 
 interface IChatList {
-    attr?: TBlockAttributes;
     content: Block[];
 }
 
 class ChatList extends Block {
     constructor(props: IChatList) {
-        super("div", props)
+        super(props)
     }
 
     render() {
@@ -25,19 +23,13 @@ class ChatList extends Block {
 }
 
 const ChatListBlock = new ChatList({
-    attr: {
-        class: "chat-list"
-    },
     content: data.map(item => (
         new ChatCard({
-            attr: {
-                class: "chat-card"
-            },
-            avatar: new Avatar({ attr: { class: "avatar avatar_size_m" }}),
+            avatar: new Avatar({ className: "avatar avatar_size_m" }),
             title: item.title,
             message: item.message.text,
             datetime: item.message.time_created,
-            label: new Label({ attr: { class: "label label-circle label-primary" }, content: "99"})
+            label: new Label({ className: "label label-circle label-primary", content: "99" })
         })
     ))
 })

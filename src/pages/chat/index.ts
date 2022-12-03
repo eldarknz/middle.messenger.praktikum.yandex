@@ -7,11 +7,9 @@ import { IconClose } from "../../components/ui/icon";
 import AddUserFormBlock from "../../components/addUserForm/addUserForm";
 import Modal from "../../components/modal";
 import { dropdownHandler, modalHandler } from "../../modules"
-import { TBlockAttributes } from "../../../declarations";
 import "./styles.scss";
 
 interface IChat {
-    attr?: TBlockAttributes;
     header: Block;
     footer?: Block;
     sidebar?: Block;
@@ -20,7 +18,7 @@ interface IChat {
 
 class Chat extends Block {
     constructor(props: IChat) {
-        super('div', props);
+        super(props);
     }
     
     render() {
@@ -33,19 +31,14 @@ class Chat extends Block {
 }
 
 const ChatPage = new Chat({
-    attr: {
-        class: "wrapper"
-    },
     header: ChatHeaderBlock,
     footer: ChatFooterBlock,
     sidebar: ChatSidebarBlock,
     modal: new Modal({
-        attr: {
-            class: "modal",
-            id: "addUserModal",
-            style: "display: none",
-        },
-        iconClose: new IconClose({ attr: { class: "icon" }}),
+        className: "modal",
+        id: "addUserModal",
+        //style: "display: none",
+        iconClose: new IconClose({ className: "icon" }),
         title: "Добавить пользователя",
         content: AddUserFormBlock
     })

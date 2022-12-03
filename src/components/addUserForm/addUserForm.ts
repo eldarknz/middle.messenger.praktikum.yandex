@@ -3,17 +3,15 @@ import template from "./addUserForm.tmpl";
 import Button from "../ui/button";
 import Input from "../ui/input";
 import "./addUserForm.scss";
-import { TBlockAttributes } from "../../../declarations";
 
 interface IAddUserForm {
-    attr?: TBlockAttributes;
     input: Block;
     buttonSubmit: Block;
 }
 
 class AddUserForm extends Block {
     constructor(props: IAddUserForm) {
-        super("div", props)
+        super(props)
     }
 
     render(): DocumentFragment {
@@ -25,22 +23,14 @@ class AddUserForm extends Block {
 }
 
 const AddUserFormBlock = new AddUserForm({
-    attr: {
-        class: "add-user-form"
-    },
     input: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         id: "login",
         name: "login",
         placeholderText: "Логин"
     }),
     buttonSubmit: new Button({
-        attr: {
-            class: "btn btn-primary btn-block"
-        },
+        className: "btn btn-primary btn-block",
         content: "Добавить пользователя"
     }),
 })

@@ -1,6 +1,8 @@
 // language=hbs
 
 export default `
-    {{{ input }}}
-    {{{ buttonSubmit }}}
+    <div class="add-user-form">
+        {{{ input }}}
+        {{{ buttonSubmit }}}
+    <div>
 `

@@ -1,5 +1,10 @@
 // language=hbs
 
 export default `
-    {{{ content }}}
+    <button
+        {{#if className}}class="{{ className }}"{{/if}}
+        {{#if id}}id="{{ id }}"{{/if}}
+    >
+        {{{ content }}}
+    </button>
 `

@@ -1,17 +1,15 @@
-import { TBlockAttributes } from "../../../../declarations";
 import Block from "../../../core/block";
 import template from "./link.tmpl";
 import Router from "../../../core/router";
 
 interface ILink {
-  attr?: TBlockAttributes;
   className?: string;
   href?: string;
   content?: Block | string;
   //onClick?: () => void;
-  events?: { 
-    click?: (e: Event) => void;
-  }
+  //events?: { 
+  //  click?: (e: Event) => void;
+  //}
 };
 
 export const linkPathRedirect = (event: MouseEvent, path: string) => {
@@ -30,16 +28,16 @@ export const routerGo = (event: MouseEvent, router: Router, path: string) => {
 
 class Link extends Block {
   constructor(props: ILink) {
-    /*const onClick = (e: MouseEvent) => {
+    const onClick = (e: MouseEvent) => {
       //const router = new Router();
 
-      //router.go(this.props.to);
+      window.router!.go(this.props.href);
 
       e.preventDefault();
     }
 
-    super({...props, events: { click: onClick }});*/
-    super(props);
+    super({...props, events: { click: onClick }});
+    //super(props);
   }
 
   render() {

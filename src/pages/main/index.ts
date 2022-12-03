@@ -1,14 +1,10 @@
 import Block from "../../core/block";
 import { ROUTES } from "../../utils/constants";
-import { TBlockAttributes } from "../../../declarations";
 import template from "./main.tmpl";
 import List from "../../components/ui/list";
-import Link, { linkPathRedirect, routerGo } from "../../components/ui/link";
-import Router from "../../core/router";
-//import Text from "../../components/ui/text";
+import Link, { routerGo } from "../../components/ui/link";
 
 interface IMain {
-    attr?: TBlockAttributes;
     content?: Block | string;
     className?: string;
 }
@@ -37,35 +33,18 @@ const pages: { title: string, path: string }[] = [
 ];
 
 const MainPage = new Main({
-    className: "container",
     content: new List({
         className: "list",
         content: pages.map(link => (
             new Link({
                 href: link.path,
                 content: link.title,
-                events: {
-                    click: (event: MouseEvent) => routerGo(event, window.router, link.path)
-                }
+                //events: {
+                //    click: (event: MouseEvent) => routerGo(event, window.router, link.path)
+                //}
             })
         )),
     })
-    /*attr: {
-        class: "container",
-    },
-    content: new List({
-        attr: {
-            class: "list",
-        },
-        content: pages.map(link => (
-            new Link({
-                attr: { 
-                    href: "/",
-                },
-                content: link.title,
-            })    
-        ))
-    })*/
 });
   
 export default MainPage

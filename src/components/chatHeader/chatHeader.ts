@@ -17,7 +17,7 @@ interface IChatHeader {
 
 class ChatHeader extends Block {
     constructor(props: IChatHeader) {
-        super('div', props);
+        super(props);
     }
     
     render() {
@@ -30,22 +30,20 @@ class ChatHeader extends Block {
 }
 
 const ChatHeaderBlock = new ChatHeader({
-    attr: {
-        class: "chat-header"
-    },
-    userAvatar: new Avatar({ attr: { class: "avatar" }}),
+    userAvatar: new Avatar({ className: "avatar" }),
     userName: "Вадим",
     dropdown: new Dropdown({
-        attr: { class: "dropdown" },
+        className: "dropdown",
         dropdownButton: new Button({
-            attr: { class: "btn btn-circle", id: "dropdownMenuButton" },
-            content: new IconDots({ attr: { class: "icon icon-size-m" }})
+            className: "btn btn-circle",
+            id: "dropdownMenuButton",
+            content: new IconDots({ className: "icon icon-size-m" })
         }),
         content: new UserActions({
             dataToggle: "modal",
             dataTarget: "addUserModal",
-            addUserIcon: new IconAdd({attr: { class: "icon icon-size-l icon-primary"}}),
-            deleteUserIcon: new IconDelete({attr: { class: "icon icon-size-l icon-primary"}})
+            addUserIcon: new IconAdd({ className: "icon icon-size-l icon-primary" }),
+            deleteUserIcon: new IconDelete({ className: "icon icon-size-l icon-primary" })
         })
     })
 })

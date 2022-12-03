@@ -125,7 +125,8 @@
     text-align: center;
 }
 
-.link-red {
+.link-red,
+.link-red a {
     color: var(--color-red);
 
     &:hover {

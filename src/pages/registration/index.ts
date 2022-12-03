@@ -2,12 +2,11 @@ import Block from "../../core/block";
 import template from "./registration.tmpl";
 import Button from "../../components/ui/button";
 import Input from "../../components/ui/input";
-import Link from "../../components/ui/link";
+import Link, { routerGo } from "../../components/ui/link";
 import { validateInput } from "../../utils/validation";
-import { TBlockAttributes } from "../../../declarations";
+import { ROUTES } from "../../utils/constants";
 
 interface IRegistration {
-    attr?: TBlockAttributes;
     title: string;
     emailInput: Block;
     loginInput: Block;
@@ -23,7 +22,7 @@ interface IRegistration {
 
 class Registration extends Block {
     constructor(props: IRegistration) {
-      super('div', props);
+      super(props);
     }
   
     render() {
@@ -44,14 +43,8 @@ class Registration extends Block {
 }
 
 const RegistrationPage = new Registration({
-    attr: {
-        class: "container"
-    },
     title: "Вход",
     emailInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         id: "email",
         name: "email",
@@ -61,9 +54,6 @@ const RegistrationPage = new Registration({
         }
     }),
     loginInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         id: "login",
         name: "login",
@@ -73,9 +63,6 @@ const RegistrationPage = new Registration({
         }
     }),
     firstNameInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         id: "first_name",
         name: "first_name",
@@ -85,9 +72,6 @@ const RegistrationPage = new Registration({
         }
     }),
     secondNameInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         id: "second_name",
         name: "second_name",
@@ -97,9 +81,6 @@ const RegistrationPage = new Registration({
         }
     }),
     phoneInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         id: "phone",
         name: "phone",
@@ -109,9 +90,6 @@ const RegistrationPage = new Registration({
         }
     }),
     passwordInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         type: "password",
         id: "password",
@@ -122,9 +100,6 @@ const RegistrationPage = new Registration({
         }
     }),
     passwordConfirmInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         type: "password",
         id: "password_2",
@@ -140,14 +115,15 @@ const RegistrationPage = new Registration({
         }
     }),
     buttonSubmit: new Button({
-        attr: {
-            class: "btn btn-primary btn-block"
-        },
+        className: "btn btn-primary btn-block",
         content: "Авторизоваться"
     }),
     link: new Link({
-        attr: { href: "/login" },
-        content: "Войдите в аккаунт"
+        href: ROUTES.login.path,
+        content: "Войдите в аккаунт",
+        //events: {
+        //    click: (event: MouseEvent) => routerGo(event, window.router, ROUTES.login.path)
+        //}
     }),
     events: {
         submit: (event) => {

@@ -1,8 +1,13 @@
 // language=hbs
 
 export default `
-    {{{ dropdownButton }}}
-    <div class="dropdown-menu">
-        {{{ content }}}
+    <div
+        {{#if className}}class="{{ className }}"{{/if}}
+        {{#if id}}id="{{ id }}"{{/if}}
+    >
+        {{{ dropdownButton }}}
+        <div class="dropdown-menu">
+            {{{ content }}}
+        </div>
     </div>
 `

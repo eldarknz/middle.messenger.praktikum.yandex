@@ -1,20 +1,20 @@
 import Block from "../../../core/block"
 import template from "./nav.tmpl";
 import "./nav.scss";
-import { TBlockAttributes } from "../../../../declarations";
 
 interface INav {
-  attr?: TBlockAttributes;
+  className?: string;
   content: Block[] | string[];
 }
 
 class Nav extends Block {
   constructor(props: INav) {
-    super('nav', props);
+    super(props);
   }
   
   render() {
     return this.compile(template, {
+      className: this.props.className,
       content: this.props.content
     });
   }

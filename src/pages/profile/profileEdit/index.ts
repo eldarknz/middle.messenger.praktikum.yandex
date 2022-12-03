@@ -5,12 +5,11 @@ import Button from "../../../components/ui/button";
 import Link from "../../../components/ui/link";
 import Input from "../../../components/ui/input";
 import { IconArrowLeft, IconMedia } from "../../../components/ui/icon";
-import { TBlockAttributes } from "../../../../declarations";
 import { validateInput } from "../../../utils/validation";
+import { ROUTES } from "../../../utils/constants";
 import "../styles.scss";
 
 interface IProfileEdit {
-    attr?: TBlockAttributes;
     buttonBack: Block;
     userAvatar: Block;
     emailInput: Block;
@@ -25,7 +24,7 @@ interface IProfileEdit {
 
 class ProfileEdit extends Block {
     constructor(props: IProfileEdit) {
-        super("div", props)
+        super(props)
     }
 
     render() {
@@ -45,30 +44,18 @@ class ProfileEdit extends Block {
 }
 
 const ProfileEditPage = new ProfileEdit({
-    attr: {
-        class: "wrapper"
-    },
     buttonBack: new Link({
-        attr: {
-            href: "/profile"
-        },
+        href: ROUTES.profile.path,
         content: new Button({
-            attr: {
-                class: "btn btn-circle btn-primary"
-            },
-            content: new IconArrowLeft({ attr: { class: "icon icon-white" }})
+            className: "btn btn-circle btn-primary",
+            content: new IconArrowLeft({ className: "icon icon-white" })
         })
     }),
     userAvatar: new Avatar({
-        attr: {
-            class: "avatar avatar_size_l"
-        },
-        content: new IconMedia({ attr: { class:"icon icon-white icon-size-xxl"}})
+        className: "avatar avatar_size_l",
+        content: new IconMedia({ className: "icon icon-white icon-size-xxl" })
     }),
     emailInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         id: "email",
         name: "email",
@@ -79,9 +66,6 @@ const ProfileEditPage = new ProfileEdit({
         }
     }),
     loginInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         id: "login",
         name: "login",
@@ -92,9 +76,6 @@ const ProfileEditPage = new ProfileEdit({
         }
     }),
     firstNameInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         id: "first_name",
         name: "first_name",
@@ -105,9 +86,6 @@ const ProfileEditPage = new ProfileEdit({
         }
     }),
     secondNameInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         id: "second_name",
         name: "second_name",
@@ -118,9 +96,6 @@ const ProfileEditPage = new ProfileEdit({
         }
     }),
     chatNameInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         id: "chat_name",
         name: "chat_name",
@@ -131,9 +106,6 @@ const ProfileEditPage = new ProfileEdit({
         }
     }),
     phoneInput: new Input({
-        attr: {
-            class: "form-group"
-        },
         alternative: true,
         id: "phone",
         name: "phone",
@@ -144,9 +116,7 @@ const ProfileEditPage = new ProfileEdit({
         }
     }),
     buttonSubmit: new Button({
-        attr: {
-            class: "btn btn-primary btn-block"
-        },
+        className: "btn btn-primary btn-block",
         content: "Сохранить изменения"
     }),
     events: {
