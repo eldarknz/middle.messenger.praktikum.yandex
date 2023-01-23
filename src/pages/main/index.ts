@@ -9,19 +9,6 @@ interface IMain {
     className?: string;
 }
 
-class Main extends Block {
-    constructor(props: IMain) {
-        super(props);
-    }
-  
-    render() {
-        return this.compile(template, {
-            className: this.props.className,
-            content: this.props.content,
-        });
-    }
-}
-
 const pages: { title: string, path: string }[] = [
     { title: ROUTES.test.title, path: ROUTES.test.path },
     { title: ROUTES.login.title, path: ROUTES.login.path },
@@ -32,7 +19,56 @@ const pages: { title: string, path: string }[] = [
     { title: ROUTES.error_500.title, path: ROUTES.error_500.path }
 ];
 
-const MainPage = new Main({
+//class Main extends Block {
+class MainPage extends Block {
+    constructor(props: IMain) {
+
+        const content = new List({
+            className: "list",
+            content: pages.map(link => (
+                new Link({
+                    href: link.path,
+                    content: link.title,
+                    //events: {
+                    //    click: (event: MouseEvent) => routerGo(event, window.router, link.path)
+                    //}
+                })
+            )),
+        })
+
+        console.log("link", content);
+
+        super({ ...props, content });
+        
+        /*this.setProps({
+            content: new List({
+                className: "list",
+                content: pages.map(link => (
+                    new Link({
+                        href: link.path,
+                        content: link.title,
+                        //events: {
+                        //    click: (event: MouseEvent) => routerGo(event, window.router, link.path)
+                        //}
+                    })
+                )),
+            })
+        })*/
+    
+    }
+
+    render() {
+        return this.compile(template, this.props);
+    }
+    /*render() {
+        return this.compile(template, {
+            className: this.props.className,
+            content: this.props.content,
+        });
+    }*/
+}
+
+/*const MainPage = new Main({
     content: new List({
         className: "list",
         content: pages.map(link => (
@@ -45,6 +81,6 @@ const MainPage = new Main({
             })
         )),
     })
-});
+});*/
   
 export default MainPage

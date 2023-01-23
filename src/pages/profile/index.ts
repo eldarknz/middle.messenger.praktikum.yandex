@@ -62,13 +62,22 @@ class Profile extends Block {
 }
 
 const ProfilePage = new Profile({
-    buttonBack: new Link({
+    buttonBack: new Button({
+        className: "btn btn-circle btn-primary",
+        content: new IconArrowLeft({ className: "icon icon-white" }),
+        events: {
+            click: (event: MouseEvent) => {
+                window.router.go(ROUTES.chat.path);
+            }
+        }
+    }),
+    /*buttonBack: new Link({
         href: ROUTES.chat.path,
         content: new Button({
             className: "btn btn-circle btn-primary",
             content: new IconArrowLeft({ className: "icon icon-white" })
         })
-    }),
+    }),*/
     userAvatar: new Avatar({
         className: "avatar avatar_size_l",
         content: new IconMedia({ className:"icon icon-white icon-size-xxl"})

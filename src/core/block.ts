@@ -2,11 +2,10 @@ import Handlebars from 'handlebars';
 import { v4 as makeUUID } from 'uuid';
 import EventBus from './eventBus';
 
-interface IBlock {
-    props?: { [key: string]: any }
-}
+export type Children = Record<string, any>;
 
-class Block<Props extends { [key: string]: any } = {}> {
+//class Block<Props extends Record<string, any> = any> {
+class Block {
     static EVENTS = {
         INIT: 'init',
         FLOW_CDM: 'flow:component-did-mount',
@@ -18,16 +17,16 @@ class Block<Props extends { [key: string]: any } = {}> {
 
     private _id: Nullable<string> = null;
 
-    public children: { [key: string]: any } = {};
+    public children: Children;
     
     public props: { [key: string]: any };
 
-    eventBus: Function;
+    eventBus: () => EventBus;
 
-    constructor(propsAndChidren?: Props) {
+    constructor(propsAndChidren?: TProps) {
 
         // 1. Получение пропсов и детей
-        const { children, props } = this._getPropsAndChildren(propsAndChidren || {} as Props);
+        const { children, props } = this._getPropsAndChildren(propsAndChidren || {} as TProps);
 
         this.children = children;
 
@@ -35,7 +34,7 @@ class Block<Props extends { [key: string]: any } = {}> {
 
         this._id = makeUUID();
         // 2. Проксирование пропсов
-        this.props = this._makePropsProxy({ ...props, __id: this._id } || {} as Props);
+        this.props = this._makePropsProxy({ ...props, __id: this._id } || {} as TProps);
 
         this.eventBus = () => eventBus;
 
@@ -46,12 +45,13 @@ class Block<Props extends { [key: string]: any } = {}> {
     }
 
     // 1. Получение пропсов и детей
-    private _getPropsAndChildren(propsAndChildren: Props) {
+    private _getPropsAndChildren(propsAndChildren: TProps) {
         //console.log('1. Получение пропсов и детей - _getPropsAndChildren', propsAndChildren);
         const children: { [key: string]: any } = {};
-        const props: Props = {} as Props;
+        const props: TProps = {} as TProps;
 
         Object.entries(propsAndChildren).forEach(([key, value]) => {
+            console.log(key, value);
             if (value instanceof Block) {
                 children[key] = [value];
             } else if (Array.isArray(value)) {
@@ -64,20 +64,20 @@ class Block<Props extends { [key: string]: any } = {}> {
                     }
                 });
             } else {
-                const k = key as keyof Props;
+                const k = key as keyof TProps;
                 props[k] = value;
             }
         });
 
-        //console.log("   Children, Props: ", { children, props });
+        //console.log("   Children, TProps: ", { children, props });
 
         return { children, props };
     }
 
     // 2. Проксирование пропсов
-    private _makePropsProxy = (props: Props) => {
+    private _makePropsProxy = (props: TProps) => {
         //console.log('2. Проксирование пропсов - _makePropsProxy');
-        //console.log("   Props:", props);
+        //console.log("   TProps:", props);
         const self = this;
 
         return new Proxy(props as unknown as object, {
@@ -102,7 +102,7 @@ class Block<Props extends { [key: string]: any } = {}> {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
-        //eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     }
 
     _createDocumentElement(tagName: string) {
@@ -132,7 +132,7 @@ class Block<Props extends { [key: string]: any } = {}> {
     // 7. Монтирование компонента
     private _componentDidMount(): void {
         //console.log('7. Монтирование - _componentDidMount');
-        this.componentDidMount();
+        this.componentDidMount(this.props as TProps);
 
         Object.values(this.children).forEach((child) => {
             //console.log("child ----> ", child);
@@ -144,12 +144,26 @@ class Block<Props extends { [key: string]: any } = {}> {
         });
     }
 
-    componentDidMount(): void {}
+    componentDidMount(props: TProps): void {}
 
     // Диспетчеризация
     dispatchComponentDidMount(): void {
         //console.log('Диспетчеризация - dispatchComponentDidMount');
         this.eventBus().emit(Block.EVENTS.FLOW_CDM); // запуск монтирования через EventBus
+    }
+
+    // Обновление компонента
+    private _componentDidUpdate(oldProps: TProps, newProps: TProps): void {
+        //console.log('Обновление - _componentDidUpdate');
+        const response = this.componentDidUpdate(oldProps, newProps);
+        if (response) {
+            this._render();
+        }
+    }
+
+    componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
+        //console.log('componentDidUpdate');
+        return true;
     }
 
     // Добавление событий
@@ -248,6 +262,16 @@ class Block<Props extends { [key: string]: any } = {}> {
         return undefined!;
     }
 
+    // Установка дополнительных пропсов
+    setProps = (nextProps: TProps) => {
+        //console.log('setProps');
+        if (!nextProps) {
+            return;
+        }
+
+        Object.assign(this.props, nextProps);
+    };
+
     get element(): HTMLElement {
         //console.log('get element');
         return this._element!;
@@ -283,6 +307,7 @@ class Block<Props extends { [key: string]: any } = {}> {
     // Компиляция блока
     compile(template: string, props: Record<string, any>) {
         //console.log('Компиляция блока и шаблонов с помощью Handlebars - compile');
+        
         const propsAndStubs: Record<string, any> = this._getStubs(props);
 
         const fragment = document.createElement("template");
@@ -291,6 +316,7 @@ class Block<Props extends { [key: string]: any } = {}> {
         fragment.innerHTML = compiled(propsAndStubs).trim();
 
         Object.values(this.children).forEach((child) => {
+            //console.log(this.children);
             if (Array.isArray(child)) {
                 child.forEach(item => {
                     const fragmentContent = fragment.content; 

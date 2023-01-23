@@ -2,13 +2,13 @@ import { queryStringify } from "../helpres/queryStringify";
 
 type HTTPMethod = (url: string, options?: Options) => Promise<unknown>
 type Options = {
-    method?: METHOD;
+    method?: METHODS;
     timeout?: number;
     headers?: { [key: string]: string };
     data?: { [key: string]: string };
 };
 
-enum METHOD {
+enum METHODS {
     GET = 'GET',
     POST = 'POST',
     PUT = 'PUT',
@@ -19,25 +19,26 @@ class HTTPTransport {
     get: HTTPMethod = (url, options = {}) => {
         const query = options.data ? url + queryStringify(options.data) : url;
 
-        return this.request(query, { ...options, method: METHOD.GET }, options.timeout);
+        return this.request(query, { ...options, method: METHODS.GET }, options.timeout);
     };
 
     post: HTTPMethod = (url, options = {}) => {
-        return this.request(url, { ...options, method: METHOD.POST }, options.timeout);
+        console.log(url, options);
+        return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
     };
 
     put: HTTPMethod = (url, options = {}) => {
-        return this.request(url, { ...options, method: METHOD.PUT }, options.timeout);
+        return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
     };
 
     delete: HTTPMethod = (url, options = {}) => {
-        return this.request(url, { ...options, method: METHOD.DELETE }, options.timeout);
+        return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
     };
 
     request = (
         url: string,
-        options: Options = { method: METHOD.GET },
-        timeout = 3000
+        options: Options = { method: METHODS.GET },
+        timeout = 5000
     ): Promise<XMLHttpRequest> => {
         const { headers = {}, method, data } = options;
 
@@ -48,7 +49,6 @@ class HTTPTransport {
             }
 
             const xhr = new XMLHttpRequest();
-            const isGet = method === METHOD.GET;
 
             xhr.open(method, url);
             xhr.responseType = 'json';
@@ -67,7 +67,7 @@ class HTTPTransport {
             xhr.timeout = timeout;
             xhr.ontimeout = reject;
 
-            if (isGet || !data) {
+            if (method === METHODS.GET || !data) {
                 xhr.send();
             } else {
                 xhr.send(JSON.stringify(data));

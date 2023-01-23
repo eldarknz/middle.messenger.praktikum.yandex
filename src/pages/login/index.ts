@@ -15,23 +15,91 @@ interface ILogin {
     events: { submit: (e: Event) => void };
 }
 
-class Login extends Block {
+//class Login extends Block {
+class LoginPage extends Block {
     constructor(props: ILogin) {
-      super(props);
+
+        const title = "Вход";
+
+        const loginInput = new Input({
+            alternative: true,
+            id: "login",
+            name: "login",
+            placeholderText: "Логин",
+            events: {
+                blur: (event) => validateInput(event.target as HTMLInputElement)
+            }
+        });
+
+        const passwordInput = new Input({
+            alternative: true,
+            type: "password",
+            id: "password",
+            name: "password",
+            placeholderText: "Пароль",
+            events: {
+                blur: (event) => validateInput(event.target as HTMLInputElement)
+            }
+        });
+
+        const buttonSubmit = new Button({
+            className: "btn btn-primary btn-block",
+            content: "Авторизоваться"
+        })
+
+        const link = new Link({
+            href: ROUTES.register.path,
+            content: "Создайте её сейчас",
+            //events: {
+            //    click: (event: MouseEvent) => routerGo(event, window.router, ROUTES.register.path)
+            //}
+        });
+
+        const events = {
+            submit: (event: Event) => {
+                event.preventDefault();
+                const target = event.target as HTMLInputElement;
+                const inputFields = target.querySelectorAll('input');
+                const data: { [key: string]: string;} = {};
+                inputFields.forEach((current) => {
+                    if (current.name === 'login') {
+                        if (!validateInput(current)) {
+                            console.log('Логин введен неверно');
+                        } else {
+                            data[current.name] = current.value;
+                        }
+                    } else if (current.name === 'password') {
+                        if (!validateInput(current)) {
+                            console.log('Пароль введен неверно');
+                        } else {
+                            data[current.name] = current.value;
+                        }
+                    } else {
+                        console.log('current', current);
+                        data[current.name] = current.value;
+                    }
+                });
+                console.log('data', data);
+            },
+        };
+
+        super({ ...props, title, loginInput, passwordInput, buttonSubmit, link, events });
     }
   
     render() {
-        return this.compile(template, {
+        return this.compile(template, this.props)
+        /*return this.compile(template, {
             title: this.props.title,
             loginInput: this.props.loginInput,
             passwordInput: this.props.passwordInput,
             buttonSubmit: this.props.buttonSubmit,
             link: this.props.link,
             events: this.props.events
-        });
+        });*/
     }
 }
 
+/*
 const LoginPage = new Login({
     title: "Вход",
     loginInput: new Input({
@@ -91,6 +159,6 @@ const LoginPage = new Login({
             console.log('data', data);
         },
     },
-});
+});*/
   
 export default LoginPage

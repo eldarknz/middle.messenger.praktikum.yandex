@@ -10,7 +10,7 @@ interface IButton {
       click?: (e: Event) => void;
     }
 }
-  
+
 class Button extends Block {
     constructor(props: IButton) {
         super(props);

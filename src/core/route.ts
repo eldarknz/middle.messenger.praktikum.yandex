@@ -9,13 +9,13 @@ class Route {
 
     public _pathname: string;
 
-    private _blockClass: Block;
+    private _blockClass: typeof Block;
 
     private _block: Block | null;
 
     private _props: TProps;
 
-    constructor(pathname: string, view: Block, props: TProps) {
+    constructor(pathname: string, view: typeof Block, props: TProps) {
         this._pathname = pathname;
         this._blockClass = view;
         this._block = null;
@@ -50,17 +50,20 @@ class Route {
 
     // создаёт блок, если тот ещё не был создан (нужно создавать блок только после первого перехода на страницу), иначе вызывает у блока метод show
     render() {
-       //console.log("Рендер блока - render");
-       //console.log("   ", this._block);
+        //console.log("Рендер блока - render");
+        //console.log("   ", this._block);
         if (!this._block) {
-            this._block = this._blockClass; //new this._blockClass(this._props);
+            //console.log(this._blockClass);
+            this._block = new this._blockClass(this._props); //this._blockClass;
+            //console.log(this._block);
         } else {
             this._block.show();
         }
       
         renderDOM(this._props.rootQuery, this._block);
         /*if (!this._block) {
-            this._block = this._blockClass; //new this._blockClass()
+            console.log(this._blockClass);
+            this._block = new this._blockClass(this._props); //new this._blockClass()
            //console.log('-----------------');
             if (this._block)
                 renderDOM(this._props.rootQuery, this._block);

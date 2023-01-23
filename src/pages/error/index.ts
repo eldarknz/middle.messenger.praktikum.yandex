@@ -23,7 +23,50 @@ class ErrorPage extends Block {
     }
 }
 
-export const NotFoundErrorPage = new ErrorPage({
+
+export class NotFoundErrorPage extends Block {
+    constructor(props: IErrorPage) {
+
+        const title = "404";
+        const text = "Не туда попали";
+        const link = new Link({
+            href: ROUTES.home.path,
+            content: "Назад к чатам", 
+            //events: {
+            //    click: (event: MouseEvent) => routerGo(event, window.router, ROUTES.home.path)
+            //}
+        });
+
+        super({ ...props, title, text, link })
+    }
+
+    render() {
+        return this.compile(template, this.props);
+    }
+}
+
+export class ServerErrorPage extends Block {
+    constructor(props: IErrorPage) {
+
+        const title = "500";
+        const text = "Мы уже фиксим";
+        const link = new Link({
+            href: ROUTES.home.path,
+            content: "Назад к чатам", 
+            //events: {
+            //    click: (event: MouseEvent) => routerGo(event, window.router, ROUTES.home.path)
+            //}
+        });
+
+        super({ ...props, title, text, link })
+    }
+
+    render() {
+        return this.compile(template, this.props);
+    }
+}
+
+/*export const NotFoundErrorPage = new ErrorPage({
     title: "404",
     text: "Не туда попали",
     link: new Link({
@@ -45,6 +88,6 @@ export const ServerErrorPage = new ErrorPage({
         //    click: (event: MouseEvent) => routerGo(event, window.router, ROUTES.home.path)
         //}
     })
-});
+});*/
 
 

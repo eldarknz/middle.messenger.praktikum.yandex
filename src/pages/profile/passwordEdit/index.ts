@@ -2,7 +2,6 @@ import Block from "../../../core/block";
 import template from "./passwordEdit.tmpl";
 import Avatar from "../../../components/ui/avatar";
 import Button from "../../../components/ui/button";
-import Link from "../../../components/ui/link";
 import Input from "../../../components/ui/input";
 import { IconArrowLeft, IconMedia } from "../../../components/ui/icon";
 import { validateInput } from "../../../utils/validation";
@@ -37,12 +36,14 @@ class PasswordEdit extends Block {
 }
 
 const PasswordEditPage = new PasswordEdit({
-    buttonBack: new Link({
-        href: ROUTES.profile.path,
-        content: new Button({
-            className: "btn btn-circle btn-primary",
-            content: new IconArrowLeft({ className: "icon icon-white" })
-        })
+    buttonBack: new Button({
+        className: "btn btn-circle btn-primary",
+        content: new IconArrowLeft({ className: "icon icon-white" }),
+        events: {
+            click: (event: MouseEvent) => {
+                window.router.go(ROUTES.profile.path);
+            }
+        }
     }),
     userAvatar: new Avatar({
         className: "avatar avatar_size_l",

@@ -7,28 +7,30 @@ import Route from "./route";
 
 /**
  * Класс для работы с роутером
+ * паттерн Singleton
  */
 class Router {
 
-    private static __instance: Router;
+    private static _instance: Router;
     private routes: Route[] = [];
     private currentRoute: Route | null = null;
     private history = window.history;
     private _rootQuery: Nullable<string> = null;
 
     constructor(rootQuery: string) {
-        if (Router.__instance) {
-            return Router.__instance;
+        // Определяем и сохраняем экземпляр в поле класса и вернуть его, если это значение уже существует
+        if (Router._instance) {
+            return Router._instance;
         }
+        Router._instance = this;
 
-        this._rootQuery    = rootQuery;
-
-        Router.__instance = this;
+        this._rootQuery = rootQuery;
     }
 
     // регистрирует блок по пути в роут и возвращает себя — чтобы можно было выстроить в цепочку
-    use(pathname: string, block: Block) {
-        //console.log('1. Регитсрация блока - use');
+    use(pathname: string, block: typeof Block) {
+        console.log('1. Регитсрация блока - use');
+        console.log(block);
         // Cоздаем новый маршрут (путь, блок, запрос)
         const route = new Route(pathname, block, { rootQuery: this._rootQuery })
 
