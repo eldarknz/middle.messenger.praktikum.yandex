@@ -24,6 +24,10 @@ interface IRegistration {
 class RegistrationPage extends Block {
     constructor(props: IRegistration) {
 
+        const logoLink = new Link({
+            href: ROUTES.home.path
+        });
+
         const title = "Вход";
 
         const emailInput = new Input({
@@ -104,8 +108,10 @@ class RegistrationPage extends Block {
         });
 
         const buttonSubmit = new Button({
-            className: "btn btn-primary btn-block",
-            content: "Авторизоваться"
+            color: "primary",
+            isRound: true,
+            isFluid: true,
+            content: "Зарегистрироваться"
         });
 
         const link = new Link({
@@ -176,6 +182,7 @@ class RegistrationPage extends Block {
 
         super({
             ...props,
+            logoLink,
             title,
             emailInput,
             loginInput,

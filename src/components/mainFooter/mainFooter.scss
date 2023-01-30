@@ -1,0 +1,27 @@
+.main-footer {
+    width: 100%;
+    min-height: 60px;
+    margin-top: auto !important;
+}
+
+.main-footer__container {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    height: 100%;
+}
+
+.main-footer__container__content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--color-gray-2);
+}
+
+.main-footer__footnote {
+    font-size: var(--font-size-12);
+    font-style: italic;
+}

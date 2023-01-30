@@ -19,6 +19,10 @@ interface ILogin {
 class LoginPage extends Block {
     constructor(props: ILogin) {
 
+        const logoLink = new Link({
+            href: ROUTES.home.path
+        });
+
         const title = "Вход";
 
         const loginInput = new Input({
@@ -43,9 +47,11 @@ class LoginPage extends Block {
         });
 
         const buttonSubmit = new Button({
-            className: "btn btn-primary btn-block",
+            color: "primary",
+            isRound: true,
+            isFluid: true,
             content: "Авторизоваться"
-        })
+        });
 
         const link = new Link({
             href: ROUTES.register.path,
@@ -83,7 +89,7 @@ class LoginPage extends Block {
             },
         };
 
-        super({ ...props, title, loginInput, passwordInput, buttonSubmit, link, events });
+        super({ ...props, logoLink, title, loginInput, passwordInput, buttonSubmit, link, events });
     }
   
     render() {

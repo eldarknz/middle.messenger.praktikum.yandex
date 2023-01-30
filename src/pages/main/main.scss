@@ -1,0 +1,21 @@
+.main-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black);
+    background-image: url(../../../static/images/starry-night-bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0.95;
+}
+
+.main-container__content {
+    max-width: 960px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

@@ -11,8 +11,8 @@ import {
     IconSettings,
     IconSearch
 } from "../ui/icon";
-import "./chatSidebar.scss";
 import { ROUTES } from "../../utils/constants";
+import "./chatSidebar.scss";
 
 interface IChatSidebar {
     logoLink: Block;
