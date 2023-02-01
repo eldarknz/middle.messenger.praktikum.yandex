@@ -1,15 +1,15 @@
 import Block from "./core/block";
 import { ROUTES } from "./utils/constants";
 import Router from "./core/router";
-import AuthController from "./controllers/authContorller";
-import { store } from "./services";
+//import AuthController from "./controllers/authContorller";
+//import { store } from "./services";
 
 import {
     MainPage,
-    /*ChatPage,
+    ChatPage,
     ProfilePage,
     ProfileEditPage,
-    PasswordEditPage,*/
+    PasswordEditPage,
     LoginPage,
     RegistrationPage,
     NotFoundErrorPage,
@@ -21,10 +21,10 @@ import "./styles/globals.scss";
 
 const pages: { [key: string]: typeof Block } = {
     [ROUTES.home.path]: MainPage,
-    //[ROUTES.chat.path]: ChatPage,
-    //[ROUTES.profile.path]: ProfilePage,
-    //[ROUTES.profileEdit.path]: ProfileEditPage,
-    //[ROUTES.passwordEdit.path]: PasswordEditPage,
+    [ROUTES.chat.path]: ChatPage,
+    [ROUTES.profile.path]: ProfilePage,
+    [ROUTES.profileEdit.path]: ProfileEditPage,
+    [ROUTES.passwordEdit.path]: PasswordEditPage,
     [ROUTES.login.path]: LoginPage,
     [ROUTES.register.path]: RegistrationPage,
     [ROUTES.error_404.path]: NotFoundErrorPage,

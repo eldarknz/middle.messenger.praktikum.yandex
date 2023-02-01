@@ -25,7 +25,7 @@ class ChatList extends Block {
 const ChatListBlock = new ChatList({
     content: data.map(item => (
         new ChatCard({
-            avatar: new Avatar({ className: "avatar avatar_size_m" }),
+            avatar: new Avatar(),
             title: item.title,
             message: item.message.text,
             datetime: item.message.time_created,

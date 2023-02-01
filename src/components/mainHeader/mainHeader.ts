@@ -2,6 +2,7 @@ import Block from "../../core/block";
 import template from "./mainHeader.tmpl";
 import Link from "../ui/link";
 import Button from "../ui/button";
+import Logo from "../ui/logo";
 import { ROUTES } from "../../utils/constants";
 import { TBlockAttributes } from "../../../declarations";
 import { routerGo } from "../ui/link";
@@ -29,8 +30,8 @@ export class MainHeader extends Block {
 }
 
 const MainHeaderBlock = new MainHeader({
-    logoLink: new Link({
-        href: ROUTES.home.path
+    logoLink: new Logo({
+        style: "white"
     }),
     siginLink: new Button({
         color: "light",

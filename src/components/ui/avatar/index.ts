@@ -3,18 +3,27 @@ import template from "./avatar.tmlp";
 import "./avatar.scss";
 
 interface IAvatar {
+    size?: "m" | "lg";
     className?: string;
     content?: Block | string;
 }
 
 class Avatar extends Block {
-    constructor(props: IAvatar) {
+    constructor(props?: IAvatar) {
         super(props);
+        this.avatarClassName = this.avatarClassName.bind(this);
+    }
+
+    avatarClassName() {
+        let className = "avatar";
+        if (this.props.size) className += ` avatar-${this.props.size}`
+        if (this.props.className) className += ` ${this.props.className}`
+        return className;
     }
 
     render() {
         return this.compile(template, {
-            className: this.props.className,
+            className: this.avatarClassName(),
             content: this.props.content
         });
     }

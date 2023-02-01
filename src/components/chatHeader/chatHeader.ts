@@ -30,12 +30,12 @@ class ChatHeader extends Block {
 }
 
 const ChatHeaderBlock = new ChatHeader({
-    userAvatar: new Avatar({ className: "avatar" }),
-    userName: "Вадим",
+    userAvatar: new Avatar(),
+    userName: "Иван",
     dropdown: new Dropdown({
         className: "dropdown",
         dropdownButton: new Button({
-            className: "btn btn-circle",
+            isCircle: true,
             id: "dropdownMenuButton",
             content: new IconDots({ className: "icon icon-size-m" })
         }),

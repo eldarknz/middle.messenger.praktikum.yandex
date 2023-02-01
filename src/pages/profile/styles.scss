@@ -124,12 +124,3 @@
     font-weight: 500;
     text-align: center;
 }
-
-.link-red,
-.link-red a {
-    color: var(--color-red);
-
-    &:hover {
-        color: var(--color-red-dark);  
-    }
-}

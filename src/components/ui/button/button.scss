@@ -65,6 +65,24 @@
     padding: 0;
 }
 
+.btn-circle,
+.btn-square {
+    &.btn-sm {
+        height: 32px;
+        width: 32px;
+    }
+    
+    &.btn-lg {
+        height: 48px;
+        width: 48px;
+    }
+    
+    &.btn-xl {
+        height: 56px;
+        width: 56px;
+    }
+}
+
 .btn-link {
     &.btn-primary {
         background-color: transparent;
@@ -103,6 +121,12 @@
         color: var(--btn-primary-color);
         &:hover {
             color: var(--color-white);
+            & svg path {
+                fill: var(--color-white);
+            }
+        }
+        & svg path {
+            fill: var(--btn-primary-color);
         }
     }
 
@@ -112,6 +136,12 @@
         color: var(--btn-secondary-color);
         &:hover {
             color: var(--color-white);
+            & svg path {
+                fill: var(--color-white);
+            }
+        }
+        & svg path {
+            fill: var(--btn-secondary-color);
         }
     }
 
@@ -120,6 +150,12 @@
         border-color: var(--color-gray-2);
         &:hover {
             color: var(--color-gray-4);
+            & svg path {
+                fill: var(--color-gray-4);
+            }
+        }
+        & svg path {
+            fill: var(--color-gray-4);
         }
     }
 }
@@ -128,10 +164,12 @@
     background-color: var(--btn-primary-color);
     border-color: var(--btn-primary-color);
     color: var(--color-white);
-
     &:hover {
         background-color: var(--btn-primary-color-hover);
         border-color: var(--btn-primary-color-hover);
+    }
+    & svg path {
+        fill: var(--color-white);
     }
 }
 
@@ -139,10 +177,12 @@
     background-color: var(--btn-secondary-color);
     border-color: var(--btn-secondary-color);
     color: var(--color-white);
-
     &:hover {
         background-color: var(--btn-secondary-color-hover);
         border-color: var(--btn-secondary-color-hover);
+    }
+    & svg path {
+        fill: var(--color-white);
     }
 }
 
@@ -150,10 +190,11 @@
     background-color: var(--btn-gray-color);
     border-color: var(--btn-gray-color);
     color: var(--color-gray-4);
-
     &:hover {
         background-color: var(--btn-gray-color-hover);
         border-color: var(--btn-gray-color-hover);
-        color: var(--color-black);
+    }
+    & svg path {
+        fill: var(--color-gray-4);
     }
 }

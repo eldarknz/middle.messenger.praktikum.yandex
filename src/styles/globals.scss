@@ -27,6 +27,13 @@ html, body {
     color: var(--body-color);
 }
 
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* Link */
+
 a {
     color: var(--link-primary-color);
     text-decoration: var(--link-decoration);
@@ -38,9 +45,13 @@ a {
     }
 }
 
-.wrapper {
-    display: flex;
-    width: 100%;
+.link-red,
+.link-red a {
+    color: var(--color-red);
+
+    &:hover {
+        color: var(--color-red-dark);  
+    }
 }
 
 /* Text */
@@ -51,40 +62,6 @@ a {
 
 .text-silver {
     color: var(--silver);
-}
-
-/* Logo */
-
-.logo {
-    background-position: 50%;
-    background-repeat: no-repeat;
-    border: 0;
-    position: relative;
-}
-
-.logo-dark {
-    background-image: url(../../static/images/logo.svg);
-}
-
-.logo-white {
-    background-image: url(../../static/images/logo-white.svg);
-}
-
-.logo-small {
-    background-image: url(../../static/images/logo-small.svg);  
-}
-
-.logo_size {
-    background-size: contain;
-    height: 28px;
-    width: 163px;
-}
-
-.logo-link a {
-    display: block;
-    height: 100%;
-    width: 100%;
-    cursor: pointer;
 }
 
 /* Sign pages */
@@ -188,7 +165,7 @@ a {
     }
 }
 
-/* SCROLLBAEL */
+/* Scrollable */
 
 * {
     scrollbar-width: thin;
@@ -196,6 +173,7 @@ a {
 }
   
 /* Works on Chrome, Edge, and Safari */
+
 *::-webkit-scrollbar {
     width: 8px;
 }

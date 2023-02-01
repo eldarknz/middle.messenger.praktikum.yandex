@@ -3,11 +3,7 @@
 export default `
     <div class="chat-sidebar">
         <div class="chat-sidebar__header">
-            <div class="logo-container">
-                <div class="logo logo_size logo-link">
-                    {{{ logoLink }}}
-                </div>
-            </div>
+            {{{ logoLink }}}
             <a href="/profile">
                 {{{ newMessageIcon }}}
             </a>

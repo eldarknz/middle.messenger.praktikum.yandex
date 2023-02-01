@@ -16,21 +16,35 @@ interface IChat {
     modal?: Block;
 }
 
-class Chat extends Block {
+class ChatPage extends Block {
     constructor(props: IChat) {
-        super(props);
+
+        const header = ChatHeaderBlock;
+        const footer = ChatFooterBlock;
+        const sidebar = ChatSidebarBlock;
+        const modal = new Modal({
+            className: "modal",
+            id: "addUserModal",
+            //style: "display: none",
+            iconClose: new IconClose({ className: "icon" }),
+            title: "Добавить пользователя",
+            content: AddUserFormBlock
+        });
+
+        super({ ...props, header, footer, sidebar, modal });
     }
     
     render() {
-        return this.compile(template, {
+        return this.compile(template, this.props);
+        /*return this.compile(template, {
             header: this.props.header,
             footer: this.props.footer,
             sidebar: this.props.sidebar
-        });
+        });*/
     }
-}
+};
 
-const ChatPage = new Chat({
+/*const ChatPage = new Chat({
     header: ChatHeaderBlock,
     footer: ChatFooterBlock,
     sidebar: ChatSidebarBlock,
@@ -42,7 +56,7 @@ const ChatPage = new Chat({
         title: "Добавить пользователя",
         content: AddUserFormBlock
     })
-})
+})*/
 
 dropdownHandler();
 modalHandler();

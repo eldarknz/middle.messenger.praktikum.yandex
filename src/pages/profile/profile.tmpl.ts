@@ -20,17 +20,7 @@ export default `
                     {{{ userDataList }}}
                 </div>
                 <div class="profile-container__actions">
-                    <div class="list list-flush">
-                        <div class="list-item">
-                            {{{ profileEdit }}}
-                        </div>
-                        <div class="list-item">
-                            {{{ passwordEdit }}}
-                        </div>
-                        <div class="list-item link-red">
-                            {{{ logout }}}
-                        </div>
-                    </div>
+                    {{{ profileActions }}}
                 </div>
             </div>
         </div>

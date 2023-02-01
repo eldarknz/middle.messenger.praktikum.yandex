@@ -4,9 +4,7 @@ export default `
     <div class="containerFluid sign-container">
         <div class="sign-container__content">
             <div class="sign-container__logo-container">
-                <div class="logo logo-white logo_size logo-link">
-                    {{{ logoLink }}}
-                </div>
+                {{{ logoLink }}}
             </div>
             <div class="sign-container__block">
                 <h3 class="sign-container__title">{{ title }}</h3>

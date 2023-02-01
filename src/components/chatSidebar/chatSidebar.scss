@@ -56,31 +56,6 @@
     border-top-color: var(--light);
 }
 
-.logo-container {
-    margin-right: auto;
-}
-
-.logo {
-    background-image: url(../../../static/images/logo-white.svg);
-    background-position: 50%;
-    background-repeat: no-repeat;
-    border: 0;
-    position: relative;
-}
-
-.logo_size {
-    background-size: contain;
-    height: 28px;
-    width: 163px;
-}
-
-.logo-link a {
-    display: block;
-    height: 100%;
-    width: 100%;
-    cursor: pointer;
-}
-
 .menu-actions {
     width: 100%;
     

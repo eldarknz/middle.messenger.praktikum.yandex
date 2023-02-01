@@ -3,6 +3,7 @@ import template from "./chatSidebar.tmpl";
 import Nav from "../ui/nav";
 import Input from "../ui/input";
 import Link from "../ui/link";
+import Logo from "../ui/logo";
 import ChatListBlock from "../chatList/chatList";
 import {
     IconMessage,
@@ -39,8 +40,8 @@ class ChatSidebar extends Block {
 }
 
 const ChatSidebarBlock = new ChatSidebar({
-    logoLink: new Link({
-        href: ROUTES.home.path
+    logoLink: new Logo({
+        link: ROUTES.home.path
     }),
     newMessageIcon: new IconMessage({ className: "icon icon-size-m" }),
     inputSearch: new Input({
