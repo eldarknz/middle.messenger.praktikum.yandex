@@ -1,0 +1,81 @@
+import queryStringify from "../../utils/queryStringify";
+
+type RequestOptions = {
+    method?: METHODS;
+    timeout?: number;
+    headers?: { [key: string]: string };
+    data?: any;
+};
+
+enum METHODS {
+    GET = 'GET',
+    POST = 'POST',
+    PUT = 'PUT',
+    DELETE = 'DELETE',
+}
+
+type HTTPMethod = (url: string, options?: RequestOptions) => Promise<XMLHttpRequest>
+type HTTPRequest = (url: string, options: RequestOptions, timeout?: number) => Promise<XMLHttpRequest>;
+
+class HTTPTransport {
+    get: HTTPMethod = (url, options = {}) => {
+        const query = options.data ? url + queryStringify(options.data as { [key: string]: string }) : url;
+        return this.request(query, { ...options, method: METHODS.GET }, options.timeout);
+    };
+
+    post: HTTPMethod = (url, options = {}) => {
+        return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
+    };
+
+    put: HTTPMethod = (url, options = {}) => {
+        return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+    };
+
+    delete: HTTPMethod = (url, options = {}) => {
+        return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
+    };
+
+    request: HTTPRequest = (url, options = { method: METHODS.GET }, timeout = 5000
+    ) => {
+        const { headers = {}, method, data } = options;
+
+        return new Promise((resolve, reject) => {
+            if (!method) {
+                reject('No method');
+                return;
+            }
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.open(method, url);
+            xhr.responseType = 'json';
+            xhr.withCredentials = true;
+
+            Object.keys(headers).forEach(key => {
+                xhr.setRequestHeader(key, headers[key]);
+            });
+
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    resolve(xhr);
+                } else {
+                    reject(xhr);
+                }
+            };
+
+            xhr.onerror = reject;
+            xhr.onabort = reject;
+
+            xhr.timeout = timeout;
+            xhr.ontimeout = reject;
+
+            if (method === METHODS.GET || !data) {
+                xhr.send();
+            } else {
+                xhr.send(data);
+            }
+        });
+    };
+}
+
+export default HTTPTransport

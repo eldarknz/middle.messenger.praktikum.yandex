@@ -4,8 +4,13 @@ import Button from "../../components/ui/button";
 import Input from "../../components/ui/input";
 import Link from "../../components/ui/link";
 import Logo from "../../components/ui/logo";
+import Form from "../../components/ui/form";
 import { validateInput } from "../../utils/validation";
 import { ROUTES } from "../../utils/constants";
+import { Container } from "../../components/ui/grid";
+import { formSubmissionsHandler } from "../../utils/formHandler";
+import AuthController from "../../core/controllers/authContorller";
+import { inputValueHandler } from "../../utils/inputValueHandler";
 
 interface ILogin {
     title: string;
@@ -26,32 +31,46 @@ class LoginPage extends Block {
 
         const title = "Вход";
 
-        const loginInput = new Input({
-            alternative: true,
-            id: "login",
-            name: "login",
-            placeholderText: "Логин",
+        const form = new Form({
+            className: "sign-container__form",
+            content: [
+                new Container({
+                    isFluid: true,
+                    className: "sign-container__form__input-group",
+                    content: [
+                        new Input({
+                            id: "login",
+                            name: "login",
+                            style: "flush",
+                            placeholderText: "Логин",
+                            events: {
+                                blur: (event) => validateInput(event.target as HTMLInputElement),
+                                input: (event) => inputValueHandler(event.target as HTMLInputElement)
+                            }
+                        }),
+                        new Input({
+                            type: "password",
+                            id: "password",
+                            name: "password",
+                            style: "flush",
+                            placeholderText: "Пароль",
+                            events: {
+                                blur: (event) => validateInput(event.target as HTMLInputElement),
+                                input: (event) => inputValueHandler(event.target as HTMLInputElement)
+                            }
+                        })
+                    ]
+                }),
+                new Button({
+                    color: "primary",
+                    size: "lg",
+                    isFluid: true,
+                    content: "Авторизоваться"
+                })
+            ],      
             events: {
-                blur: (event) => validateInput(event.target as HTMLInputElement)
+                submit: formSubmissionsHandler(AuthController.signIn)
             }
-        });
-
-        const passwordInput = new Input({
-            alternative: true,
-            type: "password",
-            id: "password",
-            name: "password",
-            placeholderText: "Пароль",
-            events: {
-                blur: (event) => validateInput(event.target as HTMLInputElement)
-            }
-        });
-
-        const buttonSubmit = new Button({
-            color: "primary",
-            isRound: true,
-            isFluid: true,
-            content: "Авторизоваться"
         });
 
         const link = new Link({
@@ -59,7 +78,7 @@ class LoginPage extends Block {
             content: "Создайте её сейчас"
         });
 
-        const events = {
+        /*const events = {
             submit: (event: Event) => {
                 event.preventDefault();
                 const target = event.target as HTMLInputElement;
@@ -85,9 +104,15 @@ class LoginPage extends Block {
                 });
                 console.log('data', data);
             },
-        };
+        };*/
 
-        super({ ...props, logoLink, title, loginInput, passwordInput, buttonSubmit, link, events });
+        super({
+            ...props,
+            logoLink,
+            title,
+            form,
+            link
+        });
     }
   
     render() {

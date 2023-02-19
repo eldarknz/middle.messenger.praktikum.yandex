@@ -14,12 +14,20 @@ export const ROUTES: TRoutes = {
 };
 
 export const API_PATH = 'https://ya-praktikum.tech/api/v2';
+export const API_RESOURCES_PATH = `${API_PATH}/resources`;
 
 export const API_ENDPOINTS = {
     auth: {
-        signUp: "/auth/signup",
-        signIn: "/auth/signin",
-        user: "/auth/user",
-        logout: "/auth/logout"
+        signUp: `${API_PATH}/auth/signup`,
+        signIn: `${API_PATH}/auth/signin`,
+        user: `${API_PATH}/auth/user`,
+        logout: `${API_PATH}/auth/logout`
+    },
+    users: {
+        changeProfile: `${API_PATH}/user/profile`,
+        changeAvatar: `${API_PATH}/user/profile/avatar`,
+        changePassword: `${API_PATH}/user/password`,
+        getUserById: (id: string) => `${API_PATH}/user/${id}`,
+        searchUserByLogin: `${API_PATH}/user/search`
     }
 }

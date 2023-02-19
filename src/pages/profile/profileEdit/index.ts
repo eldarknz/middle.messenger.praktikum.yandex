@@ -3,9 +3,20 @@ import template from "./profileEdit.tmpl";
 import Avatar from "../../../components/ui/avatar";
 import Button from "../../../components/ui/button";
 import Input from "../../../components/ui/input";
+import Form from "../../../components/ui/form";
+import { Container } from "../../../components/ui/grid";
 import { IconArrowLeft, IconMedia } from "../../../components/ui/icon";
+import { Skeleton } from "../../../components/ui/skeleton";
+import Text from "../../../components/ui/text";
+import Image from "../../../components/ui/image";
 import { validateInput } from "../../../utils/validation";
-import { ROUTES } from "../../../utils/constants";
+import { formSubmissionsHandler } from "../../../utils/formHandler";
+import { API_RESOURCES_PATH, ROUTES } from "../../../utils/constants";
+import AuthController from "../../../core/controllers/authContorller";
+import UserController from "../../../core/controllers/userController";
+import { inputValueHandler } from "../../../utils/inputValueHandler";
+import connect, { Indexed } from "../../../core/store/connect";
+import { IUser } from "../../../types";
 import "../styles.scss";
 
 interface IProfileEdit {
@@ -22,7 +33,106 @@ interface IProfileEdit {
     events: { submit: (e: Event) => void };
 }
 
-class ProfileEditPage extends Block {
+const profileFields: { [key: string]: string } = {
+    email: "Почта",
+    login: "Логин",
+    first_name: "Имя",
+    second_name: "Фамилия",
+    display_name: "Имя в чате",
+    phone: "Телефон"
+};
+
+const getUserAvatar = (state: Indexed) => {
+    if (Object.keys(state).length !== 0) {
+        if ((state.user as IUser).avatar != null) {
+            return new Avatar({
+                size: "lg",
+                content: new Image({
+                    src: API_RESOURCES_PATH + (state.user as IUser).avatar
+                })
+            });
+        } else {
+            return new Avatar({
+                size: "lg",
+                content: new IconMedia({
+                    color: "white",
+                    size: "xxl",
+                })
+            });
+        }
+    } else {
+        return new Skeleton({
+            width: 130,
+            isAnimation: true,
+            isCircle: true
+        });
+    }
+}
+
+const getUserName = (state: Indexed) => {
+    if (Object.keys(state).length !== 0) {
+        return new Text({
+            content: (state.user as IUser).first_name
+        });
+    } else {
+        return new Skeleton({
+            height: 20,
+            isAnimation: true
+        });
+    }
+}
+
+const getForm = (state: Indexed) => {
+    console.log("IS_EMPTY: ", Object.keys(state).length === 0);
+    if (Object.keys(state).length === 0) {
+        return new Container({
+            isFluid: true,
+            className: "profile-container__form__input-group",
+            content: Object.keys(profileFields).map(() => {
+                return new Skeleton({
+                    height: 48,
+                    isAnimation: true
+                });
+            })
+        });
+    } else {
+        return new Form({
+            className: "profile-container__form",
+            content: [
+                new Container({
+                    isFluid: true,
+                    className: "profile-container__form__input-group",
+                    content: Object.keys(profileFields).map((key: Key) => {
+                        const title = profileFields[key];
+                        const value = state.user?.[key] ? `${state.user?.[key]}` : "";
+                        return new Input({
+                            id: key,
+                            name: key,
+                            style: "flush",
+                            placeholderText: title,
+                            value: value,
+                            events: {
+                                blur: (event) => validateInput(event.target as HTMLInputElement),
+                                input: (event) => inputValueHandler(event.target as HTMLInputElement)
+                            }
+                        })
+                    })
+                }),
+                new Button({
+                    color: "primary",
+                    size: "lg",
+                    isFluid: true,
+                    content: "Сохранить изменения"
+                })
+            ],
+            events: {
+                submit: formSubmissionsHandler(UserController.changeProfile)
+            }
+        });
+    }
+};
+
+class ProfileEdit extends Block {
     constructor(props: IProfileEdit) {
 
         const buttonBack = new Button({
@@ -34,147 +144,22 @@ class ProfileEditPage extends Block {
             }
         });
 
-        const userAvatar = new Avatar({
-            size: "lg",
-            content: new IconMedia({
-                color: "white",
-                size: "xxl"
-            })
-        });
+        super({ ...props, buttonBack });
 
-        const userName = "Иван";
-
-        const emailInput = new Input({
-            alternative: true,
-            id: "email",
-            name: "email",
-            value: "pochta@yandex.ru",
-            placeholderText: "Почта",
-            events: {
-                blur: (event) => validateInput(event.target as HTMLInputElement)
-            }
-        });
-
-        const loginInput = new Input({
-            alternative: true,
-            id: "login",
-            name: "login",
-            value: "ivanivanov",
-            placeholderText: "Логин",
-            events: {
-                blur: (event) => validateInput(event.target as HTMLInputElement)
-            }
-        });
-
-        const firstNameInput = new Input({
-            alternative: true,
-            id: "first_name",
-            name: "first_name",
-            placeholderText: "Имя",
-            value: "Иван",
-            events: {
-                blur: (event) => validateInput(event.target as HTMLInputElement)
-            }
-        });
-
-        const secondNameInput = new Input({
-            alternative: true,
-            id: "second_name",
-            name: "second_name",
-            value: "Иванов",
-            placeholderText: "Фамилия",
-            events: {
-                blur: (event) => validateInput(event.target as HTMLInputElement)
-            }
-        });
-
-        const chatNameInput = new Input({
-            alternative: true,
-            id: "chat_name",
-            name: "chat_name",
-            value: "Иван",
-            placeholderText: "Имя в чате",
-            events: {
-                blur: (event) => validateInput(event.target as HTMLInputElement)
-            }
-        });
-
-        const phoneInput = new Input({
-            alternative: true,
-            id: "phone",
-            name: "phone",
-            value: "79099673030",
-            placeholderText: "Телефон",
-            events: {
-                blur: (event) => validateInput(event.target as HTMLInputElement)
-            }
-        });
-
-        const buttonSubmit = new Button({
-            color: "primary",
-            isFluid: true,
-            isRound: true,
-            content: "Сохранить изменения"
-        });
-
-        const events = {
-            submit: (event: Event) => {
-                event.preventDefault();
-                const target = event.target as HTMLInputElement;
-                const inputFields = target.querySelectorAll('input');
-                const data: { [key: string]: string;} = {};
-                inputFields.forEach((current) => {
-                    if (current.name === 'email') {
-                        if (!validateInput(current)) {
-                            console.log('Адрес электронной почты введен неверно');
-                        } else {
-                            data[current.name] = current.value;
-                        }
-                    } else if (current.name === 'login') {
-                        if (!validateInput(current)) {
-                            console.log('Логин введен неверно');
-                        } else {
-                            data[current.name] = current.value;
-                        }
-                    } else if (current.name === 'first_name') {
-                        if (!validateInput(current)) {
-                            console.log('Имя введено неверно');
-                        } else {
-                            data[current.name] = current.value;
-                        }
-                    } else if (current.name === 'second_name') {
-                        if (!validateInput(current)) {
-                            console.log('Фамилия введена неверно');
-                        } else {
-                            data[current.name] = current.value;
-                        }
-                    } else if (current.name === 'chat_name') {
-                        if (!validateInput(current)) {
-                            console.log('Имя введено неверно');
-                        } else {
-                            data[current.name] = current.value;
-                        }
-                    } else if (current.name === 'phone') {
-                        if (!validateInput(current)) {
-                            console.log('Телефон введен неверно');
-                        } else {
-                            data[current.name] = current.value;
-                        }
-                    } else {
-                        console.log('current', current);
-                        data[current.name] = current.value;
-                    }
-                });
-                console.log('data', data);
-            },
-        };
-
-        super({ ...props, buttonBack, userAvatar, userName, emailInput, loginInput, firstNameInput, secondNameInput, chatNameInput, phoneInput, buttonSubmit, events });
+        AuthController.getUserInfo();
     }
 
     render() {
         return this.compile(template, this.props);
     }
 };
+
+const withPage = connect((state) => ({
+    userAvatar: getUserAvatar(state),
+    userName: getUserName(state),
+    form: getForm(state)
+}));
+
+const ProfileEditPage = withPage(ProfileEdit);
 
 export default ProfileEditPage

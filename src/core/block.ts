@@ -51,7 +51,7 @@ class Block {
         const props: TProps = {} as TProps;
 
         Object.entries(propsAndChildren).forEach(([key, value]) => {
-            console.log(key, value);
+            //console.log(key, value);
             if (value instanceof Block) {
                 children[key] = [value];
             } else if (Array.isArray(value)) {
@@ -265,11 +265,27 @@ class Block {
     // Установка дополнительных пропсов
     setProps = (nextProps: TProps) => {
         //console.log('setProps');
+        //console.log(nextProps);
         if (!nextProps) {
             return;
         }
 
-        Object.assign(this.props, nextProps);
+        const oldValue = { ...this.props };
+
+        const { children, props } = this._getPropsAndChildren(nextProps);
+
+        //console.log("CHILDREN: ", children);
+        //console.log("PROPS: ", props);
+
+        if (Object.values(children).length) {
+            Object.assign(this.children, children);
+        }
+        if (Object.values(props).length) {
+            Object.assign(this.props, props);
+        }
+
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldValue, this.props);
+        //Object.assign(this.props, nextProps);
     };
 
     get element(): HTMLElement {

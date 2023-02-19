@@ -6,10 +6,9 @@ interface ILink {
   className?: string;
   href?: string;
   content?: Block | string;
-  //onClick?: () => void;
-  //events?: { 
-  //  click?: (e: Event) => void;
-  //}
+  events?: { 
+    click?: (e: Event) => void;
+  };
 };
 
 export const linkPathRedirect = (event: MouseEvent, path: string) => {
@@ -28,16 +27,14 @@ export const routerGo = (event: MouseEvent, router: Router, path: string) => {
 
 class Link extends Block {
   constructor(props: ILink) {
-    const onClick = (e: MouseEvent) => {
-      //const router = new Router();
-
-      window.router!.go(this.props.href);
+    const defaultClickHandler = (e: MouseEvent) => {
+      if (this.props.href)
+        window.router!.go(this.props.href);
 
       e.preventDefault();
     }
 
-    super({...props, events: { click: onClick }});
-    //super(props);
+    super({...props, events: { click: props.events?.click ?? defaultClickHandler }});
   }
 
   render() {

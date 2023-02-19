@@ -10,6 +10,9 @@ declare global {
     export type Values<T extends Record<string, unknown>> = T[Keys<T>];
 
     export type TProps = Record<string, any>;
+
+    export type Key = keyof Object;
+
 }
 
     declare module '*.png';
@@ -17,23 +20,23 @@ declare global {
 export {};
 
 export type TChatData = {
-    readonly _id:string;
-    readonly title: string;
+    readonly _id:string,
+    readonly title: string,
     readonly users: { 
-        readonly [key: string]: string;
+        readonly [key: string]: string,
     }[],
     readonly message: { 
-        readonly [key: string]: string;
+        readonly [key: string]: string,
     }, 
-    readonly date_created: string;
-    readonly date_updated: string;
-    readonly time_created: string;
-    readonly time_updated: string;
-}
+    readonly date_created: string,
+    readonly date_updated: string,
+    readonly time_created: string,
+    readonly time_updated: string,
+};
 
 export type TUserData = { 
-    readonly title: string;
-    readonly value: string;
+    readonly title: string,
+    readonly value: string,
 };
 
 export type TBlockAttributes = { readonly [key: string]: string; };

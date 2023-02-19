@@ -1,8 +1,8 @@
 import Block from "../../core/block";
 import template from "./main.tmpl";
-import MainHeaderBlock from "../../components/mainHeader/mainHeader";
-import MainFooterBlock from "../../components/mainFooter/mainFooter";
-import MainHeroBlock from "../../components/mainHero/mainHero";
+import MainHeaderBlock from "../../components/sections/mainHeader/mainHeader";
+import MainFooterBlock from "../../components/sections/mainFooter/mainFooter";
+import MainHeroBlock from "../../components/sections/mainHero/mainHero";
 import { Container } from "../../components/ui/grid";
 import "./main.scss";
 

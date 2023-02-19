@@ -1,5 +1,5 @@
 // language=hbs
 
 export default `
-    <span>{{{ content }}}</span>
+    <span {{#if className}}class="{{className}}"{{/if}}>{{{ content }}}</span>
 `

@@ -42,6 +42,7 @@ a {
     &:hover {
       color: var(--link-primary-color-hover);
       text-decoration: var(--link-decoration);
+      cursor: pointer;
     }
 }
 
@@ -55,6 +56,12 @@ a {
 }
 
 /* Text */
+
+.text-error {
+    color: var(--color-red);
+    font-size: var(--font-size-12);
+    text-align: center;
+}
 
 .text-gray {
     color: var(--gray);
@@ -77,6 +84,7 @@ a {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+    overflow-y: auto;
 }
 
 .sign-container__content {

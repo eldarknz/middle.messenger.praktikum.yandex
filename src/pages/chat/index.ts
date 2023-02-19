@@ -1,11 +1,11 @@
 import Block from "../../core/block";
 import template from "./chat.tmpl";
-import ChatHeaderBlock from "../../components/chatHeader/chatHeader";
-import ChatFooterBlock from "../../components/chatFooter/chatFooter";
-import ChatSidebarBlock from "../../components/chatSidebar/chatSidebar";
+import ChatHeaderBlock from "../../components/sections/chatHeader/chatHeader";
+import ChatFooterBlock from "../../components/sections/chatFooter/chatFooter";
+import ChatSidebarBlock from "../../components/sections/chatSidebar/chatSidebar";
 import { IconClose } from "../../components/ui/icon";
-import AddUserFormBlock from "../../components/addUserForm/addUserForm";
-import Modal from "../../components/modal";
+import AddUserFormBlock from "../../components/sections/addUserForm/addUserForm";
+import Modal from "../../components/ui/modal";
 import { dropdownHandler, modalHandler } from "../../modules"
 import "./styles.scss";
 

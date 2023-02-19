@@ -10,11 +10,9 @@ export default `
                 <div class="profile-container__header">
                     <div class="user-avatar">
                         {{{ userAvatar }}}
-                        <div class="user-avatar__overlay">Поменять
-                            аватар
-                        </div>
+                        {{{ userAvatarOverlay }}}
                     </div>
-                    <div class="user-name">{{userName}}</div>
+                    <div class="user-name">{{{ userName }}}</div>
                 </div>
                 <div class="profile-container__info">
                     {{{ userDataList }}}

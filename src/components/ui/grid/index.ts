@@ -23,15 +23,16 @@ interface IRowProps {
 };*/
 
 interface IContainerProps {
-    isFluid?: boolean
+    id?: string;
+    isFluid?: boolean;
     className?: string;
     content: Block | Block[] | string;
 };
 
 export class Container extends Block {
-
     constructor(props: IContainerProps) {
         super(props);
+        this.containerClassName = this.containerClassName.bind(this);
     }
 
     containerClassName() {
@@ -43,8 +44,8 @@ export class Container extends Block {
     render() {
         //return this.compile(template, this.props);
         return this.compile(template, {
+            id: this.props.id,
             className: this.containerClassName(),
-            //className: `${this.props.isFluid ? "containerFluid" : "container"}${this.props.className ? " " + this.props.className : ""}`,
             content: this.props.content
         });
     }
