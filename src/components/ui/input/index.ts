@@ -7,7 +7,7 @@ interface IInput {
     type?: string;
     id: string;
     name: string;
-    value?: string;
+    value?: string | Function;
     placeholderText: string;
     passwordVisibilityToggler?: boolean;
     events?: { 

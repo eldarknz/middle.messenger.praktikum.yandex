@@ -3,6 +3,7 @@ import template from "./inputFile.tmpl";
 import "./inputFile.scss";
 
 interface IInputFile {
+    className?: string;
     color?: "primary" | "secondary" | "light";
     type?: string;
     id: string;
@@ -24,18 +25,7 @@ const defaultInputFileHandler = (e: Event) => {
             if (label)
                 label.innerHTML = target.files[0].name;
         }
-        console.log(target);
-        console.log(target.files[0].name);
     }
-
-    /*const actualBtn = document.getElementById('actual-btn');
-
-    const fileChosen = document.getElementById('file-chosen');
-    
-    actualBtn.addEventListener('change', function(){
-      fileChosen.textContent = this.files[0].name
-    })*/
-
 };
 
 class InputFile extends Block {

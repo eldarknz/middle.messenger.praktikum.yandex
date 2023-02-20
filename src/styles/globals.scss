@@ -61,6 +61,7 @@ a {
     color: var(--color-red);
     font-size: var(--font-size-12);
     text-align: center;
+    line-height: 1;
 }
 
 .text-gray {
@@ -123,10 +124,17 @@ a {
 
 .sign-container__form {
     width: 100%;
-    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 
     & + .sign-container__text-block {
         margin-top: 20px;
+    }
+
+    & > .btn {
+        margin-top: 25px;
     }
 }
 
@@ -139,7 +147,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 
 /* Error pages */

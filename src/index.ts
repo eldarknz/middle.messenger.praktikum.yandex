@@ -24,6 +24,9 @@ const authChecker = async () => {
 
 const AppRouter = new Router("#root");
 
+const protectedRoute = true;
+const redirectTo = ROUTES.chat.path;
+
 document.addEventListener("DOMContentLoaded", () => {
     store.on(StoreEvents.Updated, () => {});
 
@@ -32,12 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
     AppRouter
     .authCheck(authChecker)
     .use(ROUTES.home.path, MainPage)
-    .use(ROUTES.chat.path, ChatPage, true)
-    .use(ROUTES.profile.path, ProfilePage, true)
-    .use(ROUTES.profileEdit.path, ProfileEditPage, true)
-    .use(ROUTES.passwordEdit.path, PasswordEditPage, true)
-    .use(ROUTES.login.path, LoginPage, false, ROUTES.profile.path)
-    .use(ROUTES.register.path, RegistrationPage, false, ROUTES.profile.path)
+    .use(ROUTES.chat.path, ChatPage, protectedRoute)
+    .use(ROUTES.profile.path, ProfilePage, protectedRoute)
+    .use(ROUTES.profileEdit.path, ProfileEditPage, protectedRoute)
+    .use(ROUTES.passwordEdit.path, PasswordEditPage, protectedRoute)
+    .use(ROUTES.login.path, LoginPage, !protectedRoute, redirectTo)
+    .use(ROUTES.register.path, RegistrationPage, !protectedRoute, redirectTo)
     .use(ROUTES.error_404.path, NotFoundErrorPage)
     .use(ROUTES.error_500.path, ServerErrorPage)
     .start();

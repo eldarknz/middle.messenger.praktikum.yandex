@@ -17,10 +17,21 @@ class AuthController {
         return authAPI.signUp(data)
         .then((response) => {
             console.log("RESPONSE: ", response);
-            Router.getInstanse().go(ROUTES.chat.path);
+            //Router.getInstanse().go(ROUTES.chat.path);
+            //return response;
+            return authAPI.getUserInfo();
         })
-        .catch((err) => {
-            console.log("SignUp error: ", err);
+        .then((response: XMLHttpRequest) => {
+            const userResponse = response.response;
+            console.log("USER: ", userResponse);
+            store.set("user", userResponse);
+            console.log("store", store.getState());
+            //Router.getInstanse().go(ROUTES.chat.path);
+            return response;
+        })
+        .catch((error) => {
+            console.log("SignUp error: ", error);
+            return error;
         });
     }
 
@@ -34,27 +45,29 @@ class AuthController {
             console.log("RESPONSE: ", response);
             return authAPI.getUserInfo();
         })
-        .then((user: XMLHttpRequest) => {
-            const userResponse = user.response;
+        .then((response: XMLHttpRequest) => {
+            const userResponse = response.response;
             console.log("USER: ", userResponse);
             store.set("user", userResponse);
             console.log("store", store.getState());
-            Router.getInstanse().go(ROUTES.profile.path);
+            //Router.getInstanse().go(ROUTES.chat.path);
+            return response;
         })
         .catch((error) => {
-            console.log("SignIn error: ", error);
+            console.log('SignIn error: ', error);
+            return error;
         });
     }
 
     static async checkUser() {
         return authAPI.getUserInfo()
-        .then((res: XMLHttpRequest) => {
-            console.log("USER: ", res);
-            return res;
+        .then((response: XMLHttpRequest) => {
+            console.log("USER: ", response);
+            return response;
         })
-        .catch((err) => {
-            console.log(`Check user error: ${err.statusText}, ${err.status}`);
-            return err;
+        .catch((error) => {
+            console.log(`Check user error: ${error.statusText}, ${error.status}`);
+            return error;
         });
     }
 
@@ -66,25 +79,29 @@ class AuthController {
         }
         
         return authAPI.getUserInfo()
-        .then((user: XMLHttpRequest) => {
-            const userResponse = user.response;
+        .then((response: XMLHttpRequest) => {
+            const userResponse = response.response;
             console.log("USER: ", userResponse);
             store.set("user", userResponse);
-            return user;
+            return response;
         })
-        .catch((err) => {
-            console.log(`Get user error: ${err.statusText}, ${err.status}`);
-            return err;
+        .catch((error) => {
+            console.log(`Get user error: ${error.statusText}, ${error.status}`);
+            return error;
         });
     }
 
     static async logout() {
         return authAPI.logout()
         .then(() => {
+            const { user } = store.getState();
+            if (user) {
+                store.clear();
+            }
             Router.getInstanse().go(ROUTES.home.path);
         })
-        .catch((err) => {
-            console.log("Logout error: ", err);
+        .catch((error) => {
+            console.log("Logout error: ", error);
         });
     }
 

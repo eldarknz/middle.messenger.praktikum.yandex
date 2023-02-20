@@ -8,7 +8,8 @@ import Form from "../../components/ui/form";
 import { validateInput } from "../../utils/validation";
 import { ROUTES } from "../../utils/constants";
 import { Container } from "../../components/ui/grid";
-import { formSubmissionsHandler } from "../../utils/formHandler";
+import { checkInputs, clearForm, formSubmissionsHandler } from "../../utils/formHandler";
+import Router from "../../core/router";
 import AuthController from "../../core/controllers/authContorller";
 import { inputValueHandler } from "../../utils/inputValueHandler";
 
@@ -44,8 +45,8 @@ class LoginPage extends Block {
                             style: "flush",
                             placeholderText: "Логин",
                             events: {
-                                blur: (event) => validateInput(event.target as HTMLInputElement),
-                                input: (event) => inputValueHandler(event.target as HTMLInputElement)
+                                blur: (event: Event) => validateInput(event.target as HTMLInputElement),
+                                input: (event: Event) => inputValueHandler(event.target as HTMLInputElement)
                             }
                         }),
                         new Input({
@@ -55,8 +56,8 @@ class LoginPage extends Block {
                             style: "flush",
                             placeholderText: "Пароль",
                             events: {
-                                blur: (event) => validateInput(event.target as HTMLInputElement),
-                                input: (event) => inputValueHandler(event.target as HTMLInputElement)
+                                blur: (event: Event) => validateInput(event.target as HTMLInputElement),
+                                input: (event: Event) => inputValueHandler(event.target as HTMLInputElement)
                             }
                         })
                     ]
@@ -69,7 +70,15 @@ class LoginPage extends Block {
                 })
             ],      
             events: {
-                submit: formSubmissionsHandler(AuthController.signIn)
+                submit: (event: Event) => {
+                    formSubmissionsHandler({
+                        event: event,
+                        handler: AuthController.signIn,
+                        selector: ".sign-container__form__input-group",
+                        isCheckInputs: true,
+                        action: () => Router.getInstanse().go(ROUTES.chat.path)
+                    });
+                }
             }
         });
 
@@ -78,41 +87,7 @@ class LoginPage extends Block {
             content: "Создайте её сейчас"
         });
 
-        /*const events = {
-            submit: (event: Event) => {
-                event.preventDefault();
-                const target = event.target as HTMLInputElement;
-                const inputFields = target.querySelectorAll('input');
-                const data: { [key: string]: string;} = {};
-                inputFields.forEach((current) => {
-                    if (current.name === 'login') {
-                        if (!validateInput(current)) {
-                            console.log('Логин введен неверно');
-                        } else {
-                            data[current.name] = current.value;
-                        }
-                    } else if (current.name === 'password') {
-                        if (!validateInput(current)) {
-                            console.log('Пароль введен неверно');
-                        } else {
-                            data[current.name] = current.value;
-                        }
-                    } else {
-                        console.log('current', current);
-                        data[current.name] = current.value;
-                    }
-                });
-                console.log('data', data);
-            },
-        };*/
-
-        super({
-            ...props,
-            logoLink,
-            title,
-            form,
-            link
-        });
+        super({ ...props, logoLink, title, form, link });
     }
   
     render() {

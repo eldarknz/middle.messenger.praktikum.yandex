@@ -34,7 +34,7 @@ const ChatFooterBlock = new ChatFooter({
             size: "lg",
             isSquare: true,
             id: "dropdownMenuButton",
-            content: new IconAttachment({ className: "icon icon-size-m" })
+            content: new IconAttachment({})
         }),
         content: new MediaActions({
             addMediaIcon: new IconMedia({ className: "icon icon-size-l icon-primary" }),

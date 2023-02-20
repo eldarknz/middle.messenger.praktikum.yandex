@@ -1,7 +1,5 @@
 export function responseErrorStatusHandling(response: XMLHttpRequest) {
-    console.log(response);
     if (response.status === 400) {
-        console.log("AAA");
         return "Не удалось выполнить запрос";
     }
 

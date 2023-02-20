@@ -18,6 +18,7 @@ import AuthController from "../../core/controllers/authContorller";
 import UserController from "../../core/controllers/userController";
 import connect, { Indexed } from "../../core/store/connect";
 import { IUser } from "../../types";
+import { formSubmissionsHandler } from "../../utils/formHandler";
 import { responseErrorStatusHandling } from "../../utils/responseErrorStatusHandling";
 import { API_RESOURCES_PATH, ROUTES } from "../../utils/constants";
 
@@ -52,11 +53,15 @@ const changeAvatar = () => {
             content: new Form({
                 className: "change-avatar__form",
                 content: [
-                    new InputFile({
-                        id: "avatar",
-                        name: "avatar",
-                        placeholderText: "Выберите файл",
-                        isAcceptImage: true
+                    new Container({
+                        isFluid: true,
+                        className: "change-avatar__form__input-group",
+                        content:  new InputFile({
+                                id: "avatar",
+                                name: "avatar",
+                                placeholderText: "Выберите файл",
+                                isAcceptImage: true
+                        })
                     }),
                     new Button({
                         color: "primary",
@@ -67,37 +72,12 @@ const changeAvatar = () => {
                 ],
                 events: {
                     submit: (event: Event) => {
-                        event.preventDefault();
-                        const target = event.target;
-                        if (target && target instanceof HTMLFormElement) {
-                            //const input = document.getElementById("avatar") as HTMLInputElement;
-                            //const file = input.files![0];
-                            const formData = new FormData(target);
-                            //formData.append("avatar", file);
-                            console.log(formData);
-                            UserController.changeAvatar(formData).then((res) => {
-                                console.log(res);
-                                if (res) {
-                                    if (res.status === 200) {
-                                        modalCloseHandler();
-                                    } else {
-                                        const container = document.getElementById("changeAvatarContainer");
-                                        if (container) {
-                                            let text = container.querySelector(".text-error");
-                                            if (!text) {
-                                                text = document.createElement("p");
-                                                text.classList.add("text-error");
-                                                container.appendChild(text);
-                                            }
-                                            const responseErrorStatus = responseErrorStatusHandling(res);
-                                            if (responseErrorStatus) {
-                                                text.innerHTML = responseErrorStatus;
-                                            }
-                                        }
-                                    }
-                                }                  
-                            });
-                        }
+                        formSubmissionsHandler({
+                            event: event,
+                            handler: UserController.changeAvatar,
+                            selector: ".change-avatar__form__input-group",
+                            action: () => modalCloseHandler()
+                        });
                     }
                 }
             })
@@ -214,10 +194,10 @@ class Profile extends Block {
                     content: "Выйти",
                     events: {
                         click: async (e: Event) => {
-                            await AuthController.logout();
                             e.preventDefault();
+                            await AuthController.logout();
                         }
-                      },
+                    },
                 })
             ]
         });

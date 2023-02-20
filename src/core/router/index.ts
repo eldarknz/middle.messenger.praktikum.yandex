@@ -1,5 +1,6 @@
 import { ROUTES } from "../../utils/constants";
 import Block from "../block";
+import { store } from "../store";
 import Route from "./route";
 
 type TRouteOptions = {
@@ -108,9 +109,12 @@ class Router {
         // то вызываем метод leave, который вызывает метод hide у блока
        //console.log("--------------", this.currentRoute, route);
         if (this.currentRoute && this.currentRoute !== route) {
-           //console.log("   Скрытие текущего роута");
+            console.log("   Скрытие текущего роута");
+            console.log(this.currentRoute);
             this.currentRoute.leave();
         }
+
+        console.log("STATE ----------> ", store.getState());
 
         this.currentRoute = route as Route;
         route!.render();

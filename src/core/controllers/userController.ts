@@ -27,14 +27,16 @@ class UserController {
         console.log("ChangeProfile: ", data);
 
         return userAPI.changeProfile(data)
-        .then((user: XMLHttpRequest) => {
-            const userResponse = user.response;
+        .then((response: XMLHttpRequest) => {
+            const userResponse = response.response;
             console.log("USER: ", userResponse);
             store.set("user", userResponse);
-            Router.getInstanse().go(ROUTES.profile.path);
+            //Router.getInstanse().go(ROUTES.profile.path);
+            return response;
         })
-        .catch((err) => {
-            console.log("ChangeProfile error: ", err);
+        .catch((error) => {
+            console.log("ChangeProfile error: ", error);
+            return error;
         });
     }
 
@@ -43,13 +45,15 @@ class UserController {
         console.log("ChangePassword: ", data);
 
         return userAPI.changePassword(data)
-        .then((user: XMLHttpRequest) => {
-            const userResponse = user.response;
+        .then((response: XMLHttpRequest) => {
+            const userResponse = response.response;
             console.log("CHANGE PASSWORD: ", userResponse);
-            Router.getInstanse().go(ROUTES.profile.path);
+            //Router.getInstanse().go(ROUTES.profile.path);
+            return response;
         })
-        .catch((err) => {
-            console.log('ChangePassword err: ', err);
+        .catch((error) => {
+            console.log('ChangePassword error: ', error);
+            return error;
         });
     }
 
@@ -63,9 +67,9 @@ class UserController {
             //Router.getInstanse().go(ROUTES.profile.path);
             return response;
         })
-        .catch((err) => {
-            console.log('ChangeAvatar err: ', err);
-            return err;
+        .catch((error) => {
+            console.log('ChangeAvatar error: ', error);
+            return error;
         });
     }
 }

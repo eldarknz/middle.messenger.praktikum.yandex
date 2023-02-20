@@ -21,6 +21,13 @@ class Store extends EventBus {
     // метод EventBus
     this.emit(StoreEvents.Updated);
   }
+
+  public clear() {
+    this.state = {};
+
+    // метод EventBus
+    this.emit(StoreEvents.Updated);
+  }
 }
 
 export const store = new Store();

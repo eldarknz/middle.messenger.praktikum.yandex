@@ -10,6 +10,7 @@ import {
     icon_dots,
     icon_file,
     icon_location,
+    icon_logout,
     icon_media,
     icon_message,
     icon_profile,
@@ -26,7 +27,7 @@ interface IIcon {
 }
 
 class IconBlock extends Block {
-    constructor(props: IIcon) {
+    constructor(props?: IIcon) {
         super(props);
         this.iconClassName = this.iconClassName.bind(this);
     }
@@ -137,6 +138,12 @@ class IconTalks extends IconBlock {
 }
 
 
+class IconLogout extends IconBlock {
+    render() { return this.compile(icon_logout, {
+        className: this.iconClassName(),
+    }); }
+}
+
 export {
     IconAdd,
     IconArrowLeft,
@@ -148,6 +155,7 @@ export {
     IconDots,
     IconFile,
     IconLocation,
+    IconLogout,
     IconMedia,
     IconMessage,
     IconProfile,

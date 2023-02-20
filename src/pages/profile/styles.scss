@@ -37,6 +37,11 @@
     width: 100%;
 }
 
+.profile-container__form > .btn {
+    margin-top: 25px;
+}
+  
+
 .profile-container__spinner {
     width: 50px;
 }
@@ -67,7 +72,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 
 .profile-container__spinner {
@@ -143,9 +148,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
 }
 
-.change-avatar__form + .text-error {
-    margin-top: 10px;
+.change-avatar__form__input-group {
+    margin-bottom: 25px;
+}
+
+.change-avatar__form > .btn {
+    margin-top: 25px;
 }

@@ -10,6 +10,5 @@ export default `
             {{{ footer }}}
             {{{ header }}}
         </div>
-        {{{modal}}}
     </div>
 `

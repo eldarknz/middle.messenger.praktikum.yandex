@@ -15,7 +15,9 @@ import { API_RESOURCES_PATH, ROUTES } from "../../../utils/constants";
 import AuthController from "../../../core/controllers/authContorller";
 import UserController from "../../../core/controllers/userController";
 import { inputValueHandler } from "../../../utils/inputValueHandler";
+import { checkInputs } from "../../../utils/formHandler";
 import connect, { Indexed } from "../../../core/store/connect";
+import Router from "../../../core/router";
 import { IUser } from "../../../types";
 import "../styles.scss";
 
@@ -121,7 +123,15 @@ const getForm = (state: Indexed) => {
                 })
             ],
             events: {
-                submit: formSubmissionsHandler(UserController.changeUserPassword)
+                submit: (event: Event) => {
+                    formSubmissionsHandler({
+                        event: event,
+                        handler: UserController.changeUserPassword,
+                        selector: ".profile-container__form__input-group",
+                        isCheckInputs: true,
+                        action: () => Router.getInstanse().go(ROUTES.profile.path)
+                    });
+                }
             }
         });
     }

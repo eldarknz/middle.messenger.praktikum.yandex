@@ -1,5 +1,6 @@
 import Block from "../../../core/block";
 import template from "./chatSidebar.tmpl";
+import Button from "../../ui/button";
 import Nav from "../../ui/nav";
 import Input from "../../ui/input";
 import Link from "../../ui/link";
@@ -10,8 +11,10 @@ import {
     IconProfile,
     IconTalks,
     IconSettings,
-    IconSearch
+    IconSearch,
+    IconLogout
 } from "../../ui/icon";
+import AuthController from "../../../core/controllers/authContorller";
 import { ROUTES } from "../../../utils/constants";
 import "./chatSidebar.scss";
 
@@ -55,16 +58,35 @@ const ChatSidebarBlock = new ChatSidebar({
     nav: new Nav({
         className: "nav",
         content: [
-            { url: ROUTES.chat.path, content: new IconTalks({ className: "icon icon-size-l" })},
-            { url: ROUTES.profile.path, content: new IconProfile({ className: "icon icon-size-l" })},
-            { url: ROUTES.profileEdit.path, content: new IconSettings({ className: "icon icon-size-l" })}
-        ].map(link => (
-            new Link({
-                className: "nav-link",
-                href: link.url,
-                content: link.content
+            new Button({
+                size: "lg",
+                isSquare: true,
+                content: new IconProfile(),
+                events: {
+                    click: () => { window.router.go(ROUTES.profile.path); }
+                }
+            }),
+            new Button({
+                size: "lg",
+                isSquare: true,
+                content: new IconSettings(),
+                events: {
+                    click: () => { window.router.go(ROUTES.profileEdit.path); }
+                }
+            }),
+            new Button({
+                size: "lg",
+                isSquare: true,
+                content: new IconLogout(),
+                events: {
+                    click: async (e: Event) => {
+                        e.preventDefault();
+                        await AuthController.logout();
+                    }
+                },
             })
-        ))
+        ]
+        
     })
 })
 
