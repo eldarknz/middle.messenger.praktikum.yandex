@@ -47,3 +47,18 @@ export interface IUser {
     phone: string;
     avatar: string;
 }
+
+export type TLastMessage = {
+    user: TUserProfileData,
+    time: string,
+    content: string,
+};
+  
+export type TChatItem = {
+    id: number,
+    title: string,
+    avatar: string | null,
+    created_by: number,
+    unread_count: number,
+    last_message: TLastMessage,
+};

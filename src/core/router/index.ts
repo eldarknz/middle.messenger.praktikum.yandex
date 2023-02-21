@@ -85,7 +85,7 @@ class Router {
         // получаем нужный роут
         let route = this.getRoute(pathname);
         const isAuth = await this._authCheck();
-        console.log(isAuth);
+        //console.log(isAuth);
 
         // проверяем авторизован ли пользователь
         if (route?.props.protectedRoute && !isAuth) {
@@ -109,12 +109,10 @@ class Router {
         // то вызываем метод leave, который вызывает метод hide у блока
        //console.log("--------------", this.currentRoute, route);
         if (this.currentRoute && this.currentRoute !== route) {
-            console.log("   Скрытие текущего роута");
-            console.log(this.currentRoute);
+            //console.log("   Скрытие текущего роута");
+            //console.log(this.currentRoute);
             this.currentRoute.leave();
         }
-
-        console.log("STATE ----------> ", store.getState());
 
         this.currentRoute = route as Route;
         route!.render();

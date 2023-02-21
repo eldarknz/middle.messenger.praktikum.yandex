@@ -66,7 +66,7 @@ class AuthController {
             return response;
         })
         .catch((error) => {
-            console.log(`Check user error: ${error.statusText}, ${error.status}`);
+            console.log("Check user error: ", error);
             return error;
         });
     }
@@ -86,7 +86,7 @@ class AuthController {
             return response;
         })
         .catch((error) => {
-            console.log(`Get user error: ${error.statusText}, ${error.status}`);
+            console.log("Get user error: ", error);
             return error;
         });
     }

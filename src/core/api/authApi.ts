@@ -5,23 +5,41 @@ import { TSignUpData, TSignInData } from "../../types";
 class AuthAPI extends HTTPTransport {
     contentType = "application/json; charset=utf-8";
 
-    public signUp = async (data: TSignUpData) => {
-        console.log("signUp: ", data);
+    /**
+     * регистрация пользователя
+     * @param {TSignUpData} data 
+     * @returns {Promise<XMLHttpRequest>}
+     */
+    public signUp(data: TSignUpData): Promise<XMLHttpRequest> {
+        console.info("AuthAPI::signUp: ", data);
         return this.post(API_ENDPOINTS.auth.signUp, { data: JSON.stringify(data), headers: { "Content-Type": this.contentType } });
     }
 
-    public signIn = async (data: TSignInData) => {
-        console.log("signIn: ", data);
+    /**
+     * Авторизация пользователя
+     * @param {TSignInData} data 
+     * @returns {Promise<XMLHttpRequest>}
+     */
+    public signIn(data: TSignInData): Promise<XMLHttpRequest> {
+        console.info("AuthAPI::signIn: ", data);
         return this.post(API_ENDPOINTS.auth.signIn, { data: JSON.stringify(data), headers: { "Content-Type": this.contentType } });
     }
 
-    public getUserInfo = async () => {
-        console.log("getUserInfo");
+    /**
+     * Получение информации пользователя
+     * @returns {Promise<XMLHttpRequest>}
+     */
+    public getUserInfo(): Promise<XMLHttpRequest> {
+        console.info("AuthAPI::getUserInfo");
         return this.get(API_ENDPOINTS.auth.user);
     }
 
-    public logout = async () => {
-        console.log("logout");
+    /**
+     * Выход из системы
+     * @returns {Promise<XMLHttpRequest>}
+     */
+    public logout(): Promise<XMLHttpRequest> {
+        console.info("AuthAPI::logout");
         return this.post(API_ENDPOINTS.auth.logout);
     }
 }

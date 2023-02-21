@@ -29,5 +29,17 @@ export const API_ENDPOINTS = {
         changePassword: `${API_PATH}/user/password`,
         getUserById: (id: string) => `${API_PATH}/user/${id}`,
         searchUserByLogin: `${API_PATH}/user/search`
+    },
+    chats: {
+        chats: `${API_PATH}/chats`,
+        chatFiles: (id: string) =>  `${API_PATH}/chats/${id}/files`,
+        archivedChats: `${API_PATH}/chats/archive`,
+        unarchiveChat: `${API_PATH}/chats/unarchive`,
+        commonChats: (id: string) => `${API_PATH}/chats/${id}/common`,
+        chatUsersById: (id: string) => `${API_PATH}/chats/${id}/users`,
+        getNewMessagesCount: (id: string) => `${API_PATH}/chats/new/${id}`,
+        uploadChatAvatar: `${API_PATH}/chats/avatar`,
+        chatsUsers: `${API_PATH}/chats/users`,
+        getChatUsers: (id: string) => `${API_PATH}/chats/token/${id}`
     }
 }
