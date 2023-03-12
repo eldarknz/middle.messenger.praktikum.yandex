@@ -24,9 +24,13 @@
 }
 
 .chat-sidebar__header {
-    height: 60px;
-    padding: 0 16px;
+    height: 68px;
+    padding: 0 var(--spacing-10);
     justify-content: space-between;
+
+    & .logo-container {
+        margin-left: var(--spacing-10);
+    }
 }
 
 .chat-sidebar__search {
@@ -37,8 +41,8 @@
 
 
 .chat-sidebar__content {
-    padding: 10px;
-    height: calc(100% - 188px);
+    padding: 10px 0 10px 10px;
+    height: calc(100% - 204px);
     overflow-y: scroll;
     scrollbar-gutter: stable;
 }
@@ -63,6 +67,6 @@
     & .nav {
         justify-content: space-between;
         width: 100%;
-        padding: 0 var(--spacing-16);
+        padding: 0 var(--spacing-10);
     }
 }

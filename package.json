@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Messenger",
   "scripts": {
-    "dev": "parcel static/index.html --open --port 3000",
+    "dev": "set NODE_ENV=development && parcel static/index.html --open --port 3000",
     "build": "parcel build static/index.html --no-source-maps --no-cache",
     "start": "npm run build && node ./server.js"
   },

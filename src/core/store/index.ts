@@ -11,12 +11,21 @@ class Store extends EventBus {
   private state: Indexed = {};
 
   public getState() {
-    console.log("STATE: ", this.state);
+    globalThis.DEBUG?.Store && globalThis.LOG && console.log("🫙 STORE: ", this.state);
     return this.state;
   }
 
   public set(path: string, value: unknown) {
     set(this.state, path, value);
+
+    // метод EventBus
+    this.emit(StoreEvents.Updated);
+  }
+
+  public delete(key: string) {
+    if (this.state.key) {
+      delete this.state[`${key}`];
+    }
 
     // метод EventBus
     this.emit(StoreEvents.Updated);
@@ -28,6 +37,8 @@ class Store extends EventBus {
     // метод EventBus
     this.emit(StoreEvents.Updated);
   }
+
+
 }
 
 export const store = new Store();

@@ -41,9 +41,9 @@ class Button extends Block {
 
     render() {
         return this.compile(template, {
+            ...this.props,
             className: this.buttonClassName(),
-            id: this.props.id,
-            content: this.props.content
+            id: this.props.id
         });
     }
 }

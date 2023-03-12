@@ -23,8 +23,8 @@ export const modalCloseHandler = () => {
     }
 };
 
-const defaultModalHandler = (e: Event) => {
-    if (e.target === e.currentTarget) {
+const defaultModalHandler = (event: Event) => {
+    if (event.target === event.currentTarget) {
         modalCloseHandler();
     }
 };

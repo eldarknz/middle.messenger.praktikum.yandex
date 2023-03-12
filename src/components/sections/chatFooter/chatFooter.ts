@@ -1,10 +1,12 @@
 import Block from "../../../core/block";
-import template from "./chatFooter.tmpl";
+
+import MediaActions from "./components/mediaActions/mediaActions";
 import Dropdown from "../../ui/dropdown";
 import { IconAttachment, IconArrowRight, IconMedia, IconFile, IconLocation } from "../../ui/icon";
 import Input from "../../ui/input";
 import Button from "../../ui/button";
-import MediaActions from "./components/mediaActions/mediaActions";
+
+import template from "./chatFooter.tmpl";
 import "./chatFooter.scss";
 
 interface IChatFooter {
@@ -29,14 +31,11 @@ class ChatFooter extends Block {
 
 const ChatFooterBlock = new ChatFooter({
     dropdown: new Dropdown({
-        className: "dropdown up",
-        dropdownButton: new Button({
-            size: "lg",
-            isSquare: true,
-            id: "dropdownMenuButton",
-            content: new IconAttachment({})
-        }),
-        content: new MediaActions({
+        className: "up",
+        dropdownButtonSize: "lg",
+        dropdownButtonIsSquare: true,
+        dropdownButtonContent: new IconAttachment(),
+        dropdownMenuContent: new MediaActions({
             addMediaIcon: new IconMedia({ className: "icon icon-size-l icon-primary" }),
             addFileIcon: new IconFile({ className: "icon icon-size-l icon-primary" }),
             addLocationIcon: new IconLocation({ className: "icon icon-size-l icon-primary" }),

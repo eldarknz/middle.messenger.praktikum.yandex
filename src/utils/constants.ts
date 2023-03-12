@@ -36,10 +36,10 @@ export const API_ENDPOINTS = {
         archivedChats: `${API_PATH}/chats/archive`,
         unarchiveChat: `${API_PATH}/chats/unarchive`,
         commonChats: (id: string) => `${API_PATH}/chats/${id}/common`,
-        chatUsersById: (id: string) => `${API_PATH}/chats/${id}/users`,
-        getNewMessagesCount: (id: string) => `${API_PATH}/chats/new/${id}`,
-        uploadChatAvatar: `${API_PATH}/chats/avatar`,
+        chatUsersById: (id: number) => `${API_PATH}/chats/${id}/users`,
+        newMessagesCount: (id: string) => `${API_PATH}/chats/new/${id}`,
+        chatAvatar: `${API_PATH}/chats/avatar`,
         chatsUsers: `${API_PATH}/chats/users`,
-        getChatUsers: (id: string) => `${API_PATH}/chats/token/${id}`
+        //getChatUsers: (id: string) => `${API_PATH}/chats/token/${id}`
     }
 }

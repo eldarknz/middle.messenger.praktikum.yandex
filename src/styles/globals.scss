@@ -1,5 +1,5 @@
 @import "../../node_modules/normalize.css/normalize.css";
-//@import "./fonts.scss";
+@import "./fonts.scss";
 @import "./vars.scss";
 
 * {
@@ -148,6 +148,36 @@ a {
     flex-direction: column;
     gap: 16px;
     margin-bottom: 25px;
+}
+
+/* Forms */ 
+
+.add-value__form {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    & + .add-value__text-block {
+        margin-top: 20px;
+    }
+
+    & > .btn {
+        margin-top: 15px;
+    }
+}
+
+.add-value__text-block {
+    text-align: center;
+    font-size: var(--font-size-12);
+}
+
+.add-value__form__input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 15px;
 }
 
 /* Error pages */

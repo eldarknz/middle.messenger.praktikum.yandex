@@ -29,8 +29,8 @@ export class Skeleton extends Block {
         let style = "";
         let width = this.props.width ? this.props.width : "100%";
         let height = this.props.isCircle ? this.props.width ? this.props.width : "100%" : this.props.height ? this.props.height : 4;
-        style += typeof width === "number" ? `width:${width}px;` : `width:${width};`;    
-        style += typeof height === "number" ? `height:${height}px` : `height:${height};`;
+        style += typeof width === "number" ? `width:${width}px; min-width:${width}px;` : `width:${width}; min-width:${width};`;    
+        style += typeof height === "number" ? `height:${height}px; min-height:${height}px;` : `height:${height}; min-height:${height};`;
 
         return style;
     }

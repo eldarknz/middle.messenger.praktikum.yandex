@@ -65,7 +65,6 @@ export const formSubmissionsHandler = (
   const target = event.target;
   if (target && target instanceof HTMLFormElement) {
     if (isCheckInputs) {
-      console.log('AAA');
       if (!checkInputs(target as HTMLFormElement)) {
         return;
       }

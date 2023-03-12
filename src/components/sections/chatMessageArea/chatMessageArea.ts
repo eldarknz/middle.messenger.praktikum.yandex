@@ -1,38 +1,38 @@
 import Block from "../../../core/block";
 import ChatController from "../../../core/controllers/chatController";
-import { store } from "../../../core/store";
 import connect, { Indexed } from "../../../core/store/connect";
+import { store } from "../../../core/store";
 
-import { createNewChat } from "../chatSidebar/chatSidebar";
-import ChatCard from "./components/chatCard";
-import ChatCardSkeleton from "./components/chatCardSkeleton";
-import Avatar from "../../ui/avatar";
-import Label from "../../ui/label";
-import Text from "../../ui/text";
-import Image from "../../ui/image";
-import Button from "../../ui/button";
 import { Container } from "../../ui/grid";
+import Text from "../../ui/text";
+import Spinner from "../../ui/spinner";
 
-import { API_RESOURCES_PATH } from "../../../utils/constants";
-import { dateConvert } from "../../../utils/dateConverter";
+import template from "./chatMessageArea.tmpl";
+import "./chatMessageArea.scss";
 
-import { TChatItem } from "../../../types";
-
-//import { chats } from "../../../mock/data";
-
-import template from "./chatList.tmpl";
-import "./chatList.scss";
-
-interface IChatList {
-    content: Block[];
+interface TChatMessage {
+    date: number;
+    text: string;
 }
 
-const getChatList = (state: Indexed) => {
-    if (Object.keys(state).length !== 0 && state.chats) {
-        if (state.chats && (state.chats as TChatItem[]).length !== 0) {
-            const chats = state.chats as TChatItem[];
-            const { activeChatId } = store.getState();
-            return chats.map(item => {
+interface IChatMessageArea {}
+
+const getMessages = (state: Indexed) => {
+    if (Object.keys(state).length !== 0 && state.activeChatId) {
+        if (state.messages && (state.messages as TChatMessage[]).length !== 0) {
+            //const messages = state.messages as TChatMessage[];
+            //const { activeChatId } = store.getState();
+            return new Container({
+                className: "chat-container",
+                isFluid: true,
+                content: [
+                    new Text({
+                        className: "text-silver",
+                        content: "Сообщение"
+                    })
+                ]
+            })
+            /*return chats.map(item => {
                 const chatAvatar = item.avatar ? 
                     new Avatar({ 
                         content: new Image({ src: API_RESOURCES_PATH + item.avatar })
@@ -62,52 +62,53 @@ const getChatList = (state: Indexed) => {
                                 }
                                 target.classList.add("active");
                                 const targetId = target.getAttribute("data-chat-id");
-                                if (targetId) {
+                                if (targetId) 
                                     ChatController.getChatById(parseInt(targetId));
-                                }
                             }
                         }
                     }
                 })
-            });
+            });*/
         } else {
             return new Container({
-                className: "chat-list__empty-message",
+                className: "chat-container empty",
+                isFluid: true,
                 content: [
                     new Text({
                         className: "text-silver",
-                        content: "У вас нет ни одного чата"
-                    }),
-                    new Button({
-                        color: "light",
-                        size: "sm",
-                        content: "Создать чат",
-                        events: {
-                            click: createNewChat
-                        }
+                        content: "Сообщения отсутствуют"
                     })
                 ]
             })
         }
     } else {
-        return new ChatCardSkeleton();
+        return new Container({
+            className: "chat-container empty",
+            isFluid: true,
+            content: [
+                new Text({
+                    className: "text-silver",
+                    content: "Выберите чат, чтобы начать общение"
+                })
+            ]
+        })
     }
 }
 
-class ChatList extends Block {
-    constructor(props?: IChatList) {
+class ChatMessageArea extends Block {
+    constructor(props: IChatMessageArea) {
         super(props);
     }
-
+    
     render() {
         return this.compile(template, this.props);
     }
 }
 
 const withPage = connect((state) => ({
-    content: getChatList(state)
+    messages: getMessages(state)
 }));
 
-const ChatListSection = withPage(ChatList);
+const ChatMessageAreaSection = withPage(ChatMessageArea);
 
-export default ChatListSection
+export default ChatMessageAreaSection

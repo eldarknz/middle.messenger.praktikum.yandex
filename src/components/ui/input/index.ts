@@ -19,10 +19,8 @@ interface IInput {
 
 const defaultInputHandler = (e: Event) => {
     const target = e.target as HTMLInputElement;
-    if (target) {
-        console.log(target);
+    if (target)
         target.setAttribute('value', target.value);
-    }
 };
 
 // TODO: добавить переключатель видимости пароля

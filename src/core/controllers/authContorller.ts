@@ -10,98 +10,99 @@ const authAPI = new AuthAPI();
 class AuthController {
 
     static async signUp(formData: FormData) {
+        globalThis.DEBUG?.AuthController&& globalThis.LOG && console.info("AuthController::signUp");
         const data = formDataToObjectConverter(formData) as TSignUpData;
 
-        console.log("SignUpData: ", data);
+        globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("SignUpData: ", data);
 
         return authAPI.signUp(data)
         .then((response) => {
-            console.log("RESPONSE: ", response);
-            //Router.getInstanse().go(ROUTES.chat.path);
-            //return response;
+            globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("SignUp RESPONSE: ", response);
             return authAPI.getUserInfo();
         })
         .then((response: XMLHttpRequest) => {
             const userResponse = response.response;
-            console.log("USER: ", userResponse);
+            globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("SignUp USER: ", userResponse);
             store.set("user", userResponse);
-            console.log("store", store.getState());
             //Router.getInstanse().go(ROUTES.chat.path);
             return response;
         })
         .catch((error) => {
-            console.log("SignUp error: ", error);
+            globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("SignUp error: ", error);
             return error;
         });
     }
 
     static async signIn(formData: FormData) {
+        globalThis.DEBUG?.AuthController&& globalThis.LOG && console.info("AuthController::signIn");
         const data = formDataToObjectConverter(formData) as TSignInData;
 
-        console.log("SignInData: ", data);
+        globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("SignInData: ", data);
 
         return authAPI.signIn(data)
         .then(response => {
-            console.log("RESPONSE: ", response);
+            globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("SignIn RESPONSE: ", response);
             return authAPI.getUserInfo();
         })
         .then((response: XMLHttpRequest) => {
             const userResponse = response.response;
-            console.log("USER: ", userResponse);
+            globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("SignIn USER: ", userResponse);
             store.set("user", userResponse);
-            console.log("store", store.getState());
             //Router.getInstanse().go(ROUTES.chat.path);
             return response;
         })
         .catch((error) => {
-            console.log('SignIn error: ', error);
+            globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log('SignIn error: ', error);
             return error;
         });
     }
 
     static async checkUser() {
+        globalThis.DEBUG?.AuthController&& globalThis.LOG && console.info("AuthController::checkUser");
         return authAPI.getUserInfo()
         .then((response: XMLHttpRequest) => {
-            console.log("USER: ", response);
+            globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("AuthController::checkUser USER: ", response);
             return response;
         })
         .catch((error) => {
-            console.log("Check user error: ", error);
+            globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("Check user error: ", error);
             return error;
         });
     }
 
     static async getUserInfo() {
+        globalThis.DEBUG?.AuthController&& globalThis.LOG && console.info("AuthController::getUserInfo");
         const { user } = store.getState();
         if (user) {
-            console.log("user from store", user);
+            globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("user from store", user);
             return Promise.resolve(user);
         }
         
         return authAPI.getUserInfo()
         .then((response: XMLHttpRequest) => {
             const userResponse = response.response;
-            console.log("USER: ", userResponse);
+            globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("AuthController::getUserInfo USER: ", userResponse);
             store.set("user", userResponse);
             return response;
         })
         .catch((error) => {
-            console.log("Get user error: ", error);
+            globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("Get user error: ", error);
             return error;
         });
     }
 
     static async logout() {
+        globalThis.DEBUG?.AuthController&& globalThis.LOG && console.info("AuthController::logout");
         return authAPI.logout()
         .then(() => {
+            Router.getInstanse().go(ROUTES.home.path);
             const { user } = store.getState();
             if (user) {
                 store.clear();
             }
-            Router.getInstanse().go(ROUTES.home.path);
         })
         .catch((error) => {
-            console.log("Logout error: ", error);
+            globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("Logout error: ", error);
         });
     }
 

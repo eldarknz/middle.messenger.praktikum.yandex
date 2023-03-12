@@ -1,7 +1,7 @@
 // language=hbs
 
 export default `
-    <div class="chat-card">
+    <div class="chat-card{{#if isActive}} active{{/if}}" data-chat-id="{{chatId}}">
         <div class="chat-card__avatar">
             {{{ avatar }}}
         </div>

@@ -12,7 +12,7 @@
 .chat-footer__container {
     display: flex;
     align-items: center;
-    margin: 0 16px;
+    margin: 0 var(--spacing-10);
     height: 100%;
     border: 0;
     border-top-width: 1px;

@@ -89,7 +89,7 @@ const changeAvatar = () => {
 };
 
 const getUserAvatar = (state: Indexed) => {
-    if (Object.keys(state).length !== 0) {
+    if (Object.keys(state).length !== 0 && state.user) {
         if ((state.user as IUser).avatar != null) {
             return new Avatar({
                 size: "lg",
@@ -129,19 +129,7 @@ const getUserName = (state: Indexed) => {
 }
 
 const getUserDataList = (state: Indexed) => {
-    console.log("IS_EMPTY: ", Object.keys(state).length === 0);
-    if (Object.keys(state).length === 0) {
-        return new Container({
-            isFluid: true,
-            className: "profile-container__form__input-group",
-            content: Object.keys(profileFields).map(() => {
-                return new Skeleton({
-                    height: 30,
-                    isAnimation: true
-                });
-            })
-        });
-    } else {
+    if (Object.keys(state).length !== 0 && state.user) {
         return new List({
             isFlush: true,
             isFluid: true,
@@ -152,6 +140,17 @@ const getUserDataList = (state: Indexed) => {
                     className: "info-item",
                     content: `<span class="info-item__title">${title}</span><span class="info-item__value">${value}</span>`
                 })
+            })
+        });
+    } else {
+        return new Container({
+            isFluid: true,
+            className: "profile-container__form__input-group",
+            content: Object.keys(profileFields).map(() => {
+                return new Skeleton({
+                    height: 30,
+                    isAnimation: true
+                });
             })
         });
     }

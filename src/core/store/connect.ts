@@ -12,7 +12,6 @@ function connect(mapStateToProps: (state: any) => any) {
             constructor(props: {}) {
                 // сохраняем начальное состояние
                 let state = mapStateToProps(store.getState());
-                console.log(state);
                 super({ ...props, ...state });
 
                 // подписываемся на событие
@@ -22,7 +21,6 @@ function connect(mapStateToProps: (state: any) => any) {
 
                     // если что-то из используемых данных поменялось, обновляем компонент
                     if (!isEqual(state, newState)) {
-                        console.log({ ...newState })
                         this.setProps({ ...newState });
                     }
 

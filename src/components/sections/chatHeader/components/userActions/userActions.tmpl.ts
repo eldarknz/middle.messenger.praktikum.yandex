@@ -1,7 +1,7 @@
 // language=hbs
 
 export default `
-    <div>
+    <div class="dropdown-menu__content">
         <div
             class="dropdown-item"
             {{#if dataToggle}}data-toggle="{{dataToggle}}"{{/if}}

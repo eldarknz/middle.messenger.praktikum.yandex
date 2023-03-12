@@ -13,9 +13,11 @@ declare global {
 
     export type Key = keyof Object;
 
+    export var LOG: any;
+    export var DEBUG: { [ key: string ]: boolean };
 }
 
-    declare module '*.png';
+declare module '*.png';
   
 export {};
 

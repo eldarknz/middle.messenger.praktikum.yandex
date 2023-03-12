@@ -15,7 +15,6 @@ import { API_RESOURCES_PATH, ROUTES } from "../../../utils/constants";
 import AuthController from "../../../core/controllers/authContorller";
 import UserController from "../../../core/controllers/userController";
 import { inputValueHandler } from "../../../utils/inputValueHandler";
-import { checkInputs } from "../../../utils/formHandler";
 import connect, { Indexed } from "../../../core/store/connect";
 import Router from "../../../core/router";
 import { IUser } from "../../../types";
@@ -85,7 +84,6 @@ const getUserName = (state: Indexed) => {
 }
 
 const getForm = (state: Indexed) => {
-    console.log("IS_EMPTY: ", Object.keys(state).length === 0);
     if (Object.keys(state).length === 0) {
         return new Container({
             isFluid: true,

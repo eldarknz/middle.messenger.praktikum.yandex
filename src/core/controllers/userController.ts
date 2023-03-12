@@ -1,17 +1,11 @@
 import UserAPI from "../api/userApi";
 import { store } from "../store";
-import { TUserProfileData, TUserPasswordData } from "../../types";
+import { TUserProfileData, TUserPasswordData, TUserPasswordFormData } from "../../types";
 import formDataToObjectConverter from "../../utils/formDataToObjectConverter";
-import Router from "../router";
-import { ROUTES } from "../../utils/constants";
+//import Router from "../router";
+//import { ROUTES } from "../../utils/constants";
 
-type TUserPasswordFormData = {
-    new_password: string,
-    password: string,
-    confirm_password: string
-};
-
-const preparePassword = (data: TUserPasswordFormData) => {
+const preparePassword = (data: TUserPasswordFormData): TUserPasswordData => {
     return {
         newPassword: data["new_password"] ?? "",
         oldPassword: data["password"] ?? "",
@@ -21,54 +15,71 @@ const preparePassword = (data: TUserPasswordFormData) => {
 const userAPI = new UserAPI();
 
 class UserController {
+
     static async changeProfile(formData: FormData) {
+        globalThis.DEBUG?.UserController && globalThis.LOG && console.info("UserController::changeProfile");
         const data = formDataToObjectConverter(formData) as TUserProfileData;
 
-        console.log("ChangeProfile: ", data);
+        globalThis.DEBUG?.UserController && globalThis.LOG && console.log("ChangeProfile: ", data);
 
         return userAPI.changeProfile(data)
         .then((response: XMLHttpRequest) => {
             const userResponse = response.response;
-            console.log("USER: ", userResponse);
+            globalThis.DEBUG?.UserController && globalThis.LOG && console.log("USER: ", userResponse);
             store.set("user", userResponse);
             //Router.getInstanse().go(ROUTES.profile.path);
             return response;
         })
         .catch((error) => {
-            console.log("ChangeProfile error: ", error);
+            globalThis.DEBUG?.UserController && globalThis.LOG && console.log("ChangeProfile error: ", error);
             return error;
         });
     }
 
     static async changeUserPassword(formData: FormData) {
+        globalThis.DEBUG?.UserController && globalThis.LOG && console.info("UserController::changeUserPassword");
         let data = preparePassword(formDataToObjectConverter(formData) as TUserPasswordFormData);
-        console.log("ChangePassword: ", data);
+        globalThis.DEBUG?.UserController && globalThis.LOG && console.log("ChangePassword: ", data);
 
         return userAPI.changePassword(data)
         .then((response: XMLHttpRequest) => {
             const userResponse = response.response;
-            console.log("CHANGE PASSWORD: ", userResponse);
+            globalThis.DEBUG?.UserController && globalThis.LOG && console.log("CHANGE PASSWORD: ", userResponse);
             //Router.getInstanse().go(ROUTES.profile.path);
             return response;
         })
         .catch((error) => {
-            console.log('ChangePassword error: ', error);
+            globalThis.DEBUG?.UserController && globalThis.LOG && console.log('ChangePassword error: ', error);
             return error;
         });
     }
 
     static async changeAvatar(formData: FormData) {
+        globalThis.DEBUG?.UserController && globalThis.LOG && console.info("UserController::changeAvatar");
         return userAPI.changeAvatar(formData)
         .then((response: XMLHttpRequest) => {
-            console.log("CHANGE AVATAR: ", response.status);
+            globalThis.DEBUG?.UserController && globalThis.LOG && console.log("CHANGE AVATAR: ", response.status);
             const userResponse = response.response;
-            console.log("USER: ", userResponse);
+            globalThis.DEBUG?.UserController && globalThis.LOG && console.log("USER: ", userResponse);
             store.set("user", userResponse);
             //Router.getInstanse().go(ROUTES.profile.path);
             return response;
         })
         .catch((error) => {
-            console.log('ChangeAvatar error: ', error);
+            globalThis.DEBUG?.UserController && globalThis.LOG && console.log('ChangeAvatar error: ', error);
+            return error;
+        });
+    }
+
+    static async getUsersByLogin(login: string) {
+        globalThis.DEBUG?.UserController && globalThis.LOG && console.info("UserController::getUsersByLogin");
+        globalThis.DEBUG?.UserController && globalThis.LOG && console.log(login);
+        return userAPI.searchUserByLogin({ login })
+        .then((response: XMLHttpRequest) => {
+            return response;
+        })
+        .catch((error) => {
+            globalThis.DEBUG?.UserController && globalThis.LOG && console.log('Get user by login error: ', error);
             return error;
         });
     }

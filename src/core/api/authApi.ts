@@ -11,7 +11,7 @@ class AuthAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public signUp(data: TSignUpData): Promise<XMLHttpRequest> {
-        console.info("AuthAPI::signUp: ", data);
+        globalThis.DEBUG?.AuthAPI && globalThis.LOG && console.info("AuthAPI::signUp: ", data);
         return this.post(API_ENDPOINTS.auth.signUp, { data: JSON.stringify(data), headers: { "Content-Type": this.contentType } });
     }
 
@@ -21,7 +21,7 @@ class AuthAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public signIn(data: TSignInData): Promise<XMLHttpRequest> {
-        console.info("AuthAPI::signIn: ", data);
+        globalThis.DEBUG?.AuthAPI && globalThis.LOG && console.info("AuthAPI::signIn: ", data);
         return this.post(API_ENDPOINTS.auth.signIn, { data: JSON.stringify(data), headers: { "Content-Type": this.contentType } });
     }
 
@@ -30,7 +30,7 @@ class AuthAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public getUserInfo(): Promise<XMLHttpRequest> {
-        console.info("AuthAPI::getUserInfo");
+        globalThis.DEBUG?.AuthAPI && globalThis.LOG && console.info("AuthAPI::getUserInfo");
         return this.get(API_ENDPOINTS.auth.user);
     }
 
@@ -39,7 +39,7 @@ class AuthAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public logout(): Promise<XMLHttpRequest> {
-        console.info("AuthAPI::logout");
+        globalThis.DEBUG?.AuthAPI && globalThis.LOG && console.info("AuthAPI::logout");
         return this.post(API_ENDPOINTS.auth.logout);
     }
 }

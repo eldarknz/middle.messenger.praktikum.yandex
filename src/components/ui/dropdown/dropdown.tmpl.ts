@@ -7,7 +7,7 @@ export default `
     >
         {{{ dropdownButton }}}
         <div class="dropdown-menu">
-            {{{ content }}}
+            {{{ dropdownMenuContent }}}
         </div>
     </div>
 `
