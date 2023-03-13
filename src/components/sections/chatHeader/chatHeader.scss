@@ -28,10 +28,14 @@
     margin: 0 var(--spacing-10);
 }
 
+
+.user-group-block,
 .user-block {
     display: flex;
     align-items: center;
+}
 
+.user-group-block {
     &:hover {
         cursor: pointer;
     }
@@ -65,4 +69,14 @@
     & .avatar img {
         display: block;
     }
+}
+
+.user-list {}
+
+.user-list__info-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--spacing-6) 0;
 }

@@ -36,23 +36,35 @@ interface IChatHeader {
     dropdown: Block;
 }
 
+
 const getUserList = () => {
     const { user, activeChatId, activeChatUsers } = store.getState();
 
     if (user && activeChatId && activeChatUsers) {
+
+        activeChatUsers.sort((a: IChatUser, b: IChatUser) => {
+            const loginA = a.login.toUpperCase();
+            const loginB = b.login.toUpperCase();
+            if (loginA < loginB) return -1;
+            if (loginA > loginB) return 1;
+            return 0;
+        });
+
+
         const modal = new Modal({
             id: "chatUserListModal",
             title: "Список пользователей",
             content: new List({
+                className: "user-list",
                 isFlush: true,
                 isFluid: true,
                 content: activeChatUsers.map((item: IChatUser) => {
                     return new DivBlock({
-                        className: "info-item",
+                        className: "user-list__info-item",
                         content: new DivBlock({
                             className: "user-block",
                             content: [
-                                (user as IUser).avatar ? 
+                                (item as IChatUser).avatar ? 
                                 new Avatar({
                                     content: new Image({
                                         src: API_RESOURCES_PATH + (item as IChatUser).avatar
@@ -222,10 +234,8 @@ function getUserBlock(state: Indexed) {
             
         } 
 
-        console.log(userListAvatar);
-
         return new DivBlock({
-            className: "user-block",
+            className: "user-group-block",
             content: [
                 new DivBlock({
                     className: "avatar-group",
