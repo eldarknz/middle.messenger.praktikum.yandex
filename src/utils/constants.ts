@@ -15,6 +15,7 @@ export const ROUTES: TRoutes = {
 
 export const API_PATH = 'https://ya-praktikum.tech/api/v2';
 export const API_RESOURCES_PATH = `${API_PATH}/resources`;
+export const WSS_PATH = "wss://ya-praktikum.tech/ws/chats";
 
 export const API_ENDPOINTS = {
     auth: {
@@ -40,6 +41,6 @@ export const API_ENDPOINTS = {
         newMessagesCount: (id: string) => `${API_PATH}/chats/new/${id}`,
         chatAvatar: `${API_PATH}/chats/avatar`,
         chatsUsers: `${API_PATH}/chats/users`,
-        //getChatUsers: (id: string) => `${API_PATH}/chats/token/${id}`
+        getChatUsers: (id: number) => `${API_PATH}/chats/token/${id}`
     }
 }

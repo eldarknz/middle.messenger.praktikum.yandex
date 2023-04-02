@@ -1,7 +1,8 @@
 import Block from "../../../core/block";
 import ChatController from "../../../core/controllers/chatController";
-import { store } from "../../../core/store";
+import { store, StoreEvents } from "../../../core/store";
 import connect, { Indexed } from "../../../core/store/connect";
+import { IUser } from "../../../types";
 
 import { createNewChat } from "../chatSidebar/chatSidebar";
 import ChatCard from "./components/chatCard";
@@ -16,22 +17,27 @@ import { Container } from "../../ui/grid";
 import { API_RESOURCES_PATH } from "../../../utils/constants";
 import { dateConvert } from "../../../utils/dateConverter";
 
-import { TChatItem } from "../../../types";
-
-//import { chats } from "../../../mock/data";
+import { TChatItem, IChatUser } from "../../../types";
 
 import template from "./chatList.tmpl";
 import "./chatList.scss";
+import { getDifference } from "../../../core/api/wsTransport";
+
+const PING_INTERVAL = 5000;
 
 interface IChatList {
-    content: Block[];
+    state: Indexed;
 }
 
 const getChatList = (state: Indexed) => {
-    if (Object.keys(state).length !== 0 && state.chats) {
+    if (Object.keys(state).length !== 0 && state.user && state.chats) {
         if (state.chats && (state.chats as TChatItem[]).length !== 0) {
             const chats = state.chats as TChatItem[];
-            const { activeChatId } = store.getState();
+            const activeChat = state.activeChat as { users: IChatUser[], id: number };
+            let activeChatId: number;
+            if (activeChat) {
+                activeChatId = activeChat.id;
+            }
             return chats.map(item => {
                 const chatAvatar = item.avatar ? 
                     new Avatar({ 
@@ -40,7 +46,8 @@ const getChatList = (state: Indexed) => {
 
                 const chatLabel = item.unread_count ? 
                     new Label({
-                        className: "label label-circle label-primary",
+                        color: "primary",
+                        isCircle: true,
                         content: `${item.unread_count}` 
                     }) : null
 
@@ -56,19 +63,19 @@ const getChatList = (state: Indexed) => {
                         click: (event: Event) => {
                             const target = event.currentTarget;
                             if (target && target instanceof HTMLElement) {
-                                const activeCard = document.querySelector(".chat-card.active");
+                                /*const activeCard = document.querySelector(".chat-card.active");
                                 if (activeCard) {
                                     activeCard.classList.remove("active");
                                 }
-                                target.classList.add("active");
+                                target.classList.add("active");*/
                                 const targetId = target.getAttribute("data-chat-id");
-                                if (targetId) {
+                                if (targetId && activeChatId !== parseInt(targetId)) {
                                     ChatController.getChatById(parseInt(targetId));
                                 }
                             }
                         }
                     }
-                })
+                });
             });
         } else {
             return new Container({
@@ -92,22 +99,17 @@ const getChatList = (state: Indexed) => {
     } else {
         return new ChatCardSkeleton();
     }
-}
+};
 
-class ChatList extends Block {
-    constructor(props?: IChatList) {
-        super(props);
+class ChatListSection extends Block {
+    constructor(props: IChatList) {
+        const content = getChatList(props.state)
+        super({ ...props, content });
     }
-
+    
     render() {
         return this.compile(template, this.props);
-    }
+    } 
 }
-
-const withPage = connect((state) => ({
-    content: getChatList(state)
-}));
-
-const ChatListSection = withPage(ChatList);
 
 export default ChatListSection

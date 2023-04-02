@@ -1,4 +1,4 @@
-export function responseErrorStatusHandling(response: XMLHttpRequest) {
+export function responseErrorStatusHandling(response: Response) {
     if (response.status === 400) {
         return "Не удалось выполнить запрос";
     }

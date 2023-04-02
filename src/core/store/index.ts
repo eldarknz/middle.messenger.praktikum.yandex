@@ -22,9 +22,17 @@ class Store extends EventBus {
     this.emit(StoreEvents.Updated);
   }
 
-  public delete(key: string) {
-    if (this.state.key) {
-      delete this.state[`${key}`];
+  public delete(value: string | string[]) {
+    if (value instanceof Array) {
+      value.forEach(item => {
+        if (item in this.state) {
+          delete this.state[`${item}`];
+        }
+      });
+    } else {
+      if (value in this.state) {
+        delete this.state[`${value}`];
+      }
     }
 
     // метод EventBus

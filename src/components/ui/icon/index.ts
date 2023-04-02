@@ -1,6 +1,7 @@
 import Block from "../../../core/block";
 import {
     icon_add,
+    icon_add_user,
     icon_arrow_left,
     icon_arrow_right,
     icon_attachment,
@@ -13,10 +14,13 @@ import {
     icon_logout,
     icon_media,
     icon_message,
+    icon_photo,
     icon_profile,
     icon_search,
     icon_settings,
-    icon_talks
+    icon_talks,
+    icon_trash,
+    icon_write
 } from "./icons.tmpl";
 import "./icon.scss";
 
@@ -144,6 +148,30 @@ class IconLogout extends IconBlock {
     }); }
 }
 
+class IconTrash extends IconBlock {
+    render() { return this.compile(icon_trash, {
+        className: this.iconClassName(),
+    }); }
+}
+
+class IconPhoto extends IconBlock {
+    render() { return this.compile(icon_photo, {
+        className: this.iconClassName(),
+    }); }
+}
+
+class IconAddUser extends IconBlock {
+    render() { return this.compile(icon_add_user, {
+        className: this.iconClassName(),
+    }); }
+}
+
+class IconWrite extends IconBlock {
+    render() { return this.compile(icon_write, {
+        className: this.iconClassName(),
+    }); }
+}
+
 export {
     IconAdd,
     IconArrowLeft,
@@ -161,5 +189,9 @@ export {
     IconProfile,
     IconSearch,
     IconSettings,
-    IconTalks
+    IconTalks,
+    IconTrash,
+    IconPhoto,
+    IconAddUser,
+    IconWrite
 }

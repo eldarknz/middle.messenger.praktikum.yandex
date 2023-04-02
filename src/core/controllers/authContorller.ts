@@ -20,11 +20,10 @@ class AuthController {
             globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("SignUp RESPONSE: ", response);
             return authAPI.getUserInfo();
         })
-        .then((response: XMLHttpRequest) => {
+        .then((response) => {
             const userResponse = response.response;
             globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("SignUp USER: ", userResponse);
             store.set("user", userResponse);
-            //Router.getInstanse().go(ROUTES.chat.path);
             return response;
         })
         .catch((error) => {
@@ -44,11 +43,10 @@ class AuthController {
             globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("SignIn RESPONSE: ", response);
             return authAPI.getUserInfo();
         })
-        .then((response: XMLHttpRequest) => {
+        .then((response) => {
             const userResponse = response.response;
             globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("SignIn USER: ", userResponse);
             store.set("user", userResponse);
-            //Router.getInstanse().go(ROUTES.chat.path);
             return response;
         })
         .catch((error) => {
@@ -60,7 +58,7 @@ class AuthController {
     static async checkUser() {
         globalThis.DEBUG?.AuthController&& globalThis.LOG && console.info("AuthController::checkUser");
         return authAPI.getUserInfo()
-        .then((response: XMLHttpRequest) => {
+        .then((response) => {
             globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("AuthController::checkUser USER: ", response);
             return response;
         })
@@ -71,15 +69,9 @@ class AuthController {
     }
 
     static async getUserInfo() {
-        globalThis.DEBUG?.AuthController&& globalThis.LOG && console.info("AuthController::getUserInfo");
-        const { user } = store.getState();
-        if (user) {
-            globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("user from store", user);
-            return Promise.resolve(user);
-        }
-        
+        globalThis.DEBUG?.AuthController&& globalThis.LOG && console.info("AuthController::getUserInfo");        
         return authAPI.getUserInfo()
-        .then((response: XMLHttpRequest) => {
+        .then((response) => {
             const userResponse = response.response;
             globalThis.DEBUG?.AuthController&& globalThis.LOG && console.log("AuthController::getUserInfo USER: ", userResponse);
             store.set("user", userResponse);

@@ -1,12 +1,14 @@
 import Block from "../../core/block";
-import template from "./profile.tmpl";
 import renderDOM from "../../core/renderDom";
+import AuthController from "../../core/controllers/authContorller";
+import UserController from "../../core/controllers/userController";
+import connect, { Indexed } from "../../core/store/connect";
 import Avatar from "../../components/ui/avatar";
 import Button from "../../components/ui/button";
 import Link from "../../components/ui/link";
 import List from "../../components/ui/list";
 import Modal, { modalCloseHandler } from "../../components/ui/modal";
-import { IconArrowLeft, IconMedia } from "../../components/ui/icon";
+import { IconArrowLeft, IconMedia, IconPhoto } from "../../components/ui/icon";
 import DivBlock from "../../components/ui/div";
 import Form from "../../components/ui/form";
 import { Container } from "../../components/ui/grid";
@@ -14,14 +16,10 @@ import InputFile from "../../components/ui/inputFile";
 import Text from "../../components/ui/text";
 import { Skeleton } from "../../components/ui/skeleton";
 import Image from "../../components/ui/image";
-import AuthController from "../../core/controllers/authContorller";
-import UserController from "../../core/controllers/userController";
-import connect, { Indexed } from "../../core/store/connect";
 import { IUser } from "../../types";
-import { formSubmissionsHandler } from "../../utils/formHandler";
-import { responseErrorStatusHandling } from "../../utils/responseErrorStatusHandling";
+import { formDataSubmissionsHandler } from "../../utils/formHandler";
 import { API_RESOURCES_PATH, ROUTES } from "../../utils/constants";
-
+import template from "./profile.tmpl";
 import "./styles.scss";
 
 const profileFields: { [key: string]: string } = {
@@ -72,7 +70,7 @@ const changeAvatar = () => {
                 ],
                 events: {
                     submit: (event: Event) => {
-                        formSubmissionsHandler({
+                        formDataSubmissionsHandler({
                             event: event,
                             handler: UserController.changeAvatar,
                             selector: ".change-avatar__form__input-group",
@@ -170,7 +168,10 @@ class Profile extends Block {
 
         const userAvatarOverlay = new DivBlock({
             className: "user-avatar__overlay",
-            content: "<p>Поменять</p><p>аватар</p>",
+            content: new IconPhoto({
+                color: "white",
+                size: "xxl"
+            }),
             events: {
                 click: changeAvatar
             }

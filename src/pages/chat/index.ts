@@ -1,13 +1,15 @@
 import Block from "../../core/block";
 import AuthController from "../../core/controllers/authContorller";
 import ChatController from "../../core/controllers/chatController";
-import { store } from "../../core/store";
 import connect, { Indexed } from "../../core/store/connect";
 
+import { Container } from "../../components/ui/grid";
+import DivBlock from "../../components/ui/div";
+import Text from "../../components/ui/text";
 import ChatHeaderSection from "../../components/sections/chatHeader/chatHeader";
 import ChatSidebarSection from "../../components/sections/chatSidebar/chatSidebar";
 import ChatMessageAreaSection from "../../components/sections/chatMessageArea/chatMessageArea";
-import ChatFooterBlock from "../../components/sections/chatFooter/chatFooter";
+import ChatFooterSection from "../../components/sections/chatFooter/chatFooter";
 
 import template from "./chat.tmpl";
 import "./styles.scss";
@@ -19,35 +21,41 @@ interface IChat {
 }
 
 const getHeader = (state: Indexed) => {
-    if (Object.keys(state).length !== 0 && state.activeChatId) {
-
-        const { activeChatId } = store.getState();
-        console.log(activeChatId);
-
-        return new ChatHeaderSection({});
+    if (Object.keys(state).length !== 0 && state.activeChat) {
+        return new ChatHeaderSection({ state });
     } else {
-        return ""
+        return new DivBlock({ content: "" })
     }
 };
 
 const getFooter = (state: Indexed) => {
-    if (Object.keys(state).length !== 0 && state.activeChatId) {
-
-        const { activeChatId } = store.getState();
-        console.log(activeChatId);
-
-        return ChatFooterBlock;
+    if (Object.keys(state).length !== 0 && state.activeChat) {
+        return new ChatFooterSection({});
     } else {
-        return ""
+        return new DivBlock({ content: "" })
+    }
+};
+
+const getChatMessageArea = (state: Indexed) => {
+    if (Object.keys(state).length !== 0 && state.activeChat) {
+        return new ChatMessageAreaSection({ state });
+    } else {
+        return new Container({
+            className: "chat-container empty",
+            isFluid: true,
+            content: [
+                new Text({
+                    className: "text-dark",
+                    content: "Выберите чат, чтобы начать общение"
+                })
+            ]
+        })
     }
 };
 
 class Chat extends Block {
     constructor(props: IChat) {
-
-        const sidebar = new ChatSidebarSection({});
-        super({ ...props, sidebar });
-
+        super(props);
         AuthController.getUserInfo();
         ChatController.getChats();
     }
@@ -58,9 +66,10 @@ class Chat extends Block {
 };
 
 const withPage = connect((state) => ({
+    sidebar: new ChatSidebarSection({ state }),
     header: getHeader(state),
     footer: getFooter(state),
-    messageArea: new ChatMessageAreaSection({})
+    messageArea: getChatMessageArea(state)
 }));
 
 const ChatPage = withPage(Chat);

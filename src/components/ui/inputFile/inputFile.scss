@@ -21,10 +21,10 @@
     justify-content: center;
     padding: var(--spacing-20);
     font-size: var(--font-size-14);
-    color: var(--dark);
+    color: var(--extra-dark);
     cursor: pointer;
     user-select: none;
-    border: 1px dashed var(--silver);
+    border: 1px dashed var(--gray);
     border-radius: var(--spacing-6);
     background-color: transparent;
     transition: var(--common-transition);
@@ -33,6 +33,6 @@
 
     &:hover,
     &.active {
-        background-color: var(--color-gray-1);
+        background-color: var(--color-gray-200);
     }
 }

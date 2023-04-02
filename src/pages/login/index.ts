@@ -8,7 +8,7 @@ import Form from "../../components/ui/form";
 import { validateInput } from "../../utils/validation";
 import { ROUTES } from "../../utils/constants";
 import { Container } from "../../components/ui/grid";
-import { checkInputs, clearForm, formSubmissionsHandler } from "../../utils/formHandler";
+import { checkInputs, clearForm, formDataSubmissionsHandler } from "../../utils/formHandler";
 import Router from "../../core/router";
 import AuthController from "../../core/controllers/authContorller";
 import { inputValueHandler } from "../../utils/inputValueHandler";
@@ -71,7 +71,7 @@ class LoginPage extends Block {
             ],      
             events: {
                 submit: (event: Event) => {
-                    formSubmissionsHandler({
+                    formDataSubmissionsHandler({
                         event: event,
                         handler: AuthController.signIn,
                         selector: ".sign-container__form__input-group",

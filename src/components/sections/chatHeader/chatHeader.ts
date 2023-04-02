@@ -1,5 +1,4 @@
 import Block from "../../../core/block";
-import AuthController from "../../../core/controllers/authContorller";
 import ChatController from "../../../core/controllers/chatController";
 import { store } from "../../../core/store";
 import connect, { Indexed } from "../../../core/store/connect";
@@ -8,110 +7,240 @@ import renderDOM from "../../../core/renderDom";
 import Dropdown from "../../ui/dropdown";
 import Button from "../../ui/button";
 import Avatar from "../../ui/avatar";
-import { IconAdd, IconDelete, IconDots } from "../../ui/icon";
+import { IconAdd, IconAddUser, IconDelete, IconDots, IconPhoto, IconTrash } from "../../ui/icon";
 import Skeleton from "../../ui/skeleton";
 import Image from "../../ui/image";
 import Text from "../../ui/text";
 import DivBlock from "../../ui/div";
-import Modal,  { modalCloseHandler } from "../../ui/modal";
-import { Container } from "../../ui/grid";
+import Modal, { modalCloseHandler } from "../../ui/modal";
+import { Container, Row } from "../../ui/grid";
 import Form from "../../ui/form";
 import Input from "../../ui/input";
+import InputFile from "../../ui/inputFile";
 import List from "../../ui/list";
 
 import { API_RESOURCES_PATH } from "../../../utils/constants";
-import { formSubmissionsHandler, errorFormNotification } from "../../../utils/formHandler";
-import { responseErrorStatusHandling } from "../../../utils/responseErrorStatusHandling";
+import { formResponseErrorNotification, textNotification } from "../../../utils/formHandler";
 
-import { TBlockAttributes } from "../../../../declarations";
-import { IUser, IChatUser } from "../../../types";
+import { IUser, IChatUser, TChatItem } from "../../../types";
 
 import template from "./chatHeader.tmpl";
 import "./chatHeader.scss";
 
 interface IChatHeader {
-    attr?: TBlockAttributes;
-    userAvatar: Block;
-    userName: string;
-    dropdown: Block;
+    state: Indexed;
 }
 
+function sortChatUsersByLogin(activeChatUsers: IChatUser[] | IUser[]) {
+    activeChatUsers.sort((a: IChatUser, b: IChatUser) => {
+        const loginA = a.login.toUpperCase();
+        const loginB = b.login.toUpperCase();
+        if (loginA < loginB) return -1;
+        if (loginA > loginB) return 1;
+        return 0;
+    });
+}
 
-const getUserList = () => {
-    const { user, activeChatId, activeChatUsers } = store.getState();
+const getFoundUserList = (foundUsers: IUser[]) => {
 
-    if (user && activeChatId && activeChatUsers) {
+    const state = store.getState()
+    const user = state.user as IUser[];
+    const activeChat = state.activeChat as { users: IChatUser[], id: number };
 
-        activeChatUsers.sort((a: IChatUser, b: IChatUser) => {
-            const loginA = a.login.toUpperCase();
-            const loginB = b.login.toUpperCase();
-            if (loginA < loginB) return -1;
-            if (loginA > loginB) return 1;
-            return 0;
-        });
+    let foundUserList = new DivBlock({
+        className: "user-list-empty",
+        content: "Пользователь не найден"
+    })
 
+    if (!user && !activeChat)
+        return;
 
-        const modal = new Modal({
-            id: "chatUserListModal",
-            title: "Список пользователей",
-            content: new List({
-                className: "user-list",
-                isFlush: true,
-                isFluid: true,
-                content: activeChatUsers.map((item: IChatUser) => {
-                    return new DivBlock({
-                        className: "user-list__info-item",
-                        content: new DivBlock({
-                            className: "user-block",
-                            content: [
-                                (item as IChatUser).avatar ? 
-                                new Avatar({
-                                    content: new Image({
-                                        src: API_RESOURCES_PATH + (item as IChatUser).avatar
-                                    })
-                                }) : new Avatar(),
+    if (foundUsers.length > 0) {
+
+        sortChatUsersByLogin(foundUsers as IUser[]);
+        
+        foundUserList = new Container({
+            isFluid: true,
+            content: [
+                new Container({
+                    isFluid: true,
+                    content: new DivBlock({
+                        className: "user-list__header",
+                        content: [
+                            new DivBlock({
+                                className: "user-list__header__title",
+                                content: "Список пользователей"
+                            })
+                        ]
+                    })
+                }),
+                new Container({
+                    isFluid: true,
+                    content: new List({
+                        className: "user-list",
+                        isFlush: true,
+                        isFluid: true,
+                        content: foundUsers.map((item: IChatUser) => {
+
+                            let userListInfoItem = [
                                 new DivBlock({
-                                    className: "user-block__name",
-                                    content: new Text({
-                                        content: (item as IChatUser).login
-                                    })
-                                })
-                            ]
+                                    className: "user-block",
+                                    content: [
+                                        item.avatar ? 
+                                        new Avatar({
+                                            content: new Image({
+                                                src: API_RESOURCES_PATH + item.avatar
+                                            })
+                                        }) : new Avatar(),
+                                        new DivBlock({
+                                            className: "user-block__name",
+                                            content: new Text({
+                                                content: item.login
+                                            })
+                                        })
+                                    ]
+                                }),
+                            ];
+
+                            const chatUserEntries = activeChat.users.find((activeChatUser: IChatUser) => activeChatUser.id === item.id);
+                            console.log(activeChat);
+                            console.log(chatUserEntries);
+                            if (!chatUserEntries) {
+                                userListInfoItem.push(new DivBlock({
+                                    className: "user-list__info-item__addition action-item",
+                                    content: new IconAddUser({
+                                        size: "m"
+                                    }),
+                                    events: {
+                                        click: (event) => {
+                                            const { activeChat } = store.getState()
+                                            if (activeChat.users.length < 10) {
+                                                ChatController.addUserToChat(item.id, activeChat.id)
+                                                .then((res) => {
+                                                    if (res) {
+                                                        if (res.status === 200) {
+                                                            const target = event.target;
+                                                            if (target) {
+                                                                const parentNode = (target as HTMLElement).closest('.user-list__info-item__addition');
+                                                                if (parentNode) parentNode.remove()
+                                                            }
+                                                        }
+                                                    } else {
+                                                        formResponseErrorNotification(res, ".user-list", "Произошла ошибка, попробуйте еще раз")
+                                                    }
+                                                })
+                                            } else {
+                                                textNotification(".user-list", "В чат нельзя добавить больше 10 пользователей")
+                                            }
+                                        }
+                                    }
+                                }))
+                            }
+                            
+                            return new DivBlock({
+                                className: "user-list__info-item",
+                                content: userListInfoItem
+                            })
                         })
                     })
                 })
-            })
+            ]
         });
-
-        renderDOM("#modal-root", modal);
-        modal.show();
     }
+    renderDOM("#foundUserList", foundUserList);
 }
 
-const addNewUser = () => {
+const addNewUser = (user: IUser, activeChat: { users: IChatUser[], id: number }) => {
     const modal = new Modal({
         id: "addNewUserModal",
         title: "Добавление пользователя",
         content: new Container({
             id: "addNewUserContainer",
             isFluid: true,
+            content: [
+                new Form({
+                    className: "add-value__form",
+                    content: [
+                        new Container({
+                            isFluid: true,
+                            className: "add-value__form__input-group",
+                            content:  new Input({
+                                id: "addNewUser",
+                                name: "login",
+                                placeholderText: "Логин пользователя",
+                            })
+                        }),
+                        new Button({
+                            color: "primary",
+                            isFluid: true,
+                            size: "lg",
+                            content: "Найти"
+                        })
+                    ],
+                    events: {
+                        submit: (event: Event) => {
+                            event.preventDefault();
+                            const target = event.target;
+                            if (target && target instanceof HTMLFormElement) {
+                                const formData = new FormData(target);
+                                const login = formData.get("login") as string;
+                                if (login) {
+                                    ChatController.getUsersByLogin(login)
+                                    .then((res) => {
+                                        if (res) {
+                                            if (res.status === 200) {
+                                                const foundUserList = document.querySelector("#foundUserList");
+                                                if (foundUserList && foundUserList.innerHTML.trim() !== "") {
+                                                    foundUserList.innerHTML = "";
+                                                }
+                                                getFoundUserList(res.response);
+                                            }
+                                        } else {
+                                            formResponseErrorNotification(res, ".add-value__form__input-group", "Произошла ошибка, попробуйте еще раз");
+                                        }
+                                    })
+                                }
+                            }
+                        }
+                    }
+                }),
+                new DivBlock({
+                    id: "foundUserList",
+                    content: ""
+                })
+            ]
+        })
+    });
+
+    renderDOM("#modal-root", modal);
+    modal.show();
+};
+
+const uploadChatAvatar = (activeChatId: number) => {
+    const modal = new Modal({
+        id: "changeAvatar",
+        title: "Загрузка файла",
+        content: new Container({
+            id: "changeAvatarContainer",
+            isFluid: true,
             content: new Form({
-                className: "add-value__form",
+                className: "change-avatar__form",
                 content: [
                     new Container({
                         isFluid: true,
-                        className: "add-value__form__input-group",
-                        content:  new Input({
-                            id: "addNewUser",
-                            name: "login",
-                            placeholderText: "Логин пользователя"
+                        className: "change-avatar__form__input-group",
+                        content: new InputFile({
+                            id: "avatar",
+                            name: "avatar",
+                            placeholderText: "Выберите файл",
+                            isAcceptImage: true
                         })
                     }),
                     new Button({
                         color: "primary",
                         isFluid: true,
                         size: "lg",
-                        content: "Добавить"
+                        content: "Поменять"
                     })
                 ],
                 events: {
@@ -119,40 +248,21 @@ const addNewUser = () => {
                         event.preventDefault();
                         const target = event.target;
                         if (target && target instanceof HTMLFormElement) {
-                            const { activeChatId } = store.getState();
-                            if (!activeChatId) {
-                                errorFormNotification(
-                                    ".add-value__form__input-group",
-                                    "Выберите чат",
-                                )
-                            } else {
+                            if (activeChatId) {
                                 const formData = new FormData(target);
-                                const login = formData.get("login") as string;
-                                if (login) {
-                                    ChatController.addUserToChat(login, activeChatId)
-                                    .then((res) => {
-                                        if (res) {
-                                            if (res.status === 200) {
-                                                modalCloseHandler()
-                                            }
-                                        } else {
-                                            const responseErrorStatus = responseErrorStatusHandling(res);
-                                            errorFormNotification(
-                                                ".add-value__form__input-group",
-                                                responseErrorStatus ? responseErrorStatus : "Произошла ошибка, попробуйте еще раз",
-                                            )
-                                        }
-                                    })
-                                }
+                                formData.set("chatId", `${activeChatId}`)
+                                ChatController.uploadChatAvatar(formData)
+                                .then((res) => {
+                                    if (res && res.status === 200) {
+                                        getChatInfo(store.getState())
+                                    } else {
+                                        formResponseErrorNotification(res, ".change-avatar__form__input-group", "Произошла ошибка, попробуйте еще раз");
+                                    }
+                                })
                             }
                         }
-                        /*formSubmissionsHandler({
-                            event: event,
-                            handler: ChatController.addUserToChat,
-                            selector: ".add-value__form__input-group",
-                            action: () => modalCloseHandler()
-                        });*/
                     }
+                    
                 }
             })
         })
@@ -162,166 +272,330 @@ const addNewUser = () => {
     modal.show();
 };
 
-const deleteUser = () => {
+const getParticipantsCount = (users: IChatUser[]) => {  
+    const userCount = users.length;
+    if (userCount.toString().slice(-1) === "1") {
+        return `${userCount} участник`
+    } else if (userCount.toString().slice(-1) === "2" || userCount.toString().slice(-1) === "3" || userCount.toString().slice(-1) === "4") {
+        return `${userCount} участника`
+    } else {
+        return `${userCount} участников`
+    }
+};
+
+const getChatName = (chat: TChatItem[], activeChatId: number) => {
+    const chatName = chat.find(item => item.id === activeChatId);
+    return chatName ? chatName.title : "Без названия";
+};
+
+const getChatAvatar = (chat: TChatItem[], activeChatId: number) => {
+    const selectedChat = chat.find((item) => {
+        if (item.id === activeChatId) {
+            return item.avatar
+        }
+    });
+
+    return selectedChat ? new Avatar({
+        size: "m",
+        content: new Image({
+            src: API_RESOURCES_PATH + selectedChat.avatar
+        })
+    }) : new Avatar({ size: "m" });
+};
+
+const getChatInfo = (state: Indexed) => {
+
+    const user = state.user as IUser;
+    const chats = state.chats as TChatItem[];
+    const activeChat = state.activeChat as { users: IChatUser[], id: number };
+    const activeChatId = activeChat.id;
+    const activeChatUsers = activeChat.users;
+
+    sortChatUsersByLogin(activeChatUsers);
+
     const modal = new Modal({
-        id: "deleteUserModal",
-        title: "Удаление пользователя",
+        id: "chatInfoModal",
+        title: "Информация о чате",
         content: new Container({
-            id: "deleteUserContainer",
+            id: "chatInfoContainer",
             isFluid: true,
-            content: new Form({
-                className: "add-value__form",
-                content: [
-                    new Container({
-                        isFluid: true,
-                        className: "add-value__form__input-group",
-                        content:  new Input({
-                            id: "deleteUser",
-                            name: "title",
-                            placeholderText: "Логин пользователя"
+            content: [
+                new Row({
+                    alignItems: "center",
+                    content: [
+                        new DivBlock({
+                            className: "chat-avatar",
+                            content: [
+                                getChatAvatar(chats, activeChatId),
+                                new DivBlock({
+                                    className: "chat-avatar__overlay",
+                                    content: new IconPhoto({
+                                        color: "white",
+                                        size: "m"
+                                    }),
+                                    events: {
+                                        click: () => uploadChatAvatar(activeChatId)
+                                    }
+                                })
+                            ]
+                        }),
+                        new DivBlock({
+                            className: "chat-info",
+                            content: [
+                                new DivBlock({
+                                    className: "chat-info__title",
+                                    content: new Text({
+                                        content: getChatName(chats, activeChatId)
+                                    })
+                                }),
+                                new DivBlock({
+                                    className: "chat-info__subtitle text-dark",
+                                    content: new Text({
+                                        content: getParticipantsCount(activeChatUsers)
+                                    })
+                                })
+                            ],
                         })
-                    }),
-                    new Button({
-                        color: "primary",
-                        isFluid: true,
-                        size: "lg",
-                        content: "Удалить"
+                    ]
+                }),
+                new Row({
+                    content: new DivBlock({
+                        className: "user-list__header",
+                        content: [
+                            new DivBlock({
+                                className: "user-list__header__title",
+                                content: "Список пользователей"
+                            }),
+                            new DivBlock({
+                                className: "user-list__header__add-user",
+                                content: new IconAddUser({
+                                    size: "lg"
+                                }),
+                                events: {
+                                    click: () => addNewUser(user, activeChat)
+                                }
+                            }),
+                        ]
                     })
-                ],
-                events: {
-                    submit: (event: Event) => {
-                        formSubmissionsHandler({
-                            event: event,
-                            handler: ChatController.addChat,
-                            selector: ".add-value__form__input-group",
-                            action: () => modalCloseHandler()
-                        });
-                    }
-                }
-            })
+                }),
+                new Row({
+                    content: new List({
+                        className: "user-list",
+                        isFlush: true,
+                        isFluid: true,
+                        content: activeChatUsers.map((item: IChatUser) => {
+
+                            let userListInfoItem = [
+                                new DivBlock({
+                                    className: "user-block",
+                                    content: [
+                                        item.avatar ? 
+                                        new Avatar({
+                                            content: new Image({
+                                                src: API_RESOURCES_PATH + item.avatar
+                                            })
+                                        }) : new Avatar(),
+                                        new DivBlock({
+                                            className: "user-block__name",
+                                            content: new Text({
+                                                content: item.login
+                                            })
+                                        })
+                                    ]
+                                }),
+                            ];
+
+                            if (item.role === "admin") {
+                                userListInfoItem.push(new DivBlock({
+                                    className: "user-list__info-item__addition text-dark",
+                                    content: "admin"
+                                }))
+                            }
+
+                            return new DivBlock({
+                                className: "user-list__info-item",
+                                content: userListInfoItem
+                            })
+                        })
+                    })
+                })
+            ]
         })
     });
 
     renderDOM("#modal-root", modal);
     modal.show();
-}
+};
 
-function getUserBlock(state: Indexed) {
-    const { user, activeChatId, activeChatUsers } = state;
+const deleteUser = (user: IUser, activeChatUsers: IChatUser[], activeChatId: number) => {
+    if (user && activeChatUsers && activeChatId) {
 
-    if (Object.keys(state).length !== 0 && user && activeChatId && activeChatUsers) {
+        sortChatUsersByLogin(activeChatUsers);
 
-        let userNumber = 2;
-        let userListString = (activeChatUsers as IChatUser[]).slice(0, userNumber).map((item: IChatUser) => {
-            return item.login;
-        }).join(",");
-        let userListAvatar = (activeChatUsers as IChatUser[]).map((item: IChatUser) => {
-            return (item as IUser).avatar ? 
-            new Avatar({
-                content: new Image({
-                    src: API_RESOURCES_PATH + (item as IUser).avatar
-                })
-            }) : new Avatar()
-        })
+        const modal = new Modal({
+            id: "chatUserListModal",
+            title: "Удалить пользователя",
+            content: new Container({
+                id: "chatUserListContainer",
+                isFluid: true,
+                content: [
+                    new Row({
+                        content: new DivBlock({
+                            className: "user-list__header",
+                            content: [
+                                new DivBlock({
+                                    className: "user-list__header__title",
+                                    content: "Список пользователей"
+                                })
+                            ]
+                        })
+                    }),
+                    new Row({
+                        content: new List({
+                            className: "user-list",
+                            isFlush: true,
+                            isFluid: true,
+                            content: activeChatUsers.map((item: IChatUser) => {
+    
+                                let userListInfoItem = [
+                                    new DivBlock({
+                                        className: "user-block",
+                                        content: [
+                                            item.avatar ? 
+                                            new Avatar({
+                                                content: new Image({
+                                                    src: API_RESOURCES_PATH + item.avatar
+                                                })
+                                            }) : new Avatar(),
+                                            new DivBlock({
+                                                className: "user-block__name",
+                                                content: new Text({
+                                                    content: item.login
+                                                })
+                                            })
+                                        ]
+                                    }),
+                                ];
+    
+                                if (item.role !== "admin") {
+                                    userListInfoItem.push(new DivBlock({
+                                        className: "user-list__info-item__addition action-item",
+                                        content: new IconDelete({
+                                            size: "m",
+                                            color: "secondary"
+                                        }),
+                                        events: {
+                                            click: (event) => {
+                                                let confirmDelete  = confirm("Вы уверены, что хотите удалить пользователя из чата?");
+                                                if (confirmDelete) {
+                                                    ChatController.deleteUserfromChat(item.id, activeChatId)
+                                                    .then((res) => {
+                                                        if (res) {
+                                                            if (res.status === 200) {
+                                                                const target = event.target;
+                                                                if (target) {
+                                                                    const parentNode = (target as HTMLElement).closest('.list-item');
+                                                                    if (parentNode) parentNode.remove()
+                                                                }
+                                                            }
+                                                        } else {
+                                                            formResponseErrorNotification(res, ".modal-container__content", "Произошла ошибка, попробуйте еще раз");
+                                                        }
+                                                    })
+                                                }
+                                            }
+                                        }
+                                    }))
+                                } else {
+                                    userListInfoItem.push(new DivBlock({
+                                        className: "user-list__info-item__addition text-dark",
+                                        content: "admin"
+                                    }))
+                                }
+    
+                                return new DivBlock({
+                                    className: "user-list__info-item",
+                                    content: userListInfoItem
+                                })
+                            })
+                        })
+                    })
+                ]
+            })
+        });
 
-        if ((activeChatUsers as IChatUser[]).length > userNumber) {
-            let restUserNumber = (activeChatUsers as IChatUser[]).length - userNumber
-            let userMaxNUmber = 99;
-            userListString += ` + ${restUserNumber}`;
-            userListAvatar = [ new Avatar({
-                content: `+${restUserNumber < userMaxNUmber ? restUserNumber: userMaxNUmber}` 
-            }), ...userListAvatar];
-            
-        } 
+        renderDOM("#modal-root", modal);
+        modal.show();
+    }
+};
+
+const deleteChat = (activeChatId: number, ws: WebSocket) => {
+    if (activeChatId) {
+        let confirmDelete  = confirm("Вы уверены, что хотите удалить чат?");
+        if (confirmDelete) {
+            console.log('DELETE');
+            /*ws.send(JSON.stringify({
+                content: { chat_id: activeChatId },
+                type: "message"
+            }))*/
+            //ws.close()
+            ChatController.deleteChat(activeChatId, ws)
+            .then((res) => {
+                if (res) {
+                    modalCloseHandler();
+                } else {
+                    formResponseErrorNotification(res, ".modal-container__content", "Произошла ошибка, попробуйте еще раз");
+                }
+            })
+        }
+    }
+};
+
+const getChatBlock = (state: Indexed) => {
+    const user = state.user as IUser;
+    const chats = state.chats as TChatItem[];
+    const activeChat = state.activeChat as { users: IChatUser[], id:  number };
+
+    if (Object.keys(state).length !== 0 && user && chats && activeChat) {
+
+        const activeChatId = activeChat.id;
+        const activeChatUsers = activeChat.users;
 
         return new DivBlock({
-            className: "user-group-block",
+            className: "chat-info",
             content: [
                 new DivBlock({
-                    className: "avatar-group",
-                    content: userListAvatar
+                    className: "chat-info__title",
+                    content: new Text({
+                        content: getChatName(chats, activeChatId)
+                    })
                 }),
                 new DivBlock({
-                    className: "user-block__name",
+                    className: "chat-info__subtitle text-dark",
                     content: new Text({
-                        content: userListString
+                        content: getParticipantsCount(activeChatUsers)
                     })
                 })
             ],
             events: {
-                click: getUserList
+                click: () => getChatInfo(state)
             }
-        })
-
-        /*return activeChatUsers.map((item: IChatUser) => {
-            const chatAvatar = item.avatar ? 
-                new Avatar({ 
-                    content: new Image({ src: API_RESOURCES_PATH + item.avatar })
-                }) : new Avatar();
-
-            const chatLabel = item.unread_count ? 
-                new Label({
-                    className: "label label-circle label-primary",
-                    content: `${item.unread_count}` 
-                }) : null
-
-            return new ChatCard({
-                chatId: item.id,
-                avatar: chatAvatar,
-                title: item.title,
-                message: item.last_message &&  item.last_message.content ? item.last_message.content : "Нет сообщений",
-                datetime: item.last_message && item.last_message.time ? dateConvert(item.last_message.time) : "",
-                label: chatLabel,
-                isActive: activeChatId && activeChatId === item.id ? true : false,
-                events: {
-                    click: (event: Event) => {
-                        const target = event.currentTarget;
-                        if (target && target instanceof HTMLElement) {
-                            const activeCard = document.querySelector(".chat-card.active");
-                            if (activeCard) {
-                                activeCard.classList.remove("active");
-                            }
-                            target.classList.add("active");
-                            const targetId = target.getAttribute("data-chat-id");
-                            if (targetId) 
-                                ChatController.getChatById(parseInt(targetId));
-                        }
-                    }
-                }
-            })
-        });*/
-
-        /*return new DivBlock({
-            className: "user-block",
-            content: [
-                (state.user as IUser).avatar ? 
-                new Avatar({
-                    content: new Image({
-                        src: API_RESOURCES_PATH + (state.user as IUser).avatar
-                    })
-                }) : new Avatar(),
-                new DivBlock({
-                    className: "user-block__name",
-                    content: new Text({
-                        content: (state.user as IUser).first_name
-                    })
-                })
-            ]
-        });*/
+        });
     } else {
         return new DivBlock({
-            className: "user-block",
+            className: "chat-info",
             content: [
-                new Skeleton({
-                    width: 34,
-                    isAnimation: true,
-                    isCircle: true
+                new DivBlock({
+                    className: "chat-info__text-empty",
+                    content: new Skeleton({
+                        height: 16,
+                        isAnimation: true
+                    })
                 }),
                 new DivBlock({
-                    className: "user-block__name-empty",
+                    className: "chat-info__text-empty",
                     content: new Skeleton({
-                        height: "100%",
-                        width: 40,
+                        height: 10,
                         isAnimation: true
                     })
                 })
@@ -330,55 +604,86 @@ function getUserBlock(state: Indexed) {
     }
 };
 
-class ChatHeader extends Block {
-    constructor(props?: IChatHeader) {
+class ChatHeaderSection extends Block {
+    constructor(props: IChatHeader) {
+
+        const state = props.state;
+        const user = state.user as IUser;
+        const activeChat = state.activeChat as { users: IChatUser[], id: number };
+        const activeChatId = activeChat.id as number;
+        const activeChatUsers = activeChat.users as IChatUser[];
+        const ws = state.ws as WebSocket;
 
         const dropdown = new Dropdown({
             dropdownButtonIsCircle: true,
-            dropdownButtonContent: new IconDots(),
+            dropdownButtonContent: new IconDots({ size: "m" }),
             dropdownMenuContent: new DivBlock({
                 className: "dropdown-menu__content",
                 content: [
                     new DivBlock({
                         className: "dropdown-item",
                         content: [
-                            new IconAdd({ color: "primary" }),
+                            new IconAdd({
+                                color: "primary",
+                                size: "m"
+                            }),
                             new Text({
                                 content: "Добавить пользователя"
                             })
                         ],
                         events: {
-                            click: addNewUser
+                            click: () => addNewUser(user, activeChat)
                         }
                     }),
                     new DivBlock({
                         className: "dropdown-item",
                         content: [
-                            new IconDelete({ color: "primary" }),
+                            new IconDelete({
+                                color: "primary",
+                                size: "m"
+                            }),
                             new Text({
                                 content: "Удалить пользователя"
                             })
                         ],
                         events: {
-                            click: getUserList
+                            click: () => deleteUser(user, activeChatUsers, activeChatId)
+                        }
+                    }),
+                    new DivBlock({
+                        className: "dropdown-item",
+                        content: [
+                            new IconTrash({ 
+                                color: "secondary",
+                                size: "m"
+                            }),
+                            new Text({
+                                content: "Удалить чат"
+                            })
+                        ],
+                        events: {
+                            click: () => {
+                                deleteChat(activeChatId, ws)
+                                //ws.close()//deleteChat(activeChatId, ws)
+                                //ws.send(JSON.stringify({
+                                //    content: "string", // строковое id подключенного пользователя
+                                //    type: "user connected"
+                                //}));
+                            }
                         }
                     }),
                 ]
             })
         })
 
-        super({ ...props, dropdown });
+        const chatInfoBlock = getChatBlock(state)
+
+        super({ ...props, dropdown, chatInfoBlock });
     }
     
     render() {
         return this.compile(template, this.props);
     }
 }
-
-const withPage = connect((state) => ({
-    userBlock: getUserBlock(state)
-}));
-
-const ChatHeaderSection = withPage(ChatHeader);
 
 export default ChatHeaderSection

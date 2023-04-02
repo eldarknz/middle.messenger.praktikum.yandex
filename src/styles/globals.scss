@@ -57,19 +57,34 @@ a {
 
 /* Text */
 
-.text-error {
+.text-notification-error {
     color: var(--color-red);
     font-size: var(--font-size-12);
     text-align: center;
     line-height: 1;
 }
 
-.text-gray {
-    color: var(--gray);
+.text-notification-base {
+    color: var(--color-black);
+    font-size: var(--font-size-12);
+    text-align: center;
+    line-height: 1;
 }
 
 .text-silver {
     color: var(--silver);
+}
+
+.text-gray {
+    color: var(--gray);
+}
+
+.text-dark {
+    color: var(--dark);
+}
+
+.text-extra-dark {
+    color: var(--extra-dark);
 }
 
 /* Sign pages */
@@ -215,7 +230,7 @@ a {
 
 * {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-gray-1) var(--white);
+    scrollbar-color: var(--color-gray-300) var(--white);
 }
   
 /* Works on Chrome, Edge, and Safari */
@@ -229,7 +244,7 @@ a {
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: var(--color-gray-1);
+    background-color: var(--color-gray-300);
     border-radius: 0;
     border: 0
 }

@@ -23,7 +23,7 @@ globalThis.DEBUG = {
     EventBus: !DEV_MODE,
     Block: !DEV_MODE,
     RenderDOM: !DEV_MODE,
-    Store: DEV_MODE,
+    Store: !DEV_MODE,
     AuthController: !DEV_MODE,
     UserController: !DEV_MODE,
     ChatController: !DEV_MODE,

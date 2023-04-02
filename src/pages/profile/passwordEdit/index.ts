@@ -10,7 +10,7 @@ import { Skeleton } from "../../../components/ui/skeleton";
 import Text from "../../../components/ui/text";
 import Image from "../../../components/ui/image";
 import { validateInput } from "../../../utils/validation";
-import { formSubmissionsHandler } from "../../../utils/formHandler";
+import { formDataSubmissionsHandler } from "../../../utils/formHandler";
 import { API_RESOURCES_PATH, ROUTES } from "../../../utils/constants";
 import AuthController from "../../../core/controllers/authContorller";
 import UserController from "../../../core/controllers/userController";
@@ -122,7 +122,7 @@ const getForm = (state: Indexed) => {
             ],
             events: {
                 submit: (event: Event) => {
-                    formSubmissionsHandler({
+                    formDataSubmissionsHandler({
                         event: event,
                         handler: UserController.changeUserPassword,
                         selector: ".profile-container__form__input-group",

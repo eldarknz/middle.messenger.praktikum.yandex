@@ -1,5 +1,5 @@
 .container,
-.containerFluid {
+.container-fluid {
     width: 100%;
     margin: 0 auto;
 }
@@ -20,71 +20,71 @@
     max-width: 100%;
 }
 
-.colAuto {
+.col-auto {
     width: auto;
     max-width: 100%;
     flex: 0 0 auto;
   }
 
-.col2 {
+.col-2 {
     max-width: 16.6666667%;
     flex: 0 0 16.6666667%;
 }
 
-.col3 {
+.col-3 {
     max-width: 25%;
     flex: 0 0 25%;
 }
 
-.col4 {
+.col-4 {
     max-width: 33.3333333%;
     flex: 0 0 33.3333333%;
 }
 
-.col5 {
+.col-5 {
     max-width: 41.6666667%;
     flex: 0 0 41.6666667%;
 }
 
-.col6 {
+.col-6 {
     max-width: 50%;
     flex: 0 0 50%;
 }
 
-.col7 {
+.col-7 {
     max-width: 58.3333333%;
     flex: 0 0 58.3333333%;
 }
 
-.col8 {
+.col-8 {
     max-width: 66.6666667%;
     flex: 0 0 66.6666667%;
 }
 
-.col9 {
+.col-9 {
     max-width: 75%;
     flex: 0 0 75%;
 }
 
-.col10 {
+.col-10 {
     max-width: 83.3333333%;
     flex: 0 0 83.3333333%;
 }
 
-.col12 {
+.col-12 {
     max-width: 100%;
     flex: 0 0 100%;
 }
 
-.justifyContentFlexStart { justify-content: flex-start; }
-.justifyContentFlexEnd { justify-content: flex-end; }
-.justifyContentCenter { justify-content: center; }
-.justifyContentSpaceBetween { justify-content: space-between; }
-.justifyContentSpaceAround { justify-content: space-around; }
-.justifyContentSpaceEvenly { justify-content: space-evenly }
+.justify-content-flex-start { justify-content: flex-start; }
+.justify-content-flex-end { justify-content: flex-end; }
+.justify-content-center { justify-content: center; }
+.justify-content-space-between { justify-content: space-between; }
+.justify-content-space-around { justify-content: space-around; }
+.justify-content-space-evenly { justify-content: space-evenly }
 
-.alignItemsFlexStart { align-Items: flex-start }
-.alignItemsFlexEnd { align-Items: flex-end; }
-.alignItemsCenter { align-Items: center; }
-.alignItemsBaseline { align-Items: baseline; }
-.alignItemsStretch { align-Items: stretch; }
+.align-items-flex-start { align-Items: flex-start }
+.align-items-flex-end { align-Items: flex-end; }
+.align-items-center { align-Items: center; }
+.align-items-baseline { align-Items: baseline; }
+.align-items-stretch { align-Items: stretch; }

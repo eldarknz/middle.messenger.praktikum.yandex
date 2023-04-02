@@ -19,20 +19,24 @@ export const checkInputs = (form: HTMLFormElement) => {
   return isValidateInputs;
 }
 
-export const errorFormNotification = (selector: string, message: string) => {
+export const textNotification = (selector: string, message: string, style: "base" | "error" = "base") => {
   const node = document.querySelector(selector);
   if (node) {
       const parentNode = node?.parentElement;
       if (parentNode) {
-        let textNode = parentNode.querySelector(".text-error");
+        let textNode = parentNode.querySelector(`.text-notification-${style}`);
         if (!textNode) {
           textNode = document.createElement("p");
-          textNode.classList.add("text-error");
+          textNode.classList.add(`text-notification-${style}`);
             node.after(textNode);
         }
         textNode.innerHTML = message;
       }
   }
+};
+
+export const errorFormNotification = (selector: string, message: string) => {
+  textNotification(selector, message, "error")
 };
 
 export const removeErrorFormNotification = (selector: string) => {
@@ -48,7 +52,15 @@ export const removeErrorFormNotification = (selector: string) => {
   }
 }
 
-export const formSubmissionsHandler = (
+export const formResponseErrorNotification = (res: Response, selector: string, customTextStatus: string) => {
+  const responseErrorStatus = responseErrorStatusHandling(res);
+  errorFormNotification(
+    selector,
+    responseErrorStatus ? responseErrorStatus : customTextStatus
+  )
+}
+
+export const formDataSubmissionsHandler = (
   params: {
     //target: HTMLFormElement,
     event: Event,
@@ -79,32 +91,9 @@ export const formSubmissionsHandler = (
             action();
           }
         } else {
-          const responseErrorStatus = responseErrorStatusHandling(res);
-          errorFormNotification(
-            selector,
-            responseErrorStatus ? responseErrorStatus : "Произошла ошибка, попробуйте еще раз",
-          )
+          formResponseErrorNotification(res, selector, "Произошла ошибка, попробуйте еще раз")
         }
       }
     });
   }
-
-  /*const formData = new FormData(target);
-  handler(formData).then((res) => {
-    if (res) {
-      if (res.status === 200) {
-        if (action) {
-          //clearForm(target);
-          //removeErrorFormNotification(selector);
-          action();
-        }
-      } else {
-        const responseErrorStatus = responseErrorStatusHandling(res);
-        errorFormNotification(
-          selector,
-          responseErrorStatus ? responseErrorStatus : "Произошла ошибка, попробуйте еще раз",
-        )
-      }
-    }
-  });*/
 };

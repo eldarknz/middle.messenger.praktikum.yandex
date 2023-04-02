@@ -28,6 +28,71 @@
     margin: 0 var(--spacing-10);
 }
 
+.chat-info,
+.chat-info__text-empty,
+.chat-info__title,
+.chat-info__subtitle {
+    display: flex;
+}
+
+.chat-header__container__content .chat-info {
+    cursor: pointer;
+}
+
+.chat-info {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    gap: var(--spacing-6);
+}
+
+.chat-info__text-empty {
+    width: 120px;
+}
+
+.chat-info__title {
+    font-size: var(--font-size-14);
+    font-weight: 600;
+}
+
+.chat-info__subtitle {
+    font-size: var(--font-size-12);
+}
+
+.chat-avatar {
+    margin-right: var(--spacing-16);
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    & .chat-avatar__overlay {
+        display: flex;
+        align-items: center;                                                                        
+        justify-content: center;
+        flex-direction: column;
+        font-size: var(--font-size-13);
+        font-weight: 400;
+        background-color: var(--black);
+        color: var(--white);
+        border-radius: 50%;
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        transition: var(--common-transition);
+    }
+
+    &:hover .chat-avatar__overlay {
+        opacity: .5;
+    }
+}
 
 .user-group-block,
 .user-block {
@@ -71,7 +136,34 @@
     }
 }
 
-.user-list {}
+.user-list__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: var(--spacing-30);
+    margin-bottom: var(--spacing-10);
+}
+
+.user-list__header__title {
+    font-weight: 600;
+}
+
+.user-list__header__add-user{
+    cursor: pointer;
+}
+
+.user-list {
+    max-height: 235px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.user-list-empty {
+    margin-top: var(--spacing-30);
+    text-align: center;
+    font-weight: 600;
+}
 
 .user-list__info-item {
     display: flex;
@@ -80,3 +172,27 @@
     width: 100%;
     padding: var(--spacing-6) 0;
 }
+
+.user-list__info-item__addition {
+    margin-right: var(--spacing-10);
+}
+
+.user-list__info-item__addition.action-item {
+    cursor: pointer;
+}
+
+.found-user-list {
+    max-height: 235px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+found-user-list-container {
+
+}
+
+.user-list + .text-notification-base,
+.user-list + .text-notification-error {
+    margin-top: var(--spacing-30);
+}
+

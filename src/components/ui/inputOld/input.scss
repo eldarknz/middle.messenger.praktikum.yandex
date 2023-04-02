@@ -69,7 +69,7 @@
 }
 
 .input-base:focus{
-    color: var(--color-gray-4);
+    color: var(--extra-dark);
     outline: none;
 }
 
@@ -87,7 +87,7 @@
 }*/
 
 .input-base:focus + .input-base-placeholder .input-base-placeholder__content .input-base-placeholder__icon svg path {
-    fill: var(--color-gray-4);
+    fill: var(--extra-dark);
 }
 
 /* Alternative input */

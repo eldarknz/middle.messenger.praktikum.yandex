@@ -29,7 +29,6 @@ export const dateConvert = (date: string): string => {
         today.getUTCMonth() - pastDate.getUTCMonth() === 0 &&
         today.getUTCDate() - pastDate.getUTCDate() <= 6)
     {
-        console.log(today.getUTCDate() - pastDate.getUTCDate());
         if (today.getUTCDate() - pastDate.getUTCDate() < 1) {
             return formatTime(pastDate);
         } else if (today.getUTCDate() - pastDate.getUTCDate() === 1) {

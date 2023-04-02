@@ -46,7 +46,7 @@ class ChatAPI extends HTTPTransport {
      * @param {number} chatId 
      * @returns {Promise<XMLHttpRequest>}
      */
-    public getChatUserById(chatId: number): Promise<XMLHttpRequest> {
+    public getChatUsersById(chatId: number): Promise<XMLHttpRequest> {
         globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("UserAPI::getChatUserById: ", chatId);
         return this.get(API_ENDPOINTS.chats.chatUsersById(chatId));
     }
@@ -67,9 +67,9 @@ class ChatAPI extends HTTPTransport {
      * @param {FormData} data 
      * @returns {Promise<XMLHttpRequest>}
      */
-    public uploadChatAvatar(chatId: string, data: FormData): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("ChatAPI::uploadChatAvatar: ", chatId, data);
-        return this.put(API_ENDPOINTS.chats.chatAvatar, { data: { chatId, data } });
+    public uploadChatAvatar(data: FormData): Promise<XMLHttpRequest> {
+        globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("ChatAPI::uploadChatAvatar: ", data);
+        return this.put(API_ENDPOINTS.chats.chatAvatar, { data });
     }
 
     /**
@@ -78,7 +78,7 @@ class ChatAPI extends HTTPTransport {
      * @param {number} chatId 
      * @returns {Promise<XMLHttpRequest>}
      */
-    public addUsersToChat(users: string[], chatId: number): Promise<XMLHttpRequest> {
+    public addUsersToChat(users: number[], chatId: number): Promise<XMLHttpRequest> {
         globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("ChatAPI::addUsersToChat: ", users, chatId);
         return this.put(API_ENDPOINTS.chats.chatsUsers, { data: JSON.stringify({ users, chatId }), headers: { "Content-Type": this.contentType } });
     }
@@ -89,9 +89,19 @@ class ChatAPI extends HTTPTransport {
      * @param {number} chatId 
      * @returns {Promise<XMLHttpRequest>}
      */
-    public deleteUsersFromChat(users: string[], chatId: number): Promise<XMLHttpRequest> {
+    public deleteUsersFromChat(users: number[], chatId: number): Promise<XMLHttpRequest> {
         globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("ChatAPI::deleteUsersFromChat: ", users, chatId);
-        return this.delete(API_ENDPOINTS.chats.chats, { data: JSON.stringify({ users, chatId }), headers: { "Content-Type": this.contentType } });
+        return this.delete(API_ENDPOINTS.chats.chatsUsers, { data: JSON.stringify({ users, chatId }), headers: { "Content-Type": this.contentType } });
+    }
+
+    /**
+     * Получение списка токенов пользователей чата
+     * @param {number} id 
+     * @returns {Promise<XMLHttpRequest>}
+     */
+    public getChatToken(id: number): Promise<XMLHttpRequest> {
+        globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("ChatAPI::getChatTocken: ", id);
+        return this.post(API_ENDPOINTS.chats.getChatUsers(id));
     }
 
 }

@@ -1,8 +1,9 @@
 import Block from "../../../core/block";
 
 interface IDivBlock {
+    id?: string;
     className?: string;
-    content: Block | Block[] | string;
+    content?: Block | Block[] | string;
     events?: {
         click: (e: Event) => void;
     }
@@ -16,7 +17,10 @@ class DivBlock extends Block {
     
     render() {
         return this.compile(
-            `<div {{#if className}}class="{{ className }}"{{/if}}>
+            `<div
+                {{#if id}}id="{{ id }}"{{/if}}
+                {{#if className}}class="{{ className }}"{{/if}}
+            >
                 {{#if isArray}}
                     {{#each content}}
                         {{{this}}}

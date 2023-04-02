@@ -7,7 +7,7 @@
     font-family: var(--font-family-base);
     font-size: var(--font-size-16);
     font-weight: var(--font-weight-5);
-    color: var(--dark);
+    color: var(--extra-dark);
     text-decoration: none;
     cursor: pointer;
     user-select: none;
@@ -18,7 +18,7 @@
 
     &:hover,
     &.active {
-        background-color: var(--color-gray-1);
+        background-color: var(--color-gray-200);
     }
 }
 
@@ -113,7 +113,7 @@
         border-color: transparent;
         color: var(--btn-gray-color);
         &:hover {
-            color: var(--color-gray-4);
+            color: var(--extra-dark);
         }
     }
 }
@@ -153,15 +153,15 @@
 
     &.btn-light {
         background-color: transparent;
-        border-color: var(--color-gray-2);
+        border-color: var(--color-gray-400);
         &:hover {
-            color: var(--color-gray-4);
+            color: var(--extra-dark);
             & svg path {
-                fill: var(--color-gray-4);
+                fill: var(--extra-dark);
             }
         }
         & svg path {
-            fill: var(--color-gray-4);
+            fill: var(--extra-dark);
         }
     }
 }
@@ -195,12 +195,12 @@
 .btn-light {
     background-color: var(--btn-gray-color);
     border-color: var(--btn-gray-color);
-    color: var(--color-gray-4);
+    color: var(--extra-dark);
     &:hover {
         background-color: var(--btn-gray-color-hover);
         border-color: var(--btn-gray-color-hover);
     }
     & svg path {
-        fill: var(--color-gray-4);
+        fill: var(--extra-dark);
     }
 }

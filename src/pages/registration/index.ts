@@ -8,7 +8,7 @@ import { validateInput } from "../../utils/validation";
 import { ROUTES } from "../../utils/constants";
 import Form from "../../components/ui/form";
 import { Container } from "../../components/ui/grid";
-import { formSubmissionsHandler } from "../../utils/formHandler";
+import { formDataSubmissionsHandler } from "../../utils/formHandler";
 import AuthController from "../../core/controllers/authContorller";
 import { inputValueHandler } from "../../utils/inputValueHandler";
 import { checkInputs } from "../../utils/formHandler";
@@ -128,7 +128,7 @@ class RegistrationPage extends Block {
             ],
             events: {
                 submit: (event: Event) => {
-                    formSubmissionsHandler({
+                    formDataSubmissionsHandler({
                         event: event,
                         handler: AuthController.signUp,
                         selector: ".sign-container__form__input-group",

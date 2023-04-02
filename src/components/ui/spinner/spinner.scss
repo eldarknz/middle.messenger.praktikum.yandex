@@ -38,11 +38,11 @@
 
 .spinner-gray {
     & .spinner-front {
-        stroke: var(--color-gray-2);
+        stroke: var(--color-gray-400);
     }
 
     &.spinner-simple .spinner-rear {
-        stroke: var(--color-gray-1);
+        stroke: var(--color-gray-200);
     }
 }
 

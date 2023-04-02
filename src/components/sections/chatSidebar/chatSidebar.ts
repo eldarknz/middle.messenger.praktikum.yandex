@@ -1,10 +1,9 @@
 import Block from "../../../core/block";
 import AuthController from "../../../core/controllers/authContorller";
 import ChatController from "../../../core/controllers/chatController";
-import connect, { Indexed } from "../../../core/store/connect";
+import { Indexed } from "../../../core/store/connect";
 import renderDOM from "../../../core/renderDom";
 
-import ChatListSection from "../chatList/chatList";
 import { Container } from "../../ui/grid";
 import Modal, { modalCloseHandler } from "../../ui/modal";
 import Button from "../../ui/button";
@@ -12,20 +11,17 @@ import Nav from "../../ui/nav";
 import Form from "../../ui/form";
 import Input from "../../ui/input";
 import Logo from "../../ui/logo";
-import { IconMessage, IconProfile, IconSettings, IconLogout } from "../../ui/icon";
+import { IconProfile, IconSettings, IconLogout, IconWrite } from "../../ui/icon";
+import ChatListSection from "../chatList/chatList";
 
 import { ROUTES } from "../../../utils/constants";
-import { formSubmissionsHandler } from "../../../utils/formHandler";
+import { formDataSubmissionsHandler } from "../../../utils/formHandler";
 
 import template from "./chatSidebar.tmpl";
 import "./chatSidebar.scss";
 
 interface IChatSidebar {
-    logoLink: Block;
-    newMessageIcon: Block;
-    inputSearch: Block;
-    content: Block | string;
-    nav: Block;
+    state: Indexed;
 }
 
 export const createNewChat = () => {
@@ -56,7 +52,7 @@ export const createNewChat = () => {
                 ],
                 events: {
                     submit: (event: Event) => {
-                        formSubmissionsHandler({
+                        formDataSubmissionsHandler({
                             event: event,
                             handler: ChatController.addChat,
                             selector: ".add-value__form__input-group",
@@ -72,7 +68,11 @@ export const createNewChat = () => {
     modal.show();
 };
 
-class ChatSidebar extends Block {
+const searchChat = () => {
+    console.log('a');
+}
+
+class ChatSidebarSection extends Block {
     constructor(props: IChatSidebar) {
 
         const logoLink = new Logo({
@@ -83,7 +83,9 @@ class ChatSidebar extends Block {
             size: "lg",
             isSquare: true,
             id: "dropdownMenuButton",
-            content: new IconMessage(),
+            content: new IconWrite({
+                size: "m"
+            }),
             events: {
                 click: createNewChat
             }
@@ -93,18 +95,25 @@ class ChatSidebar extends Block {
             id: "search",
             name: "search",
             placeholderText: "Поиск",
+            events: {
+                input: searchChat
+            }
             //placeholderPosition: "center",
             //placeholderIcon: new IconSearch({ className: "icon" })
         });
 
-        const chatList = new ChatListSection({});
+        const chatList = new ChatListSection({
+            state: props.state
+        });
 
         const nav = new Nav({
             content: [
                 new Button({
                     size: "lg",
                     isSquare: true,
-                    content: new IconProfile(),
+                    content: new IconProfile({
+                        size: "m"
+                    }),
                     events: {
                         click: () => { window.router.go(ROUTES.profile.path); }
                     }
@@ -112,7 +121,9 @@ class ChatSidebar extends Block {
                 new Button({
                     size: "lg",
                     isSquare: true,
-                    content: new IconSettings(),
+                    content: new IconSettings({
+                        size: "m"
+                    }),
                     events: {
                         click: () => { window.router.go(ROUTES.profileEdit.path); }
                     }
@@ -121,7 +132,8 @@ class ChatSidebar extends Block {
                     size: "lg",
                     isSquare: true,
                     content: new IconLogout({
-                        color: "secondary"
+                        color: "secondary",
+                        size: "m"
                     }),
                     events: {
                         click: async (e: Event) => {
@@ -138,12 +150,8 @@ class ChatSidebar extends Block {
     }
 
     render() {
-        return this.compile(template, this.props)
+        return this.compile(template, this.props);
     }
 }
-
-const withPage = connect((state) => ({}));
-
-const ChatSidebarSection = withPage(ChatSidebar);
 
 export default ChatSidebarSection

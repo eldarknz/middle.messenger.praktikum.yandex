@@ -266,6 +266,7 @@ class Block {
     setProps = (nextProps: TProps) => {
         globalThis.DEBUG?.Block && globalThis.LOG && console.log('setProps');
         globalThis.DEBUG?.Block && globalThis.LOG && console.log(nextProps);
+
         if (!nextProps) {
             return;
         }

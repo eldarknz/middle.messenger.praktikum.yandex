@@ -14,11 +14,16 @@ interface IInput {
         blur?: (e: Event) => void;
         focus?: (e: Event) => void;
         input?: (e: Event) => void;
+        change?: (e: Event) => void;
     };
 }
 
-const defaultInputHandler = (e: Event) => {
-    const target = e.target as HTMLInputElement;
+const defaultInputHandler = (event: Event, props: IInput) => {
+    if (props.events?.input) {
+        props.events?.input(event)
+    }
+    
+    const target = event.target as HTMLInputElement;
     if (target)
         target.setAttribute('value', target.value);
 };
@@ -40,7 +45,8 @@ class PasswordVisibilityTogglerBlock extends Block {
 
 class Input extends Block {
     constructor(props: IInput) {
-        super({...props, events: { ...props.events, input: props.events?.input ?? defaultInputHandler }})
+        //super({...props, events: { ...props.events, input: props.events?.input ?? defaultInputHandler }})
+        super({...props, events: { ...props.events, input: (event: Event) => defaultInputHandler(event, props) }})
         this.inputClassName = this.inputClassName.bind(this);
     }
 

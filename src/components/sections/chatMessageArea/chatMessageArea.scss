@@ -1,14 +1,25 @@
 .chat-container {
+    height: 100vh;
     width: 100%;
-    padding: 80px 20px;
-    min-height: 100vh;
+    scrollbar-gutter: stable;
+    padding: 88px 20px;
     position: absolute;
     top: 0;
     right: 0;
+    overflow-y: auto;
 
     &.empty {
         display: flex;
         align-items: center;
         justify-content: center;
     }
+}
+
+.chat-container * {
+    overflow-anchor: none;
+  }
+  
+#anchor {
+    overflow-anchor: auto;
+    height: 1px;
 }

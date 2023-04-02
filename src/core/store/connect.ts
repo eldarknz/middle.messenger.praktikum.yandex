@@ -6,7 +6,7 @@ export type Indexed<T = unknown> = {
     [key in string]: T;
 };
 
-function connect(mapStateToProps: (state: any) => any) {
+function connect(mapStateToProps: (state: Indexed) => any) {
     return function (Component: typeof Block) {
         return class extends Component {
             constructor(props: {}) {

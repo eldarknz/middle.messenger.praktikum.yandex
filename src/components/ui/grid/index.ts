@@ -8,25 +8,15 @@ import "./grid.scss";
 
 interface IGrid {
   className?: string;
-  content?: Block | string;
+  content: Block | Block[] | string;
 };
 
-/*interface IColProps {
-    col?: string;
-    className?: string;
-};
-
-interface IRowProps {
-    justifyContent?: string;
-    alignItems?: string;
-    className?: string;
-};*/
-
-interface IContainerProps {
+interface IContainerProps extends IGrid {
     id?: string;
     isFluid?: boolean;
-    className?: string;
-    content: Block | Block[] | string;
+    events?: { 
+        scroll?: (e: Event) => void;
+    }
 };
 
 export class Container extends Block {
@@ -36,13 +26,12 @@ export class Container extends Block {
     }
 
     containerClassName() {
-        let className = `${this.props.isFluid ? "containerFluid" : "container"}`;
+        let className = `${this.props.isFluid ? "container-fluid" : "container"}`;
         if (this.props.className) className += ` ${this.props.className}`
         return className;
     }
 
     render() {
-        //return this.compile(template, this.props);
         return this.compile(template, {
             id: this.props.id,
             className: this.containerClassName(),
@@ -51,79 +40,41 @@ export class Container extends Block {
     }
 }
 
-/*
-export const Container: FC<IContainerProps>= ({
-    children,
-    fluid,
-    className
-}) => {
-
-    const containerClassName = cn(
-        {
-            [styles.container]: !fluid,
-            [styles.containerFluid]: fluid
-        },
-        className
-    )
-    return (
-        <div className={containerClassName}>
-            {children}
-        </div>
-    );
+interface IRowProps extends IGrid {
+    justifyContent?:  'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+    alignItems?: 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
 };
-*/
 
 export class Row extends Block {
-
-    styles: string = "a";
-
-    constructor(props: IGrid) {
-      super(props);
+    constructor(props: IRowProps) {
+        super(props);
+        this.rowClassName = this.rowClassName.bind(this);
     }
-  
+
+    rowClassName() {
+        let className = "row";
+        if (this.props.justifyContent) className += ` justify-content-${this.props.justifyContent}`
+        if (this.props.alignItems) className += ` align-items-${this.props.alignItems}`
+        if (this.props.className) className += ` ${this.props.className}`
+        return className;
+    }
+
     render() {
-      return this.compile(template, {
-        className: this.props.className,
-        content: this.props.content
-      });
+        //return this.compile(template, this.props);
+        return this.compile(template, {
+            id: this.props.id,
+            className: this.rowClassName(),
+            content: this.props.content
+        });
     }
 }
 
-/*export const Row: FC<IRowProps> = ({
-    children,
-    justifyContent,
-    alignItems,
-    className
-}) => {
-    
-    const rowClassName = cn(styles.row,
-        {
-            [styles.justifyContentFlexStart]: justifyContent === 'flex-start',
-            [styles.justifyContentFlexEnd]: justifyContent === 'flex-end',
-            [styles.justifyContentCenter]: justifyContent === 'center',
-            [styles.justifyContentSpaceBetween]: justifyContent === 'space-between',
-            [styles.justifyContentSpaceAround]: justifyContent === 'space-around',
-            [styles.justifyContentSpaceEvenly]: justifyContent === 'space-evenly',
-        },
-        {
-            [styles.alignItemsFlexStart]: alignItems === 'flex-start',
-            [styles.alignItemsFlexEnd]: alignItems === 'flex-end',
-            [styles.alignItemsCenter]: alignItems === 'center',
-            [styles.alignItemsBaseline]: alignItems === 'baseline',
-            [styles.alignItemsStretch]: alignItems === 'stretch',
-        },
-        className
-    );
-
-    return (
-        <div className={rowClassName}>
-            {children}
-        </div>
-    );
-};*/
+interface IColProps extends IGrid {
+    col?: string;
+};
 
 export class Col extends Block {
-    constructor(props: IGrid) {
+    constructor(props: IColProps) {
       super(props);
     }
   

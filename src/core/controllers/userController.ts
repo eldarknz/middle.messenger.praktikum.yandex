@@ -23,11 +23,10 @@ class UserController {
         globalThis.DEBUG?.UserController && globalThis.LOG && console.log("ChangeProfile: ", data);
 
         return userAPI.changeProfile(data)
-        .then((response: XMLHttpRequest) => {
+        .then((response) => {
             const userResponse = response.response;
             globalThis.DEBUG?.UserController && globalThis.LOG && console.log("USER: ", userResponse);
             store.set("user", userResponse);
-            //Router.getInstanse().go(ROUTES.profile.path);
             return response;
         })
         .catch((error) => {
@@ -42,10 +41,9 @@ class UserController {
         globalThis.DEBUG?.UserController && globalThis.LOG && console.log("ChangePassword: ", data);
 
         return userAPI.changePassword(data)
-        .then((response: XMLHttpRequest) => {
+        .then((response) => {
             const userResponse = response.response;
             globalThis.DEBUG?.UserController && globalThis.LOG && console.log("CHANGE PASSWORD: ", userResponse);
-            //Router.getInstanse().go(ROUTES.profile.path);
             return response;
         })
         .catch((error) => {
@@ -56,13 +54,13 @@ class UserController {
 
     static async changeAvatar(formData: FormData) {
         globalThis.DEBUG?.UserController && globalThis.LOG && console.info("UserController::changeAvatar");
+        console.log(formData)
         return userAPI.changeAvatar(formData)
-        .then((response: XMLHttpRequest) => {
+        .then((response) => {
             globalThis.DEBUG?.UserController && globalThis.LOG && console.log("CHANGE AVATAR: ", response.status);
             const userResponse = response.response;
             globalThis.DEBUG?.UserController && globalThis.LOG && console.log("USER: ", userResponse);
             store.set("user", userResponse);
-            //Router.getInstanse().go(ROUTES.profile.path);
             return response;
         })
         .catch((error) => {
@@ -75,7 +73,7 @@ class UserController {
         globalThis.DEBUG?.UserController && globalThis.LOG && console.info("UserController::getUsersByLogin");
         globalThis.DEBUG?.UserController && globalThis.LOG && console.log(login);
         return userAPI.searchUserByLogin({ login })
-        .then((response: XMLHttpRequest) => {
+        .then((response) => {
             return response;
         })
         .catch((error) => {

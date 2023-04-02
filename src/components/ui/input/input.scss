@@ -33,7 +33,7 @@ input[type="password"] {
     height: 100%;
     width: 100%;
     border-radius: var(--spacing-6);
-    background-color: var(--light);
+    background-color: var(--color-gray-300);
 }
 
 .input-container__label {
@@ -67,7 +67,7 @@ input[type="password"] {
 
 .input-container__label .input-container__label-text {
     font-weight: 500;
-    color: var(--silver);
+    color: var(--extra-dark);
     transition: all 0.15s;
 }
 
@@ -150,7 +150,7 @@ input[type="password"] {
       
     .input-container__field {
         background-color: transparent;
-        border-bottom: 2px solid var(--silver);
+        border-bottom: 2px solid var(--gray);
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
     }
