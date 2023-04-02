@@ -1,7 +1,3 @@
-/*import cn from "classnames";
-import { FC } from "react";
-import styles from "./Grid.module.css";*/
-
 import Block from "../../../core/block";
 import template from "./grid.tmpl";
 import "./grid.scss";
