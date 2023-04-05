@@ -1,4 +1,4 @@
-import { TUserData } from "../../declarations";
+import { TUserData } from "@declarations/index";
 
 export const userData: TUserData[] = [
     { title: "Почта", value: "pochta@yandex.ru" },

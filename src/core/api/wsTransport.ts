@@ -1,7 +1,10 @@
-import { WSS_PATH } from "../../utils/constants";
-import ChatController from "../controllers/chatController";
-import { IUser, IChatUser } from "../../types";
-import { store } from "../store";
+// Core
+import { store } from "@store/index";
+import ChatController from "@core/controllers/chatController";
+// Utils
+import { WSS_PATH } from "@utils/constants";
+// Types
+import { IChatUser } from "@custom_types/index";
 
 const PING_INTERVAL = 6000;
 

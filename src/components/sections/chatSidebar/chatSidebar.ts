@@ -1,23 +1,24 @@
-import Block from "../../../core/block";
-import AuthController from "../../../core/controllers/authContorller";
-import ChatController from "../../../core/controllers/chatController";
-import { Indexed } from "../../../core/store/connect";
-import renderDOM from "../../../core/renderDom";
-
-import { Container } from "../../ui/grid";
-import Modal, { modalCloseHandler } from "../../ui/modal";
-import Button from "../../ui/button";
-import Nav from "../../ui/nav";
-import Form from "../../ui/form";
-import Input from "../../ui/input";
-import Logo from "../../ui/logo";
-import { IconProfile, IconSettings, IconLogout, IconWrite } from "../../ui/icon";
-import ChatListSection from "../chatList/chatList";
-
-import { ROUTES } from "../../../utils/constants";
-import { formDataSubmissionsHandler } from "../../../utils/formHandler";
-
+// Core
+import Block from "@core/block";
+import renderDOM from "@core/renderDom";
+import AuthController from "@core/controllers/authContorller";
+import ChatController from "@core/controllers/chatController";
+// Components
+import Button from "@components/ui/button";
+import { Container } from "@components/ui/grid";
+import Form from "@components/ui/form";
+import { IconProfile, IconSettings, IconLogout, IconWrite } from "@components/ui/icon";
+import Input from "@components/ui/input";
+import Logo from "@components/ui/logo";
+import Modal, { modalCloseHandler } from "@components/ui/modal";
+import Nav from "@components/ui/nav";
+import ChatListSection from "@components/sections/chatList/chatList";
+// Utils
+import { formDataSubmissionsHandler } from "@utils/formHandler";
+import { ROUTES } from "@utils/constants";
+// Template
 import template from "./chatSidebar.tmpl";
+// Styles
 import "./chatSidebar.scss";
 
 interface IChatSidebar {
@@ -69,7 +70,7 @@ export const createNewChat = () => {
 };
 
 const searchChat = () => {
-    console.log('a');
+    console.log('searchChat');
 }
 
 class ChatSidebarSection extends Block {

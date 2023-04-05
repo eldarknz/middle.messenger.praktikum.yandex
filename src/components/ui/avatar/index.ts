@@ -1,5 +1,8 @@
-import Block from "../../../core/block";
+// Core
+import Block from "@core/block";
+// Templates
 import template from "./avatar.tmlp";
+// Styles
 import "./avatar.scss";
 
 interface IAvatar {

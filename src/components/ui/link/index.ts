@@ -1,6 +1,8 @@
-import Block from "../../../core/block";
+// Core
+import Block from "@core/block";
+import Router from "@core/router";
+// Template
 import template from "./link.tmpl";
-import Router from "../../../core/router";
 
 interface ILink {
   className?: string;
@@ -12,8 +14,6 @@ interface ILink {
 };
 
 export const linkPathRedirect = (event: MouseEvent, path: string) => {
-  console.log(event.currentTarget);
-
   window.location.href = path;
 
   event.preventDefault();

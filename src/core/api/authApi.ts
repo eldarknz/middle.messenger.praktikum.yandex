@@ -1,6 +1,9 @@
+// Core
 import HTTPTransport from "./httpTransport";
-import { API_ENDPOINTS } from "../../utils/constants";
-import { TSignUpData, TSignInData } from "../../types";
+// Utils
+import { API_ENDPOINTS } from "@utils/constants";
+// Types
+import { TSignUpData, TSignInData } from "@custom_types/index";
 
 class AuthAPI extends HTTPTransport {
     contentType = "application/json; charset=utf-8";
@@ -11,7 +14,6 @@ class AuthAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public signUp(data: TSignUpData): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.AuthAPI && globalThis.LOG && console.info("AuthAPI::signUp: ", data);
         return this.post(API_ENDPOINTS.auth.signUp, { data: JSON.stringify(data), headers: { "Content-Type": this.contentType } });
     }
 
@@ -21,7 +23,6 @@ class AuthAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public signIn(data: TSignInData): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.AuthAPI && globalThis.LOG && console.info("AuthAPI::signIn: ", data);
         return this.post(API_ENDPOINTS.auth.signIn, { data: JSON.stringify(data), headers: { "Content-Type": this.contentType } });
     }
 
@@ -30,7 +31,6 @@ class AuthAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public getUserInfo(): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.AuthAPI && globalThis.LOG && console.info("AuthAPI::getUserInfo");
         return this.get(API_ENDPOINTS.auth.user);
     }
 
@@ -39,7 +39,6 @@ class AuthAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public logout(): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.AuthAPI && globalThis.LOG && console.info("AuthAPI::logout");
         return this.post(API_ENDPOINTS.auth.logout);
     }
 }

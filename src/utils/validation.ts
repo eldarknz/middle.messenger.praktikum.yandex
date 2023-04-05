@@ -4,7 +4,7 @@ import {
     TCheckPasswordConfirm,
     TShowError,
     THideError
-} from "../../declarations";
+} from "@declarations/index";
 
 export class ValidationForm {
     checkEmptyValue: TCheckFunction = (value) => {

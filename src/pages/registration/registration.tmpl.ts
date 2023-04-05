@@ -10,7 +10,7 @@ export default `
                 <h3 class="sign-container__title">{{ title }}</h3>
                 {{{ form }}}
                 <div class="sign-container__text-block">
-                    <span class="text-gray">Уже есть учетная запись? </span>
+                    <span class="text-extra-dark">Уже есть учетная запись? </span>
                     {{{ link }}}
                 </div>
             </div>

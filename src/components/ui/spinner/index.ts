@@ -1,5 +1,8 @@
-import Block from "../../../core/block";
+// Core
+import Block from "@core/block";
+// Template
 import template from "./spinner.tmpl";
+// Styles
 import "./spinner.scss";
 
 interface ISpinnerProps {
@@ -50,48 +53,6 @@ export class Spinner extends Block {
         });
     }
 
-};
-
-/*type = "usual",
-    color = "grey",
-    size = 50,
-    strokeWidth = 3,
-    center = false,
-}: ISpinnerProps) => {
-    const radius = (size - strokeWidth) / 2;
-
-    return (
-        <svg
-            className={cn(styles.spinner, {
-                [styles.spinnerCenter]: center,
-                [styles.spinnerUsual]: type === "usual",
-                [styles.spinnerSimple]: type === "simple",
-
-                [styles.colorRed]: color === "red",
-                [styles.colorGrey]: color === "grey",
-                [styles.colorBlack]: color === "black",
-            })}
-            style={{ width: size, height: size }}
-            viewBox={`0 0 ${size} ${size}`}
-        >
-            <circle
-                className={styles.bgCircle}
-                cx={size / 2}
-                cy={size / 2}
-                r={radius}
-                fill="none"
-                strokeWidth={strokeWidth}
-            ></circle>
-            <circle
-                className={styles.circle}
-                cx={size / 2}
-                cy={size / 2}
-                r={radius}
-                fill="none"
-                strokeWidth={strokeWidth}
-            ></circle>
-        </svg>
-    );
-};*/
+}
 
 export default Spinner

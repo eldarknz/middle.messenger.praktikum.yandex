@@ -1,5 +1,8 @@
-import Block from "../../../core/block";
+// Core
+import Block from "@core/block";
+// Template
 import template from "./inputFile.tmpl";
+// Styles
 import "./inputFile.scss";
 
 interface IInputFile {

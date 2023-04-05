@@ -1,22 +1,19 @@
-import Block from "../../core/block";
+// Core
+import Block from "@core/block";
+// Components
+import { Container } from "@components/ui/grid";
+import MainHeader from "@components/sections/mainHeader/mainHeader";
+import MainFooter from "@components/sections/mainFooter/mainFooter";
+import MainHero from "@components/sections/mainHero/mainHero";
+// Template
 import template from "./main.tmpl";
-import MainHeaderBlock from "../../components/sections/mainHeader/mainHeader";
-import MainFooterBlock from "../../components/sections/mainFooter/mainFooter";
-import MainHeroBlock from "../../components/sections/mainHero/mainHero";
-import { Container } from "../../components/ui/grid";
+// Styles
 import "./main.scss";
-
 
 interface IMain {
     content?: Block | string;
     className?: string;
 }
-
-const sections = [
-    MainHeaderBlock,
-    MainHeroBlock,
-    MainFooterBlock
-];
 
 class MainPage extends Block {
     constructor(props: IMain) {
@@ -26,7 +23,11 @@ class MainPage extends Block {
             className: "main-container",
             content: new Container({
                 className: "main-container__content",
-                content: sections.map((section) => section),
+                content: [
+                    new MainHeader(),
+                    new MainHero(),
+                    new MainFooter()
+                ],
             })
         })
 

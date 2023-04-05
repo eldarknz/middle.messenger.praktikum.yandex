@@ -1,5 +1,5 @@
-import { TChatData } from "../../declarations";
-import { TChatItem } from "../types";
+import { TChatData } from "@declarations/index";
+import { TChatItem } from "@custom_types/index";
 
 export const chats: TChatItem[] = [
     {

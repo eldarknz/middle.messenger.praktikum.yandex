@@ -1,29 +1,25 @@
-import Block from "../../../core/block";
-import ChatController from "../../../core/controllers/chatController";
-import { store, StoreEvents } from "../../../core/store";
-import connect, { Indexed } from "../../../core/store/connect";
-import { IUser } from "../../../types";
-
-import { createNewChat } from "../chatSidebar/chatSidebar";
+// Core
+import Block from "@core/block";
+import ChatController from "@core/controllers/chatController";
+// Components
+import Avatar from "@components/ui/avatar";
+import Button from "@components/ui/button";
+import { Container } from "@components/ui/grid";
+import Image from "@components/ui/image";
+import Label from "@components/ui/label";
+import Text from "@components/ui/text";
+import { createNewChat } from "@components/sections/chatSidebar/chatSidebar";
 import ChatCard from "./components/chatCard";
 import ChatCardSkeleton from "./components/chatCardSkeleton";
-import Avatar from "../../ui/avatar";
-import Label from "../../ui/label";
-import Text from "../../ui/text";
-import Image from "../../ui/image";
-import Button from "../../ui/button";
-import { Container } from "../../ui/grid";
-
-import { API_RESOURCES_PATH } from "../../../utils/constants";
-import { dateConvert } from "../../../utils/dateConverter";
-
-import { TChatItem, IChatUser } from "../../../types";
-
+// Utils
+import { dateConvert } from "@utils/dateConverter";
+import { API_RESOURCES_PATH } from "@utils/constants";
+// Types
+import { TChatItem, IChatUser } from "@custom_types/index";
+// Template
 import template from "./chatList.tmpl";
+// Styles
 import "./chatList.scss";
-import { getDifference } from "../../../core/api/wsTransport";
-
-const PING_INTERVAL = 5000;
 
 interface IChatList {
     state: Indexed;

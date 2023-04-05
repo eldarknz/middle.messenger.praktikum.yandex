@@ -1,10 +1,8 @@
-import Block from "../block";
-import isEqual from "../../utils/isEqual";
+// Core
+import Block from "@core/block";
 import { store, StoreEvents } from ".";
-
-export type Indexed<T = unknown> = {
-    [key in string]: T;
-};
+// Utils
+import isEqual from "@utils/isEqual";
 
 function connect(mapStateToProps: (state: Indexed) => any) {
     return function (Component: typeof Block) {

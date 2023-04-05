@@ -1,17 +1,16 @@
-import EventBus from '../eventBus';
-import set from '../../utils/set';
-
-type Indexed = Record<string, any>;
+// Core
+import EventBus from "@core/eventBus";
+// Utils
+import set from "@utils/set";
 
 export const StoreEvents = {
   Updated: 'updated',
 };
 
 class Store extends EventBus {
-  private state: Indexed = {};
+  private state: Record<string, any> = {};
 
   public getState() {
-    globalThis.DEBUG?.Store && globalThis.LOG && console.log("🫙 STORE: ", this.state);
     return this.state;
   }
 

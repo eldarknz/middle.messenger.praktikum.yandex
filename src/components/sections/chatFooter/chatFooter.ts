@@ -1,17 +1,19 @@
-import Block from "../../../core/block";
-import { store } from "../../../core/store";
-
-import Dropdown from "../../ui/dropdown";
-import { IconAttachment, IconArrowRight, IconMedia, IconFile, IconLocation } from "../../ui/icon";
-import Input from "../../ui/input";
-import Button from "../../ui/button";
-import DivBlock from "../../ui/div";
-import Text from "../../ui/text";
-import Form from "../../ui/form";
-
+// Core
+import Block from "@core/block";
+import { store } from "@core/store";
+import ChatController from "@core/controllers/chatController";
+// Components
+import Button from "@components/ui/button";
+import DivBlock from "@components/ui/div";
+import Dropdown from "@components/ui/dropdown";
+import Form from "@components/ui/form";
+import { IconAttachment, IconArrowRight, IconMedia, IconFile, IconLocation } from "@components/ui/icon";
+import Input from "@components/ui/input";
+import Text from "@components/ui/text";
+// Template
 import template from "./chatFooter.tmpl";
+// Styles
 import "./chatFooter.scss";
-import ChatController from "../../../core/controllers/chatController";
 
 interface IChatFooter {}
 

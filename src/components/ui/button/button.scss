@@ -7,7 +7,7 @@
     font-family: var(--font-family-base);
     font-size: var(--font-size-16);
     font-weight: var(--font-weight-5);
-    color: var(--extra-dark);
+    color: var(--black);
     text-decoration: none;
     cursor: pointer;
     user-select: none;
@@ -95,7 +95,7 @@
         border-color: transparent;
         color: var(--btn-primary-color);
         &:hover {
-            color: var(--color-white);
+            color: var(--white);
         }
     }
 
@@ -104,7 +104,7 @@
         border-color: transparent;
         color: var(--btn-secondary-color);
         &:hover {
-            color: var(--color-white);
+            color: var(--white);
         }
     }
 
@@ -113,7 +113,7 @@
         border-color: transparent;
         color: var(--btn-gray-color);
         &:hover {
-            color: var(--extra-dark);
+            color: var(--black);
         }
     }
 }
@@ -126,9 +126,9 @@
         border-color: var(--btn-primary-color);
         color: var(--btn-primary-color);
         &:hover {
-            color: var(--color-white);
+            color: var(--white);
             & svg path {
-                fill: var(--color-white);
+                fill: var(--white);
             }
         }
         & svg path {
@@ -141,9 +141,9 @@
         border-color: var(--btn-secondary-color);
         color: var(--btn-secondary-color);
         &:hover {
-            color: var(--color-white);
+            color: var(--white);
             & svg path {
-                fill: var(--color-white);
+                fill: var(--white);
             }
         }
         & svg path {
@@ -155,13 +155,13 @@
         background-color: transparent;
         border-color: var(--color-gray-400);
         &:hover {
-            color: var(--extra-dark);
+            color: var(--black);
             & svg path {
-                fill: var(--extra-dark);
+                fill: var(--black);
             }
         }
         & svg path {
-            fill: var(--extra-dark);
+            fill: var(--black);
         }
     }
 }
@@ -169,38 +169,38 @@
 .btn-primary {
     background-color: var(--btn-primary-color);
     border-color: var(--btn-primary-color);
-    color: var(--color-white);
+    color: var(--white);
     &:hover {
         background-color: var(--btn-primary-color-hover);
         border-color: var(--btn-primary-color-hover);
     }
     & svg path {
-        fill: var(--color-white);
+        fill: var(--white);
     }
 }
 
 .btn-secondary {
     background-color: var(--btn-secondary-color);
     border-color: var(--btn-secondary-color);
-    color: var(--color-white);
+    color: var(--white);
     &:hover {
         background-color: var(--btn-secondary-color-hover);
         border-color: var(--btn-secondary-color-hover);
     }
     & svg path {
-        fill: var(--color-white);
+        fill: var(--white);
     }
 }
 
 .btn-light {
     background-color: var(--btn-gray-color);
     border-color: var(--btn-gray-color);
-    color: var(--extra-dark);
+    color: var(--black);
     &:hover {
         background-color: var(--btn-gray-color-hover);
         border-color: var(--btn-gray-color-hover);
     }
     & svg path {
-        fill: var(--extra-dark);
+        fill: var(--black);
     }
 }

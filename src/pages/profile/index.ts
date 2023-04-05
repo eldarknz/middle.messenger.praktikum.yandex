@@ -1,25 +1,28 @@
-import Block from "../../core/block";
-import renderDOM from "../../core/renderDom";
-import AuthController from "../../core/controllers/authContorller";
-import UserController from "../../core/controllers/userController";
-import connect, { Indexed } from "../../core/store/connect";
-import Avatar from "../../components/ui/avatar";
-import Button from "../../components/ui/button";
-import Link from "../../components/ui/link";
-import List from "../../components/ui/list";
-import Modal, { modalCloseHandler } from "../../components/ui/modal";
-import { IconArrowLeft, IconMedia, IconPhoto } from "../../components/ui/icon";
-import DivBlock from "../../components/ui/div";
-import Form from "../../components/ui/form";
-import { Container } from "../../components/ui/grid";
-import InputFile from "../../components/ui/inputFile";
-import Text from "../../components/ui/text";
-import { Skeleton } from "../../components/ui/skeleton";
-import Image from "../../components/ui/image";
-import { IUser } from "../../types";
-import { formDataSubmissionsHandler } from "../../utils/formHandler";
-import { API_RESOURCES_PATH, ROUTES } from "../../utils/constants";
+// Core
+import Block from "@core/block";
+import renderDOM from "@core/renderDom";
+import connect from "@core/store/connect";
+import AuthController from "@core/controllers/authContorller";
+import UserController from "@core/controllers/userController";
+// Components
+import Button from "@components/ui/button";
+import { Container } from "@components/ui/grid";
+import DivBlock from "@components/ui/div";
+import Form from "@components/ui/form";
+import { IconArrowLeft, IconPhoto } from "@components/ui/icon";
+import InputFile from "@components/ui/inputFile";
+import Link from "@components/ui/link";
+import List from "@components/ui/list";
+import Modal, { modalCloseHandler } from "@components/ui/modal";
+import { Skeleton } from "@components/ui/skeleton";
+import ProfileUserAvatar from "@components/sections/profileUserAvatar/profileUserAvatar";
+import ProfileUserName from "@components/sections/profileUserName/profileUserName";
+// Utils
+import { formDataSubmissionsHandler } from "@utils/formHandler";
+import { ROUTES } from "@utils/constants";
+// Template
 import template from "./profile.tmpl";
+// Styles
 import "./styles.scss";
 
 const profileFields: { [key: string]: string } = {
@@ -85,46 +88,6 @@ const changeAvatar = () => {
     renderDOM("#modal-root", modal);
     modal.show();
 };
-
-const getUserAvatar = (state: Indexed) => {
-    if (Object.keys(state).length !== 0 && state.user) {
-        if ((state.user as IUser).avatar != null) {
-            return new Avatar({
-                size: "lg",
-                content: new Image({
-                    src: API_RESOURCES_PATH + (state.user as IUser).avatar
-                })
-            });
-        } else {
-            return new Avatar({
-                size: "lg",
-                content: new IconMedia({
-                    color: "white",
-                    size: "xxl",
-                })
-            });
-        }
-    } else {
-        return new Skeleton({
-            width: 130,
-            isAnimation: true,
-            isCircle: true
-        });
-    }
-}
-
-const getUserName = (state: Indexed) => {
-    if (Object.keys(state).length !== 0) {
-        return new Text({
-            content: (state.user as IUser).first_name
-        });
-    } else {
-        return new Skeleton({
-            height: 20,
-            isAnimation: true
-        });
-    }
-}
 
 const getUserDataList = (state: Indexed) => {
     if (Object.keys(state).length !== 0 && state.user) {
@@ -213,8 +176,8 @@ class Profile extends Block {
 };
 
 const withPage = connect((state) => ({
-    userAvatar: getUserAvatar(state),
-    userName: getUserName(state),
+    userAvatar: ProfileUserAvatar(state),
+    userName: ProfileUserName(state),
     userDataList: getUserDataList(state)
 }));
 

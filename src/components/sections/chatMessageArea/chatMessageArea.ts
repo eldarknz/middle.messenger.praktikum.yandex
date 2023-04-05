@@ -1,18 +1,20 @@
-import Block from "../../../core/block";
-import { Indexed } from "../../../core/store/connect";
-import WebSocketController from "../../../core/controllers/wsController";
-
-import { Container } from "../../ui/grid";
-import Text from "../../ui/text";
-import Label from "../../ui/label";
+// Core
+import Block from "@core/block";
+import WebSocketController from "@core/controllers/wsController";
+// Components
+import { Container } from "@components/ui/grid";
+import DivBlock from "@components/ui/div";
+import Label from "@components/ui/label";
+import Spinner from "@components/ui/spinner";
+import Text from "@components/ui/text";
 import ChatMessage from "./components/chatMessage";
-import Spinner from "../../ui/spinner";
-import DivBlock from "../../ui/div";
-
-import { IUser } from "../../../types";
-import { dateConvert } from "../../../utils/dateConverter";
-
+// Utils
+import { dateConvert } from "@utils/dateConverter";
+// Types
+import { IUser } from "@custom_types/index";
+// Template
 import template from "./chatMessageArea.tmpl";
+// Styles
 import "./chatMessageArea.scss";
 
 interface IChatMessage {

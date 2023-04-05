@@ -1,6 +1,9 @@
+// Core
 import HTTPTransport from "./httpTransport";
-import { API_ENDPOINTS } from "../../utils/constants";
-import { TChatTitleData } from "../../types";
+// Utils
+import { API_ENDPOINTS } from "@utils/constants";
+// Types
+import { TChatTitleData } from "@custom_types/index";
 
 export type TChatsQueryParams = {
     offset?: number,
@@ -17,7 +20,6 @@ class ChatAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public getChatList(data?: TChatsQueryParams): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("ChatAPI::getChatList", data);
         return this.get(API_ENDPOINTS.chats.chats, { data });
     }
 
@@ -27,7 +29,6 @@ class ChatAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public createNewChat(data: TChatTitleData): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("ChatAPI::createNewChat: ", data);
         return this.post(API_ENDPOINTS.chats.chats, { data: JSON.stringify(data), headers: { "Content-Type": this.contentType } });
     }
     
@@ -37,7 +38,6 @@ class ChatAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public deleteChatById(chatId: number): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("ChatAPI::deleteChatById: ", chatId);
         return this.delete(API_ENDPOINTS.chats.chats, { data: JSON.stringify({ chatId }), headers: { "Content-Type": this.contentType } });
     }
 
@@ -47,7 +47,6 @@ class ChatAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public getChatUsersById(chatId: number): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("UserAPI::getChatUserById: ", chatId);
         return this.get(API_ENDPOINTS.chats.chatUsersById(chatId));
     }
 
@@ -57,7 +56,6 @@ class ChatAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public getNewMessagesCount(chatId: string): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("UserAPI::getNewMessagesCount: ", chatId);
         return this.get(API_ENDPOINTS.chats.newMessagesCount(chatId));
     }
 
@@ -68,7 +66,6 @@ class ChatAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public uploadChatAvatar(data: FormData): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("ChatAPI::uploadChatAvatar: ", data);
         return this.put(API_ENDPOINTS.chats.chatAvatar, { data });
     }
 
@@ -79,7 +76,6 @@ class ChatAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public addUsersToChat(users: number[], chatId: number): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("ChatAPI::addUsersToChat: ", users, chatId);
         return this.put(API_ENDPOINTS.chats.chatsUsers, { data: JSON.stringify({ users, chatId }), headers: { "Content-Type": this.contentType } });
     }
     
@@ -90,7 +86,6 @@ class ChatAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public deleteUsersFromChat(users: number[], chatId: number): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("ChatAPI::deleteUsersFromChat: ", users, chatId);
         return this.delete(API_ENDPOINTS.chats.chatsUsers, { data: JSON.stringify({ users, chatId }), headers: { "Content-Type": this.contentType } });
     }
 
@@ -100,7 +95,6 @@ class ChatAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public getChatToken(id: number): Promise<XMLHttpRequest> {
-        globalThis.DEBUG?.ChatAPI && globalThis.LOG && console.info("ChatAPI::getChatTocken: ", id);
         return this.post(API_ENDPOINTS.chats.getChatUsers(id));
     }
 

@@ -1,40 +1,34 @@
-import Block from "../../../core/block";
+// Core
+import Block from "@core/block";
+// Components
+import Button from "@components/ui/button";
+// Utils
+import { ROUTES } from "@utils/constants";
+// Templates
 import template from "./mainHero.tmpl";
-import Button from "../../ui/button";
-import { ROUTES } from "../../../utils/constants";
-import { routerGo } from "../../ui/link";
-import { TBlockAttributes } from "../../../../declarations";
+// Styles
 import "./mainHero.scss";
 
-interface IMainHero {
-    attr?: TBlockAttributes;
-    callToAtionButton: Block;
-}
-
 export class MainHero extends Block {
-    constructor(props: IMainHero) {
-        super(props);
+    constructor(props?: {}) {
+
+        const callToActionButton = new Button({
+            size: "xl",
+            isLink: true,
+            isRound: true,
+            className: "main-hero__btn",
+            content: "Попробовать бесплатно",
+            events: {
+                click: () => { window.router.go(ROUTES.register.path); }
+            }
+        });
+
+        super({ ...props, callToActionButton });
     }
 
     render() {
-        return this.compile(template, {
-            logoLink: this.props.logoLink,
-            buttonSigin: this.props.buttonSigin  
-        });
+        return this.compile(template, this.props);
     }
 }
 
-const MainHeroBlock = new MainHero({
-    callToAtionButton: new Button({
-        size: "xl",
-        isLink: true,
-        isRound: true,
-        className: "main-hero__btn",
-        content: "Попробовать бесплатно",
-        events: {
-            click: (event: MouseEvent) => routerGo(event, window.router, ROUTES.register.path)
-        }
-    })
-})
-
-export default MainHeroBlock
+export default MainHero

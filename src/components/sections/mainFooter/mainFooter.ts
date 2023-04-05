@@ -1,32 +1,26 @@
-import Block from "../../../core/block";
+// Core
+import Block from "@core/block";
+// Components
+import Link from "@components/ui/link";
+// Template
 import template from "./mainFooter.tmpl";
-import Link from "../../ui/link";
-import { TBlockAttributes } from "../../../../declarations";
+// Styles
 import "./mainFooter.scss";
 
-interface IMainFooter {
-    attr?: TBlockAttributes;
-    link: Block;
-}
-
 export class MainFooter extends Block {
-    constructor(props: IMainFooter) {
-        super(props);
+    constructor(props?: {}) {
+
+        const link = new Link({
+            href: "https://github.com/eldarknz",
+            content: "@eldarknz"
+        });
+
+        super({ ...props, link });
     }
 
     render() {
-        return this.compile(template, {
-            logoLink: this.props.logoLink,
-            buttonSigin: this.props.buttonSigin  
-        });
+        return this.compile(template, this.props);
     }
 }
 
-const MainFooterBlock = new MainFooter({
-    link: new Link({
-        href: "https://github.com/eldarknz",
-        content: "@eldarknz"
-    })
-})
-
-export default MainFooterBlock
+export default MainFooter

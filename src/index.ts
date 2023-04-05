@@ -1,9 +1,10 @@
-import Router from "./core/router";
-import AuthController from "./core/controllers/authContorller";
-import { store, StoreEvents } from "./core/store";
-import { ROUTES } from "./utils/constants";
-import { DEV_MODE } from "./core/config/env.config";
-
+// Core
+import Router from "@core/router";
+import { store, StoreEvents } from "@core/store";
+import AuthController from "@core/controllers/authContorller";
+// Utils
+import { ROUTES } from "@utils/constants";
+// Pages
 import {
     MainPage,
     ChatPage,
@@ -14,25 +15,9 @@ import {
     RegistrationPage,
     NotFoundErrorPage,
     ServerErrorPage
-} from "./pages";
-
-import "./styles/globals.scss";
-
-globalThis.LOG = DEV_MODE ? console.log.bind(console) : function () {};
-globalThis.DEBUG = { 
-    EventBus: !DEV_MODE,
-    Block: !DEV_MODE,
-    RenderDOM: !DEV_MODE,
-    Store: !DEV_MODE,
-    AuthController: !DEV_MODE,
-    UserController: !DEV_MODE,
-    ChatController: !DEV_MODE,
-    AuthAPI: !DEV_MODE,
-    UserAPI: !DEV_MODE,
-    ChatAPI: !DEV_MODE
-};
-
-if (DEV_MODE) console.info('---------------------------------------------------------> 🛠️ Development mode ON! 🛠️ <---------------------------------------------------------');
+} from "@pages/index";
+// Styles
+import "@styles/globals.scss";
 
 const authChecker = async () => {
     const user = await AuthController.checkUser()

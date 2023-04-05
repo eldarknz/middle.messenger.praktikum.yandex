@@ -1,6 +1,10 @@
-import Block from "../../../core/block";
-import template from "./input.tmpl";
+// Core
+import Block from "@core/block";
+// Handlers
 import { inputHandler } from "./modules"
+// Template
+import template from "./input.tmpl";
+// Styles
 import "./input.scss";
 
 inputHandler();

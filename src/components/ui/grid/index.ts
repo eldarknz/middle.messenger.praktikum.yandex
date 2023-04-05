@@ -1,5 +1,8 @@
-import Block from "../../../core/block";
+// Core
+import Block from "@core/block";
+// Template
 import template from "./grid.tmpl";
+// Styles
 import "./grid.scss";
 
 interface IGrid {
@@ -81,34 +84,3 @@ export class Col extends Block {
       });
     }
 }
-
-/*
-export const Col: FC<IColProps> = ({
-    children,
-    col,
-    className
-}) => {
-
-    const colClassName = cn(styles.col,
-        {
-            [styles.colAuto]: col === 'auto',
-            [styles.col2]: col === '2',
-            [styles.col3]: col === '3',
-            [styles.col4]: col === '4',
-            [styles.col5]: col === '5',
-            [styles.col6]: col === '6',
-            [styles.col7]: col === '7',
-            [styles.col8]: col === '8',
-            [styles.col9]: col === '9',
-            [styles.col10]: col === '10',
-            [styles.col12]: col === '12',
-        },
-        className
-    );
-
-    return (
-        <div className={colClassName}>
-            {children}
-        </div> 
-    );
-};*/

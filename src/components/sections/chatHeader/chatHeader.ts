@@ -1,37 +1,38 @@
-import Block from "../../../core/block";
-import ChatController from "../../../core/controllers/chatController";
-import { store } from "../../../core/store";
-import connect, { Indexed } from "../../../core/store/connect";
-import renderDOM from "../../../core/renderDom";
-
-import Dropdown from "../../ui/dropdown";
-import Button from "../../ui/button";
-import Avatar from "../../ui/avatar";
-import { IconAdd, IconAddUser, IconDelete, IconDots, IconPhoto, IconTrash } from "../../ui/icon";
-import Skeleton from "../../ui/skeleton";
-import Image from "../../ui/image";
-import Text from "../../ui/text";
-import DivBlock from "../../ui/div";
-import Modal, { modalCloseHandler } from "../../ui/modal";
-import { Container, Row } from "../../ui/grid";
-import Form from "../../ui/form";
-import Input from "../../ui/input";
-import InputFile from "../../ui/inputFile";
-import List from "../../ui/list";
-
-import { API_RESOURCES_PATH } from "../../../utils/constants";
-import { formResponseErrorNotification, textNotification } from "../../../utils/formHandler";
-
-import { IUser, IChatUser, TChatItem } from "../../../types";
-
+// Core
+import Block from "@core/block";
+import renderDOM from "@core/renderDom";
+import { store } from "@core/store";
+import ChatController from "@core/controllers/chatController";
+// Components
+import Avatar from "@components/ui/avatar";
+import Button from "@components/ui/button";
+import { Container, Row } from "@components/ui/grid";
+import DivBlock from "@components/ui/div";
+import Dropdown from "@components/ui/dropdown";
+import Form from "@components/ui/form";
+import { IconAdd, IconAddUser, IconDelete, IconDots, IconPhoto, IconTrash } from "@components/ui/icon";
+import Image from "@components/ui/image";
+import Input from "@components/ui/input";
+import InputFile from "@components/ui/inputFile";
+import List from "@components/ui/list";
+import Modal, { modalCloseHandler } from "@components/ui/modal";
+import Skeleton from "@components/ui/skeleton";
+import Text from "@components/ui/text";
+// Utils
+import { API_RESOURCES_PATH } from "@utils/constants";
+import { formResponseErrorNotification, textNotification } from "@utils/formHandler";
+// Types
+import { IUser, IChatUser, TChatItem } from "@custom_types/index";
+// Template
 import template from "./chatHeader.tmpl";
+// Styles
 import "./chatHeader.scss";
 
 interface IChatHeader {
     state: Indexed;
 }
 
-function sortChatUsersByLogin(activeChatUsers: IChatUser[] | IUser[]) {
+const sortChatUsersByLogin = (activeChatUsers: IChatUser[] | IUser[]) => {
     activeChatUsers.sort((a: IChatUser, b: IChatUser) => {
         const loginA = a.login.toUpperCase();
         const loginB = b.login.toUpperCase();
@@ -533,12 +534,6 @@ const deleteChat = (activeChatId: number, ws: WebSocket) => {
     if (activeChatId) {
         let confirmDelete  = confirm("Вы уверены, что хотите удалить чат?");
         if (confirmDelete) {
-            console.log('DELETE');
-            /*ws.send(JSON.stringify({
-                content: { chat_id: activeChatId },
-                type: "message"
-            }))*/
-            //ws.close()
             ChatController.deleteChat(activeChatId, ws)
             .then((res) => {
                 if (res) {
@@ -662,14 +657,7 @@ class ChatHeaderSection extends Block {
                             })
                         ],
                         events: {
-                            click: () => {
-                                deleteChat(activeChatId, ws)
-                                //ws.close()//deleteChat(activeChatId, ws)
-                                //ws.send(JSON.stringify({
-                                //    content: "string", // строковое id подключенного пользователя
-                                //    type: "user connected"
-                                //}));
-                            }
+                            click: () => deleteChat(activeChatId, ws)
                         }
                     }),
                 ]

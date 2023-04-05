@@ -1,4 +1,4 @@
-import Router from "../src/core/router";
+import Router from "@core/router";
 
 declare global {
 
@@ -12,6 +12,10 @@ declare global {
     export type TProps = Record<string, any>;
 
     export type Key = keyof Object;
+
+    export type Indexed<T = unknown> = {
+        [key in string]: T;
+    };
 
     export var LOG: any;
     export var DEBUG: { [ key: string ]: boolean };
@@ -40,8 +44,6 @@ export type TUserData = {
     readonly title: string,
     readonly value: string,
 };
-
-export type TBlockAttributes = { readonly [key: string]: string; };
 
 export type TCheckFunction = (value: string) => boolean;
 export type TCheckLength = (min: number, max: number, value: string) => boolean;

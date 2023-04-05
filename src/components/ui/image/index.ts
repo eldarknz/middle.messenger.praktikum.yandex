@@ -1,5 +1,8 @@
-import Block from "../../../core/block";
+// Core
+import Block from "@core/block";
+// Template
 import template from "./image.tmpl";
+// Styles
 import "./image.scss";
 
 interface IImage {

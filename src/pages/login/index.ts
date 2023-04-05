@@ -1,17 +1,21 @@
-import Block from "../../core/block";
+// Core
+import Block from "@core/block";
+import Router from "@core/router";
+import AuthController from "@core/controllers/authContorller";
+// Components
+import Button from "@components/ui/button";
+import { Container } from "@components/ui/grid";
+import Form from "@components/ui/form";
+import Input from "@components/ui/input";
+import Link from "@components/ui/link";
+import Logo from "@components/ui/logo";
+// Utils
+import { formDataSubmissionsHandler } from "@utils/formHandler";
+import { validateInput } from "@utils/validation";
+import { inputValueHandler } from "@utils/inputValueHandler";
+import { ROUTES } from "@utils/constants";
+// Template
 import template from "./login.tmpl";
-import Button from "../../components/ui/button";
-import Input from "../../components/ui/input";
-import Link from "../../components/ui/link";
-import Logo from "../../components/ui/logo";
-import Form from "../../components/ui/form";
-import { validateInput } from "../../utils/validation";
-import { ROUTES } from "../../utils/constants";
-import { Container } from "../../components/ui/grid";
-import { checkInputs, clearForm, formDataSubmissionsHandler } from "../../utils/formHandler";
-import Router from "../../core/router";
-import AuthController from "../../core/controllers/authContorller";
-import { inputValueHandler } from "../../utils/inputValueHandler";
 
 interface ILogin {
     title: string;

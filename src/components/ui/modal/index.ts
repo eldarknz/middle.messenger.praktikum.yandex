@@ -1,8 +1,12 @@
-import Block from "../../../core/block";
+// Core
+import Block from "@core/block";
+// Components
+import Button from "@components/ui/button";
+import { IconClose } from "@components/ui/icon";
+// Template
 import template from "./modal.tmpl";
+// Styles
 import "./modal.scss";
-import Button from "../button";
-import { IconClose } from "../icon";
 
 interface IModal {
     className?: string,

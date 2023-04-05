@@ -1,4 +1,6 @@
-import Block from "../../../core/block";
+// Core
+import Block from "@core/block";
+// Template
 import {
     icon_add,
     icon_add_user,
@@ -22,6 +24,7 @@ import {
     icon_trash,
     icon_write
 } from "./icons.tmpl";
+// Styles
 import "./icon.scss";
 
 interface IIcon {

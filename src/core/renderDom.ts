@@ -1,11 +1,10 @@
-import Block from "./block";
+// Core
+import Block from "@core/block";
 
 const renderDOM = (query: string, block: Block) => {
-  globalThis.DEBUG?.RenderDOM && globalThis.LOG && console.log("🧱 Вставка блока в DOM - RenderDOM", query, block);
-  
   const root = document.querySelector(query);
 
-  root!.innerHTML = '';
+  root!.innerHTML = "";
   const blockContent = block.getContent();
   root!.appendChild(blockContent);
   block.dispatchComponentDidMount();

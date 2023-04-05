@@ -1,6 +1,10 @@
-import Block from "../../../../../core/block";
+// Core
+import Block from "@core/block";
+// Components
+import Skeleton from "@components/ui/skeleton";
+// Template
 import template from "./chatCardSkeleton.tmpl";
-import Skeleton from "../../../../ui/skeleton";
+// Styles
 import "./chatCardSkeleton.scss";
 
 interface IChatCardSkeleton {}

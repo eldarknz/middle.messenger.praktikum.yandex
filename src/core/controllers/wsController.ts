@@ -1,10 +1,10 @@
-import { store } from "../store";
-import WebSocketTransport from "../api/wsTransport";
+// Core
+import { store } from "@core/store";
+import WebSocketTransport from "@core/api/wsTransport";
 
 class WebSocketController {
 
     static createNewWebSocket(token: string) {
-        globalThis.DEBUG?.ChatController&& globalThis.LOG && console.info("WebSocketController::createNewWebSocket");
 
         const state = store.getState();
 
@@ -22,7 +22,6 @@ class WebSocketController {
     }
 
     static getOldMessages(offset?: number) {
-        globalThis.DEBUG?.ChatController&& globalThis.LOG && console.info("WebSocketController::createNewWebSocket");
 
         const state = store.getState();
 

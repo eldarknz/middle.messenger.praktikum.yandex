@@ -1,4 +1,5 @@
-import queryStringify from "../../utils/queryStringify";
+// Utils
+import queryStringify from "@utils/queryStringify";
 
 type RequestOptions = {
     method?: METHODS;

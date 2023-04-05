@@ -1,5 +1,8 @@
-import Block from "../../../core/block";
+// Core
+import Block from "@core/block";
+// Template
 import template from "./form.tmpl";
+// Styles
 import "./form.scss";
 
 interface IFormProps {

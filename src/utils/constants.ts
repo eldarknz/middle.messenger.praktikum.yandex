@@ -1,4 +1,4 @@
-import { TRoutes } from "../../declarations";
+import { TRoutes } from "@declarations/index";
 
 export const ROUTES: TRoutes = {
     login: { title: "Вход", path: "/login" },

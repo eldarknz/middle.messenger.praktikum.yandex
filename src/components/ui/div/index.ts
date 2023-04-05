@@ -1,4 +1,5 @@
-import Block from "../../../core/block";
+// Core
+import Block from "@core/block";
 
 interface IDivBlock {
     id?: string;
