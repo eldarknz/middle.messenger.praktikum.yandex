@@ -427,105 +427,107 @@ const getChatInfo = (state: Indexed) => {
 };
 
 const deleteUser = (user: IUser, activeChatUsers: IChatUser[], activeChatId: number) => {
-    if (user && activeChatUsers && activeChatId) {
+    
+    if (!user || !activeChatUsers || !activeChatId) {
+        return;
+    }
 
-        sortChatUsersByLogin(activeChatUsers);
+    sortChatUsersByLogin(activeChatUsers);
 
-        const modal = new Modal({
-            id: "chatUserListModal",
-            title: "Удалить пользователя",
-            content: new Container({
-                id: "chatUserListContainer",
-                isFluid: true,
-                content: [
-                    new Row({
-                        content: new DivBlock({
-                            className: "user-list__header",
-                            content: [
+    const modal = new Modal({
+        id: "chatUserListModal",
+        title: "Удалить пользователя",
+        content: new Container({
+            id: "chatUserListContainer",
+            isFluid: true,
+            content: [
+                new Row({
+                    content: new DivBlock({
+                        className: "user-list__header",
+                        content: [
+                            new DivBlock({
+                                className: "user-list__header__title",
+                                content: "Список пользователей"
+                            })
+                        ]
+                    })
+                }),
+                new Row({
+                    content: new List({
+                        className: "user-list",
+                        isFlush: true,
+                        isFluid: true,
+                        content: activeChatUsers.map((item: IChatUser) => {
+
+                            let userListInfoItem = [
                                 new DivBlock({
-                                    className: "user-list__header__title",
-                                    content: "Список пользователей"
-                                })
-                            ]
-                        })
-                    }),
-                    new Row({
-                        content: new List({
-                            className: "user-list",
-                            isFlush: true,
-                            isFluid: true,
-                            content: activeChatUsers.map((item: IChatUser) => {
-    
-                                let userListInfoItem = [
-                                    new DivBlock({
-                                        className: "user-block",
-                                        content: [
-                                            item.avatar ? 
-                                            new Avatar({
-                                                content: new Image({
-                                                    src: API_RESOURCES_PATH + item.avatar
-                                                })
-                                            }) : new Avatar(),
-                                            new DivBlock({
-                                                className: "user-block__name",
-                                                content: new Text({
-                                                    content: item.login
-                                                })
+                                    className: "user-block",
+                                    content: [
+                                        item.avatar ? 
+                                        new Avatar({
+                                            content: new Image({
+                                                src: API_RESOURCES_PATH + item.avatar
                                             })
-                                        ]
+                                        }) : new Avatar(),
+                                        new DivBlock({
+                                            className: "user-block__name",
+                                            content: new Text({
+                                                content: item.login
+                                            })
+                                        })
+                                    ]
+                                }),
+                            ];
+
+                            if (item.role !== "admin") {
+                                userListInfoItem.push(new DivBlock({
+                                    className: "user-list__info-item__addition action-item",
+                                    content: new IconDelete({
+                                        size: "m",
+                                        color: "secondary"
                                     }),
-                                ];
-    
-                                if (item.role !== "admin") {
-                                    userListInfoItem.push(new DivBlock({
-                                        className: "user-list__info-item__addition action-item",
-                                        content: new IconDelete({
-                                            size: "m",
-                                            color: "secondary"
-                                        }),
-                                        events: {
-                                            click: (event) => {
-                                                let confirmDelete  = confirm("Вы уверены, что хотите удалить пользователя из чата?");
-                                                if (confirmDelete) {
-                                                    ChatController.deleteUserfromChat(item.id, activeChatId)
-                                                    .then((res) => {
-                                                        if (res) {
-                                                            if (res.status === 200) {
-                                                                const target = event.target;
-                                                                if (target) {
-                                                                    const parentNode = (target as HTMLElement).closest('.list-item');
-                                                                    if (parentNode) parentNode.remove()
-                                                                }
+                                    events: {
+                                        click: (event) => {
+                                            let confirmDelete  = confirm("Вы уверены, что хотите удалить пользователя из чата?");
+                                            if (confirmDelete) {
+                                                ChatController.deleteUserfromChat(item.id, activeChatId)
+                                                .then((res) => {
+                                                    if (res) {
+                                                        if (res.status === 200) {
+                                                            const target = event.target;
+                                                            if (target) {
+                                                                const parentNode = (target as HTMLElement).closest('.list-item');
+                                                                if (parentNode) parentNode.remove()
                                                             }
-                                                        } else {
-                                                            formResponseErrorNotification(res, ".modal-container__content", "Произошла ошибка, попробуйте еще раз");
                                                         }
-                                                    })
-                                                }
+                                                    } else {
+                                                        formResponseErrorNotification(res, ".modal-container__content", "Произошла ошибка, попробуйте еще раз");
+                                                    }
+                                                })
                                             }
                                         }
-                                    }))
-                                } else {
-                                    userListInfoItem.push(new DivBlock({
-                                        className: "user-list__info-item__addition text-dark",
-                                        content: "admin"
-                                    }))
-                                }
-    
-                                return new DivBlock({
-                                    className: "user-list__info-item",
-                                    content: userListInfoItem
-                                })
+                                    }
+                                }))
+                            } else {
+                                userListInfoItem.push(new DivBlock({
+                                    className: "user-list__info-item__addition text-dark",
+                                    content: "admin"
+                                }))
+                            }
+
+                            return new DivBlock({
+                                className: "user-list__info-item",
+                                content: userListInfoItem
                             })
                         })
                     })
-                ]
-            })
-        });
+                })
+            ]
+        })
+    });
 
-        renderDOM("#modal-root", modal);
-        modal.show();
-    }
+    renderDOM("#modal-root", modal);
+    modal.show();
 };
 
 const deleteChat = (activeChatId: number, ws: WebSocket) => {
