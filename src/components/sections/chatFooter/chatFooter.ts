@@ -99,7 +99,7 @@ class ChatFooterSection extends Block {
                     event.preventDefault();
                     const state = store.getState()
                     const target = event.target;
-                    if (target && target instanceof HTMLFormElement && state.ws) {
+                    if (target && state.ws) {
                         const ws = state.ws as WebSocket;
                         const input = (target as HTMLFormElement).elements[0] as HTMLInputElement;
                         const value = input.value;
