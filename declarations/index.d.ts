@@ -16,9 +16,6 @@ declare global {
     export type Indexed<T = unknown> = {
         [key in string]: T;
     };
-
-    export var LOG: any;
-    export var DEBUG: { [ key: string ]: boolean };
 }
 
 declare module '*.png';
