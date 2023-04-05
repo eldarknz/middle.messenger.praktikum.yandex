@@ -104,8 +104,6 @@ const getFoundUserList = (foundUsers: IUser[]) => {
                             ];
 
                             const chatUserEntries = activeChat.users.find((activeChatUser: IChatUser) => activeChatUser.id === item.id);
-                            console.log(activeChat);
-                            console.log(chatUserEntries);
                             if (!chatUserEntries) {
                                 userListInfoItem.push(new DivBlock({
                                     className: "user-list__info-item__addition action-item",
