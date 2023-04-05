@@ -149,7 +149,7 @@ const getFoundUserList = (foundUsers: IUser[]) => {
     renderDOM("#foundUserList", foundUserList);
 }
 
-const addNewUser = (user: IUser, activeChat: { users: IChatUser[], id: number }) => {
+const addNewUser = () => {
     const modal = new Modal({
         id: "addNewUserModal",
         title: "Добавление пользователя",
@@ -371,7 +371,7 @@ const getChatInfo = (state: Indexed) => {
                                     size: "lg"
                                 }),
                                 events: {
-                                    click: () => addNewUser(user, activeChat)
+                                    click: addNewUser
                                 }
                             }),
                         ]
@@ -625,7 +625,7 @@ class ChatHeaderSection extends Block {
                             })
                         ],
                         events: {
-                            click: () => addNewUser(user, activeChat)
+                            click: addNewUser
                         }
                     }),
                     new DivBlock({
