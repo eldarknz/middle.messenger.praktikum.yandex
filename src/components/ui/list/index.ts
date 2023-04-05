@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Template
 import template from "./list.tmpl";
 // Styles
@@ -12,7 +12,7 @@ interface IList {
   content: Block[] | string[];
 }
 
-class List extends Block {
+export class List extends Block {
   constructor(props: IList) {
     super(props);
     this.listClassName = this.listClassName.bind(this);
@@ -33,5 +33,3 @@ class List extends Block {
     });
   }
 }
-
-export default List

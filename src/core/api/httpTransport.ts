@@ -1,5 +1,5 @@
 // Utils
-import queryStringify from "@utils/queryStringify";
+import { queryStringify } from "@utils/queryStringify";
 
 type RequestOptions = {
     method?: METHODS;
@@ -18,7 +18,7 @@ enum METHODS {
 type HTTPMethod = (url: string, options?: RequestOptions) => Promise<XMLHttpRequest>
 type HTTPRequest = (url: string, options: RequestOptions, timeout?: number) => Promise<XMLHttpRequest>;
 
-class HTTPTransport {
+export class HTTPTransport {
     get: HTTPMethod = (url, options = {}) => {
         const query = options.data ? url + queryStringify(options.data as { [key: string]: string }) : url;
         return this.request(query, { ...options, method: METHODS.GET }, options.timeout);
@@ -78,5 +78,3 @@ class HTTPTransport {
         });
     };
 }
-
-export default HTTPTransport

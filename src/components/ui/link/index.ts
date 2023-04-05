@@ -1,6 +1,6 @@
 // Core
-import Block from "@core/block";
-import Router from "@core/router";
+import { Block } from "@core/block";
+import { Router } from "@core/router";
 // Template
 import template from "./link.tmpl";
 
@@ -25,7 +25,7 @@ export const routerGo = (event: MouseEvent, router: Router, path: string) => {
   event.preventDefault();
 }
 
-class Link extends Block {
+export class Link extends Block {
   constructor(props: ILink) {
     const defaultClickHandler = (e: MouseEvent) => {
       if (this.props.href)
@@ -45,5 +45,3 @@ class Link extends Block {
     });
   }
 }
-
-export default Link

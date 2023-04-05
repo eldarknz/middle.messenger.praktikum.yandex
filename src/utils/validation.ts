@@ -57,8 +57,6 @@ export class ValidationForm {
     };
 }
 
-export default ValidationForm
-
 export const validateInput = (firstElement: HTMLInputElement): boolean => {
     const validation = new ValidationForm;
 

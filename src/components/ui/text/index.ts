@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Template
 import template from "./text.tmpl";
 
@@ -8,7 +8,7 @@ interface ILink {
   content?: Block | string;
 };
 
-class Text extends Block {
+export class Text extends Block {
   constructor(props: ILink) {
     super(props);
   }
@@ -20,5 +20,3 @@ class Text extends Block {
     });
   }
 }
-
-export default Text

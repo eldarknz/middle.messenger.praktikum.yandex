@@ -1,8 +1,8 @@
 // Core
 import { store } from "@core/store";
-import UserAPI from "@core/api/userApi";
+import { UserAPI } from "@core/api/userApi";
 // Utils
-import formDataToObjectConverter from "@utils/formDataToObjectConverter";
+import { formDataToObjectConverter } from "@utils/formDataToObjectConverter";
 // Types
 import { TUserProfileData, TUserPasswordData, TUserPasswordFormData } from "@custom_types/index";
 
@@ -15,7 +15,7 @@ const preparePassword = (data: TUserPasswordFormData): TUserPasswordData => {
 
 const userAPI = new UserAPI();
 
-class UserController {
+export class UserController {
 
     static async changeProfile(formData: FormData) {
         const data = formDataToObjectConverter(formData) as TUserProfileData;
@@ -63,5 +63,3 @@ class UserController {
         });
     }
 }
-
-export default UserController

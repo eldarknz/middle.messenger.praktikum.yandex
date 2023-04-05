@@ -1,23 +1,23 @@
 // Core
-import Block from "@core/block";
-import renderDOM from "@core/renderDom";
+import { Block } from "@core/block";
+import { renderDOM } from "@core/renderDom";
 import { store } from "@core/store";
-import ChatController from "@core/controllers/chatController";
+import { ChatController } from "@core/controllers/chatController";
 // Components
-import Avatar from "@components/ui/avatar";
-import Button from "@components/ui/button";
+import { Avatar } from "@components/ui/avatar";
+import { Button } from "@components/ui/button";
 import { Container, Row } from "@components/ui/grid";
-import DivBlock from "@components/ui/div";
-import Dropdown from "@components/ui/dropdown";
-import Form from "@components/ui/form";
+import { DivBlock } from "@components/ui/div";
+import { Dropdown } from "@components/ui/dropdown";
+import { Form } from "@components/ui/form";
 import { IconAdd, IconAddUser, IconDelete, IconDots, IconPhoto, IconTrash } from "@components/ui/icon";
-import Image from "@components/ui/image";
-import Input from "@components/ui/input";
-import InputFile from "@components/ui/inputFile";
-import List from "@components/ui/list";
-import Modal, { modalCloseHandler } from "@components/ui/modal";
-import Skeleton from "@components/ui/skeleton";
-import Text from "@components/ui/text";
+import { Image } from "@components/ui/image";
+import { Input } from "@components/ui/input";
+import { InputFile } from "@components/ui/inputFile";
+import { List } from "@components/ui/list";
+import { Modal, modalCloseHandler } from "@components/ui/modal";
+import { Skeleton } from "@components/ui/skeleton";
+import { Text } from "@components/ui/text";
 // Utils
 import { API_RESOURCES_PATH } from "@utils/constants";
 import { formResponseErrorNotification, textNotification } from "@utils/formHandler";
@@ -427,7 +427,7 @@ const getChatInfo = (state: Indexed) => {
 };
 
 const deleteUser = (user: IUser, activeChatUsers: IChatUser[], activeChatId: number) => {
-    
+
     if (!user || !activeChatUsers || !activeChatId) {
         return;
     }
@@ -599,7 +599,7 @@ const getChatBlock = (state: Indexed) => {
     }
 };
 
-class ChatHeaderSection extends Block {
+export class ChatHeaderSection extends Block {
     constructor(props: IChatHeader) {
 
         const state = props.state;
@@ -673,5 +673,3 @@ class ChatHeaderSection extends Block {
         return this.compile(template, this.props);
     }
 }
-
-export default ChatHeaderSection

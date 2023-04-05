@@ -1,10 +1,10 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 import { store, StoreEvents } from ".";
 // Utils
-import isEqual from "@utils/isEqual";
+import { isEqual } from "@utils/isEqual";
 
-function connect(mapStateToProps: (state: Indexed) => any) {
+export function connect(mapStateToProps: (state: Indexed) => any) {
     return function (Component: typeof Block) {
         return class extends Component {
             constructor(props: {}) {
@@ -29,5 +29,3 @@ function connect(mapStateToProps: (state: Indexed) => any) {
         };
     };
 }
-
-export default connect

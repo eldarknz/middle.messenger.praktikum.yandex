@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Template
 import template from "./spinner.tmpl";
 // Styles
@@ -54,5 +54,3 @@ export class Spinner extends Block {
     }
 
 }
-
-export default Spinner

@@ -1,16 +1,16 @@
 // Core
-import Block from "@core/block";
-import ChatController from "@core/controllers/chatController";
+import { Block } from "@core/block";
+import { ChatController } from "@core/controllers/chatController";
 // Components
-import Avatar from "@components/ui/avatar";
-import Button from "@components/ui/button";
+import { Avatar } from "@components/ui/avatar";
+import { Button } from "@components/ui/button";
 import { Container } from "@components/ui/grid";
-import Image from "@components/ui/image";
-import Label from "@components/ui/label";
-import Text from "@components/ui/text";
+import { Image } from "@components/ui/image";
+import { Label } from "@components/ui/label";
+import { Text }from "@components/ui/text";
 import { createNewChat } from "@components/sections/chatSidebar/chatSidebar";
-import ChatCard from "./components/chatCard";
-import ChatCardSkeleton from "./components/chatCardSkeleton";
+import { ChatCard } from "./components/chatCard";
+import { ChatCardSkeleton } from "./components/chatCardSkeleton";
 // Utils
 import { dateConvert } from "@utils/dateConverter";
 import { API_RESOURCES_PATH } from "@utils/constants";
@@ -59,11 +59,6 @@ const getChatList = (state: Indexed) => {
                         click: (event: Event) => {
                             const target = event.currentTarget;
                             if (target && target instanceof HTMLElement) {
-                                /*const activeCard = document.querySelector(".chat-card.active");
-                                if (activeCard) {
-                                    activeCard.classList.remove("active");
-                                }
-                                target.classList.add("active");*/
                                 const targetId = target.getAttribute("data-chat-id");
                                 if (targetId && activeChatId !== parseInt(targetId)) {
                                     ChatController.getChatById(parseInt(targetId));
@@ -97,7 +92,7 @@ const getChatList = (state: Indexed) => {
     }
 };
 
-class ChatListSection extends Block {
+export class ChatList extends Block {
     constructor(props: IChatList) {
         const content = getChatList(props.state)
         super({ ...props, content });
@@ -107,5 +102,3 @@ class ChatListSection extends Block {
         return this.compile(template, this.props);
     } 
 }
-
-export default ChatListSection

@@ -1,16 +1,16 @@
 // Core
 import { store } from "@core/store";
-import Router from "@core/router";
-import AuthAPI from "@core/api/authApi";
+import { Router } from "@core/router";
+import { AuthAPI } from "@core/api/authApi";
 // Utils
-import formDataToObjectConverter from "@utils/formDataToObjectConverter";
+import { formDataToObjectConverter } from "@utils/formDataToObjectConverter";
 import { ROUTES } from "@utils/constants";
 // Types
 import { TSignInData, TSignUpData } from "@custom_types/index";
 
 const authAPI = new AuthAPI();
 
-class AuthController {
+export class AuthController {
 
     static async signUp(formData: FormData) {
         const data = formDataToObjectConverter(formData) as TSignUpData;
@@ -76,7 +76,4 @@ class AuthController {
             return error;
         });
     }
-
 }
-
-export default AuthController

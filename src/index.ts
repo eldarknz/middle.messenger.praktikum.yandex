@@ -1,7 +1,7 @@
 // Core
-import Router from "@core/router";
+import { Router } from "@core/router";
 import { store, StoreEvents } from "@core/store";
-import AuthController from "@core/controllers/authContorller";
+import { AuthController } from "@core/controllers/authContorller";
 // Utils
 import { ROUTES } from "@utils/constants";
 // Pages

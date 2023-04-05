@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Template
 import template from "./chatCard.tmpl";
 // Styles
@@ -18,7 +18,7 @@ interface IChardCard {
     }
 }
 
-class ChatCard extends Block {
+export class ChatCard extends Block {
     constructor(props: IChardCard) {
         super(props);
     }
@@ -35,5 +35,3 @@ class ChatCard extends Block {
         })
     }
 }
-
-export default ChatCard

@@ -1,14 +1,14 @@
 // Core
-import Block from "@core/block";
-import Router from "@core/router";
-import AuthController from "@core/controllers/authContorller";
+import { Block } from "@core/block";
+import { Router } from "@core/router";
+import { AuthController } from "@core/controllers/authContorller";
 // Components
-import Button from "@components/ui/button";
+import { Button } from "@components/ui/button";
 import { Container } from "@components/ui/grid";
-import Form from "@components/ui/form";
-import Input from "@components/ui/input";
-import Link from "@components/ui/link";
-import Logo from "@components/ui/logo";
+import { Form } from "@components/ui/form";
+import { Input } from "@components/ui/input";
+import { Link } from "@components/ui/link";
+import { Logo } from "@components/ui/logo";
 // Utils
 import { formDataSubmissionsHandler } from "@utils/formHandler";
 import { validateInput } from "@utils/validation";
@@ -26,7 +26,7 @@ interface ILogin {
     events: { submit: (e: Event) => void };
 }
 
-class LoginPage extends Block {
+export class LoginPage extends Block {
     constructor(props: ILogin) {
 
         const logoLink = new Logo({
@@ -97,6 +97,4 @@ class LoginPage extends Block {
     render() {
         return this.compile(template, this.props);
     }
-};
-  
-export default LoginPage
+}

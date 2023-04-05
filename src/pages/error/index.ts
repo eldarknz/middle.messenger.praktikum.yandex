@@ -1,11 +1,13 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Components
-import Link from "@components/ui/link";
+import { Link } from "@components/ui/link";
 // Utils
 import { ROUTES } from "@utils/constants";
 // Template
 import template from "./error.tmpl";
+// Styles
+import "./styles.scss";
 
 interface IErrorPage {
     title: string;

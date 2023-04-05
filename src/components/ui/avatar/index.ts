@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Templates
 import template from "./avatar.tmlp";
 // Styles
@@ -11,7 +11,7 @@ interface IAvatar {
     content?: Block | string;
 }
 
-class Avatar extends Block {
+export class Avatar extends Block {
     constructor(props?: IAvatar) {
         super(props);
         this.avatarClassName = this.avatarClassName.bind(this);
@@ -31,5 +31,3 @@ class Avatar extends Block {
         });
     }
 }
-
-export default Avatar

@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Template
 import template from "./label.tmpl";
 // Styles
@@ -12,7 +12,7 @@ interface ILabel {
     content: Block | string;
 }
 
-class Label extends Block {
+export class Label extends Block {
     constructor(props: ILabel) {
         super(props)
         this.labelClassName = this.labelClassName.bind(this);
@@ -33,5 +33,3 @@ class Label extends Block {
         })
     }
 }
-
-export default Label

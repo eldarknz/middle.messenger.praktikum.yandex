@@ -1,18 +1,18 @@
 // Core
-import Block from "@core/block";
-import Router from "@core/router";
-import connect from "@core/store/connect";
-import AuthController from "@core/controllers/authContorller";
-import UserController from "@core/controllers/userController";
+import { Block } from "@core/block";
+import { Router } from "@core/router";
+import { connect } from "@core/store/connect";
+import { AuthController } from "@core/controllers/authContorller";
+import { UserController } from "@core/controllers/userController";
 // Components
 import { Container } from "@components/ui/grid";
-import Button from "@components/ui/button";
-import Form from "@components/ui/form";
-import Input from "@components/ui/input";
+import { Button } from "@components/ui/button";
+import { Form } from "@components/ui/form";
+import { Input } from "@components/ui/input";
 import { IconArrowLeft } from "@components/ui/icon";
 import { Skeleton } from "@components/ui/skeleton";
-import ProfileUserAvatar from "@components/sections/profileUserAvatar/profileUserAvatar";
-import ProfileUserName from "@components/sections/profileUserName/profileUserName";
+import { ProfileUserAvatar } from "@components/sections/profileUserAvatar/profileUserAvatar";
+import { ProfileUserName } from "@components/sections/profileUserName/profileUserName";
 // Utils
 import { formDataSubmissionsHandler } from "@utils/formHandler";
 import { validateInput } from "@utils/validation";
@@ -126,6 +126,4 @@ const withPage = connect((state) => ({
     form: getForm(state)
 }));
 
-const PasswordEditPage = withPage(PasswordEdit);
-
-export default PasswordEditPage
+export const PasswordEditPage = withPage(PasswordEdit);

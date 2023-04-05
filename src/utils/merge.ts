@@ -2,7 +2,7 @@ type Indexed<T = unknown> = {
     [key in string]: T;
 };
   
-function merge(lhs: Indexed, rhs: Indexed): Indexed {
+export function merge(lhs: Indexed, rhs: Indexed): Indexed {
     for (let key in rhs) {
         if (!rhs.hasOwnProperty(key)) {
             continue;
@@ -21,5 +21,3 @@ function merge(lhs: Indexed, rhs: Indexed): Indexed {
   
     return lhs;
 }
-  
-export default merge

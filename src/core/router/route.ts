@@ -1,11 +1,11 @@
 // Core
-import Block from "@core/block";
-import renderDOM from "@core/renderDom";
+import { Block } from "@core/block";
+import { renderDOM } from "@core/renderDom";
 
 /**
  * Блок Route получает в качестве аргументов путь, соответствующий ему блок и его свойства
  */
-class Route {
+export class Route {
     private _pathname: string;
     private _blockClass: typeof Block;
     private _block: Block | null;
@@ -56,8 +56,4 @@ class Route {
       
         renderDOM(this._props.rootQuery, this._block);
     }
-    
-
-};
-
-export default Route
+}

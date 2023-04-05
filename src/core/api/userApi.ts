@@ -1,11 +1,11 @@
 // Core
-import HTTPTransport from "./httpTransport";
+import { HTTPTransport } from "./httpTransport";
 // Utils
 import { API_ENDPOINTS } from "@utils/constants";
 // Types
 import { TUserProfileData, TUserPasswordData, TUserLogin } from "@custom_types/index";
 
-class UserAPI extends HTTPTransport {
+export class UserAPI extends HTTPTransport {
     contentType = "application/json; charset=utf-8";
 
     /**
@@ -53,5 +53,3 @@ class UserAPI extends HTTPTransport {
         return this.post(API_ENDPOINTS.users.searchUserByLogin, { data: JSON.stringify(login), headers: { "Content-Type": this.contentType } });
     }
 }
-
-export default UserAPI

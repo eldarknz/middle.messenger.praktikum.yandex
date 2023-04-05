@@ -1,24 +1,22 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 import { store } from "@core/store";
-import ChatController from "@core/controllers/chatController";
+import { ChatController } from "@core/controllers/chatController";
 // Components
-import Button from "@components/ui/button";
-import DivBlock from "@components/ui/div";
-import Dropdown from "@components/ui/dropdown";
-import Form from "@components/ui/form";
+import { Button } from "@components/ui/button";
+import { DivBlock } from "@components/ui/div";
+import { Dropdown } from "@components/ui/dropdown";
+import { Form } from "@components/ui/form";
 import { IconAttachment, IconArrowRight, IconMedia, IconFile, IconLocation } from "@components/ui/icon";
-import Input from "@components/ui/input";
-import Text from "@components/ui/text";
+import { Input } from "@components/ui/input";
+import { Text } from "@components/ui/text";
 // Template
 import template from "./chatFooter.tmpl";
 // Styles
 import "./chatFooter.scss";
 
-interface IChatFooter {}
-
-class ChatFooterSection extends Block {
-    constructor(props: IChatFooter) {
+export class ChatFooterSection extends Block {
+    constructor(props: {}) {
 
         const dropdown = new Dropdown({
             className: "up",
@@ -123,5 +121,3 @@ class ChatFooterSection extends Block {
         return this.compile(template, this.props);
     }
 }
-
-export default ChatFooterSection

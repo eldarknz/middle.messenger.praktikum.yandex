@@ -1,5 +1,5 @@
 // Core
-import HTTPTransport from "./httpTransport";
+import { HTTPTransport } from "./httpTransport";
 // Utils
 import { API_ENDPOINTS } from "@utils/constants";
 // Types
@@ -11,7 +11,7 @@ export type TChatsQueryParams = {
     title?: string,
 };
 
-class ChatAPI extends HTTPTransport {
+export class ChatAPI extends HTTPTransport {
     contentType = "application/json; charset=utf-8";
 
     /**
@@ -99,5 +99,3 @@ class ChatAPI extends HTTPTransport {
     }
 
 }
-
-export default ChatAPI

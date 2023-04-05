@@ -1,13 +1,13 @@
 // Core
-import Block from "@core/block";
-import WebSocketController from "@core/controllers/wsController";
+import { Block } from "@core/block";
+import { WebSocketController } from "@core/controllers/wsController";
 // Components
 import { Container } from "@components/ui/grid";
-import DivBlock from "@components/ui/div";
-import Label from "@components/ui/label";
-import Spinner from "@components/ui/spinner";
-import Text from "@components/ui/text";
-import ChatMessage from "./components/chatMessage";
+import { DivBlock } from "@components/ui/div";
+import { Label } from "@components/ui/label";
+import { Spinner } from "@components/ui/spinner";
+import { Text } from "@components/ui/text";
+import { ChatMessage } from "./components/chatMessage";
 // Utils
 import { dateConvert } from "@utils/dateConverter";
 // Types
@@ -113,7 +113,7 @@ const getMessages = (state: Indexed) => {
     }
 };
 
-class ChatMessageAreaSection extends Block {
+export class ChatMessageAreaSection extends Block {
     constructor(props: IChatMessageArea) {
         const content = getMessages(props.state);
         super({ ...props, content });
@@ -123,5 +123,3 @@ class ChatMessageAreaSection extends Block {
         return this.compile(template, this.props);
     }
 }
-
-export default ChatMessageAreaSection

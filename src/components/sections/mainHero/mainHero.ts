@@ -1,7 +1,7 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Components
-import Button from "@components/ui/button";
+import { Button } from "@components/ui/button";
 // Utils
 import { ROUTES } from "@utils/constants";
 // Templates
@@ -30,5 +30,3 @@ export class MainHero extends Block {
         return this.compile(template, this.props);
     }
 }
-
-export default MainHero

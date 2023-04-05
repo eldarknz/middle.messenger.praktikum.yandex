@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Template
 import template from "./image.tmpl";
 // Styles
@@ -11,7 +11,7 @@ interface IImage {
     alt?: Block | string;
 }
 
-class Image extends Block {
+export class Image extends Block {
     constructor(props?: IImage) {
         super(props);
         this.imageClassName = this.imageClassName.bind(this);
@@ -31,5 +31,3 @@ class Image extends Block {
         });
     }
 }
-
-export default Image

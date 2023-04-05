@@ -2,11 +2,11 @@
 import Handlebars from 'handlebars';
 import { v4 as makeUUID } from 'uuid';
 // Core
-import EventBus from '@core/eventBus';
+import { EventBus } from '@core/eventBus';
 
 export type Children = Record<string, any>;
 
-class Block {
+export class Block {
     static EVENTS = {
         INIT: 'init',
         FLOW_CDM: 'flow:component-did-mount',
@@ -275,5 +275,3 @@ class Block {
     }
 
 }
-
-export default Block;

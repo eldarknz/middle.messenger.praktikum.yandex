@@ -1,10 +1,10 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Components
 import { Container } from "@components/ui/grid";
-import MainHeader from "@components/sections/mainHeader/mainHeader";
-import MainFooter from "@components/sections/mainFooter/mainFooter";
-import MainHero from "@components/sections/mainHero/mainHero";
+import { MainHeader } from "@components/sections/mainHeader/mainHeader";
+import { MainFooter } from "@components/sections/mainFooter/mainFooter";
+import { MainHero } from "@components/sections/mainHero/mainHero";
 // Template
 import template from "./main.tmpl";
 // Styles
@@ -15,7 +15,7 @@ interface IMain {
     className?: string;
 }
 
-class MainPage extends Block {
+export class MainPage extends Block {
     constructor(props: IMain) {
 
         const content = new Container({
@@ -37,6 +37,4 @@ class MainPage extends Block {
     render() {
         return this.compile(template, this.props);
     }
-};
-  
-export default MainPage
+}

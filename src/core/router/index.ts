@@ -1,7 +1,7 @@
 
 // Core
-import Block from "@core/block";
-import Route from "@core/router/route";
+import { Block } from "@core/block";
+import { Route } from "@core/router/route";
 // Utils
 import { ROUTES } from "@utils/constants";;
 
@@ -9,7 +9,7 @@ import { ROUTES } from "@utils/constants";;
  * Класс для работы с роутером
  * паттерн Singleton
  */
-class Router {
+export class Router {
 
     private static _instance: Router;
     private routes: Route[] = [];
@@ -125,5 +125,3 @@ class Router {
         return this.routes.find(route => route.match(pathname));
     }
 }
-
-export default Router

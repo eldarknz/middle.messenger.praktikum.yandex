@@ -1,10 +1,10 @@
 // Components
-import Skeleton from "@components/ui/skeleton";
-import Text from "@components/ui/text";
+import { Skeleton } from "@components/ui/skeleton";
+import { Text } from "@components/ui/text";
 // Types
 import { IUser } from "@custom_types/index";
 
-const ProfileUserName = (state: Indexed) => {
+export const ProfileUserName = (state: Indexed) => {
     if (Object.keys(state).length !== 0 && state.user) {
         return new Text({
             content: (state.user as IUser).first_name
@@ -16,5 +16,3 @@ const ProfileUserName = (state: Indexed) => {
         });
     }
 }
-
-export default ProfileUserName

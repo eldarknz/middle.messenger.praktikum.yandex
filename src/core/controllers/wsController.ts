@@ -1,8 +1,8 @@
 // Core
 import { store } from "@core/store";
-import WebSocketTransport from "@core/api/wsTransport";
+import { WebSocketTransport } from "@core/api/wsTransport";
 
-class WebSocketController {
+export class WebSocketController {
 
     static createNewWebSocket(token: string) {
 
@@ -33,5 +33,3 @@ class WebSocketController {
         }
     }
 }
-
-export default WebSocketController

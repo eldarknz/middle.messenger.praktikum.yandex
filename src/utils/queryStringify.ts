@@ -7,6 +7,4 @@ export const queryStringify = (data: { [key: string]: string }): string => {
   return keys.reduce((result, key, index) => {
     return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
   }, '?');
-}
-
-export default queryStringify
+};

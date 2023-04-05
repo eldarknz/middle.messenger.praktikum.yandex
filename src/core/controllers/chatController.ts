@@ -1,17 +1,17 @@
 // Core
 import { store } from "@core/store";
-import ChatAPI, { TChatsQueryParams } from "@core/api/chatApi";
-import UserController from "@core/controllers/userController";
-import WebSocketController from "@core/controllers/wsController";
+import { ChatAPI, TChatsQueryParams } from "@core/api/chatApi";
+import { UserController } from "@core/controllers/userController";
+import { WebSocketController }from "@core/controllers/wsController";
 // Utils
-import formDataToObjectConverter from "@utils/formDataToObjectConverter";
+import { formDataToObjectConverter } from "@utils/formDataToObjectConverter";
 // Types
 import { TChatTitleData } from "@custom_types/index";
 import { IChatUser } from "@custom_types/index";
 
 const chatAPI = new ChatAPI();
 
-class ChatController {
+export class ChatController {
 
     static async getChats(params?: TChatsQueryParams) {
         /*const { chats } = store.getState();
@@ -158,5 +158,3 @@ class ChatController {
         });
     }
 }
-
-export default ChatController

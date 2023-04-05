@@ -1,7 +1,7 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Components
-import Link from "@components/ui/link";
+import { Link } from "@components/ui/link";
 // Template
 import template from "./mainFooter.tmpl";
 // Styles
@@ -22,5 +22,3 @@ export class MainFooter extends Block {
         return this.compile(template, this.props);
     }
 }
-
-export default MainFooter

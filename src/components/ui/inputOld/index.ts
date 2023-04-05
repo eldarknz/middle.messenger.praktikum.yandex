@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Handlers
 import { inputHandler } from "./modules"
 // Template
@@ -24,7 +24,7 @@ interface IInput {
     };
 }
   
-class Input extends Block {
+export class Input extends Block {
     constructor(props: IInput) {
         super(props);
     }
@@ -43,5 +43,3 @@ class Input extends Block {
         });
     }
 }
-
-export default Input

@@ -1,7 +1,7 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Components
-import Button from "@components/ui/button";
+import { Button } from "@components/ui/button";
 import { IconClose } from "@components/ui/icon";
 // Template
 import template from "./modal.tmpl";
@@ -33,7 +33,7 @@ const defaultModalHandler = (event: Event) => {
     }
 };
 
-class Modal extends Block {
+export class Modal extends Block {
     constructor(props: IModal) {
         const modalCloseButton = new Button({
             size: "sm",
@@ -66,5 +66,3 @@ class Modal extends Block {
         })
     }
 }
-
-export default Modal

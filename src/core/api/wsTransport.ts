@@ -1,6 +1,6 @@
 // Core
 import { store } from "@store/index";
-import ChatController from "@core/controllers/chatController";
+import { ChatController } from "@core/controllers/chatController";
 // Utils
 import { WSS_PATH } from "@utils/constants";
 // Types
@@ -16,7 +16,7 @@ export const getDifference = (array1: any, array2: any, value: string) => {
     });
 };
 
-class WebSocketTransport {
+export class WebSocketTransport {
     private socket: WebSocket;
 
     private content_offset: number = 0;
@@ -130,5 +130,3 @@ class WebSocketTransport {
         this.socket.close();
     }
 }
-
-export default WebSocketTransport

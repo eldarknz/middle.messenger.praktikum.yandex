@@ -1,11 +1,11 @@
 // Core
-import HTTPTransport from "./httpTransport";
+import { HTTPTransport } from "./httpTransport";
 // Utils
 import { API_ENDPOINTS } from "@utils/constants";
 // Types
 import { TSignUpData, TSignInData } from "@custom_types/index";
 
-class AuthAPI extends HTTPTransport {
+export class AuthAPI extends HTTPTransport {
     contentType = "application/json; charset=utf-8";
 
     /**
@@ -42,5 +42,3 @@ class AuthAPI extends HTTPTransport {
         return this.post(API_ENDPOINTS.auth.logout);
     }
 }
-
-export default AuthAPI

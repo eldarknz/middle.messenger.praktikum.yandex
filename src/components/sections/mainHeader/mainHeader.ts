@@ -1,8 +1,8 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Components
-import Button from "@components/ui/button";
-import Logo from "@components/ui/logo";
+import { Button } from "@components/ui/button";
+import { Logo } from "@components/ui/logo";
 // Utils
 import { ROUTES } from "@utils/constants";
 // Template
@@ -43,5 +43,3 @@ export class MainHeader extends Block {
         return this.compile(template, this.props);
     }
 }
-
-export default MainHeader

@@ -1,22 +1,22 @@
 // Core
-import Block from "@core/block";
-import renderDOM from "@core/renderDom";
-import connect from "@core/store/connect";
-import AuthController from "@core/controllers/authContorller";
-import UserController from "@core/controllers/userController";
+import { Block } from "@core/block";
+import { renderDOM } from "@core/renderDom";
+import { connect } from "@core/store/connect";
+import { AuthController } from "@core/controllers/authContorller";
+import { UserController } from "@core/controllers/userController";
 // Components
-import Button from "@components/ui/button";
+import { Button } from "@components/ui/button";
 import { Container } from "@components/ui/grid";
-import DivBlock from "@components/ui/div";
-import Form from "@components/ui/form";
+import { DivBlock } from "@components/ui/div";
+import { Form } from "@components/ui/form";
 import { IconArrowLeft, IconPhoto } from "@components/ui/icon";
-import InputFile from "@components/ui/inputFile";
-import Link from "@components/ui/link";
-import List from "@components/ui/list";
-import Modal, { modalCloseHandler } from "@components/ui/modal";
+import { InputFile } from "@components/ui/inputFile";
+import { Link } from "@components/ui/link";
+import { List } from "@components/ui/list";
+import { Modal, modalCloseHandler } from "@components/ui/modal";
 import { Skeleton } from "@components/ui/skeleton";
-import ProfileUserAvatar from "@components/sections/profileUserAvatar/profileUserAvatar";
-import ProfileUserName from "@components/sections/profileUserName/profileUserName";
+import { ProfileUserAvatar } from "@components/sections/profileUserAvatar/profileUserAvatar";
+import { ProfileUserName } from "@components/sections/profileUserName/profileUserName";
 // Utils
 import { formDataSubmissionsHandler } from "@utils/formHandler";
 import { ROUTES } from "@utils/constants";
@@ -181,6 +181,4 @@ const withPage = connect((state) => ({
     userDataList: getUserDataList(state)
 }));
 
-const ProfilePage = withPage(Profile);
-
-export default ProfilePage
+export const ProfilePage = withPage(Profile);

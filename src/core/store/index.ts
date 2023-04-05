@@ -1,7 +1,7 @@
 // Core
-import EventBus from "@core/eventBus";
+import { EventBus } from "@core/eventBus";
 // Utils
-import set from "@utils/set";
+import { set } from "@utils/set";
 
 export const StoreEvents = {
   Updated: 'updated',

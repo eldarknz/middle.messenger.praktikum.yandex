@@ -1,7 +1,7 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Components
-import Button from "@components/ui/button";
+import { Button } from "@components/ui/button";
 // Template
 import template from "./dropdown.tmpl";
 // Styles
@@ -62,7 +62,7 @@ const dropdownHandler = (event: Event) => {
     };
 };
 
-class Dropdown extends Block {
+export class Dropdown extends Block {
     constructor(props: IDropdown) {
 
         const dropdownButton = new Button({
@@ -99,5 +99,3 @@ class Dropdown extends Block {
         })
     }
 }
-
-export default Dropdown

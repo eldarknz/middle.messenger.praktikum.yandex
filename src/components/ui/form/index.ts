@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Template
 import template from "./form.tmpl";
 // Styles
@@ -15,10 +15,9 @@ interface IFormProps {
 
 const defaultSubmitHandler = (e: Event) => {
     e.preventDefault();
-    console.log("defaultSubmitHandler");
 };
 
-class Form extends Block {
+export class Form extends Block {
 
     constructor(props: IFormProps) {
         super({...props, events: { submit: props.events?.submit ?? defaultSubmitHandler }});
@@ -38,5 +37,3 @@ class Form extends Block {
         });
     }
 }
-
-export default Form

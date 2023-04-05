@@ -1,16 +1,16 @@
 // Core
-import Block from "@core/block";
-import connect from "@core/store/connect";
-import AuthController from "@core/controllers/authContorller";
-import ChatController from "@core/controllers/chatController";
+import { Block } from "@core/block";
+import { connect } from "@core/store/connect";
+import { AuthController } from "@core/controllers/authContorller";
+import { ChatController } from "@core/controllers/chatController";
 // Components
 import { Container } from "@components/ui/grid";
-import DivBlock from "@components/ui/div";
-import Text from "@components/ui/text";
-import ChatHeaderSection from "@components/sections/chatHeader/chatHeader";
-import ChatSidebarSection from "@components/sections/chatSidebar/chatSidebar";
-import ChatMessageAreaSection from "@components/sections/chatMessageArea/chatMessageArea";
-import ChatFooterSection from "@components/sections/chatFooter/chatFooter";
+import { DivBlock } from "@components/ui/div";
+import { Text } from "@components/ui/text";
+import { ChatHeaderSection } from "@components/sections/chatHeader/chatHeader";
+import { ChatSidebarSection } from "@components/sections/chatSidebar/chatSidebar";
+import { ChatMessageAreaSection } from "@components/sections/chatMessageArea/chatMessageArea";
+import { ChatFooterSection } from "@components/sections/chatFooter/chatFooter";
 // Template
 import template from "./chat.tmpl";
 // Styles
@@ -64,6 +64,4 @@ const withPage = connect((state) => ({
     messageArea: getChatMessageArea(state)
 }));
 
-const ChatPage = withPage(Chat);
-
-export default ChatPage
+export const ChatPage = withPage(Chat);

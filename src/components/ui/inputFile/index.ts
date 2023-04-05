@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Template
 import template from "./inputFile.tmpl";
 // Styles
@@ -31,7 +31,7 @@ const defaultInputFileHandler = (e: Event) => {
     }
 };
 
-class InputFile extends Block {
+export class InputFile extends Block {
     constructor(props: IInputFile) {
         super({...props, events: { change: props.events?.change ?? defaultInputFileHandler }})
         this.inputFileClassName = this.inputFileClassName.bind(this);
@@ -54,5 +54,3 @@ class InputFile extends Block {
         });
     }
 }
-  
-export default InputFile

@@ -1,7 +1,7 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 
-const renderDOM = (query: string, block: Block) => {
+export const renderDOM = (query: string, block: Block) => {
   const root = document.querySelector(query);
 
   root!.innerHTML = "";
@@ -9,5 +9,3 @@ const renderDOM = (query: string, block: Block) => {
   root!.appendChild(blockContent);
   block.dispatchComponentDidMount();
 };
-
-export default renderDOM

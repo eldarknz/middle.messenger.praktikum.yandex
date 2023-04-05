@@ -199,37 +199,6 @@ a {
     margin-bottom: 15px;
 }
 
-/* Error pages */
-
-.error-container {
-    max-width: 200px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 70px;
-}
-
-.error-container__text-block {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    & .error-container__text-block__title {
-        font-size: calc(var(--font-size-20) * 2);
-        font-weight: 500;
-        line-height: 1;
-    }
-    
-    & .error-container__text-block__text {
-        font-size: var(--font-size-20);
-        line-height: 1;
-        color: var(--silver);
-    }
-}
-
 /* Scrollable */
 
 * {

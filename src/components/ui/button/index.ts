@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Templates
 import template from "./button.tmpl";
 // Styles
@@ -22,7 +22,7 @@ interface IButton {
     }
 }
 
-class Button extends Block {
+export class Button extends Block {
     constructor(props: IButton) {
         super(props);
         this.buttonClassName = this.buttonClassName.bind(this);
@@ -50,5 +50,3 @@ class Button extends Block {
         });
     }
 }
-  
-export default Button

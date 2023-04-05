@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Template
 import template from "./logo.tmpl";
 // Styles
@@ -12,7 +12,7 @@ interface ILogo {
     className?: string;
 }
 
-class Logo extends Block {
+export class Logo extends Block {
     constructor(props?: ILogo) {
         super(props);
         this.logoClassName = this.logoClassName.bind(this);
@@ -35,5 +35,3 @@ class Logo extends Block {
         });
     }
 }
-
-export default Logo

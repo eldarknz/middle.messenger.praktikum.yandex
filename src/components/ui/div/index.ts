@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 
 interface IDivBlock {
     id?: string;
@@ -10,7 +10,7 @@ interface IDivBlock {
     }
 }
 
-class DivBlock extends Block {
+export class DivBlock extends Block {
     constructor(props: IDivBlock) {
         const isArray = Array.isArray(props.content);
         super({ ...props, isArray });
@@ -34,5 +34,3 @@ class DivBlock extends Block {
         );
     }
 }
-
-export default DivBlock

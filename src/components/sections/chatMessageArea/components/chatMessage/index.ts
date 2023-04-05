@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Template
 import template from "./chatMessage.tmpl";
 // Styles
@@ -14,7 +14,7 @@ export interface IChatMessage {
     user?: boolean;
 }
 
-class ChatMessage extends Block {
+export class ChatMessage extends Block {
     constructor(props: IChatMessage) {
 
         super(props);
@@ -31,5 +31,3 @@ class ChatMessage extends Block {
         })
     }
 }
-
-export default ChatMessage

@@ -1,16 +1,14 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Components
-import Skeleton from "@components/ui/skeleton";
+import { Skeleton } from "@components/ui/skeleton";
 // Template
 import template from "./chatCardSkeleton.tmpl";
 // Styles
 import "./chatCardSkeleton.scss";
 
-interface IChatCardSkeleton {}
-
-class ChatCardSkeleton extends Block {
-    constructor(props?: IChatCardSkeleton) {
+export class ChatCardSkeleton extends Block {
+    constructor(props?: {}) {
 
         const avatar = new Skeleton({
             width: 34,
@@ -41,5 +39,3 @@ class ChatCardSkeleton extends Block {
         return this.compile(template, this.props);
     }
 }
-
-export default ChatCardSkeleton

@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Template
 import template from "./input.tmpl";
 // Styles
@@ -46,9 +46,8 @@ class PasswordVisibilityTogglerBlock extends Block {
     }
 }
 
-class Input extends Block {
+export class Input extends Block {
     constructor(props: IInput) {
-        //super({...props, events: { ...props.events, input: props.events?.input ?? defaultInputHandler }})
         super({...props, events: { ...props.events, input: (event: Event) => defaultInputHandler(event, props) }})
         this.inputClassName = this.inputClassName.bind(this);
     }
@@ -71,5 +70,3 @@ class Input extends Block {
         });
     }
 }
-  
-export default Input

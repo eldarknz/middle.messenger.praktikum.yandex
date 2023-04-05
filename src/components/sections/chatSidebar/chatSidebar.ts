@@ -1,18 +1,18 @@
 // Core
-import Block from "@core/block";
-import renderDOM from "@core/renderDom";
-import AuthController from "@core/controllers/authContorller";
-import ChatController from "@core/controllers/chatController";
+import { Block } from "@core/block";
+import { renderDOM } from "@core/renderDom";
+import { AuthController } from "@core/controllers/authContorller";
+import { ChatController } from "@core/controllers/chatController";
 // Components
-import Button from "@components/ui/button";
+import { Button } from "@components/ui/button";
 import { Container } from "@components/ui/grid";
-import Form from "@components/ui/form";
+import { Form } from "@components/ui/form";
 import { IconProfile, IconSettings, IconLogout, IconWrite } from "@components/ui/icon";
-import Input from "@components/ui/input";
-import Logo from "@components/ui/logo";
-import Modal, { modalCloseHandler } from "@components/ui/modal";
-import Nav from "@components/ui/nav";
-import ChatListSection from "@components/sections/chatList/chatList";
+import { Input } from "@components/ui/input";
+import { Logo } from "@components/ui/logo";
+import { Modal, modalCloseHandler } from "@components/ui/modal";
+import { Nav } from "@components/ui/nav";
+import { ChatList } from "@components/sections/chatList/chatList";
 // Utils
 import { formDataSubmissionsHandler } from "@utils/formHandler";
 import { ROUTES } from "@utils/constants";
@@ -73,7 +73,7 @@ const searchChat = () => {
     console.log('searchChat');
 }
 
-class ChatSidebarSection extends Block {
+export class ChatSidebarSection extends Block {
     constructor(props: IChatSidebar) {
 
         const logoLink = new Logo({
@@ -103,7 +103,7 @@ class ChatSidebarSection extends Block {
             //placeholderIcon: new IconSearch({ className: "icon" })
         });
 
-        const chatList = new ChatListSection({
+        const chatList = new ChatList({
             state: props.state
         });
 
@@ -154,5 +154,3 @@ class ChatSidebarSection extends Block {
         return this.compile(template, this.props);
     }
 }
-
-export default ChatSidebarSection

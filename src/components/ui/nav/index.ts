@@ -1,5 +1,5 @@
 // Core
-import Block from "@core/block";
+import { Block } from "@core/block";
 // Template
 import template from "./nav.tmpl";
 // Styles
@@ -10,7 +10,7 @@ interface INav {
   content: Block[] | string[];
 }
 
-class Nav extends Block {
+export class Nav extends Block {
   constructor(props: INav) {
     super(props);
     this.navClassName = this.navClassName.bind(this);
@@ -29,5 +29,3 @@ class Nav extends Block {
     });
   }
 }
-
-export default Nav
