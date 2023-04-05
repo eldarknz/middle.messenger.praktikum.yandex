@@ -1,10 +1,8 @@
-import {
-    TCheckFunction,
-    TCheckLength,
-    TCheckPasswordConfirm,
-    TShowError,
-    THideError
-} from "@declarations/index";
+export type TCheckFunction = (value: string) => boolean;
+export type TCheckLength = (min: number, max: number, value: string) => boolean;
+export type TCheckPasswordConfirm = (value_1: string, value_2: string) => boolean;
+export type TShowError = (input: HTMLElement, selector: string, message?: string) => void;
+export type THideError = (input: HTMLElement, selector: string) => void;
 
 export class ValidationForm {
     checkEmptyValue: TCheckFunction = (value) => {

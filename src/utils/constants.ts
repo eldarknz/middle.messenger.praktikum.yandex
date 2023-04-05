@@ -1,4 +1,4 @@
-import { TRoutes } from "@declarations/index";
+import { TRoutes } from "@custom_types/index";
 
 export const ROUTES: TRoutes = {
     login: { title: "Вход", path: "/login" },

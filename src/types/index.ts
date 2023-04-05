@@ -5,6 +5,8 @@ export type APIError = {
 
 export type ResponseData = {} | APIError;
 
+export type TRoutes = { [key: string]: { title: string, path: string } }
+
 // Авторизация, регистрация
 export type TSignUpData = {
     first_name: string,
