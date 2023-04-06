@@ -36,7 +36,9 @@
 }
 
 .chat-header__container__content .chat-info {
-    cursor: pointer;
+    &:not(.empty) {
+        cursor: pointer;
+    }
 }
 
 .chat-info {
