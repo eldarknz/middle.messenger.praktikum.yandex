@@ -223,6 +223,18 @@ const icon_write = `
     </div>
 `;
 
+const icon_success = `
+    <div
+        {{#if className}}class="{{ className }}"{{/if}}
+    >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5303 7.46967C13.8232 7.76256 13.8232 8.23744 13.5303 8.53033L9 13.0607L6.46967 10.5303C6.17678 10.2374 6.17678 9.76256 6.46967 9.46967C6.76256 9.17678 7.23744 9.17678 7.53033 9.46967L9 10.9393L12.4697 7.46967C12.7626 7.17678 13.2374 7.17678 13.5303 7.46967Z" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5ZM1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10Z" fill="black"/>
+        </svg>
+    </div>
+`;
+
+
 export {
     icon_add,
     icon_arrow_left,
@@ -240,6 +252,7 @@ export {
     icon_profile,
     icon_search,
     icon_settings,
+    icon_success,
     icon_talks,
     icon_trash,
     icon_photo,

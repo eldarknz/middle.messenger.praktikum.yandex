@@ -20,6 +20,7 @@ import {
     icon_profile,
     icon_search,
     icon_settings,
+    icon_success,
     icon_talks,
     icon_trash,
     icon_write
@@ -29,7 +30,7 @@ import "./icon.scss";
 
 interface IIcon {
     size?: "xs" | "m" | "lg" | "xl" | "xxl";
-    color?: "white" | "light" | "dark" | "primary" | "secondary";
+    color?: "white" | "light" | "dark" | "primary" | "secondary" | "success";
     className?: string;
 }
 
@@ -138,6 +139,12 @@ class IconSettings extends IconBlock {
     }); }
 }
 
+class IconSuccess extends IconBlock {
+    render() { return this.compile(icon_success, {
+        className: this.iconClassName(),
+    }); }
+}
+
 class IconTalks extends IconBlock {
     render() { return this.compile(icon_talks, {
         className: this.iconClassName(),
@@ -192,6 +199,7 @@ export {
     IconProfile,
     IconSearch,
     IconSettings,
+    IconSuccess,
     IconTalks,
     IconTrash,
     IconPhoto,

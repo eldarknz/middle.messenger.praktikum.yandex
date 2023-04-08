@@ -8,7 +8,7 @@ import { Button } from "@components/ui/button";
 import { Container } from "@components/ui/grid";
 import { DivBlock } from "@components/ui/div";
 import { Form } from "@components/ui/form";
-import { IconAddUser } from "@components/ui/icon";
+import { IconAddUser, IconSuccess } from "@components/ui/icon";
 import { Image } from "@components/ui/image";
 import { Input } from "@components/ui/input";
 import { List } from "@components/ui/list";
@@ -21,22 +21,69 @@ import { API_RESOURCES_PATH } from "@utils/constants";
 // Types
 import { IUser, IChatUser } from "@custom_types/index";
 
+const addUser = (event: Event, item: IChatUser) => {
+    const { activeChat } = store.getState()
+    if (activeChat.users.length < 10) {
+        ChatController.addUserToChat(item.id, activeChat.id)
+        .then((res) => {
+            if (res) {
+                if (res.status === 200) {
+                    const target = event.target;
+                    if (target) {
+                        const listItem = (target as HTMLElement).closest('.list-item');
+                        const infoItem = (target as HTMLElement).closest('.user-list__info-item__addition');
+                        if (listItem && infoItem) {
+                            const infoItemSuccess = new DivBlock({
+                                className: "user-list__info-item__addition",
+                                content: new IconSuccess({
+                                    size: "m",
+                                    color: "success"
+                                })
+                            }).getContent();
+                            infoItem.replaceWith(infoItemSuccess);
+                        }
+                    }
+                }
+            } else {
+                formResponseErrorNotification(res, ".user-list", "Произошла ошибка, попробуйте еще раз")
+            }
+        })
+    } else {
+        textNotification(".user-list", "В чат нельзя добавить больше 10 пользователей")
+    }
+};
+
+const infoItemAdditionIcon = (chatUserEntries: boolean, item: IChatUser) => {
+    return chatUserEntries ? new DivBlock({
+        className: "user-list__info-item__addition",
+        content: new IconSuccess({
+            size: "m",
+            color: "success"
+        })
+    }) : new DivBlock({
+        className: "user-list__info-item__addition action-item",
+        content: new IconAddUser({
+            size: "m"
+        }),
+        events: {
+            click: (event: Event) => addUser(event, item)
+        }
+    })
+}
+
 const getFoundUserList = (foundUsers: IUser[]) => {
 
-    const state = store.getState()
-    const user = state.user as IUser[];
-    const activeChat = state.activeChat as { users: IChatUser[], id: number };
+    const { user, activeChat } = store.getState();
 
     let foundUserList = new DivBlock({
         className: "user-list-empty",
         content: "Пользователь не найден"
     })
 
-    if (!user && !activeChat)
+    if (!user || !activeChat)
         return;
 
     if (foundUsers.length > 0) {
-
         sortChatUsersByLogin(foundUsers as IUser[]);
         
         foundUserList = new Container({
@@ -83,41 +130,10 @@ const getFoundUserList = (foundUsers: IUser[]) => {
                             ];
 
                             const chatUserEntries = activeChat.users.find((activeChatUser: IChatUser) => activeChatUser.id === item.id);
-                            if (!chatUserEntries) {
-                                userListInfoItem.push(new DivBlock({
-                                    className: "user-list__info-item__addition action-item",
-                                    content: new IconAddUser({
-                                        size: "m"
-                                    }),
-                                    events: {
-                                        click: (event) => {
-                                            const { activeChat } = store.getState()
-                                            if (activeChat.users.length < 10) {
-                                                ChatController.addUserToChat(item.id, activeChat.id)
-                                                .then((res) => {
-                                                    if (res) {
-                                                        if (res.status === 200) {
-                                                            const target = event.target;
-                                                            if (target) {
-                                                                const parentNode = (target as HTMLElement).closest('.user-list__info-item__addition');
-                                                                if (parentNode) parentNode.remove()
-                                                            }
-                                                        }
-                                                    } else {
-                                                        formResponseErrorNotification(res, ".user-list", "Произошла ошибка, попробуйте еще раз")
-                                                    }
-                                                })
-                                            } else {
-                                                textNotification(".user-list", "В чат нельзя добавить больше 10 пользователей")
-                                            }
-                                        }
-                                    }
-                                }))
-                            }
-                            
+
                             return new DivBlock({
                                 className: "user-list__info-item",
-                                content: userListInfoItem
+                                content: [ ...userListInfoItem, infoItemAdditionIcon(chatUserEntries, item) ]
                             })
                         })
                     })
@@ -127,6 +143,31 @@ const getFoundUserList = (foundUsers: IUser[]) => {
     }
     renderDOM("#foundUserList", foundUserList);
 }
+
+const searchUser = (event: Event) => {
+    event.preventDefault();
+    const target = event.target;
+    if (target && target instanceof HTMLFormElement) {
+        const formData = new FormData(target);
+        const login = formData.get("login") as string;
+        if (login) {
+            ChatController.getUsersByLogin(login)
+            .then((res) => {
+                if (res) {
+                    if (res.status === 200) {
+                        const foundUserList = document.querySelector("#foundUserList");
+                        if (foundUserList && foundUserList.innerHTML.trim() !== "") {
+                            foundUserList.innerHTML = "";
+                        }
+                        getFoundUserList(res.response);
+                    }
+                } else {
+                    formResponseErrorNotification(res, ".add-value__form__input-group", "Произошла ошибка, попробуйте еще раз");
+                }
+            })
+        }
+    }
+};
 
 export const AddUserModal = () => {
     const modal = new Modal({
@@ -156,30 +197,7 @@ export const AddUserModal = () => {
                         })
                     ],
                     events: {
-                        submit: (event: Event) => {
-                            event.preventDefault();
-                            const target = event.target;
-                            if (target && target instanceof HTMLFormElement) {
-                                const formData = new FormData(target);
-                                const login = formData.get("login") as string;
-                                if (login) {
-                                    ChatController.getUsersByLogin(login)
-                                    .then((res) => {
-                                        if (res) {
-                                            if (res.status === 200) {
-                                                const foundUserList = document.querySelector("#foundUserList");
-                                                if (foundUserList && foundUserList.innerHTML.trim() !== "") {
-                                                    foundUserList.innerHTML = "";
-                                                }
-                                                getFoundUserList(res.response);
-                                            }
-                                        } else {
-                                            formResponseErrorNotification(res, ".add-value__form__input-group", "Произошла ошибка, попробуйте еще раз");
-                                        }
-                                    })
-                                }
-                            }
-                        }
+                        submit: searchUser
                     }
                 }),
                 new DivBlock({
