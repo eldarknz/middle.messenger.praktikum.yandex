@@ -5,7 +5,7 @@ import { AuthController } from "@core/controllers/authContorller";
 import { ChatController } from "@core/controllers/chatController";
 // Components
 import { Button } from "@components/ui/button";
-import { Container } from "@components/ui/grid";
+import { Grid } from "@components/ui/grid";
 import { Form } from "@components/ui/form";
 import { IconProfile, IconSettings, IconLogout, IconWrite } from "@components/ui/icon";
 import { Input } from "@components/ui/input";
@@ -29,13 +29,13 @@ export const createNewChat = () => {
     const modal = new Modal({
         id: "createNewChatModal",
         title: "Создание нового чата",
-        content: new Container({
+        content: new Grid.Container({
             id: "createNewChatContainer",
             isFluid: true,
             content: new Form({
                 className: "add-value__form",
                 content: [
-                    new Container({
+                    new Grid.Container({
                         isFluid: true,
                         className: "add-value__form__input-group",
                         content:  new Input({

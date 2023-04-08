@@ -6,7 +6,7 @@ import { AuthController } from "@core/controllers/authContorller";
 import { UserController } from "@core/controllers/userController";
 // Components
 import { Button } from "@components/ui/button";
-import { Container } from "@components/ui/grid";
+import { Grid } from "@components/ui/grid";
 import { DivBlock } from "@components/ui/div";
 import { Form } from "@components/ui/form";
 import { IconArrowLeft, IconPhoto } from "@components/ui/icon";
@@ -48,13 +48,13 @@ const changeAvatar = () => {
     const modal = new Modal({
         id: "changeAvatar",
         title: "Загрузка файла",
-        content: new Container({
+        content: new Grid.Container({
             id: "changeAvatarContainer",
             isFluid: true,
             content: new Form({
                 className: "change-avatar__form",
                 content: [
-                    new Container({
+                    new Grid.Container({
                         isFluid: true,
                         className: "change-avatar__form__input-group",
                         content:  new InputFile({
@@ -104,7 +104,7 @@ const getUserDataList = (state: Indexed) => {
             })
         });
     } else {
-        return new Container({
+        return new Grid.Container({
             isFluid: true,
             className: "profile-container__form__input-group",
             content: Object.keys(profileFields).map(() => {

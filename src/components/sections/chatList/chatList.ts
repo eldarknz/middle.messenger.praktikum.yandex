@@ -4,7 +4,7 @@ import { ChatController } from "@core/controllers/chatController";
 // Components
 import { Avatar } from "@components/ui/avatar";
 import { Button } from "@components/ui/button";
-import { Container } from "@components/ui/grid";
+import { Grid } from "@components/ui/grid";
 import { Image } from "@components/ui/image";
 import { Label } from "@components/ui/label";
 import { Text }from "@components/ui/text";
@@ -72,7 +72,7 @@ const getChatList = (state: Indexed) => {
             });
         });
     } else {
-        return new Container({
+        return new Grid.Container({
             className: "chat-list__empty-message",
             content: [
                 new Text({

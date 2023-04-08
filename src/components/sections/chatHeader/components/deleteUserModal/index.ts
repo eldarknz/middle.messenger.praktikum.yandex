@@ -3,7 +3,7 @@ import { renderDOM } from "@core/renderDom";
 import { ChatController } from "@core/controllers/chatController";
 // Components
 import { Avatar } from "@components/ui/avatar";
-import { Container, Row } from "@components/ui/grid";
+import { Grid } from "@components/ui/grid";
 import { DivBlock } from "@components/ui/div";
 import { IconDelete } from "@components/ui/icon";
 import { Image } from "@components/ui/image";
@@ -27,11 +27,11 @@ export const DeleteUserModal = (user: IUser, activeChatUsers: IChatUser[], activ
     const modal = new Modal({
         id: "chatUserListModal",
         title: "Удалить пользователя",
-        content: new Container({
+        content: new Grid.Container({
             id: "chatUserListContainer",
             isFluid: true,
             content: [
-                new Row({
+                new Grid.Row({
                     content: new DivBlock({
                         className: "user-list__header",
                         content: [
@@ -42,7 +42,7 @@ export const DeleteUserModal = (user: IUser, activeChatUsers: IChatUser[], activ
                         ]
                     })
                 }),
-                new Row({
+                new Grid.Row({
                     content: new List({
                         className: "user-list",
                         isFlush: true,

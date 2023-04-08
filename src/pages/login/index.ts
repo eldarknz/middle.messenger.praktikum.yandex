@@ -4,7 +4,7 @@ import { Router } from "@core/router";
 import { AuthController } from "@core/controllers/authContorller";
 // Components
 import { Button } from "@components/ui/button";
-import { Container } from "@components/ui/grid";
+import { Grid } from "@components/ui/grid";
 import { Form } from "@components/ui/form";
 import { Input } from "@components/ui/input";
 import { Link } from "@components/ui/link";
@@ -39,7 +39,7 @@ export class LoginPage extends Block {
         const form = new Form({
             className: "sign-container__form",
             content: [
-                new Container({
+                new Grid.Container({
                     isFluid: true,
                     className: "sign-container__form__input-group",
                     content: [

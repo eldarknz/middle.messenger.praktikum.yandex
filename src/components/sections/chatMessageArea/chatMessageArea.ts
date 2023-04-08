@@ -2,7 +2,7 @@
 import { Block } from "@core/block";
 import { WebSocketController } from "@core/controllers/wsController";
 // Components
-import { Container } from "@components/ui/grid";
+import { Grid } from "@components/ui/grid";
 import { DivBlock } from "@components/ui/div";
 import { Label } from "@components/ui/label";
 import { Spinner } from "@components/ui/spinner";
@@ -58,7 +58,7 @@ const getMessages = (state: Indexed) => {
                 }) : null;
             }
             
-            return new Container({
+            return new Grid.Container({
                 className: "chat-container",
                 isFluid: true,
                 content: [
@@ -95,7 +95,7 @@ const getMessages = (state: Indexed) => {
                 }
             });
         } else {
-            return new Container({
+            return new Grid.Container({
                 className: "chat-container empty",
                 isFluid: true,
                 content: new Text({
@@ -105,7 +105,7 @@ const getMessages = (state: Indexed) => {
             })
         }
     } else {
-        return new Container({
+        return new Grid.Container({
             className: "chat-container empty",
             isFluid: true,
             content: new Spinner({ size: 36 })

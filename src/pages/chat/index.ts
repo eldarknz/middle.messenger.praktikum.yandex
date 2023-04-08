@@ -4,7 +4,7 @@ import { connect } from "@core/store/connect";
 import { AuthController } from "@core/controllers/authContorller";
 import { ChatController } from "@core/controllers/chatController";
 // Components
-import { Container } from "@components/ui/grid";
+import { Grid } from "@components/ui/grid";
 import { DivBlock } from "@components/ui/div";
 import { Text } from "@components/ui/text";
 import { ChatHeaderSection } from "@components/sections/chatHeader/chatHeader";
@@ -33,7 +33,7 @@ const getFooter = (state: Indexed) => {
 const getChatMessageArea = (state: Indexed) => {
     return Object.keys(state).length !== 0 && state.activeChat ?
         new ChatMessageAreaSection({ state }) :
-        new Container({
+        new Grid.Container({
             className: "chat-container empty",
             isFluid: true,
             content: [

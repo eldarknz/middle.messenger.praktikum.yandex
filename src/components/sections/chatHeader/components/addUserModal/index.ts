@@ -5,7 +5,7 @@ import { ChatController } from "@core/controllers/chatController";
 // Components
 import { Avatar } from "@components/ui/avatar";
 import { Button } from "@components/ui/button";
-import { Container } from "@components/ui/grid";
+import { Grid } from "@components/ui/grid";
 import { DivBlock } from "@components/ui/div";
 import { Form } from "@components/ui/form";
 import { IconAddUser, IconSuccess } from "@components/ui/icon";
@@ -86,10 +86,10 @@ const getFoundUserList = (foundUsers: IUser[]) => {
     if (foundUsers.length > 0) {
         sortChatUsersByLogin(foundUsers as IUser[]);
         
-        foundUserList = new Container({
+        foundUserList = new Grid.Container({
             isFluid: true,
             content: [
-                new Container({
+                new Grid.Container({
                     isFluid: true,
                     content: new DivBlock({
                         className: "user-list__header",
@@ -101,7 +101,7 @@ const getFoundUserList = (foundUsers: IUser[]) => {
                         ]
                     })
                 }),
-                new Container({
+                new Grid.Container({
                     isFluid: true,
                     content: new List({
                         className: "user-list",
@@ -173,14 +173,14 @@ export const AddUserModal = () => {
     const modal = new Modal({
         id: "addNewUserModal",
         title: "Добавление пользователя",
-        content: new Container({
+        content: new Grid.Container({
             id: "addNewUserContainer",
             isFluid: true,
             content: [
                 new Form({
                     className: "add-value__form",
                     content: [
-                        new Container({
+                        new Grid.Container({
                             isFluid: true,
                             className: "add-value__form__input-group",
                             content:  new Input({

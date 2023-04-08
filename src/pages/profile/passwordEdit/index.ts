@@ -5,7 +5,7 @@ import { connect } from "@core/store/connect";
 import { AuthController } from "@core/controllers/authContorller";
 import { UserController } from "@core/controllers/userController";
 // Components
-import { Container } from "@components/ui/grid";
+import { Grid } from "@components/ui/grid";
 import { Button } from "@components/ui/button";
 import { Form } from "@components/ui/form";
 import { Input } from "@components/ui/input";
@@ -42,7 +42,7 @@ const passwordFields: { [key: string]: string } = {
 
 const getForm = (state: Indexed) => {
     if (Object.keys(state).length === 0) {
-        return new Container({
+        return new Grid.Container({
             isFluid: true,
             className: "profile-container__form__input-group",
             content: Object.keys(passwordFields).map(() => {
@@ -56,7 +56,7 @@ const getForm = (state: Indexed) => {
         return new Form({
             className: "profile-container__form",
             content: [
-                new Container({
+                new Grid.Container({
                     isFluid: true,
                     className: "profile-container__form__input-group",
                     content: Object.keys(passwordFields).map((key: Key) => {

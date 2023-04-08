@@ -5,7 +5,7 @@ import { ChatController } from "@core/controllers/chatController";
 // Components
 import { Avatar } from "@components/ui/avatar";
 import { Button } from "@components/ui/button";
-import { Container, Row } from "@components/ui/grid";
+import { Grid } from "@components/ui/grid";
 import { DivBlock } from "@components/ui/div";
 import { Form } from "@components/ui/form";
 import { IconAddUser, IconPhoto } from "@components/ui/icon";
@@ -27,13 +27,13 @@ const uploadChatAvatar = (activeChatId: number) => {
     const modal = new Modal({
         id: "changeAvatar",
         title: "Загрузка файла",
-        content: new Container({
+        content: new Grid.Container({
             id: "changeAvatarContainer",
             isFluid: true,
             content: new Form({
                 className: "change-avatar__form",
                 content: [
-                    new Container({
+                    new Grid.Container({
                         isFluid: true,
                         className: "change-avatar__form__input-group",
                         content: new InputFile({
@@ -108,11 +108,11 @@ export const ChatInfo = (chats: TChatItem[], activeChat: { users: IChatUser[], i
     const modal = new Modal({
         id: "chatInfoModal",
         title: "Информация о чате",
-        content: new Container({
+        content: new Grid.Container({
             id: "chatInfoContainer",
             isFluid: true,
             content: [
-                new Row({
+                new Grid.Row({
                     alignItems: "center",
                     content: [
                         new DivBlock({
@@ -134,7 +134,7 @@ export const ChatInfo = (chats: TChatItem[], activeChat: { users: IChatUser[], i
                         ChatInfoBlock(chats, activeChat)
                     ]
                 }),
-                new Row({
+                new Grid.Row({
                     content: new DivBlock({
                         className: "user-list__header",
                         content: [
@@ -154,7 +154,7 @@ export const ChatInfo = (chats: TChatItem[], activeChat: { users: IChatUser[], i
                         ]
                     })
                 }),
-                new Row({
+                new Grid.Row({
                     content: new List({
                         className: "user-list",
                         isFlush: true,
