@@ -26,69 +26,69 @@ interface IChatList {
 }
 
 const getChatList = (state: Indexed) => {
-    if (Object.keys(state).length !== 0 && state.user && state.chats) {
-        if (state.chats && (state.chats as TChatItem[]).length !== 0) {
-            const chats = state.chats as TChatItem[];
-            const activeChat = state.activeChat as { users: IChatUser[], id: number };
-            let activeChatId: number;
-            if (activeChat) {
-                activeChatId = activeChat.id;
-            }
-            return chats.map(item => {
-                const chatAvatar = item.avatar ? 
-                    new Avatar({ 
-                        content: new Image({ src: API_RESOURCES_PATH + item.avatar })
-                    }) : new Avatar();
+    if (Object.keys(state).length === 0 || !state.user || !state.chats)
+        return new ChatCardSkeleton();
 
-                const chatLabel = item.unread_count ? 
-                    new Label({
-                        color: "primary",
-                        isCircle: true,
-                        content: `${item.unread_count}` 
-                    }) : null
+    if (state.chats && (state.chats as TChatItem[]).length !== 0) {
+        const chats = state.chats as TChatItem[];
+        const activeChat = state.activeChat as { users: IChatUser[], id: number };
+        let activeChatId: number;
+        if (activeChat) {
+            activeChatId = activeChat.id;
+        }
+        return chats.map(item => {
 
-                return new ChatCard({
-                    chatId: item.id,
-                    avatar: chatAvatar,
-                    title: item.title,
-                    message: item.last_message &&  item.last_message.content ? item.last_message.content : "Нет сообщений",
-                    datetime: item.last_message && item.last_message.time ? dateConvert(item.last_message.time) : "",
-                    label: chatLabel,
-                    isActive: activeChatId && activeChatId === item.id ? true : false,
-                    events: {
-                        click: (event: Event) => {
-                            const target = event.currentTarget;
-                            if (target && target instanceof HTMLElement) {
-                                const targetId = target.getAttribute("data-chat-id");
-                                if (targetId && activeChatId !== parseInt(targetId)) {
-                                    ChatController.getChatById(parseInt(targetId));
-                                }
+            const chatAvatar = item.avatar ? 
+                new Avatar({ 
+                    content: new Image({ src: API_RESOURCES_PATH + item.avatar })
+                }) : new Avatar();
+
+            const chatLabel = item.unread_count ? 
+                new Label({
+                    color: "primary",
+                    isCircle: true,
+                    content: `${item.unread_count}` 
+                }) : null
+
+            return new ChatCard({
+                chatId: item.id,
+                avatar: chatAvatar,
+                title: item.title,
+                message: item.last_message &&  item.last_message.content ? item.last_message.content : "Нет сообщений",
+                datetime: item.last_message && item.last_message.time ? dateConvert(item.last_message.time) : "",
+                label: chatLabel,
+                isActive: activeChatId && activeChatId === item.id ? true : false,
+                events: {
+                    click: (event: Event) => {
+                        const target = event.currentTarget;
+                        if (target && target instanceof HTMLElement) {
+                            const targetId = target.getAttribute("data-chat-id");
+                            if (targetId && activeChatId !== parseInt(targetId)) {
+                                ChatController.getChatById(parseInt(targetId));
                             }
                         }
                     }
-                });
+                }
             });
-        } else {
-            return new Container({
-                className: "chat-list__empty-message",
-                content: [
-                    new Text({
-                        className: "text-silver",
-                        content: "У вас нет ни одного чата"
-                    }),
-                    new Button({
-                        color: "light",
-                        size: "sm",
-                        content: "Создать чат",
-                        events: {
-                            click: createNewChat
-                        }
-                    })
-                ]
-            })
-        }
+        });
     } else {
-        return new ChatCardSkeleton();
+        return new Container({
+            className: "chat-list__empty-message",
+            content: [
+                new Text({
+                    className: "text-extra-dark",
+                    content: "У вас нет ни одного чата"
+                }),
+                new Button({
+                    color: "light",
+                    size: "sm",
+                    content: "Создать чат",
+                    events: {
+                        click: createNewChat
+                    }
+                })
+            ]
+        })
     }
 };
 

@@ -13,7 +13,7 @@ export const ROUTES: TRoutes = {
     test: { title: "Тестовая страница", path: "/test" }
 };
 
-export const API_PATH = 'https://ya-praktikum.tech/api/v2';
+export const API_PATH = "https://ya-praktikum.tech/api/v2";
 export const API_RESOURCES_PATH = `${API_PATH}/resources`;
 export const WSS_PATH = "wss://ya-praktikum.tech/ws/chats";
 

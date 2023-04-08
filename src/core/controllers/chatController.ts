@@ -53,15 +53,15 @@ export class ChatController {
         });
     }
 
-    static async deleteChat(chatId: number, ws: WebSocket) {
+    static async deleteChat(chatId: number) {
         return chatAPI.deleteChatById(chatId)
         .then(() => {
             return chatAPI.getChatList();
         })
         .then((response) => {
-            ws && ws.close();
+            WebSocketController.deleteWebSocket();
             store.set("chats", response.response);
-            store.delete(["activeChat", "ws", "messages"]);
+            store.delete(["activeChat"]);
             return response;
         })
         .catch((error) => {

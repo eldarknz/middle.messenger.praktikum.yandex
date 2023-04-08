@@ -1,6 +1,7 @@
 // Core
 import { store } from "@store/index";
 import { ChatController } from "@core/controllers/chatController";
+import { WebSocketController } from "@core/controllers/wsController";
 // Utils
 import { WSS_PATH } from "@utils/constants";
 // Types
@@ -38,8 +39,10 @@ export class WebSocketTransport {
         });
     
         this.socket.addEventListener("close", (event) => {
+            this.clearRequestInterval();
             if (event.wasClean) {
                 console.info("Соединение закрыто чисто");
+                this.clearRequestInterval();
             } else {
                 console.info("Обрыв соединения");
                 store.delete(["ws", "messages"]);
@@ -49,7 +52,6 @@ export class WebSocketTransport {
                     ChatController.getChatById(chatId)
                 }
             }
-    
             console.log(`Код: ${event.code} | Причина: ${event.reason}`);
         });
 
@@ -95,16 +97,13 @@ export class WebSocketTransport {
             }))
             if (state && state.chats) {
                 const chats = state.chats;
-                const ws = state.ws;
                 ChatController.getChatList()
                 .then((res) => {
                     const chatsResponse = res.response;
                     if (chatsResponse && chats.length !== chatsResponse.length) {
                         ChatController.getChats();
-                        this.clearRequestInterval();
-                        if (ws) ws.close();
-                        store.delete(["activeChat", "ws", "messages"]);
-        
+                        WebSocketController.deleteWebSocket();
+                        store.delete(["activeChat"]);
                     }
                 })
             }

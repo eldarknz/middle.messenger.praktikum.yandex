@@ -25,13 +25,13 @@ interface IChatHeader {
 }
 
 // отрефакторил
-const deleteChat = (activeChatId: number, ws: WebSocket) => {
+const deleteChat = (activeChatId: number) => {
     if (!activeChatId)
         return;
 
     let confirmDelete  = confirm("Вы уверены, что хотите удалить чат?");
     if (confirmDelete) {
-        ChatController.deleteChat(activeChatId, ws)
+        ChatController.deleteChat(activeChatId)
         .then((res) => {
             if (res) {
                 modalCloseHandler();
@@ -65,7 +65,6 @@ export class ChatHeaderSection extends Block {
         const activeChat = state.activeChat as { users: IChatUser[], id: number };
         const activeChatId = activeChat.id as number;
         const activeChatUsers = activeChat.users as IChatUser[];
-        const ws = state.ws as WebSocket;
 
         const dropdown = new Dropdown({
             dropdownButtonIsCircle: true,
@@ -115,7 +114,7 @@ export class ChatHeaderSection extends Block {
                             })
                         ],
                         events: {
-                            click: () => deleteChat(activeChatId, ws)
+                            click: () => deleteChat(activeChatId)
                         }
                     }),
                 ]
