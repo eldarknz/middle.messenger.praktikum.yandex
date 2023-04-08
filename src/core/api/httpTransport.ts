@@ -15,28 +15,30 @@ enum METHODS {
     DELETE = 'DELETE',
 }
 
-type HTTPMethod = (url: string, options?: RequestOptions) => Promise<XMLHttpRequest>
-type HTTPRequest = (url: string, options: RequestOptions, timeout?: number) => Promise<XMLHttpRequest>;
+type HTTPRequest = (url: string, options?: RequestOptions, timeout?: number) => Promise<XMLHttpRequest>;
 
 export class HTTPTransport {
-    get: HTTPMethod = (url, options = {}) => {
+    get: HTTPRequest = (url, options = {}) => {
         const query = options.data ? url + queryStringify(options.data as { [key: string]: string }) : url;
         return this.request(query, { ...options, method: METHODS.GET }, options.timeout);
     };
 
-    post: HTTPMethod = (url, options = {}) => {
+    post: HTTPRequest = (url, options = {}) => {
         return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
     };
 
-    put: HTTPMethod = (url, options = {}) => {
+    put: HTTPRequest = (url, options = {}) => {
         return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
     };
 
-    delete: HTTPMethod = (url, options = {}) => {
+    delete: HTTPRequest = (url, options = {}) => {
         return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
     };
 
-    request: HTTPRequest = (url, options = { method: METHODS.GET }, timeout = 5000
+    request: HTTPRequest = (
+        url,
+        options = { method: METHODS.GET },
+        timeout = 5000
     ) => {
         const { headers = {}, method, data } = options;
 
