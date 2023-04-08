@@ -67,7 +67,7 @@ export class ChatHeaderSection extends Block {
         const activeChatUsers = activeChat.users as IChatUser[];
 
         const dropdown = new Dropdown({
-            dropdownButtonIsCircle: true,
+            dropdownButtonShape: "circle",
             dropdownButtonContent: new IconDots({ size: "m" }),
             dropdownMenuContent: new DivBlock({
                 className: "dropdown-menu__content",

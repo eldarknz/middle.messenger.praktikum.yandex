@@ -19,8 +19,8 @@ export class MainHeader extends Block {
 
         const siginLink = new Button({
             color: "light",
-            isLink: true,
-            isRound: true,
+            shape: "rounded",
+            view: "link",
             content: "Войти",
             events: {
                 click: () => { window.router.go(ROUTES.login.path); }
@@ -29,7 +29,7 @@ export class MainHeader extends Block {
 
         const signupLink = new Button({
             color: "primary",
-            isRound: true,
+            shape: "rounded",
             content: "Регистрация",
             events: {
                 click: () => { window.router.go(ROUTES.register.path); }

@@ -13,11 +13,8 @@ interface IDropdown {
     dropdownButtonSize?: "sm" | "lg" | "xl";
     dropdownButtonColor?: "primary" | "secondary" | "light";
     dropdownButtonIsFluid?: boolean;
-    dropdownButtonIsCircle?: boolean;
-    dropdownButtonIsSquare?: boolean;
-    dropdownButtonIsRound?: boolean;
-    dropdownButtonIsOutline?: boolean;
-    dropdownButtonIsLink?: boolean;
+    dropdownButtonShape?: "rounded" | "circle" | "square";
+    dropdownButtonView?: "outline" | "link";
     dropdownButtonContent: Block;
     dropdownMenuContent: Block | string;
 }
@@ -70,11 +67,8 @@ export class Dropdown extends Block {
             size: props.dropdownButtonSize,
             color: props.dropdownButtonColor,
             isFluid: props.dropdownButtonIsFluid,
-            isCircle: props.dropdownButtonIsCircle,
-            isSquare: props.dropdownButtonIsSquare,
-            isRound: props.dropdownButtonIsRound,
-            isOutline: props.dropdownButtonIsOutline,
-            isLink: props.dropdownButtonIsOutline,
+            shape: props.dropdownButtonShape,
+            view: props.dropdownButtonView,
             content: props.dropdownButtonContent,
             events: {
                 click: dropdownHandler

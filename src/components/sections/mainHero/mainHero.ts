@@ -14,8 +14,8 @@ export class MainHero extends Block {
 
         const callToActionButton = new Button({
             size: "xl",
-            isLink: true,
-            isRound: true,
+            shape: "rounded",
+            view: "link",
             className: "main-hero__btn",
             content: "Попробовать бесплатно",
             events: {

@@ -20,7 +20,7 @@ export class ChatFooterSection extends Block {
 
         const dropdown = new Dropdown({
             className: "up",
-            dropdownButtonIsSquare: true,
+            dropdownButtonShape: "square",
             dropdownButtonSize: "lg",
             dropdownButtonContent: new IconAttachment({
                 size: "m"
@@ -87,8 +87,8 @@ export class ChatFooterSection extends Block {
                 }),
                 new Button({
                     color: "primary",
+                    shape: "square",
                     size: "lg",
-                    isSquare: true,
                     content: new IconArrowRight({ size: "m" })
                 })
             ],

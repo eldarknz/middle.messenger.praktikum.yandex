@@ -37,7 +37,7 @@ export class Modal extends Block {
     constructor(props: IModal) {
         const modalCloseButton = new Button({
             size: "sm",
-            isSquare: true,
+            shape: "square",
             id: "modalCloseButton",
             content: new IconClose({}),
             events: {

@@ -82,7 +82,7 @@ export class ChatSidebarSection extends Block {
 
         const newChatButton = new Button({
             size: "lg",
-            isSquare: true,
+            shape: "square",
             id: "dropdownMenuButton",
             content: new IconWrite({
                 size: "m"
@@ -111,7 +111,7 @@ export class ChatSidebarSection extends Block {
             content: [
                 new Button({
                     size: "lg",
-                    isSquare: true,
+                    shape: "square",
                     content: new IconProfile({
                         size: "m"
                     }),
@@ -121,7 +121,7 @@ export class ChatSidebarSection extends Block {
                 }),
                 new Button({
                     size: "lg",
-                    isSquare: true,
+                    shape: "square",
                     content: new IconSettings({
                         size: "m"
                     }),
@@ -131,7 +131,7 @@ export class ChatSidebarSection extends Block {
                 }),
                 new Button({
                     size: "lg",
-                    isSquare: true,
+                    shape: "square",
                     content: new IconLogout({
                         color: "secondary",
                         size: "m"

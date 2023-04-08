@@ -10,12 +10,9 @@ interface IButton {
     id?: string;
     size?: "sm" | "lg" | "xl";
     color?: "primary" | "secondary" | "light";
-    isOutline?: boolean;
-    isLink?: boolean;
+    shape?: "rounded" | "circle" | "square";
+    view?: "outline" | "link";
     isFluid?: boolean;
-    isRound?: boolean;
-    isCircle?: boolean;
-    isSquare?: boolean;
     content?: Block | string;
     events?: { 
         click?: (e: Event) => void;
@@ -32,11 +29,14 @@ export class Button extends Block {
         let className = "btn";
         if (this.props.size) className += ` btn-${this.props.size}`
         if (this.props.isFluid) className += " btn-fluid"
-        if (this.props.isRound) className += " btn-rounded"
-        if (!this.props.isFluid && !this.props.isRound && this.props.isCircle) className += " btn-circle"
-        if (!this.props.isFluid && !this.props.isRound && !this.props.isCircle && this.props.isSquare) className += " btn-square"
-        if (this.props.isOutline) className += " btn-outline"
-        if (!this.props.isOutline && this.props.isLink) className += " btn-link"
+        if (this.props.shape) {
+            if (this.props.shape === "rounded") {
+                className += ` btn-${this.props.shape}`
+            } else {
+                if (!this.props.isFluid) className += ` btn-${this.props.shape}`
+            }
+        }
+        if (this.props.view) className += ` btn-${this.props.view}`
         if (this.props.color) className +=  ` btn-${this.props.color}`
         if (this.props.className) className += ` ${this.props.className}`
         return className;

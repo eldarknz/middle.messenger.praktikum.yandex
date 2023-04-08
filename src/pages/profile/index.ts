@@ -122,7 +122,7 @@ class Profile extends Block {
 
         const buttonBack = new Button({
             color: "primary",
-            isCircle: true,
+            shape: "circle",
             content: new IconArrowLeft({}),
             events: {
                 click: () => { window.router.go(ROUTES.chat.path); }
