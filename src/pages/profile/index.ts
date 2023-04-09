@@ -20,6 +20,7 @@ import { ProfileUserName } from "@components/sections/profileUserName/profileUse
 // Utils
 import { formDataSubmissionsHandler } from "@utils/formHandler";
 import { ROUTES } from "@utils/constants";
+import { AppRouter } from "src";
 // Template
 import template from "./profile.tmpl";
 // Styles
@@ -125,7 +126,7 @@ class Profile extends Block {
             shape: "circle",
             content: new IconArrowLeft({}),
             events: {
-                click: () => { window.router.go(ROUTES.chat.path); }
+                click: () => { AppRouter.go(ROUTES.chat.path); }
             }
         });
 

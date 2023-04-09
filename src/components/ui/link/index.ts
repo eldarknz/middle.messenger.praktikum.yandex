@@ -1,6 +1,8 @@
 // Core
 import { Block } from "@core/block";
 import { Router } from "@core/router";
+// Utils
+import { AppRouter } from "src";
 // Template
 import template from "./link.tmpl";
 
@@ -29,7 +31,7 @@ export class Link extends Block {
   constructor(props: ILink) {
     const defaultClickHandler = (e: MouseEvent) => {
       if (this.props.href)
-        window.router!.go(this.props.href);
+        AppRouter.go(this.props.href);
 
       e.preventDefault();
     }

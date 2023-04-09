@@ -4,6 +4,7 @@ import { Block } from "@core/block";
 import { Button } from "@components/ui/button";
 // Utils
 import { ROUTES } from "@utils/constants";
+import { AppRouter } from "src";
 // Templates
 import template from "./mainHero.tmpl";
 // Styles
@@ -19,7 +20,7 @@ export class MainHero extends Block {
             className: "main-hero__btn",
             content: "Попробовать бесплатно",
             events: {
-                click: () => { window.router.go(ROUTES.register.path); }
+                click: () => { AppRouter.go(ROUTES.register.path); }
             }
         });
 

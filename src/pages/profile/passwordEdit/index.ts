@@ -18,6 +18,7 @@ import { formDataSubmissionsHandler } from "@utils/formHandler";
 import { validateInput } from "@utils/validation";
 import { inputValueHandler } from "@utils/inputValueHandler";
 import { ROUTES } from "@utils/constants";
+import { AppRouter } from "src";
 // Template
 import template from "./passwordEdit.tmpl";
 // Styles
@@ -106,7 +107,7 @@ class PasswordEdit extends Block {
             shape: "circle",
             content: new IconArrowLeft({}),
             events: {
-                click: () => { window.router.go(ROUTES.profile.path); }
+                click: () => { AppRouter.go(ROUTES.profile.path); }
             }
         });
 

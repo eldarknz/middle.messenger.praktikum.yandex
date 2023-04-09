@@ -16,6 +16,7 @@ import { ChatList } from "@components/sections/chatList/chatList";
 // Utils
 import { formDataSubmissionsHandler } from "@utils/formHandler";
 import { ROUTES } from "@utils/constants";
+import { AppRouter } from "src";
 // Template
 import template from "./chatSidebar.tmpl";
 // Styles
@@ -116,7 +117,7 @@ export class ChatSidebarSection extends Block {
                         size: "m"
                     }),
                     events: {
-                        click: () => { window.router.go(ROUTES.profile.path); }
+                        click: () => { AppRouter.go(ROUTES.profile.path); }
                     }
                 }),
                 new Button({
@@ -126,7 +127,7 @@ export class ChatSidebarSection extends Block {
                         size: "m"
                     }),
                     events: {
-                        click: () => { window.router.go(ROUTES.profileEdit.path); }
+                        click: () => { AppRouter.go(ROUTES.profileEdit.path); }
                     }
                 }),
                 new Button({

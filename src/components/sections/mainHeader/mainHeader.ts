@@ -5,6 +5,7 @@ import { Button } from "@components/ui/button";
 import { Logo } from "@components/ui/logo";
 // Utils
 import { ROUTES } from "@utils/constants";
+import { AppRouter } from "src";
 // Template
 import template from "./mainHeader.tmpl";
 // Styles
@@ -23,7 +24,7 @@ export class MainHeader extends Block {
             view: "link",
             content: "Войти",
             events: {
-                click: () => { window.router.go(ROUTES.login.path); }
+                click: () => { AppRouter.go(ROUTES.login.path); }
             }
         });
 
@@ -32,7 +33,7 @@ export class MainHeader extends Block {
             shape: "rounded",
             content: "Регистрация",
             events: {
-                click: () => { window.router.go(ROUTES.register.path); }
+                click: () => { AppRouter.go(ROUTES.register.path); }
             }
         });
 

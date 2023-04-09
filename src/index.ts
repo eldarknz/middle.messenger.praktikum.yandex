@@ -24,15 +24,13 @@ const authChecker = async () => {
     return user.status === 200;
 };
 
-const AppRouter = new Router("#root");
+export const AppRouter = new Router("#root");
 
 const protectedRoute = true;
 const redirectTo = ROUTES.chat.path;
 
 document.addEventListener("DOMContentLoaded", () => {
     store.on(StoreEvents.Updated, () => {});
-
-    window.router = AppRouter;
 
     AppRouter
     .authCheck(authChecker)
