@@ -1,7 +1,3 @@
-type Indexed<T = unknown> = {
-    [key in string]: T;
-};
-
 export function set(object: Indexed, path: string, value: unknown): Indexed | unknown {
     if (typeof path !== 'string') {
         throw new Error('path must be string');

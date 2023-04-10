@@ -1,5 +1,6 @@
 // Core
 import { Block } from "@core/block";
+import { TState } from "@core/store";
 import { renderDOM } from "@core/renderDom";
 import { AuthController } from "@core/controllers/authContorller";
 import { ChatController } from "@core/controllers/chatController";
@@ -24,7 +25,7 @@ import template from "./chatSidebar.tmpl";
 import "./chatSidebar.scss";
 
 interface IChatSidebar {
-    state: Indexed;
+    state: TState;
 }
 
 export const createNewChat = () => {

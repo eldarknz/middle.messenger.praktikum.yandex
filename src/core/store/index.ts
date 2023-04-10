@@ -7,8 +7,12 @@ export const StoreEvents = {
   Updated: 'updated',
 };
 
+export type TState<T = unknown> = {
+  [key in string]: T;
+};
+
 class Store extends EventBus {
-  private state: Record<string, any> = {};
+  private state: TState = {};
 
   public getState() {
     return this.state;

@@ -1,5 +1,6 @@
 // Core
 import { Block } from "@core/block";
+import { TState } from "@core/store";
 import { ChatController } from "@core/controllers/chatController";
 // Components
 import { Avatar } from "@components/ui/avatar";
@@ -22,10 +23,10 @@ import template from "./chatList.tmpl";
 import "./chatList.scss";
 
 interface IChatList {
-    state: Indexed;
+    state: TState;
 }
 
-const getChatList = (state: Indexed) => {
+const getChatList = (state: TState) => {
     if (Object.keys(state).length === 0 || !state.user || !state.chats)
         return new ChatCardSkeleton();
 

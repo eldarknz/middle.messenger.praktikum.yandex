@@ -1,5 +1,6 @@
 // Core
 import { Block } from "@core/block";
+import { TState } from "@core/store";
 import { ChatController } from "@core/controllers/chatController";
 // Components
 import { DivBlock } from "@components/ui/div";
@@ -22,7 +23,7 @@ import template from "./chatHeader.tmpl";
 import "./chatHeader.scss";
 
 interface IChatHeader {
-    state: Indexed;
+    state: TState;
 }
 
 const deleteChat = (activeChatId: number) => {
@@ -48,7 +49,7 @@ const deleteChat = (activeChatId: number) => {
     }
 };
 
-const getChatBlock = (state: Indexed) => {
+const getChatBlock = (state: TState) => {
     if (Object.keys(state).length === 0 || !state.user || !state.chats || !state.activeChat)
         return ChatInfoBlock();
 

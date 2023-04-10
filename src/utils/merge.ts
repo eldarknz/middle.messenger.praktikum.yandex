@@ -1,7 +1,3 @@
-type Indexed<T = unknown> = {
-    [key in string]: T;
-};
-  
 export function merge(lhs: Indexed, rhs: Indexed): Indexed {
     for (let key in rhs) {
         if (!rhs.hasOwnProperty(key)) {

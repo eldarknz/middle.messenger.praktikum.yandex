@@ -1,5 +1,6 @@
 // Core
 import { Block } from "@core/block";
+import { TState } from "@core/store";
 import { WebSocketController } from "@core/controllers/wsController";
 // Components
 import { Grid } from "@components/ui/grid";
@@ -37,10 +38,10 @@ interface IChatMessage {
 }
 
 interface IChatMessageArea {
-    state: Indexed;
+    state: TState;
 }
 
-const getMessages = (state: Indexed) => {
+const getMessages = (state: TState) => {
 
     if (Object.keys(state).length === 0 || !state.user || !state.messages || !state.activeChat) {
         return new Grid.Container({

@@ -1,6 +1,7 @@
 // Core
 import { Block } from "@core/block";
 import { renderDOM } from "@core/renderDom";
+import { TState } from "@core/store";
 import { connect } from "@core/store/connect";
 import { AuthController } from "@core/controllers/authContorller";
 import { UserController } from "@core/controllers/userController";
@@ -90,7 +91,7 @@ const changeAvatar = () => {
     modal.show();
 };
 
-const getUserDataList = (state: Indexed) => {
+const getUserDataList = (state: TState) => {
     if (Object.keys(state).length !== 0 && state.user) {
         return new List({
             isFlush: true,

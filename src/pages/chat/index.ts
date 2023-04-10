@@ -1,5 +1,6 @@
 // Core
 import { Block } from "@core/block";
+import { TState } from "@core/store";
 import { connect } from "@core/store/connect";
 import { AuthController } from "@core/controllers/authContorller";
 import { ChatController } from "@core/controllers/chatController";
@@ -18,21 +19,21 @@ import "./styles.scss";
 
 interface IChat {}
 
-const getHeader = (state: Indexed) => {
+const getHeader = (state: TState) => {
     if (Object.keys(state).length === 0 || !state.activeChat || !state.messages)
         return new DivBlock({});
 
     return new ChatHeaderSection({ state })
 };
 
-const getFooter = (state: Indexed) => {
+const getFooter = (state: TState) => {
     if (Object.keys(state).length === 0 || !state.activeChat || !state.messages)
         return new DivBlock({});
 
     return new ChatFooterSection({ state })
 };
 
-const getChatMessageArea = (state: Indexed) => {
+const getChatMessageArea = (state: TState) => {
     if (Object.keys(state).length === 0 || !state.activeChat)
         return new Grid.Container({
             className: "chat-container empty",

@@ -1,6 +1,7 @@
 // Core
 import { Block } from "@core/block";
 import { Router } from "@core/router";
+import { TState } from "@core/store";
 import { connect } from "@core/store/connect";
 import { AuthController } from "@core/controllers/authContorller";
 import { UserController } from "@core/controllers/userController";
@@ -47,7 +48,7 @@ const profileFields: { [key: string]: string } = {
     phone: "Телефон"
 };
 
-const getForm = (state: Indexed) => {
+const getForm = (state: TState) => {
     if (Object.keys(state).length === 0) {
         return new Grid.Container({
             isFluid: true,
