@@ -1,5 +1,53 @@
 {
     "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@core/*": [
+                "src/core/*"
+            ],
+            "@mock/*": [
+                "src/mock/*"
+            ],
+            "@modules/*": [
+                "src/modules/*"
+            ],
+            "@pages/*": [
+                "src/pages/*"
+            ],
+            "@styles/*": [
+                "src/styles/*"
+            ],
+            "@custom_types/*": [
+                "src/types/*"
+            ],
+            "@utils/*": [
+                "src/utils/*"
+            ],
+            "@api/*": [
+                "src/core/api/*"
+            ],
+            "@config/*": [
+                "src/core/config/*"
+            ],
+            "@controlles/*": [
+                "src/core/controlles/*"
+            ],
+            "@router/*": [
+                "src/core/router/*"
+            ],
+            "@store/*": [
+                "src/core/store/*"
+            ],
+            "@declarations/*": [
+                "declarations/*"
+            ],
+            "@static/*": [
+                "static/*"
+            ]
+        },
         "outDir": "dist",
         "sourceMap": true,
         "removeComments": true,
@@ -9,7 +57,7 @@
         "noImplicitAny": true,
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
-        "strictFunctionTypes": true,
+        "strictFunctionTypes": false,
         "noImplicitThis": true,
         "strictBindCallApply": true,
         "noUnusedLocals": true,

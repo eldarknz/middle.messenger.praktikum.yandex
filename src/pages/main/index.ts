@@ -1,53 +1,40 @@
-import Block from "../../core/block";
-import { ROUTES } from "../../utils/constants";
-import { TBlockAttributes } from "../../../declarations";
+// Core
+import { Block } from "@core/block";
+// Components
+import { Grid } from "@components/ui/grid";
+import { MainHeader } from "@components/sections/mainHeader/mainHeader";
+import { MainFooter } from "@components/sections/mainFooter/mainFooter";
+import { MainHero } from "@components/sections/mainHero/mainHero";
+// Template
 import template from "./main.tmpl";
-import List from "../../components/ui/list";
-import Link from "../../components/ui/link";
+// Styles
+import "./main.scss";
 
 interface IMain {
-    attr?: TBlockAttributes;
-    content?: Block;
+    content?: Block | string;
+    className?: string;
 }
 
-class Main extends Block {
+export class MainPage extends Block {
     constructor(props: IMain) {
-      super('div', props);
+
+        const content = new Grid.Container({
+            isFluid: true,
+            className: "main-container",
+            content: new Grid.Container({
+                className: "main-container__content",
+                content: [
+                    new MainHeader(),
+                    new MainHero(),
+                    new MainFooter()
+                ],
+            })
+        })
+
+        super({ ...props, content });
     }
-  
+
     render() {
-        return this.compile(template, {
-            content: this.props.content,
-        });
+        return this.compile(template, this.props);
     }
 }
-
-const pages: { title: string, path: string }[] = [
-    { title: ROUTES.login.title, path: ROUTES.login.path },
-    { title: ROUTES.register.title, path: ROUTES.register.path },
-    { title: ROUTES.chat.title, path: ROUTES.chat.path },
-    { title: ROUTES.profile.title, path: ROUTES.profile.path },
-    { title: ROUTES.error_404.title, path: ROUTES.error_404.path },
-    { title: ROUTES.error_500.title, path: ROUTES.error_500.path }
-];
-
-const MainPage = new Main({
-    attr: {
-        class: "container",
-        id: "sss"
-    },
-    content: new List({
-        attr: {
-            class: "list",
-            id: "aaa"
-        },
-        content: pages.map(link => (
-            new Link({
-                attr: { href: link.path },
-                content: link.title
-            })    
-        ))
-    })
-});
-  
-export default MainPage

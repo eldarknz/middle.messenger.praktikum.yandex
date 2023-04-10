@@ -1,4 +1,4 @@
-export default class EventBus {
+export class EventBus {
     protected listeners: { [key: string]: any } = {};
 
     constructor() {
@@ -32,4 +32,4 @@ export default class EventBus {
             listener(...args);
         });
     }
-};
+}

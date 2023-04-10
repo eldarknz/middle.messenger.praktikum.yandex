@@ -1,23 +1,31 @@
-import Block from "../../../core/block"
+// Core
+import { Block } from "@core/block";
+// Template
 import template from "./nav.tmpl";
+// Styles
 import "./nav.scss";
-import { TBlockAttributes } from "../../../../declarations";
 
 interface INav {
-  attr?: TBlockAttributes;
+  className?: string;
   content: Block[] | string[];
 }
 
-class Nav extends Block {
+export class Nav extends Block {
   constructor(props: INav) {
-    super('nav', props);
+    super(props);
+    this.navClassName = this.navClassName.bind(this);
+  }
+  
+  navClassName() {
+      let className = "nav";
+      if (this.props.className) className += ` ${this.props.className}`
+      return className;
   }
   
   render() {
     return this.compile(template, {
-      content: this.props.content
+      ...this.props,
+      className: this.navClassName()
     });
   }
 }
-
-export default Nav
