@@ -13,6 +13,7 @@ import { Image } from "@components/ui/image";
 import { Input } from "@components/ui/input";
 import { List } from "@components/ui/list";
 import { Modal } from "@components/ui/modal";
+import { Notification } from "@components/ui/notification";
 import { Text } from "@components/ui/text";
 // Utils
 import { formResponseErrorNotification, textNotification } from "@utils/formHandler";
@@ -30,6 +31,12 @@ const addUser = (event: Event, item: IChatUser) => {
                 if (res.status === 200) {
                     const target = event.target;
                     if (target) {
+
+                        new Notification({
+                            content: "Пользователь добавлен",
+                            view: "success"
+                        }).renderDOMElement("#notification-root");
+
                         const listItem = (target as HTMLElement).closest('.list-item');
                         const infoItem = (target as HTMLElement).closest('.user-list__info-item__addition');
                         if (listItem && infoItem) {

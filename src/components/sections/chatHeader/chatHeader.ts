@@ -6,6 +6,7 @@ import { DivBlock } from "@components/ui/div";
 import { Dropdown } from "@components/ui/dropdown";
 import { IconAdd, IconDelete, IconDots, IconTrash } from "@components/ui/icon";
 import { modalCloseHandler } from "@components/ui/modal";
+import { Notification } from "@components/ui/notification";
 import { Text } from "@components/ui/text";
 import { AddUserModal } from "./components/addUserModal";
 import { ChatInfo } from "./components/chatInfo";
@@ -24,7 +25,6 @@ interface IChatHeader {
     state: Indexed;
 }
 
-// отрефакторил
 const deleteChat = (activeChatId: number) => {
     if (!activeChatId)
         return;
@@ -35,6 +35,12 @@ const deleteChat = (activeChatId: number) => {
         .then((res) => {
             if (res) {
                 modalCloseHandler();
+                if (res.status === 200) {
+                    new Notification({
+                        content: "Чат удален",
+                        view: "success"
+                    }).renderDOMElement("#notification-root");
+                }
             } else {
                 formResponseErrorNotification(res, ".modal-container__content", "Произошла ошибка, попробуйте еще раз");
             }
@@ -42,7 +48,6 @@ const deleteChat = (activeChatId: number) => {
     }
 };
 
-// отрефакторил
 const getChatBlock = (state: Indexed) => {
     if (Object.keys(state).length === 0 || !state.user || !state.chats || !state.activeChat)
         return ChatInfoBlock();

@@ -3,7 +3,7 @@ import { Block } from "@core/block";
 // Components
 import { Link } from "@components/ui/link";
 // Utils
-import { ROUTES } from "@utils/constants";
+import { AppRouter } from "src";
 // Template
 import template from "./error.tmpl";
 // Styles
@@ -20,9 +20,12 @@ export class NotFoundErrorPage extends Block {
 
         const title = "404";
         const text = "Не туда попали";
+
         const link = new Link({
-            href: ROUTES.home.path,
-            content: "Назад к чатам"
+            content: "Вернуться назад",
+            events: {
+                click: () => { AppRouter.back(); }
+            }
         });
 
         super({ ...props, title, text, link })
@@ -38,9 +41,12 @@ export class ServerErrorPage extends Block {
 
         const title = "500";
         const text = "Мы уже фиксим";
+
         const link = new Link({
-            href: ROUTES.home.path,
-            content: "Назад к чатам"
+            content: "Вернуться назад",
+            events: {
+                click: () => { AppRouter.back(); }
+            }
         });
 
         super({ ...props, title, text, link })

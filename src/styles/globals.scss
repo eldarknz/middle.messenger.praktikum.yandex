@@ -12,7 +12,9 @@
     text-rendering: optimizeLegibility;
 }
 
-html, body, #root {
+html,
+body,
+#root {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -25,6 +27,24 @@ html, body {
     font-size: var(--font-size-14);
     background-color: var(--body-bg);
     color: var(--body-color);
+}
+
+#notification-root {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 10px;
+    z-index: var(--zindex-notification);
+
+    & .notification:first-child {
+        margin-top: 10px;
+    }
+    & .notification {
+        margin-right: 10px;
+    }
 }
 
 .wrapper {

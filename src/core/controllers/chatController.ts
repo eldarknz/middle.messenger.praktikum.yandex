@@ -5,6 +5,7 @@ import { UserController } from "@core/controllers/userController";
 import { WebSocketController }from "@core/controllers/wsController";
 // Utils
 import { formDataToObjectConverter } from "@utils/formDataToObjectConverter";
+import { errorHandler } from "@utils/errorHandler";
 // Types
 import { TChatTitleData } from "@custom_types/index";
 import { IChatUser } from "@custom_types/index";
@@ -25,6 +26,7 @@ export class ChatController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -33,6 +35,7 @@ export class ChatController {
         return chatAPI.getChatList(params)
         .then((response) => response )
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -49,6 +52,7 @@ export class ChatController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -65,6 +69,7 @@ export class ChatController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -75,6 +80,7 @@ export class ChatController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -86,6 +92,7 @@ export class ChatController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -97,6 +104,7 @@ export class ChatController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -119,6 +127,7 @@ export class ChatController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -130,6 +139,7 @@ export class ChatController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -144,6 +154,7 @@ export class ChatController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -154,6 +165,7 @@ export class ChatController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }

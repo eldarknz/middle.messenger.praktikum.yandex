@@ -1,10 +1,14 @@
-export function responseErrorStatusHandling(response: Response) {
+export const responseErrorStatusHandler = (response: Response) => {
     if (response.status === 400) {
         return "Не удалось выполнить запрос";
     }
 
     if (response.status === 401) {
         return "Не удалось пройти авторизацию";
+    }
+
+    if (response.status === 403) {
+        return "Нет доступа";
     }
 
     if (response.status === 404) {

@@ -9,6 +9,7 @@ import { IconDelete } from "@components/ui/icon";
 import { Image } from "@components/ui/image";
 import { List } from "@components/ui/list";
 import { Modal } from "@components/ui/modal";
+import { Notification } from "@components/ui/notification";
 import { Text } from "@components/ui/text";
 // Utils
 import { formResponseErrorNotification } from "@utils/formHandler";
@@ -23,6 +24,8 @@ export const DeleteUserModal = (user: IUser, activeChatUsers: IChatUser[], activ
         return;
 
     sortChatUsersByLogin(activeChatUsers);
+
+    const adminUser = activeChatUsers.find(item => item.role === "admin");
 
     const modal = new Modal({
         id: "chatUserListModal",
@@ -69,7 +72,12 @@ export const DeleteUserModal = (user: IUser, activeChatUsers: IChatUser[], activ
                                 }),
                             ];
     
-                            if (item.role !== "admin") {
+                            if (item.role === "admin") {
+                                userListInfoItem.push(new DivBlock({
+                                    className: "user-list__info-item__addition text-dark",
+                                    content: "admin"
+                                }))
+                            } else {
                                 userListInfoItem.push(new DivBlock({
                                     className: "user-list__info-item__addition action-item",
                                     content: new IconDelete({
@@ -78,30 +86,31 @@ export const DeleteUserModal = (user: IUser, activeChatUsers: IChatUser[], activ
                                     }),
                                     events: {
                                         click: (event) => {
-                                            let confirmDelete  = confirm("Вы уверены, что хотите удалить пользователя из чата?");
-                                            if (confirmDelete) {
-                                                ChatController.deleteUserfromChat(item.id, activeChatId)
-                                                .then((res) => {
-                                                    if (res) {
-                                                        if (res.status === 200) {
-                                                            const target = event.target;
-                                                            if (target) {
-                                                                const parentNode = (target as HTMLElement).closest('.list-item');
-                                                                if (parentNode) parentNode.remove()
+                                            if (adminUser!.id === user.id) {
+                                                let confirmDelete  = confirm("Вы уверены, что хотите удалить пользователя из чата?");
+                                                if (confirmDelete) {
+                                                    ChatController.deleteUserfromChat(item.id, activeChatId)
+                                                    .then((res) => {
+                                                        if (res) {
+                                                            if (res.status === 200) {
+                                                                const target = event.target;
+                                                                if (target) {
+                                                                    const parentNode = (target as HTMLElement).closest('.list-item');
+                                                                    if (parentNode) parentNode.remove()
+                                                                }
                                                             }
+                                                        } else {
+                                                            formResponseErrorNotification(res, ".modal-container__content", "Произошла ошибка, попробуйте еще раз");
                                                         }
-                                                    } else {
-                                                        formResponseErrorNotification(res, ".modal-container__content", "Произошла ошибка, попробуйте еще раз");
-                                                    }
-                                                })
+                                                    })
+                                                }
+                                            } else {
+                                                new Notification({
+                                                    content: "Для удаления пользователя нужны права админа"
+                                                }).renderDOMElement("#notification-root");
                                             }
                                         }
                                     }
-                                }))
-                            } else {
-                                userListInfoItem.push(new DivBlock({
-                                    className: "user-list__info-item__addition text-dark",
-                                    content: "admin"
                                 }))
                             }
     

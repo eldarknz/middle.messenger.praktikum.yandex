@@ -1,4 +1,4 @@
-import { responseErrorStatusHandling } from './responseErrorStatusHandling';
+import { responseErrorStatusHandler } from './responseErrorStatusHandler';
 import { validateInput } from './validation';
 
 export const clearForm = (form: HTMLFormElement) => {
@@ -8,7 +8,20 @@ export const clearForm = (form: HTMLFormElement) => {
       input.value = "";
       input.setAttribute('value', input.value);
   });
-}
+};
+
+export const removeErrorFormNotification = (selector: string) => {
+  const node = document.querySelector(selector);
+  if (node) {
+    const parentNode = node?.parentElement;
+    if (parentNode) {
+      let textNode = parentNode.querySelector(".text-error");
+      if (textNode) {
+        textNode.remove();
+      }
+    }
+  }
+};
 
 export const checkValidateInputs = (inputs: NodeList) => Array.from(inputs)
   .reduce((acc, input) => (acc && validateInput(input as HTMLInputElement)), true);
@@ -17,7 +30,7 @@ export const checkInputs = (form: HTMLFormElement) => {
   const formInputs = form.querySelectorAll('input');
   let isValidateInputs = checkValidateInputs(formInputs)
   return isValidateInputs;
-}
+};
 
 export const textNotification = (selector: string, message: string, style: "base" | "error" = "base") => {
   const node = document.querySelector(selector);
@@ -39,26 +52,13 @@ export const errorFormNotification = (selector: string, message: string) => {
   textNotification(selector, message, "error")
 };
 
-export const removeErrorFormNotification = (selector: string) => {
-  const node = document.querySelector(selector);
-  if (node) {
-    const parentNode = node?.parentElement;
-    if (parentNode) {
-      let textNode = parentNode.querySelector(".text-error");
-      if (textNode) {
-        textNode.remove();
-      }
-    }
-  }
-}
-
 export const formResponseErrorNotification = (res: Response, selector: string, customTextStatus: string) => {
-  const responseErrorStatus = responseErrorStatusHandling(res);
+  const responseErrorStatus = responseErrorStatusHandler(res);
   errorFormNotification(
     selector,
     responseErrorStatus ? responseErrorStatus : customTextStatus
   )
-}
+};
 
 export const formDataSubmissionsHandler = (
   params: {

@@ -19,10 +19,12 @@ import {
 // Styles
 import "@styles/globals.scss";
 
-const authChecker = async () => {
-    const user = await AuthController.checkUser()
-    return user.status === 200;
-};
+const authChecker = () => (
+    AuthController.checkUser()
+    .then((res) => {
+        return res.status === 200;
+    })
+);
 
 export const AppRouter = new Router("#root");
 

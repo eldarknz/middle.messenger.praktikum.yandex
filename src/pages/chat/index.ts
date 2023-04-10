@@ -19,21 +19,22 @@ import "./styles.scss";
 interface IChat {}
 
 const getHeader = (state: Indexed) => {
-    return Object.keys(state).length !== 0 && state.activeChat ?
-        new ChatHeaderSection({ state }) :
-        new DivBlock({});
+    if (Object.keys(state).length === 0 || !state.activeChat || !state.messages)
+        return new DivBlock({});
+
+    return new ChatHeaderSection({ state })
 };
 
 const getFooter = (state: Indexed) => {
-    return Object.keys(state).length !== 0 && state.activeChat ?
-        new ChatFooterSection({ state }) :
-        new DivBlock({});
+    if (Object.keys(state).length === 0 || !state.activeChat || !state.messages)
+        return new DivBlock({});
+
+    return new ChatFooterSection({ state })
 };
 
 const getChatMessageArea = (state: Indexed) => {
-    return Object.keys(state).length !== 0 && state.activeChat ?
-        new ChatMessageAreaSection({ state }) :
-        new Grid.Container({
+    if (Object.keys(state).length === 0 || !state.activeChat)
+        return new Grid.Container({
             className: "chat-container empty",
             isFluid: true,
             content: [
@@ -43,6 +44,8 @@ const getChatMessageArea = (state: Indexed) => {
                 })
             ]
         });
+
+    return new ChatMessageAreaSection({ state });
 };
 
 class Chat extends Block {

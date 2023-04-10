@@ -5,6 +5,7 @@ import { AuthAPI } from "@core/api/authApi";
 // Utils
 import { formDataToObjectConverter } from "@utils/formDataToObjectConverter";
 import { ROUTES } from "@utils/constants";
+import { errorHandler } from "@utils/errorHandler";
 // Types
 import { TSignInData, TSignUpData } from "@custom_types/index";
 
@@ -48,6 +49,7 @@ export class AuthController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -59,6 +61,7 @@ export class AuthController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -73,6 +76,7 @@ export class AuthController {
             }
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }

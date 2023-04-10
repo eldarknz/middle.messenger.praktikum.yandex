@@ -12,6 +12,7 @@ import { Input } from "@components/ui/input";
 import { Logo } from "@components/ui/logo";
 import { Modal, modalCloseHandler } from "@components/ui/modal";
 import { Nav } from "@components/ui/nav";
+import { Notification } from "@components/ui/notification";
 import { ChatList } from "@components/sections/chatList/chatList";
 // Utils
 import { formDataSubmissionsHandler } from "@utils/formHandler";
@@ -58,7 +59,13 @@ export const createNewChat = () => {
                             event: event,
                             handler: ChatController.addChat,
                             selector: ".add-value__form__input-group",
-                            action: () => modalCloseHandler()
+                            action: () => {
+                                modalCloseHandler();
+                                new Notification({
+                                    content: "Чат создан успешно",
+                                    view: "success"
+                                }).renderDOMElement("#notification-root");
+                            }
                         });
                     }
                 }
@@ -140,12 +147,11 @@ export class ChatSidebarSection extends Block {
                     events: {
                         click: async (e: Event) => {
                             e.preventDefault();
-                            await AuthController.logout();
+                            AuthController.logout();
                         }
                     },
                 })
             ]
-            
         });
 
         super({ ...props, logoLink, inputSearch, chatList, newChatButton, nav })

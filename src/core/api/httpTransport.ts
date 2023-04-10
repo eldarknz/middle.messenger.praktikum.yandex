@@ -58,11 +58,20 @@ export class HTTPTransport {
                 xhr.setRequestHeader(key, headers[key]);
             });
 
+            if (method === METHODS.GET || !data) {
+                xhr.send();
+            } else {
+                xhr.send(data);
+            }
+
             xhr.onload = () => {
-                if (xhr.status === 200) {
+                if (xhr.status >= 200 && xhr.status < 300) {
                     resolve(xhr);
                 } else {
-                    reject(xhr);
+                    reject({
+                        status: xhr.status,
+                        statusText: xhr.statusText
+                    });
                 }
             };
 
@@ -72,11 +81,6 @@ export class HTTPTransport {
             xhr.timeout = timeout;
             xhr.ontimeout = reject;
 
-            if (method === METHODS.GET || !data) {
-                xhr.send();
-            } else {
-                xhr.send(data);
-            }
         });
     };
 }

@@ -3,6 +3,7 @@ import { store } from "@core/store";
 import { UserAPI } from "@core/api/userApi";
 // Utils
 import { formDataToObjectConverter } from "@utils/formDataToObjectConverter";
+import { errorHandler } from "@utils/errorHandler";
 // Types
 import { TUserProfileData, TUserPasswordData, TUserPasswordFormData } from "@custom_types/index";
 
@@ -26,6 +27,7 @@ export class UserController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -38,6 +40,7 @@ export class UserController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -49,6 +52,7 @@ export class UserController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
@@ -59,6 +63,7 @@ export class UserController {
             return response;
         })
         .catch((error) => {
+            errorHandler(error);
             return error;
         });
     }
