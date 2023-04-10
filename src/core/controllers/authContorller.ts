@@ -49,7 +49,6 @@ export class AuthController {
             return response;
         })
         .catch((error) => {
-            errorHandler(error);
             return error;
         });
     }
