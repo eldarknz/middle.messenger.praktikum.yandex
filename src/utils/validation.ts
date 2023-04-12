@@ -1,10 +1,8 @@
-import {
-    TCheckFunction,
-    TCheckLength,
-    TCheckPasswordConfirm,
-    TShowError,
-    THideError
-} from "../../declarations";
+export type TCheckFunction = (value: string) => boolean;
+export type TCheckLength = (min: number, max: number, value: string) => boolean;
+export type TCheckPasswordConfirm = (value_1: string, value_2: string) => boolean;
+export type TShowError = (input: HTMLElement, selector: string, message?: string) => void;
+export type THideError = (input: HTMLElement, selector: string) => void;
 
 export class ValidationForm {
     checkEmptyValue: TCheckFunction = (value) => {
@@ -59,83 +57,42 @@ export class ValidationForm {
     };
 }
 
-export default ValidationForm
-
-export const validateInput = (firstElement: HTMLInputElement, secondElement?: HTMLInputElement): boolean => {
+export const validateInput = (firstElement: HTMLInputElement): boolean => {
     const validation = new ValidationForm;
 
+    const checkHandler = (condition: boolean, message?: string) => {
+        if (condition) {
+            validation.showError(firstElement, '.form-group', message);
+            return false;
+        } else {
+            validation.hideError(firstElement, '.form-group');
+            return true;
+        }
+    }
+
     if (firstElement.name === 'login') {
-        if (!validation.checkLogin(firstElement.value)) {
-            validation.showError(firstElement, '.form-group');
-            return false;
-        } else {
-            validation.hideError(firstElement, '.form-group');
-            return true;
-        }
+        return checkHandler(!validation.checkLogin(firstElement.value));
     } else if (firstElement.name === 'password') {
-        if (!validation.checkPassword(firstElement.value)) {
-            validation.showError(firstElement, '.form-group', "Неверный формат, либо менее 8 символов");
-            return false;
-        } else {
-            validation.hideError(firstElement, '.form-group');
-            return true;
-        }
-    } else if (firstElement.name === 'password_2' && secondElement) {
-        if (!validation.checkPassword(firstElement.value) || !validation.checkPasswordConfirm(firstElement.value, secondElement.value)) {
-            validation.showError(firstElement, '.form-group', "Неверный формат, либо пароли не совпадают");
-            return false;
-        } else {
-            validation.hideError(firstElement, '.form-group');
-            return true;
-        }
+        return checkHandler(!validation.checkPassword(firstElement.value), "Неверный формат, либо менее 8 символов");
+    } else if (firstElement.name === 'confirm_password') {
+        const form = firstElement.form;
+        const password = form?.querySelector("#password") as HTMLInputElement;
+        return checkHandler(
+            !validation.checkPassword(firstElement.value) || !validation.checkPasswordConfirm(firstElement.value, password.value),
+            "Неверный формат, либо пароли не совпадают"
+        );
     } else if (firstElement.name === 'new_password') {
-        if (!validation.checkPassword(firstElement.value)) {
-            validation.showError(firstElement, '.form-group', "Неверный формат, либо менее 8 символов");
-            return false;
-        } else {
-            validation.hideError(firstElement, '.form-group');
-            return true;
-        }
+        return checkHandler(!validation.checkPassword(firstElement.value), "Неверный формат, либо менее 8 символов");
     } else if (firstElement.name === 'email') {
-        if (!validation.checkEmail(firstElement.value)) {
-            validation.showError(firstElement, '.form-group');
-            return false;
-        } else {
-            validation.hideError(firstElement, '.form-group');
-            return true;
-        }
+        return checkHandler(!validation.checkEmail(firstElement.value));
     } else if (firstElement.name === 'phone') {
-        if (!validation.checkPhone(firstElement.value)) {
-            validation.showError(firstElement, '.form-group');
-            return false;
-        } else {
-            validation.hideError(firstElement, '.form-group');
-            return true;
-        }
+        return checkHandler(!validation.checkPhone(firstElement.value));
     } else if (firstElement.name === 'first_name') {
-        if (!validation.checkName(firstElement.value)) {
-            validation.showError(firstElement, '.form-group', "Неверный формат, либо имя с маленькой буквы");
-            return false;
-        } else {
-            validation.hideError(firstElement, '.form-group');
-            return true;
-        }
+        return checkHandler(!validation.checkName(firstElement.value), "Неверный формат, либо имя с маленькой буквы");
     } else if (firstElement.name === 'second_name') {
-        if (!validation.checkName(firstElement.value)) {
-            validation.showError(firstElement, '.form-group', "Неверный формат, либо фамилия с маленькой буквы");
-            return false;
-        } else {
-            validation.hideError(firstElement, '.form-group');
-            return true;
-        }
-    } else if (firstElement.name === 'chat_name') {
-        if (!validation.checkName(firstElement.value)) {
-            validation.showError(firstElement, '.form-group', "Неверный формат");
-            return false;
-        } else {
-            validation.hideError(firstElement, '.form-group');
-            return true;
-        }
+        return checkHandler(!validation.checkName(firstElement.value), "Неверный формат, либо фамилия с маленькой буквы");
+    } else if (firstElement.name === 'display_name') {
+        return checkHandler(!validation.checkName(firstElement.value));
     } else {
         return false;
     }

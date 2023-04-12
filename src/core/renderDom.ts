@@ -1,11 +1,11 @@
-import Block from "./block";
+// Core
+import { Block } from "@core/block";
 
-const renderDOM = (dest: string, block: Block) => {
-  const root = document.querySelector(dest);
+export const renderDOM = (query: string, block: Block) => {
+  const root = document.querySelector(query);
 
-  root!.innerHTML = '';
-  root!.appendChild(block.getContent());
+  root!.innerHTML = "";
+  const blockContent = block.getContent();
+  root!.appendChild(blockContent);
   block.dispatchComponentDidMount();
 };
-
-export default renderDOM

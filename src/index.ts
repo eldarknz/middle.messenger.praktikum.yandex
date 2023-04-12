@@ -1,7 +1,10 @@
-import Block from "./core/block";
-import renderDOM from "./core/renderDom";
-import { ROUTES } from "./utils/constants";
-
+// Core
+import { Router } from "@core/router";
+import { store, StoreEvents } from "@core/store";
+import { AuthController } from "@core/controllers/authContorller";
+// Utils
+import { ROUTES } from "@utils/constants";
+// Pages
 import {
     MainPage,
     ChatPage,
@@ -11,27 +14,36 @@ import {
     LoginPage,
     RegistrationPage,
     NotFoundErrorPage,
-    ServerErrorPage,
-} from "./pages";
+    ServerErrorPage
+} from "@pages/index";
+// Styles
+import "@styles/globals.scss";
 
-import "./styles/globals.scss";
+const authChecker = () => (
+    AuthController.checkUser()
+    .then((res) => {
+        return res.status === 200;
+    })
+);
 
-const currentLocation: string = window.location.pathname;
+export const AppRouter = new Router("#root");
 
-const pages: { [key: string]: Block } = {
-    [ROUTES.home.path]: MainPage,
-    [ROUTES.chat.path]: ChatPage,
-    [ROUTES.profile.path]: ProfilePage,
-    [ROUTES.profileEdit.path]: ProfileEditPage,
-    [ROUTES.passwordEdit.path]: PasswordEditPage,
-    [ROUTES.login.path]: LoginPage,
-    [ROUTES.register.path]: RegistrationPage,
-    [ROUTES.error_404.path]: NotFoundErrorPage,
-    [ROUTES.error_500.path]: ServerErrorPage
-}
+const protectedRoute = true;
+const redirectTo = ROUTES.chat.path;
 
-Object.entries(pages).forEach(([url, page]) => {
-    if (currentLocation === url) {
-        renderDOM('#root', page);
-    }
+document.addEventListener("DOMContentLoaded", () => {
+    store.on(StoreEvents.Updated, () => {});
+
+    AppRouter
+    .authCheck(authChecker)
+    .use(ROUTES.home.path, MainPage)
+    .use(ROUTES.chat.path, ChatPage, protectedRoute)
+    .use(ROUTES.profile.path, ProfilePage, protectedRoute)
+    .use(ROUTES.profileEdit.path, ProfileEditPage, protectedRoute)
+    .use(ROUTES.passwordEdit.path, PasswordEditPage, protectedRoute)
+    .use(ROUTES.login.path, LoginPage, !protectedRoute, redirectTo)
+    .use(ROUTES.register.path, RegistrationPage, !protectedRoute, redirectTo)
+    .use(ROUTES.error_404.path, NotFoundErrorPage)
+    .use(ROUTES.error_500.path, ServerErrorPage)
+    .start();
 });

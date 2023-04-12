@@ -1,18 +1,34 @@
-import Block from "../../../core/block";
+// Core
+import { Block } from "@core/block";
+import { Router } from "@core/router";
+import { TState } from "@core/store";
+import { connect } from "@core/store/connect";
+import { AuthController } from "@core/controllers/authContorller";
+import { UserController } from "@core/controllers/userController";
+// Components
+import { Grid } from "@components/ui/grid";
+import { Button } from "@components/ui/button";
+import { Form } from "@components/ui/form";
+import { Input } from "@components/ui/input";
+import { IconArrowLeft } from "@components/ui/icon";
+import { Skeleton } from "@components/ui/skeleton";
+import { ProfileUserAvatar } from "@components/sections/profileUserAvatar/profileUserAvatar";
+import { ProfileUserName } from "@components/sections/profileUserName/profileUserName";
+// Utils
+import { formDataSubmissionsHandler } from "@utils/formHandler";
+import { validateInput } from "@utils/validation";
+import { inputValueHandler } from "@utils/inputValueHandler";
+import { ROUTES } from "@utils/constants";
+import { AppRouter } from "src";
+// Template
 import template from "./passwordEdit.tmpl";
-import Avatar from "../../../components/ui/avatar";
-import Button from "../../../components/ui/button";
-import Link from "../../../components/ui/link";
-import Input from "../../../components/ui/input";
-import { IconArrowLeft, IconMedia } from "../../../components/ui/icon";
-import { TBlockAttributes } from "../../../../declarations";
-import { validateInput } from "../../../utils/validation";
+// Styles
 import "../styles.scss";
 
 interface IPasswordEdit {
-    attr?: TBlockAttributes;
     buttonBack: Block;
     userAvatar: Block;
+    userName: string;
     oldPasswordInput: Block;
     newPasswordInput: Block;
     passwordConfirmInput: Block;
@@ -20,127 +36,96 @@ interface IPasswordEdit {
     events: { submit: (e: Event) => void };
 }
 
+const passwordFields: { [key: string]: string } = {
+    new_password: "Новый пароль",
+    password: "Пароль",
+    confirm_password: "Пароль (еще раз)"
+};
+
+const getForm = (state: TState) => {
+    if (Object.keys(state).length === 0) {
+        return new Grid.Container({
+            isFluid: true,
+            className: "profile-container__form__input-group",
+            content: Object.keys(passwordFields).map(() => {
+                return new Skeleton({
+                    height: 48,
+                    isAnimation: true
+                });
+            })
+        });
+    } else {
+        return new Form({
+            className: "profile-container__form",
+            content: [
+                new Grid.Container({
+                    isFluid: true,
+                    className: "profile-container__form__input-group",
+                    content: Object.keys(passwordFields).map((key: Key) => {
+                        const title = passwordFields[key];
+                        const value = state.user?.[key] ? `${state.user?.[key]}` : "";
+                        return new Input({
+                            id: key,
+                            type: "password",
+                            name: key,
+                            style: "flush",
+                            placeholderText: title,
+                            value: value,
+                            events: {
+                                blur: (event) => validateInput(event.target as HTMLInputElement),
+                                input: (event) => inputValueHandler(event.target as HTMLInputElement)
+                            }
+                        })
+                    })
+                }),
+                new Button({
+                    color: "primary",
+                    size: "lg",
+                    isFluid: true,
+                    content: "Сохранить изменения"
+                })
+            ],
+            events: {
+                submit: (event: Event) => {
+                    formDataSubmissionsHandler({
+                        event: event,
+                        handler: UserController.changeUserPassword,
+                        selector: ".profile-container__form__input-group",
+                        isCheckInputs: true,
+                        action: () => Router.getInstanse().go(ROUTES.profile.path)
+                    });
+                }
+            }
+        });
+    }
+};
+
 class PasswordEdit extends Block {
     constructor(props: IPasswordEdit) {
-        super("div", props)
+
+        const buttonBack = new Button({
+            color: "primary",
+            shape: "circle",
+            content: new IconArrowLeft({}),
+            events: {
+                click: () => { AppRouter.go(ROUTES.profile.path); }
+            }
+        });
+
+        super({ ...props, buttonBack });
+
+        AuthController.getUserInfo();
     }
 
     render() {
-        return this.compile(template, {
-            buttonBack: this.props.buttonBack,
-            oldPasswordInput: this.props.oldPasswordInput,
-            newPasswordInput: this.props.newPasswordInput,
-            passwordConfirmInput: this.props.passwordConfirmInput,
-            buttonSubmit: this.props.buttonSubmit,
-            events: this.props.events
-        })
+        return this.compile(template, this.props)
     }
-}
+};
 
-const PasswordEditPage = new PasswordEdit({
-    attr: {
-        class: "wrapper"
-    },
-    buttonBack: new Link({
-        attr: {
-            href: "/profile"
-        },
-        content: new Button({
-            attr: {
-                class: "btn btn-circle btn-primary"
-            },
-            content: new IconArrowLeft({ attr: { class: "icon icon-white" }})
-        })
-    }),
-    userAvatar: new Avatar({
-        attr: {
-            class: "avatar avatar_size_l"
-        },
-        content: new IconMedia({ attr: { class:"icon icon-white icon-size-xxl"}})
-    }),
-    newPasswordInput: new Input({
-        attr: {
-            class: "form-group"
-        },
-        alternative: true,
-        type: "password",
-        id: "new_password",
-        name: "new_password",
-        placeholderText: "Новый пароль",
-        events: {
-            blur: (event) => validateInput(event.target as HTMLInputElement)
-        }
-    }),
-    oldPasswordInput: new Input({
-        attr: {
-            class: "form-group"
-        },
-        alternative: true,
-        type: "password",
-        id: "password",
-        name: "password",
-        placeholderText: "Пароль",
-        events: {
-            blur: (event) => validateInput(event.target as HTMLInputElement)
-        }
-    }),
-    passwordConfirmInput: new Input({
-        attr: {
-            class: "form-group"
-        },
-        alternative: true,
-        type: "password",
-        id: "password_2",
-        name: "password_2",
-        placeholderText: "Пароль (еще раз)",
-        events: {
-            blur: (event) => {
-                validateInput(
-                    event.target as HTMLInputElement,
-                    document.querySelector("input[name=password]") as HTMLInputElement
-                );
-            }
-        }
-    }),
-    buttonSubmit: new Button({
-        attr: {
-            class: "btn btn-primary btn-block"
-        },
-        content: "Сохранить изменения"
-    }),
-    events: {
-        submit: (event) => {
-            event.preventDefault();
-            const target = event.target as HTMLInputElement;
-            const inputFields = target.querySelectorAll('input');
-            const data: { [key: string]: string;} = {};
-            inputFields.forEach((current) => {
-                if (current.name === 'new_password') {
-                    if (!validateInput(current)) {
-                        console.log('Пароль введен неверно');
-                    } else {
-                        data[current.name] = current.value;
-                    }
-                } else if (current.name === 'password') {
-                    if (!validateInput(current)) {
-                        console.log('Пароль введен неверно');
-                    } else {
-                        data[current.name] = current.value;
-                    }
-                } else if (current.name === 'password_2') {
-                    if (!validateInput(current, document.querySelector("input[name=password]") as HTMLInputElement)) {
-                        console.log('Пароль и подтверждение пароля не совпадают');
-                    } else {
-                        data[current.name] = current.value;
-                    }
-                } else {
-                    console.log('current', current);
-                    data[current.name] = current.value;
-                }
-            });
-            console.log('data', data);
-        },
-    }
-})
+const withPage = connect((state) => ({
+    userAvatar: ProfileUserAvatar(state),
+    userName: ProfileUserName(state),
+    form: getForm(state)
+}));
 
-export default PasswordEditPage
+export const PasswordEditPage = withPage(PasswordEdit);

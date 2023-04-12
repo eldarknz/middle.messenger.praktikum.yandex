@@ -1,57 +1,71 @@
-import Block from "../../core/block";
+// Core
+import { Block } from "@core/block";
+import { TState } from "@core/store";
+import { connect } from "@core/store/connect";
+import { AuthController } from "@core/controllers/authContorller";
+import { ChatController } from "@core/controllers/chatController";
+// Components
+import { Grid } from "@components/ui/grid";
+import { DivBlock } from "@components/ui/div";
+import { Text } from "@components/ui/text";
+import { ChatHeaderSection } from "@components/sections/chatHeader/chatHeader";
+import { ChatSidebarSection } from "@components/sections/chatSidebar/chatSidebar";
+import { ChatMessageAreaSection } from "@components/sections/chatMessageArea/chatMessageArea";
+import { ChatFooterSection } from "@components/sections/chatFooter/chatFooter";
+// Template
 import template from "./chat.tmpl";
-import ChatHeaderBlock from "../../components/chatHeader/chatHeader";
-import ChatFooterBlock from "../../components/chatFooter/chatFooter";
-import ChatSidebarBlock from "../../components/chatSidebar/chatSidebar";
-import { IconClose } from "../../components/ui/icon";
-import AddUserFormBlock from "../../components/addUserForm/addUserForm";
-import Modal from "../../components/modal";
-import { dropdownHandler, modalHandler } from "../../modules"
-import { TBlockAttributes } from "../../../declarations";
+// Styles
 import "./styles.scss";
 
-interface IChat {
-    attr?: TBlockAttributes;
-    header: Block;
-    footer?: Block;
-    sidebar?: Block;
-    modal?: Block;
-}
+interface IChat {}
+
+const getHeader = (state: TState) => {
+    if (Object.keys(state).length === 0 || !state.activeChat || !state.messages)
+        return new DivBlock({});
+
+    return new ChatHeaderSection({ state })
+};
+
+const getFooter = (state: TState) => {
+    if (Object.keys(state).length === 0 || !state.activeChat || !state.messages)
+        return new DivBlock({});
+
+    return new ChatFooterSection({ state })
+};
+
+const getChatMessageArea = (state: TState) => {
+    if (Object.keys(state).length === 0 || !state.activeChat)
+        return new Grid.Container({
+            className: "chat-container empty",
+            isFluid: true,
+            content: [
+                new Text({
+                    className: "text-dark",
+                    content: "Выберите чат, чтобы начать общение"
+                })
+            ]
+        });
+
+    return new ChatMessageAreaSection({ state });
+};
 
 class Chat extends Block {
     constructor(props: IChat) {
-        super('div', props);
+        super(props);
+        AuthController.getUserInfo();
+        ChatController.getChats();
     }
     
     render() {
-        return this.compile(template, {
-            header: this.props.header,
-            footer: this.props.footer,
-            sidebar: this.props.sidebar
-        });
+        return this.compile(template, this.props);
     }
-}
+};
 
-const ChatPage = new Chat({
-    attr: {
-        class: "wrapper"
-    },
-    header: ChatHeaderBlock,
-    footer: ChatFooterBlock,
-    sidebar: ChatSidebarBlock,
-    modal: new Modal({
-        attr: {
-            class: "modal",
-            id: "addUserModal",
-            style: "display: none",
-        },
-        iconClose: new IconClose({ attr: { class: "icon" }}),
-        title: "Добавить пользователя",
-        content: AddUserFormBlock
-    })
-})
+const withPage = connect((state) => ({
+    sidebar: new ChatSidebarSection({ state }),
+    header: getHeader(state),
+    footer: getFooter(state),
+    messageArea: getChatMessageArea(state)
+}));
 
-dropdownHandler();
-modalHandler();
-
-export default ChatPage
+export const ChatPage = withPage(Chat);

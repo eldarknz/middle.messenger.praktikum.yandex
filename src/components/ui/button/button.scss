@@ -3,27 +3,52 @@
     align-items: center;
     justify-content: center;
     min-height: 40px;
+    padding: 0 var(--spacing-20);
     font-family: var(--font-family-base);
-    font-size: var(--font-size-14);
-    font-weight: 400;
-    color: var(--dark);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-5);
+    color: var(--black);
     text-decoration: none;
     cursor: pointer;
     user-select: none;
     border: 1px solid transparent;
-    border-radius: var(--spacing-10);
+    border-radius: var(--spacing-6);
     background-color: transparent;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: var(--common-transition);
 
     &:hover,
     &.active {
-        background-color: var(--color-gray-1);
+        background-color: var(--color-gray-200);
     }
 }
 
-.btn-block {
+.btn-sm {
+    min-height: 32px;
+    padding: 0 var(--spacing-15);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-4);
+}
+
+.btn-lg {
+    min-height: 48px;
+    padding: 0 var(--spacing-25);
+    font-weight: var(--font-weight-5);
+}
+
+.btn-xl {
+    min-height: 56px;
+    padding: 0 var(--spacing-30);
+    font-size: var(--font-size-20);
+    font-weight: var(--font-weight-6);
+}
+
+.btn-fluid {
     display: block;
     width: 100%;
+}
+
+.btn-rounded {
+    border-radius: 50px;
 }
 
 .btn-circle {
@@ -40,24 +65,142 @@
     padding: 0;
 }
 
+.btn-circle,
+.btn-square {
+    &.btn-sm {
+        height: 32px;
+        width: 32px;
+        min-height: 32px;
+        min-width: 32px;
+    }
+    
+    &.btn-lg {
+        height: 48px;
+        width: 48px;
+        min-height: 48px;
+        min-width: 48px;
+    }
+    
+    &.btn-xl {
+        height: 56px;
+        width: 56px;
+        min-height: 56px;
+        min-width: 56px;
+    }
+}
+
+.btn-link {
+    &.btn-primary {
+        background-color: transparent;
+        border-color: transparent;
+        color: var(--btn-primary-color);
+        &:hover {
+            color: var(--white);
+        }
+    }
+
+    &.btn-secondary {
+        background-color: transparent;
+        border-color: transparent;
+        color: var(--btn-secondary-color);
+        &:hover {
+            color: var(--white);
+        }
+    }
+
+    &.btn-light {
+        background-color: transparent;
+        border-color: transparent;
+        color: var(--btn-gray-color);
+        &:hover {
+            color: var(--black);
+        }
+    }
+}
+
+.btn-outline {
+    border-color: var(--dark);
+
+    &.btn-primary {
+        background-color: transparent;
+        border-color: var(--btn-primary-color);
+        color: var(--btn-primary-color);
+        &:hover {
+            color: var(--white);
+            & svg path {
+                fill: var(--white);
+            }
+        }
+        & svg path {
+            fill: var(--btn-primary-color);
+        }
+    }
+
+    &.btn-secondary {
+        background-color: transparent;
+        border-color: var(--btn-secondary-color);
+        color: var(--btn-secondary-color);
+        &:hover {
+            color: var(--white);
+            & svg path {
+                fill: var(--white);
+            }
+        }
+        & svg path {
+            fill: var(--btn-secondary-color);
+        }
+    }
+
+    &.btn-light {
+        background-color: transparent;
+        border-color: var(--color-gray-400);
+        &:hover {
+            color: var(--black);
+            & svg path {
+                fill: var(--black);
+            }
+        }
+        & svg path {
+            fill: var(--black);
+        }
+    }
+}
+
 .btn-primary {
     background-color: var(--btn-primary-color);
     border-color: var(--btn-primary-color);
-    color: var(--color-white);
-
+    color: var(--white);
     &:hover {
         background-color: var(--btn-primary-color-hover);
         border-color: var(--btn-primary-color-hover);
     }
+    & svg path {
+        fill: var(--white);
+    }
 }
 
-.btn-gray {
+.btn-secondary {
+    background-color: var(--btn-secondary-color);
+    border-color: var(--btn-secondary-color);
+    color: var(--white);
+    &:hover {
+        background-color: var(--btn-secondary-color-hover);
+        border-color: var(--btn-secondary-color-hover);
+    }
+    & svg path {
+        fill: var(--white);
+    }
+}
+
+.btn-light {
     background-color: var(--btn-gray-color);
     border-color: var(--btn-gray-color);
-    color: var(--color-gray-4);
-
+    color: var(--black);
     &:hover {
         background-color: var(--btn-gray-color-hover);
         border-color: var(--btn-gray-color-hover);
+    }
+    & svg path {
+        fill: var(--black);
     }
 }
