@@ -3,7 +3,7 @@
 import { Block } from "@core/block";
 import { Route } from "@core/router/route";
 // Utils
-import { ROUTES } from "@utils/constants";;
+import { ROUTES } from "@utils/constants";
 
 /**
  * Класс для работы с роутером

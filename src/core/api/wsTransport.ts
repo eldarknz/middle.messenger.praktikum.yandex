@@ -5,7 +5,7 @@ import { WebSocketController } from "@core/controllers/wsController";
 // Utils
 import { WSS_PATH } from "@utils/constants";
 // Types
-import { IChatUser } from "@custom_types/index";
+import { TActiveChat, TChatItem } from "@custom_types/index";
 
 const PING_INTERVAL = 6000;
 
@@ -48,7 +48,7 @@ export class WebSocketTransport {
                 store.delete(["ws", "messages"]);
                 const state = store.getState(); 
                 if (state && state.user && state.activeChat) {
-                    const { id: chatId } = state.activeChat as { users: IChatUser[], id: number };
+                    const { id: chatId } = state.activeChat as TActiveChat;
                     ChatController.getChatById(chatId)
                 }
             }
@@ -67,7 +67,7 @@ export class WebSocketTransport {
                     if (messages) {
                         const difference = getDifference(data, messages, "id");
                         if (difference.length > 0) {
-                            store.set("messages", [ ...messages, ...difference ]);
+                            store.set("messages", [ { ...messages, ...difference } ]);
                             this.content_offset += difference.length;
                         }
                     } else {
@@ -78,7 +78,7 @@ export class WebSocketTransport {
                 ChatController.getChats();
             } else {
                 if (data.type === "message") {
-                    store.set("messages", messages ? [ data, ...messages ] : [ data ]);
+                    store.set("messages", messages ? [ { data, ...messages } ] : [ data ]);
                     ChatController.getChats();
                 } else {
                     console.log(data);
@@ -96,7 +96,7 @@ export class WebSocketTransport {
                 type: "ping"
             }))
             if (state && state.chats) {
-                const chats = state.chats;
+                const chats = state.chats as TChatItem[];
                 ChatController.getChatList()
                 .then((res) => {
                     const chatsResponse = res.response;

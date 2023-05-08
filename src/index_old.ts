@@ -1,6 +1,6 @@
 // Core
 import { Router } from "@core/router";
-/*import { store, StoreEvents } from "@core/store";
+import { store, StoreEvents } from "@core/store";
 import { AuthController } from "@core/controllers/authContorller";
 // Utils
 import { ROUTES } from "@utils/constants";
@@ -15,20 +15,20 @@ import {
     RegistrationPage,
     NotFoundErrorPage,
     ServerErrorPage
-} from "@pages/index";*/
+} from "@pages/index";
 // Styles
 import "@styles/globals.scss";
 
-/*const authChecker = () => (
+const authChecker = () => (
     AuthController.checkUser()
     .then((res) => {
         return res.status === 200;
     })
-);*/
+);
 
 export const AppRouter = new Router("#root");
 
-/*const protectedRoute = true;
+const protectedRoute = true;
 const redirectTo = ROUTES.chat.path;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -46,8 +46,4 @@ document.addEventListener("DOMContentLoaded", () => {
     .use(ROUTES.error_404.path, NotFoundErrorPage)
     .use(ROUTES.error_500.path, ServerErrorPage)
     .start();
-});*/
-
-document.addEventListener("DOMContentLoaded", () => {
-    console.log('HELLO WORLD!');
 });

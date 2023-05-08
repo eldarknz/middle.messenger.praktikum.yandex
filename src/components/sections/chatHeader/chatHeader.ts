@@ -16,7 +16,7 @@ import { DeleteUserModal } from "./components/deleteUserModal";
 // Utils
 import { formResponseErrorNotification } from "@utils/formHandler";
 // Types
-import { IUser, IChatUser, TChatItem } from "@custom_types/index";
+import { IUser, IChatUser, TChatItem, TActiveChat } from "@custom_types/index";
 // Template
 import template from "./chatHeader.tmpl";
 // Styles
@@ -54,7 +54,7 @@ const getChatBlock = (state: TState) => {
         return ChatInfoBlock();
 
     const chats = state.chats as TChatItem[];
-    const activeChat = state.activeChat as { users: IChatUser[], id:  number };
+    const activeChat = state.activeChat as TActiveChat;
 
     return ChatInfoBlock(
         chats,
@@ -68,7 +68,7 @@ export class ChatHeaderSection extends Block {
 
         const state = props.state;
         const user = state.user as IUser;
-        const activeChat = state.activeChat as { users: IChatUser[], id: number };
+        const activeChat = state.activeChat as TActiveChat;
         const activeChatId = activeChat.id as number;
         const activeChatUsers = activeChat.users as IChatUser[];
 

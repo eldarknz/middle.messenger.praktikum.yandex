@@ -31,21 +31,6 @@ const defaultInputHandler = (event: Event, props: IInput) => {
         target.setAttribute('value', target.value);
 };
 
-// TODO: добавить переключатель видимости пароля
-class PasswordVisibilityTogglerBlock extends Block {
-    constructor(props: { content: Block }) {
-        const content = "";
-
-        super({ ...props, content });
-    }
-    
-    render() {
-        return this.compile(`
-            <div class="input-container__password-toggler">{{{content}}}</div>
-        `, this.props);
-    }
-}
-
 export class Input extends Block {
     constructor(props: IInput) {
         super({...props, events: { ...props.events, input: (event: Event) => defaultInputHandler(event, props) }})

@@ -16,7 +16,7 @@ import { ChatCardSkeleton } from "./components/chatCardSkeleton";
 import { dateConvert } from "@utils/dateConverter";
 import { API_RESOURCES_PATH } from "@utils/constants";
 // Types
-import { TChatItem, IChatUser } from "@custom_types/index";
+import { TChatItem, TActiveChat } from "@custom_types/index";
 // Template
 import template from "./chatList.tmpl";
 // Styles
@@ -32,7 +32,7 @@ const getChatList = (state: TState) => {
 
     if (state.chats && (state.chats as TChatItem[]).length !== 0) {
         const chats = state.chats as TChatItem[];
-        const activeChat = state.activeChat as { users: IChatUser[], id: number };
+        const activeChat = state.activeChat as TActiveChat
         let activeChatId: number;
         if (activeChat) {
             activeChatId = activeChat.id;

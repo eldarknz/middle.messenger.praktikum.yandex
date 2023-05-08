@@ -1,6 +1,7 @@
 // Core
 import { store } from "@core/store";
 import { WebSocketTransport } from "@core/api/wsTransport";
+import { IUser, TActiveChat } from "@/types";
 
 export class WebSocketController {
 
@@ -10,7 +11,7 @@ export class WebSocketController {
             this.deleteWebSocket();
 
             if (state.user && state.activeChat) {
-                store.set("ws", new WebSocketTransport(state.user.id, state.activeChat.id, token));
+                store.set("ws", new WebSocketTransport((state.user as IUser).id, (state.activeChat as TActiveChat).id, token));
             }
         }
     }
@@ -18,7 +19,7 @@ export class WebSocketController {
     static deleteWebSocket() {
         const state = store.getState();
         if (state && state.ws) {
-            state.ws.close();
+            (state.ws as WebSocketTransport).close();
             store.delete(["ws", "messages"]);
         }
     }
@@ -27,7 +28,7 @@ export class WebSocketController {
         const state = store.getState();
 
         if (state && state.ws) {
-            state.ws.getOldMessages(offset);
+            (state.ws as WebSocketTransport).getOldMessages(offset);
         }
     }
 }

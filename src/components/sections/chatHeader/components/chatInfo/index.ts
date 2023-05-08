@@ -21,7 +21,7 @@ import { formResponseErrorNotification } from "@utils/formHandler";
 import { sortChatUsersByLogin } from "@utils/sortChatUsersByLogin";
 import { API_RESOURCES_PATH } from "@utils/constants";
 // Types
-import { IChatUser, TChatItem } from "@custom_types/index";
+import { IChatUser, TActiveChat, TChatItem } from "@custom_types/index";
 
 const uploadChatAvatar = (activeChatId: number) => {
     const modal = new Modal({
@@ -62,7 +62,7 @@ const uploadChatAvatar = (activeChatId: number) => {
                                 .then((res) => {
                                     if (res && res.status === 200) {
                                         const { chats, activeChat } = store.getState();
-                                        ChatInfo(chats, activeChat)
+                                        ChatInfo(chats as TChatItem[], activeChat as TActiveChat)
                                     } else {
                                         formResponseErrorNotification(res, ".change-avatar__form__input-group", "Произошла ошибка, попробуйте еще раз");
                                     }

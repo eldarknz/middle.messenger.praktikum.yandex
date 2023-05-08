@@ -20,10 +20,11 @@ import { formResponseErrorNotification, textNotification } from "@utils/formHand
 import { sortChatUsersByLogin } from "@utils/sortChatUsersByLogin";
 import { API_RESOURCES_PATH } from "@utils/constants";
 // Types
-import { IUser, IChatUser } from "@custom_types/index";
+import { IUser, IChatUser, TActiveChat } from "@custom_types/index";
 
 const addUser = (event: Event, item: IChatUser) => {
-    const { activeChat } = store.getState()
+    const state = store.getState()
+    const activeChat = state.activeChat as TActiveChat;
     if (activeChat.users.length < 10) {
         ChatController.addUserToChat(item.id, activeChat.id)
         .then((res) => {
@@ -60,7 +61,7 @@ const addUser = (event: Event, item: IChatUser) => {
     }
 };
 
-const infoItemAdditionIcon = (chatUserEntries: boolean, item: IChatUser) => {
+const infoItemAdditionIcon = (chatUserEntries: IChatUser | undefined, item: IChatUser) => {
     return chatUserEntries ? new DivBlock({
         className: "user-list__info-item__addition",
         content: new IconSuccess({
@@ -136,7 +137,7 @@ const getFoundUserList = (foundUsers: IUser[]) => {
                                 }),
                             ];
 
-                            const chatUserEntries = activeChat.users.find((activeChatUser: IChatUser) => activeChatUser.id === item.id);
+                            const chatUserEntries = (activeChat as TActiveChat).users.find((activeChatUser: IChatUser) => activeChatUser.id === item.id);
 
                             return new DivBlock({
                                 className: "user-list__info-item",

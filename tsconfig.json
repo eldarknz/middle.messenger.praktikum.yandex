@@ -2,6 +2,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
+            "@/*": ["./src/*"],
             "@components/*": [
                 "src/components/*"
             ],
@@ -32,8 +33,8 @@
             "@config/*": [
                 "src/core/config/*"
             ],
-            "@controlles/*": [
-                "src/core/controlles/*"
+            "@controllers/*": [
+                "src/core/controllers/*"
             ],
             "@router/*": [
                 "src/core/router/*"
@@ -41,6 +42,7 @@
             "@store/*": [
                 "src/core/store/*"
             ],
+
             "@declarations/*": [
                 "declarations/*"
             ],
@@ -49,7 +51,8 @@
             ]
         },
         "outDir": "dist",
-        "sourceMap": true,
+        "declaration": true,
+        "sourceMap": true,   
         "removeComments": true,
         "target": "es2017",
         "module": "commonjs",

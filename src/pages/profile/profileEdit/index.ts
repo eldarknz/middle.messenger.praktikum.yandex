@@ -19,7 +19,7 @@ import { formDataSubmissionsHandler } from "@utils/formHandler";
 import { validateInput } from "@utils/validation";
 import { inputValueHandler } from "@utils/inputValueHandler";
 import { ROUTES } from "@utils/constants";
-import { AppRouter } from "src";
+import { AppRouter } from "@/index";
 // Template
 import template from "./profileEdit.tmpl";
 // Styles

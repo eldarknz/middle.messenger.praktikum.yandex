@@ -94,3 +94,8 @@ export type TChatTitleData = {
 export type TChatIdData = {
     chatId: number
 };
+
+export type TActiveChat = { 
+    users: IChatUser[],
+    id: number
+};
