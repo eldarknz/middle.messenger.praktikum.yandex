@@ -21,7 +21,7 @@ import { ProfileUserName } from "@components/sections/profileUserName/profileUse
 // Utils
 import { formDataSubmissionsHandler } from "@utils/formHandler";
 import { ROUTES } from "@utils/constants";
-import { AppRouter } from "src";
+import { AppRouter } from "../../../src/index";
 // Template
 import template from "./profile.tmpl";
 // Styles

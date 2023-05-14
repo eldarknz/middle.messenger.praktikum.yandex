@@ -5,7 +5,7 @@ import { Button } from "@components/ui/button";
 import { Logo } from "@components/ui/logo";
 // Utils
 import { ROUTES } from "@utils/constants";
-import { AppRouter } from "src";
+import { AppRouter } from "../../../../src/index";
 // Template
 import template from "./mainHeader.tmpl";
 // Styles

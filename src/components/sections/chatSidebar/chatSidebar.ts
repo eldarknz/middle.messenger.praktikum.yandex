@@ -18,7 +18,7 @@ import { ChatList } from "@components/sections/chatList/chatList";
 // Utils
 import { formDataSubmissionsHandler } from "@utils/formHandler";
 import { ROUTES } from "@utils/constants";
-import { AppRouter } from "src";
+import { AppRouter } from "../../../../src/index";
 // Template
 import template from "./chatSidebar.tmpl";
 // Styles

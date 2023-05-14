@@ -3,7 +3,7 @@ import { Block } from "@core/block";
 // Components
 import { Link } from "@components/ui/link";
 // Utils
-import { AppRouter } from "src";
+import { AppRouter } from "../../../src/index";
 // Template
 import template from "./error.tmpl";
 // Styles

@@ -1,68 +1,40 @@
 // https://habr.com/ru/articles/524260/
+// https://habr.com/ru/articles/701724/
 
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-/*const common = require("./webpack.config.js");
+module.exports = (env) => {
 
-const prodConfig = {
-	mode: "production",
-	module: {
-		rules: [
-			{
-				test: /\.s[ac]ss$/i,
-				use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-				exclude: /(node_modules)/,
-			},
-		],
-	},
-	plugins: [
-		new MiniCssExtractPlugin({
-			filename: "style.css",
-		}),
-	],
-};*/
+    const isDev     = Boolean(env.development);
+    const sourceMap = isDev;
 
-/*const developerConfig = {
-	mode: "development",
-	devServer: {
-		static: {
-			directory: path.join(__dirname, "../dist"),
-		},
-		historyApiFallback: true,
-		compress: true,
-		port: 4000,
-		open: true,
-		hot: true,
-	},
-	module: {
-		rules: [
-			{
-				test: /\.scss$/i,
-				use: ["style-loader", "css-loader", "sass-loader"],
-			},
-		],
-	},
-};*/
-
-module.exports = () => {
     return {
+
+        // Режим
+        mode: isDev ? "development" : "production",
+
+        // Для генерации source-map
+        devtool: sourceMap ? "source-map" : false,
+
         // Точка входа
         entry: {
-            main: path.resolve(__dirname, "./src/index.ts"),
+            main: path.resolve(__dirname, "./src/index.ts")
         },
 
         // Точка выхода
         output: {
-            filename: "[name].[fullhash].js",
-            path: path.resolve(__dirname, "./dist"),
+            filename: "[name].[hash].js",
+            path: path.resolve(__dirname, "./dist")
         },
 
+        // Разрешения
         resolve: {
             extensions: [".ts", ".js", ".json"],
             alias: {
+                handlebars: "handlebars/dist/handlebars.min.js",
                 "@components": path.resolve(__dirname, "src/components/"),
                 "@core": path.resolve(__dirname, "src/core"),
                 "@utils": path.resolve(__dirname, "src/utils"),
@@ -80,8 +52,10 @@ module.exports = () => {
             }
         },
 
+        // Модули
         module: {
             rules: [
+                // TS
                 {
                     test: /\.tsx?$/,
                     use: [
@@ -89,27 +63,35 @@ module.exports = () => {
                             loader: "ts-loader",
                             options: {
                                 configFile: path.resolve(
-                                    __dirname,
-                                    "./tsconfig.json",
-                                ),
-                            },
-                        },
+                                    __dirname, 
+                                    isDev ? "./tsconfig.json" : "./tsconfig.prod.json"
+                                )
+                            }
+                        }
                     ],
-                    exclude: /(node_modules)/,
+                    exclude: /(node_modules)/
                 },
+                // SCSS, CSS
                 {
                     test: /\.(sa|sc|c)ss$/,
                     use: [
-                      {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {},
-                      },
-                      "style-loader",
-                      "css-loader",
-                      "postcss-loader",
-                      "sass-loader",
+                        MiniCssExtractPlugin.loader,
+                        //"style-loader",
+                        "css-loader",
+                        "postcss-loader",
+                        "sass-loader"
                     ],
-                  }
+                },
+                // изображения
+                {
+                    test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                    type: "asset/resource",
+                },
+                // шрифты и SVG
+                {
+                    test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+                    type: "asset/inline",
+                },
             ]
         },
 
@@ -130,27 +112,6 @@ module.exports = () => {
                 filename: "style-[hash].css",
             }),
         ],
-
-        // Модули
-        module: {
-            rules: [
-                // css, sass, scss
-                {
-                    test: /\.scss$/i,
-                    use: ["style-loader", "css-loader", "sass-loader"],
-                },
-                // изображения
-                {
-                    test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-                    type: "asset/resource",
-                },
-                // шрифты и SVG
-                {
-                    test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-                    type: "asset/inline",
-                },
-            ],
-        },
 
         devServer: {
             static: {

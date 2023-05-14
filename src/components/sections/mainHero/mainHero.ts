@@ -4,7 +4,7 @@ import { Block } from "@core/block";
 import { Button } from "@components/ui/button";
 // Utils
 import { ROUTES } from "@utils/constants";
-import { AppRouter } from "src";
+import { AppRouter } from "../../../../src/index";
 // Templates
 import template from "./mainHero.tmpl";
 // Styles

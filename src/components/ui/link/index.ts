@@ -2,7 +2,7 @@
 import { Block } from "@core/block";
 import { Router } from "@core/router";
 // Utils
-import { AppRouter } from "src";
+import { AppRouter } from "../../../../src/index";
 // Template
 import template from "./link.tmpl";
 

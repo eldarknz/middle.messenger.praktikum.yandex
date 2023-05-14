@@ -19,7 +19,7 @@ import { formDataSubmissionsHandler } from "@utils/formHandler";
 import { validateInput } from "@utils/validation";
 import { inputValueHandler } from "@utils/inputValueHandler";
 import { ROUTES } from "@utils/constants";
-import { AppRouter } from "src";
+import { AppRouter } from "../../../../src/index";
 // Template
 import template from "./passwordEdit.tmpl";
 // Styles

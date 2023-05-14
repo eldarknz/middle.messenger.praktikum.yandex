@@ -14,9 +14,9 @@ export class Block {
         FLOW_RENDER: 'flow:render',
     };
 
-    private _element: Nullable<HTMLElement> = null;
+    _element: Nullable<HTMLElement> = null;
 
-    private _id: Nullable<string> = null;
+    _id: Nullable<string> = null;
 
     public children: Children;
     
@@ -46,7 +46,7 @@ export class Block {
     }
 
     // 1. Получение пропсов и детей
-    private _getPropsAndChildren(propsAndChildren: TProps) {
+    _getPropsAndChildren(propsAndChildren: TProps) {
         const children: { [key: string]: any } = {};
         const props: TProps = {} as TProps;
 
@@ -72,7 +72,7 @@ export class Block {
     }
 
     // 2. Проксирование пропсов
-    private _makePropsProxy = (props: TProps) => {
+    _makePropsProxy = (props: TProps) => {
         const self = this;
 
         return new Proxy(props as unknown as object, {
@@ -92,7 +92,7 @@ export class Block {
     };
 
     // 3. Регистрация событий
-    private _registerEvents(eventBus: EventBus): void {
+    _registerEvents(eventBus: EventBus): void {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
@@ -104,7 +104,7 @@ export class Block {
     }
 
     // 5. Создание элемента
-    private _createResources(): void {
+    _createResources(): void {
         this._element = this._createDocumentElement('div');
     }
 
@@ -118,7 +118,7 @@ export class Block {
     }
 
     // 7. Монтирование компонента
-    private _componentDidMount(): void {
+    _componentDidMount(): void {
         this.componentDidMount(this.props as TProps);
 
         Object.values(this.children).forEach((child) => {
@@ -138,7 +138,7 @@ export class Block {
     }
 
     // Обновление компонента
-    private _componentDidUpdate(oldProps: TProps, newProps: TProps): void {
+    _componentDidUpdate(oldProps: TProps, newProps: TProps): void {
         const response = this.componentDidUpdate(oldProps, newProps);
         if (response) {
             this._render();
@@ -150,7 +150,7 @@ export class Block {
     }
 
     // Добавление событий
-    private _addEvents() {
+    _addEvents() {
         const events: Record<string, () => void> = (this.props as any).events;
 
         if (!events) {
@@ -163,7 +163,7 @@ export class Block {
     }
 
     // Удаление событий
-    private _removeEvents() {
+    _removeEvents() {
         const events: Record<string, () => void> = (this.props as any).events;
 
         if (!events || !this._element) {
@@ -176,7 +176,7 @@ export class Block {
     }
 
     // Рендер компонента
-    private _render() {
+    _render() {
 
         const fragment = this.render();
         const newElement = fragment.firstElementChild!;
@@ -222,7 +222,7 @@ export class Block {
         return this.element;
     }
 
-    private _getStubs(props: Record<string, any>) {
+    _getStubs(props: Record<string, any>) {
         const propsAndStubs: Record<string, any> = { ...props };
         Object.entries(this.children).forEach(([key, child]) => {
             if (Array.isArray(child)) {

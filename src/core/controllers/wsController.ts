@@ -1,7 +1,7 @@
 // Core
 import { store } from "@core/store";
 import { WebSocketTransport } from "@core/api/wsTransport";
-import { IUser, TActiveChat } from "@/types";
+import { IUser, TActiveChat } from "@custom_types/index";
 
 export class WebSocketController {
 
