@@ -41,7 +41,6 @@
             "@store/*": [
                 "src/core/store/*"
             ],
-
             "@declarations/*": [
                 "declarations/*"
             ],
