@@ -1,9 +1,9 @@
 // Core
-import { Block } from "@core/block";
+import { Block } from '@core/block';
 // Template
-import template from "./chatCard.tmpl";
+import template from './chatCard.tmpl';
 // Styles
-import "./chatCard.scss";
+import './chatCard.scss';
 
 interface IChardCard {
     chatId: number;
@@ -13,9 +13,9 @@ interface IChardCard {
     datetime: string;
     label?: Block | null;
     isActive?: boolean;
-    events?: { 
+    events?: {
         click?: (e: Event) => void;
-    }
+    };
 }
 
 export class ChatCard extends Block {
@@ -31,7 +31,7 @@ export class ChatCard extends Block {
             message: this.props.message,
             datetime: this.props.datetime,
             label: this.props.label,
-            isActive: this.props.isActive
-        })
+            isActive: this.props.isActive,
+        });
     }
 }

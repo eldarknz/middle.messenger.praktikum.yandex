@@ -1,21 +1,21 @@
 // Core
-import { Block } from "@core/block";
-import { Router } from "@core/router";
-import { AuthController } from "@core/controllers/authContorller";
+import { Block } from '@core/block';
+import { Router } from '@core/router';
+import { AuthController } from '@core/controllers/authContorller';
 // Components
-import { Button } from "@components/ui/button";
-import { Grid } from "@components/ui/grid";
-import { Form } from "@components/ui/form";
-import { Input } from "@components/ui/input";
-import { Link } from "@components/ui/link";
-import { Logo } from "@components/ui/logo";
+import { Button } from '@components/ui/button';
+import { Grid } from '@components/ui/grid';
+import { Form } from '@components/ui/form';
+import { Input } from '@components/ui/input';
+import { Link } from '@components/ui/link';
+import { Logo } from '@components/ui/logo';
 // Utils
-import { formDataSubmissionsHandler } from "@utils/formHandler";
-import { validateInput } from "@utils/validation";
-import { inputValueHandler } from "@utils/inputValueHandler";
-import { ROUTES } from "@utils/constants";
+import { formDataSubmissionsHandler } from '@utils/formHandler';
+import { validateInput } from '@utils/validation';
+import { inputValueHandler } from '@utils/inputValueHandler';
+import { ROUTES } from '@utils/constants';
 // Template
-import template from "./registration.tmpl";
+import template from './registration.tmpl';
 
 interface IRegistration {
     title: string;
@@ -33,123 +33,164 @@ interface IRegistration {
 
 export class RegistrationPage extends Block {
     constructor(props: IRegistration) {
-
         const logoLink = new Logo({
-            style: "white",
-            link: ROUTES.home.path
+            style: 'white',
+            link: ROUTES.home.path,
         });
 
-        const title = "Вход";
+        const title = 'Вход';
 
         const form = new Form({
-            className: "sign-container__form",
+            className: 'sign-container__form',
             content: [
                 new Grid.Container({
                     isFluid: true,
-                    className: "sign-container__form__input-group",
+                    className: 'sign-container__form__input-group',
                     content: [
                         new Input({
-                            id: "email",
-                            name: "email",
-                            style: "flush",
-                            placeholderText: "Почта",
+                            id: 'email',
+                            name: 'email',
+                            style: 'flush',
+                            placeholderText: 'Почта',
                             events: {
-                                blur: (event) => validateInput(event.target as HTMLInputElement),
-                                input: (event) => inputValueHandler(event.target as HTMLInputElement)
-                            }
+                                blur: (event) =>
+                                    validateInput(
+                                        event.target as HTMLInputElement
+                                    ),
+                                input: (event) =>
+                                    inputValueHandler(
+                                        event.target as HTMLInputElement
+                                    ),
+                            },
                         }),
                         new Input({
-                            id: "login",
-                            name: "login",
-                            style: "flush",
-                            placeholderText: "Логин",
+                            id: 'login',
+                            name: 'login',
+                            style: 'flush',
+                            placeholderText: 'Логин',
                             events: {
-                                blur: (event) => validateInput(event.target as HTMLInputElement),
-                                input: (event) => inputValueHandler(event.target as HTMLInputElement)
-                            }
+                                blur: (event) =>
+                                    validateInput(
+                                        event.target as HTMLInputElement
+                                    ),
+                                input: (event) =>
+                                    inputValueHandler(
+                                        event.target as HTMLInputElement
+                                    ),
+                            },
                         }),
                         new Input({
-                            id: "first_name",
-                            name: "first_name",
-                            style: "flush",
-                            placeholderText: "Имя",
+                            id: 'first_name',
+                            name: 'first_name',
+                            style: 'flush',
+                            placeholderText: 'Имя',
                             events: {
-                                blur: (event) => validateInput(event.target as HTMLInputElement),
-                                input: (event) => inputValueHandler(event.target as HTMLInputElement)
-                            }
+                                blur: (event) =>
+                                    validateInput(
+                                        event.target as HTMLInputElement
+                                    ),
+                                input: (event) =>
+                                    inputValueHandler(
+                                        event.target as HTMLInputElement
+                                    ),
+                            },
                         }),
                         new Input({
-                            id: "second_name",
-                            name: "second_name",
-                            style: "flush",
-                            placeholderText: "Фамилия",
+                            id: 'second_name',
+                            name: 'second_name',
+                            style: 'flush',
+                            placeholderText: 'Фамилия',
                             events: {
-                                blur: (event) => validateInput(event.target as HTMLInputElement),
-                                input: (event) => inputValueHandler(event.target as HTMLInputElement)
-                            }
+                                blur: (event) =>
+                                    validateInput(
+                                        event.target as HTMLInputElement
+                                    ),
+                                input: (event) =>
+                                    inputValueHandler(
+                                        event.target as HTMLInputElement
+                                    ),
+                            },
                         }),
                         new Input({
-                            id: "phone",
-                            name: "phone",
-                            style: "flush",
-                            placeholderText: "Телефон",
+                            id: 'phone',
+                            name: 'phone',
+                            style: 'flush',
+                            placeholderText: 'Телефон',
                             events: {
-                                blur: (event) => validateInput(event.target as HTMLInputElement),
-                                input: (event) => inputValueHandler(event.target as HTMLInputElement)
-                            }
+                                blur: (event) =>
+                                    validateInput(
+                                        event.target as HTMLInputElement
+                                    ),
+                                input: (event) =>
+                                    inputValueHandler(
+                                        event.target as HTMLInputElement
+                                    ),
+                            },
                         }),
                         new Input({
-                            type: "password",
-                            id: "password",
-                            name: "password",
-                            style: "flush",
-                            placeholderText: "Пароль",
+                            type: 'password',
+                            id: 'password',
+                            name: 'password',
+                            style: 'flush',
+                            placeholderText: 'Пароль',
                             events: {
-                                blur: (event) => validateInput(event.target as HTMLInputElement),
-                                input: (event) => inputValueHandler(event.target as HTMLInputElement)
-                            }
+                                blur: (event) =>
+                                    validateInput(
+                                        event.target as HTMLInputElement
+                                    ),
+                                input: (event) =>
+                                    inputValueHandler(
+                                        event.target as HTMLInputElement
+                                    ),
+                            },
                         }),
                         new Input({
-                            type: "password",
-                            id: "confirm_password",
-                            name: "confirm_password",
-                            style: "flush",
-                            placeholderText: "Пароль (еще раз)",
+                            type: 'password',
+                            id: 'confirm_password',
+                            name: 'confirm_password',
+                            style: 'flush',
+                            placeholderText: 'Пароль (еще раз)',
                             events: {
-                                blur: (event) => validateInput(event.target as HTMLInputElement),
-                                input: (event) => inputValueHandler(event.target as HTMLInputElement)
-                            }
-                        })
-                    ]
+                                blur: (event) =>
+                                    validateInput(
+                                        event.target as HTMLInputElement
+                                    ),
+                                input: (event) =>
+                                    inputValueHandler(
+                                        event.target as HTMLInputElement
+                                    ),
+                            },
+                        }),
+                    ],
                 }),
                 new Button({
-                    color: "primary",
-                    size: "lg",
+                    color: 'primary',
+                    size: 'lg',
                     isFluid: true,
-                    content: "Зарегистрироваться"
-                })
+                    content: 'Зарегистрироваться',
+                }),
             ],
             events: {
                 submit: (event: Event) => {
                     formDataSubmissionsHandler({
-                        event: event,
+                        event,
                         handler: AuthController.signUp,
-                        selector: ".sign-container__form__input-group",
+                        selector: '.sign-container__form__input-group',
                         isCheckInputs: true,
-                        action: () => Router.getInstanse().go(ROUTES.chat.path)
+                        action: () => Router.getInstanse().go(ROUTES.chat.path),
                     });
-                }
-            }
-        })
+                },
+            },
+        });
 
         const link = new Link({
             href: ROUTES.login.path,
-            content: "Войдите в аккаунт"
+            content: 'Войдите в аккаунт',
         });
 
         super({ ...props, logoLink, title, form, link });
     }
-  
+
     render() {
         return this.compile(template, this.props);
     }

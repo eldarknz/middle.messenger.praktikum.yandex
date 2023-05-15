@@ -1,9 +1,9 @@
 export function merge(lhs: Indexed, rhs: Indexed): Indexed {
-    for (let key in rhs) {
+    for (const key in rhs) {
         if (!rhs.hasOwnProperty(key)) {
             continue;
         }
-  
+
         try {
             if (rhs[key]?.constructor === Object) {
                 rhs[key] = merge(lhs[key] as Indexed, rhs[key] as Indexed);
@@ -14,6 +14,6 @@ export function merge(lhs: Indexed, rhs: Indexed): Indexed {
             lhs[key] = rhs[key];
         }
     }
-  
+
     return lhs;
 }

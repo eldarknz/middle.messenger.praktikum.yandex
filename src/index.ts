@@ -1,9 +1,9 @@
 // Core
-import { Router } from "@core/router";
-import { store, StoreEvents } from "@core/store";
-import { AuthController } from "@core/controllers/authContorller";
+import { Router } from '@core/router';
+import { store, StoreEvents } from '@core/store';
+import { AuthController } from '@core/controllers/authContorller';
 // Utils
-import { ROUTES } from "@utils/constants";
+import { ROUTES } from '@utils/constants';
 // Pages
 import {
     MainPage,
@@ -14,37 +14,37 @@ import {
     LoginPage,
     RegistrationPage,
     NotFoundErrorPage,
-    ServerErrorPage
-} from "@pages/index";
+    ServerErrorPage,
+} from '@pages/index';
 // Styles
-import "@styles/globals.scss";
+import '@styles/globals.scss';
 
-const authChecker = () => (
-    AuthController.checkUser()
-    .then((res) => {
-        return res.status === 200;
-    })
-);
+const authChecker = () =>
+    AuthController.checkUser().then((res) => res.status === 200);
 
-export const AppRouter = new Router("#root");
+export const AppRouter = new Router('#root');
 
 const protectedRoute = true;
 const redirectTo = ROUTES.chat.path;
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
     console.log('HELLO WORLD!');
     store.on(StoreEvents.Updated, () => {});
 
-    AppRouter
-    .authCheck(authChecker)
-    .use(ROUTES.home.path, MainPage)
-    .use(ROUTES.chat.path, ChatPage, protectedRoute)
-    .use(ROUTES.profile.path, ProfilePage, protectedRoute)
-    .use(ROUTES.profileEdit.path, ProfileEditPage, protectedRoute)
-    .use(ROUTES.passwordEdit.path, PasswordEditPage, protectedRoute)
-    .use(ROUTES.login.path, LoginPage, !protectedRoute, redirectTo)
-    .use(ROUTES.register.path, RegistrationPage, !protectedRoute, redirectTo)
-    .use(ROUTES.error_404.path, NotFoundErrorPage)
-    .use(ROUTES.error_500.path, ServerErrorPage)
-    .start();
+    AppRouter.authCheck(authChecker)
+        .use(ROUTES.home.path, MainPage)
+        .use(ROUTES.chat.path, ChatPage, protectedRoute)
+        .use(ROUTES.profile.path, ProfilePage, protectedRoute)
+        .use(ROUTES.profileEdit.path, ProfileEditPage, protectedRoute)
+        .use(ROUTES.passwordEdit.path, PasswordEditPage, protectedRoute)
+        .use(ROUTES.login.path, LoginPage, !protectedRoute, redirectTo)
+        .use(
+            ROUTES.register.path,
+            RegistrationPage,
+            !protectedRoute,
+            redirectTo
+        )
+        .use(ROUTES.error_404.path, NotFoundErrorPage)
+        .use(ROUTES.error_500.path, ServerErrorPage)
+        .start();
 });

@@ -1,5 +1,7 @@
-// https://habr.com/ru/articles/524260/
-// https://habr.com/ru/articles/701724/
+/**
+ * https://habr.com/ru/articles/524260/
+ * https://habr.com/ru/articles/701724/
+ */
 
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");

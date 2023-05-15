@@ -1,9 +1,9 @@
 // Core
-import { Block } from "@core/block";
+import { Block } from '@core/block';
 // Template
-import template from "./skeleton.tmpl";
+import template from './skeleton.tmpl';
 // Styles
-import "./skeleton.scss";
+import './skeleton.scss';
 
 interface ISkeletonProps {
     className?: string;
@@ -21,19 +21,31 @@ export class Skeleton extends Block {
     }
 
     skeletonClassName() {
-        let className = "skeleton";
-        if (this.props.isCircle) className += " skeleton-circle"
-        if (this.props.isAnimation) className += " skeleton-animation"
-        if (this.props.className) className += ` ${this.props.className}`
+        let className = 'skeleton';
+        if (this.props.isCircle) className += ' skeleton-circle';
+        if (this.props.isAnimation) className += ' skeleton-animation';
+        if (this.props.className) className += ` ${this.props.className}`;
         return className;
     }
 
     skeletonStyle() {
-        let style = "";
-        let width = this.props.width ? this.props.width : "100%";
-        let height = this.props.isCircle ? this.props.width ? this.props.width : "100%" : this.props.height ? this.props.height : 4;
-        style += typeof width === "number" ? `width:${width}px; min-width:${width}px;` : `width:${width}; min-width:${width};`;    
-        style += typeof height === "number" ? `height:${height}px; min-height:${height}px;` : `height:${height}; min-height:${height};`;
+        let style = '';
+        const width = this.props.width ? this.props.width : '100%';
+        const height = this.props.isCircle
+            ? this.props.width
+                ? this.props.width
+                : '100%'
+            : this.props.height
+            ? this.props.height
+            : 4;
+        style +=
+            typeof width === 'number'
+                ? `width:${width}px; min-width:${width}px;`
+                : `width:${width}; min-width:${width};`;
+        style +=
+            typeof height === 'number'
+                ? `height:${height}px; min-height:${height}px;`
+                : `height:${height}; min-height:${height};`;
 
         return style;
     }
@@ -41,7 +53,7 @@ export class Skeleton extends Block {
     render() {
         return this.compile(template, {
             className: this.skeletonClassName(),
-            style: this.skeletonStyle()
+            style: this.skeletonStyle(),
         });
     }
 }

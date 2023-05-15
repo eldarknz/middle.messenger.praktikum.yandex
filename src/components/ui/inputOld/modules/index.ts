@@ -1,15 +1,16 @@
 export const inputHandler = () => {
     window.addEventListener('DOMContentLoaded', () => {
-        const inputFields = document.querySelectorAll(".input");
-        inputFields && inputFields.forEach((el) => {
-            el.addEventListener("keyup", () => {
-                el.setAttribute("value", (<HTMLInputElement>el).value);
-            })
-        });
+        const inputFields = document.querySelectorAll('.input');
+        inputFields &&
+            inputFields.forEach((el) => {
+                el.addEventListener('keyup', () => {
+                    el.setAttribute('value', (<HTMLInputElement>el).value);
+                });
+            });
     });
 };
 
-/*document.addEventListener('readystatechange', event => {
+/* document.addEventListener('readystatechange', event => {
     switch (document.readyState) {
       case "loading":
         console.log("document.readyState: ", document.readyState,
@@ -29,4 +30,4 @@ export const inputHandler = () => {
           );
         break;
     }
-});*/
+}); */

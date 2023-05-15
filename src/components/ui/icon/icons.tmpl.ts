@@ -1,4 +1,4 @@
-const icon_add = `
+const iconAdd = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -9,7 +9,7 @@ const icon_add = `
     </div>
 `;
 
-const icon_arrow_left = `
+const iconArrowLeft = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -19,7 +19,7 @@ const icon_arrow_left = `
     </div>
 `;
 
-const icon_arrow_right = `
+const iconArrowRight = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -29,7 +29,7 @@ const icon_arrow_right = `
     </div>
 `;
 
-const icon_attachment = `
+const iconAttachment = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -39,7 +39,7 @@ const icon_attachment = `
     </div>
 `;
 
-const icon_close = `
+const iconClose = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -49,7 +49,7 @@ const icon_close = `
     </div>
 `;
 
-const icon_delete = `
+const iconDelete = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -60,7 +60,7 @@ const icon_delete = `
     </div>
 `;
 
-const icon_done = `
+const iconDone = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -72,7 +72,7 @@ const icon_done = `
     </div>
 `;
 
-const icon_dots = `
+const iconDots = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -84,7 +84,7 @@ const icon_dots = `
     </div>
 `;
 
-const icon_file = `
+const iconFile = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -94,7 +94,7 @@ const icon_file = `
     </div>
 `;
 
-const icon_logout = `
+const iconLogout = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -104,7 +104,7 @@ const icon_logout = `
     </div>
 `;
 
-const icon_location = `
+const iconLocation = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -115,7 +115,7 @@ const icon_location = `
     </div>
 `;
 
-const icon_media = `
+const iconMedia = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -126,7 +126,7 @@ const icon_media = `
     </div>
 `;
 
-const icon_message = `
+const iconMessage = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -137,7 +137,7 @@ const icon_message = `
     </div>
 `;
 
-const icon_profile = `
+const iconProfile = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -147,7 +147,7 @@ const icon_profile = `
     </div>
 `;
 
-const icon_search = `
+const iconSearch = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -158,7 +158,7 @@ const icon_search = `
     </div>
 `;
 
-const icon_settings = `
+const iconSettings = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -169,7 +169,7 @@ const icon_settings = `
     </div>
 `;
 
-const icon_talks = `
+const iconTalks = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -182,7 +182,7 @@ const icon_talks = `
     </div>
 `;
 
-const icon_trash = `
+const iconTrash = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -192,7 +192,7 @@ const icon_trash = `
     </div>
 `;
 
-const icon_photo = `
+const iconPhoto = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -202,7 +202,7 @@ const icon_photo = `
     </div>
 `;
 
-const icon_add_user = `
+const iconAddUser = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -211,9 +211,9 @@ const icon_add_user = `
             <path fill-rule="evenodd" clip-rule="evenodd" d="M15.75 11.25C15.75 10.8358 15.4142 10.5 15 10.5C14.5858 10.5 14.25 10.8358 14.25 11.25V14H11.5C11.0858 14 10.75 14.3358 10.75 14.75C10.75 15.1642 11.0858 15.5 11.5 15.5H14.25V18.25C14.25 18.6642 14.5858 19 15 19C15.4142 19 15.75 18.6642 15.75 18.25V15.5H18.5C18.9142 15.5 19.25 15.1642 19.25 14.75C19.25 14.3358 18.9142 14 18.5 14H15.75V11.25Z" fill="black"/>
         </svg>
     </div>
-`
+`;
 
-const icon_write = `
+const iconWrite = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -223,7 +223,7 @@ const icon_write = `
     </div>
 `;
 
-const icon_success = `
+const iconSuccess = `
     <div
         {{#if className}}class="{{ className }}"{{/if}}
     >
@@ -234,28 +234,27 @@ const icon_success = `
     </div>
 `;
 
-
 export {
-    icon_add,
-    icon_arrow_left,
-    icon_arrow_right,
-    icon_attachment,
-    icon_close,
-    icon_delete,
-    icon_done,
-    icon_dots,
-    icon_file,
-    icon_logout,
-    icon_location,
-    icon_media,
-    icon_message,
-    icon_profile,
-    icon_search,
-    icon_settings,
-    icon_success,
-    icon_talks,
-    icon_trash,
-    icon_photo,
-    icon_add_user,
-    icon_write
-}
+    iconAdd,
+    iconArrowLeft,
+    iconArrowRight,
+    iconAttachment,
+    iconClose,
+    iconDelete,
+    iconDone,
+    iconDots,
+    iconFile,
+    iconLogout,
+    iconLocation,
+    iconMedia,
+    iconMessage,
+    iconProfile,
+    iconSearch,
+    iconSettings,
+    iconSuccess,
+    iconTalks,
+    iconTrash,
+    iconPhoto,
+    iconAddUser,
+    iconWrite
+};

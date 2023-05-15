@@ -1,13 +1,13 @@
 // Core
-import { Block } from "@core/block";
+import { Block } from '@core/block';
 // Components
-import { Link } from "@components/ui/link";
+import { Link } from '@components/ui/link';
 // Utils
-import { AppRouter } from "../../../src/index";
+import { AppRouter } from '../../index';
 // Template
-import template from "./error.tmpl";
+import template from './error.tmpl';
 // Styles
-import "./styles.scss";
+import './styles.scss';
 
 interface IErrorPage {
     title: string;
@@ -17,18 +17,19 @@ interface IErrorPage {
 
 export class NotFoundErrorPage extends Block {
     constructor(props: IErrorPage) {
-
-        const title = "404";
-        const text = "Не туда попали";
+        const title = '404';
+        const text = 'Не туда попали';
 
         const link = new Link({
-            content: "Вернуться назад",
+            content: 'Вернуться назад',
             events: {
-                click: () => { AppRouter.back(); }
-            }
+                click: () => {
+                    AppRouter.back();
+                },
+            },
         });
 
-        super({ ...props, title, text, link })
+        super({ ...props, title, text, link });
     }
 
     render() {
@@ -38,18 +39,19 @@ export class NotFoundErrorPage extends Block {
 
 export class ServerErrorPage extends Block {
     constructor(props: IErrorPage) {
-
-        const title = "500";
-        const text = "Мы уже фиксим";
+        const title = '500';
+        const text = 'Мы уже фиксим';
 
         const link = new Link({
-            content: "Вернуться назад",
+            content: 'Вернуться назад',
             events: {
-                click: () => { AppRouter.back(); }
-            }
+                click: () => {
+                    AppRouter.back();
+                },
+            },
         });
 
-        super({ ...props, title, text, link })
+        super({ ...props, title, text, link });
     }
 
     render() {

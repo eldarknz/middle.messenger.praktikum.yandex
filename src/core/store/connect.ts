@@ -1,8 +1,8 @@
 // Core
-import { Block } from "@core/block";
-import { store, StoreEvents, TState } from ".";
+import { Block } from '@core/block';
+import { isEqual } from '@utils/isEqual';
+import { store, StoreEvents, TState } from '.';
 // Utils
-import { isEqual } from "@utils/isEqual";
 
 export function connect(mapStateToProps: (state: TState) => any) {
     return function (Component: typeof Block) {

@@ -1,9 +1,9 @@
 // Core
-import { Block } from "@core/block";
+import { Block } from '@core/block';
 // Template
-import template from "./image.tmpl";
+import template from './image.tmpl';
 // Styles
-import "./image.scss";
+import './image.scss';
 
 interface IImage {
     className?: string;
@@ -18,8 +18,8 @@ export class Image extends Block {
     }
 
     imageClassName() {
-        let className = "img";
-        if (this.props.className) className += ` ${this.props.className}`
+        let className = 'img';
+        if (this.props.className) className += ` ${this.props.className}`;
         return className;
     }
 
@@ -27,7 +27,7 @@ export class Image extends Block {
         return this.compile(template, {
             className: this.imageClassName(),
             src: this.props.src,
-            alt: this.props.alt ?? "image"
+            alt: this.props.alt ?? 'image',
         });
     }
 }

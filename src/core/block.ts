@@ -130,7 +130,7 @@ export class Block {
         });
     }
 
-    componentDidMount(_props: TProps): void {}
+    componentDidMount(props: TProps): void {}
 
     // Диспетчеризация
     dispatchComponentDidMount(): void {
@@ -145,7 +145,7 @@ export class Block {
         }
     }
 
-    componentDidUpdate(_oldProps: TProps, _newProps: TProps): boolean {
+    componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
         return true;
     }
 

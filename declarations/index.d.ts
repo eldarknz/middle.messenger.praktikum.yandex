@@ -1,8 +1,9 @@
-import { Router } from "@core/router";
+import { Router } from '@core/router';
 
 declare global {
-
-    export interface Window { router: Router; }
+    export interface Window {
+        router: Router;
+    }
 
     export type Nullable<T> = T | null;
 
@@ -19,5 +20,5 @@ declare global {
 }
 
 declare module '*.png';
-  
+
 export {};

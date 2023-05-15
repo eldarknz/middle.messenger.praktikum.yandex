@@ -8,4 +8,4 @@ export default `
             <div class="nav-item">{{{this}}}</div>
         {{/each}}
     </nav>
-`
+`;

@@ -1,4 +1,4 @@
-import { validateInput } from "./validation";
+import { validateInput } from './validation';
 
 export const inputValueHandler = (element: HTMLInputElement) => {
     if (element) {

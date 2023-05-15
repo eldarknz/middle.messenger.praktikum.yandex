@@ -1,14 +1,17 @@
 // Core
-import { Block } from "@core/block";
-import { renderDOM } from "@core/renderDom";
+import { Block } from '@core/block';
+import { renderDOM } from '@core/renderDom';
 
 /**
  * Блок Route получает в качестве аргументов путь, соответствующий ему блок и его свойства
  */
 export class Route {
     private _pathname: string;
+
     private _blockClass: typeof Block;
+
     private _block: Block | null;
+
     private _props: TProps;
 
     constructor(pathname: string, view: typeof Block, props: TProps) {
@@ -53,7 +56,7 @@ export class Route {
         } else {
             this._block.show();
         }
-      
+
         renderDOM(this._props.rootQuery, this._block);
     }
 }

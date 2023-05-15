@@ -1,20 +1,20 @@
 // Core
-import { Block } from "@core/block";
+import { Block } from '@core/block';
 // Components
-import { Button } from "@components/ui/button";
-import { IconClose } from "@components/ui/icon";
+import { Button } from '@components/ui/button';
+import { Icon } from '@components/ui/icon';
 // Template
-import template from "./notification.tmpl";
+import template from './notification.tmpl';
 // Styles
-import "./notification.scss";
+import './notification.scss';
 
 const NOTIFICATION_CLOSE_TIEMOUT = 3000;
 
 interface INotification {
-    className?: string,
+    className?: string;
     iconClose?: Block | string;
     content: string;
-    view?: "success" | "error";
+    view?: 'success' | 'error';
 }
 
 export const notificationCloseHandler = (element: Element) => {
@@ -22,24 +22,25 @@ export const notificationCloseHandler = (element: Element) => {
 };
 
 export class Notification extends Block {
-
     private setTimeout;
 
     constructor(props: INotification) {
         const notificationCloseButton = new Button({
-            size: "sm",
-            shape: "square",
-            id: "notificationCloseButton",
-            content: new IconClose(),
+            size: 'sm',
+            shape: 'square',
+            id: 'notificationCloseButton',
+            content: new Icon({ name: "close" }),
             events: {
                 click: (event: Event) => {
-                    const currentTarget = event.currentTarget;
+                    const { currentTarget } = event;
                     if (currentTarget) {
-                        const notification = (currentTarget as HTMLElement).closest(".notification");
+                        const notification = (
+                            currentTarget as HTMLElement
+                        ).closest('.notification');
                         notificationCloseHandler(notification!);
                     }
-                }
-            }
+                },
+            },
         });
 
         super({ ...props, notificationCloseButton });
@@ -50,12 +51,14 @@ export class Notification extends Block {
         }, NOTIFICATION_CLOSE_TIEMOUT);
     }
 
-    clearTimeout() { clearTimeout(this.setTimeout) }
+    clearTimeout() {
+        clearTimeout(this.setTimeout);
+    }
 
     notificationClassName() {
-        let className = "notification";
-        if (this.props.view) className += ` notification-${this.props.view}`
-        if (this.props.className) className += ` ${this.props.className}`
+        let className = 'notification';
+        if (this.props.view) className += ` notification-${this.props.view}`;
+        if (this.props.className) className += ` ${this.props.className}`;
         return className;
     }
 
@@ -74,7 +77,7 @@ export class Notification extends Block {
         return this.compile(template, {
             className: this.notificationClassName(),
             iconClose: this.props.iconClose,
-            content: this.props.content
-        })
+            content: this.props.content,
+        });
     }
 }

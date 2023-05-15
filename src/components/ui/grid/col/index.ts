@@ -1,9 +1,9 @@
 // Core
-import { Block } from "@core/block";
+import { Block } from '@core/block';
 // Template
-import template from "../grid.tmpl";
+import template from '../grid.tmpl';
 // Styles
-import "../grid.scss";
+import '../grid.scss';
 
 interface IColProps {
     className?: string;
@@ -13,13 +13,13 @@ interface IColProps {
 
 export class Col extends Block {
     constructor(props: IColProps) {
-      super(props);
+        super(props);
     }
-  
+
     render() {
-      return this.compile(template, {
-        className: this.props.className,
-        content: this.props.content
-      });
+        return this.compile(template, {
+            className: this.props.className,
+            content: this.props.content,
+        });
     }
 }

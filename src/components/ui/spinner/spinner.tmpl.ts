@@ -23,4 +23,4 @@ export default `
             stroke-width="{{strokeWidth}}"
         ></circle>
     </svg>
-`
+`;
