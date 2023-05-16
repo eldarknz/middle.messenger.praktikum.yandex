@@ -96,7 +96,7 @@ export const DeleteUserModal = (
                                         }),
                                         events: {
                                             click: (event) => {
-                                                if (adminUser!.id === user.id) {
+                                                if (adminUser && adminUser.id === user.id) {
                                                     const confirmDelete =
                                                         confirm(
                                                             'Вы уверены, что хотите удалить пользователя из чата?'

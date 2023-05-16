@@ -1,11 +1,11 @@
 // Core
-import { store } from '@store/index';
-import { ChatController } from '@core/controllers/chatController';
-import { WebSocketController } from '@core/controllers/wsController';
+import { store } from "@store/index";
+import { ChatController } from "@core/controllers/chatController";
+import { WebSocketController } from "@core/controllers/wsController";
 // Utils
-import { WSS_PATH } from '@utils/constants';
+import { WSS_PATH } from "@utils/constants";
 // Types
-import { TActiveChat, TChatItem } from '@custom_types/index';
+import { TActiveChat, TChatItem, IChatMessage } from "@custom_types/index";
 
 const PING_INTERVAL = 6000;
 
@@ -30,8 +30,8 @@ export class WebSocketTransport {
     ) {
         this.socket = new WebSocket(`${WSS_PATH}/${userId}/${chatId}/${token}`);
 
-        this.socket.addEventListener('open', () => {
-            console.info('Соединение установлено');
+        this.socket.addEventListener("open", () => {
+            console.info("Соединение установлено");
 
             if (data) {
                 this.socket.send(JSON.stringify(data));
@@ -40,14 +40,14 @@ export class WebSocketTransport {
             }
         });
 
-        this.socket.addEventListener('close', (event) => {
+        this.socket.addEventListener("close", (event) => {
             this.clearRequestInterval();
             if (event.wasClean) {
-                console.info('Соединение закрыто чисто');
+                console.info("Соединение закрыто чисто");
                 this.clearRequestInterval();
             } else {
-                console.info('Обрыв соединения');
-                store.delete(['ws', 'messages']);
+                console.info("Обрыв соединения");
+                store.delete(["ws", "messages"]);
                 const state = store.getState();
                 if (state && state.user && state.activeChat) {
                     const { id: chatId } = state.activeChat as TActiveChat;
@@ -57,33 +57,31 @@ export class WebSocketTransport {
             console.log(`Код: ${event.code} | Причина: ${event.reason}`);
         });
 
-        this.socket.addEventListener('message', (event) => {
+        this.socket.addEventListener("message", (event) => {
             const data = JSON.parse(event.data);
             const { messages } = store.getState();
-            console.info('Получены данные');
+            console.info("Получены данные");
             if (data instanceof Array) {
                 if (data.length === 0) {
-                    messages ? null : store.set('messages', []);
+                    messages ? null : store.set("messages", []);
                 }
-                if (data.length > 0 && data[0].type === 'message') {
+                if (data.length > 0 && data[0].type === "message") {
                     if (messages) {
-                        const difference = getDifference(data, messages, 'id');
+                        const difference = getDifference(data, messages, "id");
                         if (difference.length > 0) {
-                            store.set('messages', [
-                                { ...messages, ...difference },
-                            ]);
+                            store.set("messages", [ ...(messages as IChatMessage[]), ...difference ]);
                             this.content_offset += difference.length;
                         }
                     } else {
-                        store.set('messages', [...data]);
+                        store.set("messages", [...data]);
                         this.content_offset += data.length;
                     }
                 }
                 ChatController.getChats();
-            } else if (data.type === 'message') {
+            } else if (data.type === "message") {
                 store.set(
-                    'messages',
-                    messages ? [{ data, ...messages }] : [data]
+                    "messages",    
+                    messages ? [ data, ...(messages as IChatMessage[])] : [data]
                 );
                 ChatController.getChats();
             } else {
@@ -91,15 +89,15 @@ export class WebSocketTransport {
             }
         });
 
-        this.socket.addEventListener('error', (event) => {
-            console.log('Ошибка', event);
+        this.socket.addEventListener("error", (event) => {
+            console.log("Ошибка", event);
         });
 
         this.wsRequestInterval = setInterval(() => {
             const state = store.getState();
             this.socket.send(
                 JSON.stringify({
-                    type: 'ping',
+                    type: "ping",
                 })
             );
             if (state && state.chats) {
@@ -112,7 +110,7 @@ export class WebSocketTransport {
                     ) {
                         ChatController.getChats();
                         WebSocketController.deleteWebSocket();
-                        store.delete(['activeChat']);
+                        store.delete(["activeChat"]);
                     }
                 });
             }
@@ -129,7 +127,7 @@ export class WebSocketTransport {
         this.socket.send(
             JSON.stringify({
                 content: offset,
-                type: 'get old',
+                type: "get old",
             })
         );
     }

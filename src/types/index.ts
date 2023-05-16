@@ -97,3 +97,22 @@ export type TActiveChat = {
     users: IChatUser[];
     id: number;
 };
+
+export interface IChatMessage {
+    id: number;
+    chat_id: number;
+    time: string;
+    type: string;
+    user_id: string;
+    content: string;
+    user?: boolean;
+    file?: {
+        id: number;
+        user_id: number;
+        path: string;
+        filename: string;
+        content_type: string;
+        content_size: number;
+        upload_date: string;
+    };
+}

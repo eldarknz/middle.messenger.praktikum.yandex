@@ -5,7 +5,7 @@ import template from './chatMessage.tmpl';
 // Styles
 import './chatMessage.scss';
 
-export interface IChatMessage {
+interface IChatMessage {
     id: number;
     chat_id: number;
     user_id: string;

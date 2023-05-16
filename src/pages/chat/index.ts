@@ -17,8 +17,6 @@ import template from './chat.tmpl';
 // Styles
 import './styles.scss';
 
-interface IChat {}
-
 const getHeader = (state: TState) => {
     if (Object.keys(state).length === 0 || !state.activeChat || !state.messages)
         return new DivBlock({});
@@ -50,7 +48,7 @@ const getChatMessageArea = (state: TState) => {
 };
 
 class Chat extends Block {
-    constructor(props: IChat) {
+    constructor(props: Record<string, unknown>) {
         super(props);
         AuthController.getUserInfo();
         ChatController.getChats();

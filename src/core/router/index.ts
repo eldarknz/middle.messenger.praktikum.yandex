@@ -104,7 +104,8 @@ export class Router {
         }
 
         this.currentRoute = route as Route;
-        route!.render();
+        //route!.render();
+        route?.render() ?? false;
     }
 
     // переходит на нужный роут и отображает нужный блок;

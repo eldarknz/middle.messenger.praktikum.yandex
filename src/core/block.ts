@@ -56,7 +56,8 @@ export class Block {
             } else if (Array.isArray(value)) {
                 value.forEach(item => {
                     if (item instanceof Block) {
-                        if (!children.hasOwnProperty(key)) {
+                        if(!Object.prototype.hasOwnProperty.call(children, key)) {
+                        //if (!children.hasOwnProperty(key)) {
                             children[key] = []
                         }
                         children[key].push(item);
@@ -130,7 +131,7 @@ export class Block {
         });
     }
 
-    componentDidMount(props: TProps): void {}
+    componentDidMount(props: TProps): void {/**/}
 
     // Диспетчеризация
     dispatchComponentDidMount(): void {
@@ -158,7 +159,8 @@ export class Block {
         }
 
         Object.entries(events).forEach(([event, listener]) => {
-            this._element!.addEventListener(event, listener);
+            //this._element!.addEventListener(event, listener);
+            this._element?.addEventListener(event, listener) ?? false;
         });
     }
 
@@ -171,25 +173,27 @@ export class Block {
         }
 
         Object.entries(events).forEach(([event, listener]) => {
-            this._element!.removeEventListener(event, listener);
+            //this._element!.removeEventListener(event, listener);
+            this._element?.removeEventListener(event, listener) ?? false;
         });
     }
 
     // Рендер компонента
     _render() {
-
         const fragment = this.render();
-        const newElement = fragment.firstElementChild!;
+        //const newElement = fragment.firstElementChild!;
+        const newElement = fragment.firstElementChild ? fragment.firstElementChild : "";
     
         this._removeEvents();
-        this._element!.replaceWith(newElement);
+        //this._element!.replaceWith(newElement);
+        this._element?.replaceWith(newElement) ?? false;
     
         this._element = newElement as HTMLElement;
         this._addEvents();
     }
 
     render(): DocumentFragment {
-        return undefined!;
+        return new DocumentFragment();
     }
 
     // Установка дополнительных пропсов
@@ -214,7 +218,7 @@ export class Block {
     };
 
     get element(): HTMLElement {
-        return this._element!;
+        return this._element ? this._element : this._createDocumentElement('div');
     }
 
     // Получение this._element
@@ -266,12 +270,13 @@ export class Block {
         if (this._element && this._element.hasAttribute('style')) {
             this._element.removeAttribute('style');
         }
-
     }
 
     // Скрытие блока
     hide() {
-        this._element!.style.display = 'none';
+        if (this._element) {
+            this._element.style.display = 'none';
+        }
     }
 
 }

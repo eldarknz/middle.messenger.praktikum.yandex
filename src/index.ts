@@ -28,8 +28,7 @@ const protectedRoute = true;
 const redirectTo = ROUTES.chat.path;
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('HELLO WORLD!');
-    store.on(StoreEvents.Updated, () => {});
+    store.on(StoreEvents.Updated, () => {/**/});
 
     AppRouter.authCheck(authChecker)
         .use(ROUTES.home.path, MainPage)

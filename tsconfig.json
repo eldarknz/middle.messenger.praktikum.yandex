@@ -48,6 +48,9 @@
                 "static/*"
             ]
         },
+        "lib": [
+            "es5", "es6", "dom", "dom.iterable"
+        ],
         "outDir": "dist",
         "declaration": true,
         "sourceMap": true,   

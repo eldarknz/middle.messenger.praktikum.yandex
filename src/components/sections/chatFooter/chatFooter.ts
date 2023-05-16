@@ -107,8 +107,7 @@ export class ChatFooterSection extends Block {
                     const { target } = event;
                     if (target && (Boolean(state.ws))) {
                         const ws = state.ws as WebSocket;
-                        const input = (target as HTMLFormElement)
-                            .elements[0] as HTMLInputElement;
+                        const input = (target as HTMLFormElement).elements[0] as HTMLInputElement;
                         const { value } = input;
                         if (value.trim() !== '' && ws !== null && ws !== undefined) {
                             ws.send(

@@ -28,7 +28,7 @@ module.exports = (env) => {
 
         // Точка выхода
         output: {
-            filename: "[name].[hash].js",
+            filename: "[name].bundle.js",
             path: path.resolve(__dirname, "./dist")
         },
 
@@ -119,6 +119,7 @@ module.exports = (env) => {
             static: {
                 directory: path.join(__dirname, "./dist")
             },
+            historyApiFallback: true,
             compress: true,
             port: 4000,
             open: true,

@@ -11,7 +11,7 @@ import template from './mainHero.tmpl';
 import './mainHero.scss';
 
 export class MainHero extends Block {
-    constructor(props?: {}) {
+    constructor(props?: Record<string, unknown>) {
         const callToActionButton = new Button({
             size: 'xl',
             shape: 'rounded',

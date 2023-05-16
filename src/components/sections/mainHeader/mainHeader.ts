@@ -12,7 +12,7 @@ import template from './mainHeader.tmpl';
 import './mainHeader.scss';
 
 export class MainHeader extends Block {
-    constructor(props?: {}) {
+    constructor(props?: Record<string, unknown>) {
         const logoLink = new Logo({
             style: 'white',
         });

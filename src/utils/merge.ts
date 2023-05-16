@@ -1,6 +1,7 @@
-export function merge(lhs: Indexed, rhs: Indexed): Indexed {
+export function merge(lhs: any, rhs: any): any {
     for (const key in rhs) {
-        if (!rhs.hasOwnProperty(key)) {
+        if(!Object.prototype.hasOwnProperty.call(rhs, key)) {
+        //if (!rhs.hasOwnProperty(key)) {
             continue;
         }
 

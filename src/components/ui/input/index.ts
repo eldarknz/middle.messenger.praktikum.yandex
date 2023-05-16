@@ -10,7 +10,7 @@ interface IInput {
     type?: string;
     id: string;
     name: string;
-    value?: string | Function;
+    value?: string | (() => void);
     placeholderText: string;
     passwordVisibilityToggler?: boolean;
     events?: {

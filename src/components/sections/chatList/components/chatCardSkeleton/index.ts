@@ -8,7 +8,7 @@ import template from './chatCardSkeleton.tmpl';
 import './chatCardSkeleton.scss';
 
 export class ChatCardSkeleton extends Block {
-    constructor(props?: {}) {
+    constructor(props?: Record<string, unknown>) {
         const avatar = new Skeleton({
             width: 34,
             isCircle: true,

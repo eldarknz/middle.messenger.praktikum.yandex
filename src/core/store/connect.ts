@@ -7,7 +7,7 @@ import { store, StoreEvents, TState } from '.';
 export function connect(mapStateToProps: (state: TState) => any) {
     return function (Component: typeof Block) {
         return class extends Component {
-            constructor(props: {}) {
+            constructor(props: Record<string, unknown>) {
                 // сохраняем начальное состояние
                 let state = mapStateToProps(store.getState());
                 super({ ...props, ...state });

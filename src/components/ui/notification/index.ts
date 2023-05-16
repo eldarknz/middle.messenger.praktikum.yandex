@@ -34,10 +34,8 @@ export class Notification extends Block {
                 click: (event: Event) => {
                     const { currentTarget } = event;
                     if (currentTarget) {
-                        const notification = (
-                            currentTarget as HTMLElement
-                        ).closest('.notification');
-                        notificationCloseHandler(notification!);
+                        const notification = (currentTarget as HTMLElement).closest('.notification');
+                        notification ? notificationCloseHandler(notification) : false;
                     }
                 },
             },

@@ -11,37 +11,18 @@ import { Text } from '@components/ui/text';
 // Utils
 import { dateConvert } from '@utils/dateConverter';
 // Types
-import { IUser } from '@custom_types/index';
+import { IUser, IChatMessage } from '@custom_types/index';
 import { ChatMessage } from './components/chatMessage';
 // Template
 import template from './chatMessageArea.tmpl';
 // Styles
 import './chatMessageArea.scss';
 
-interface IChatMessage {
-    id: number;
-    chat_id: number;
-    time: string;
-    type: string;
-    user_id: string;
-    content: string;
-    user?: boolean;
-    file?: {
-        id: number;
-        user_id: number;
-        path: string;
-        filename: string;
-        content_type: string;
-        content_size: number;
-        upload_date: string;
-    };
-}
-
 interface IChatMessageArea {
     state: TState;
 }
 
-const getDateTime = (user: IUser, item: IChatMessage) => { 
+const getDateTime = (user: IUser, item: IChatMessage) => {
     return item.user_id ? new Label({
         color: item.user_id == `${user.id}` ? "primary" : "light",
         className: "chat-message__date-time",
@@ -66,7 +47,6 @@ const getMessages = (state: TState) => {
     const user = state.user as IUser;
 
     if (state.messages && (state.messages as IChatMessage[]).length !== 0) {
-
         return new Grid.Container({
             className: 'chat-container',
             isFluid: true,

@@ -8,7 +8,7 @@ import template from './mainFooter.tmpl';
 import './mainFooter.scss';
 
 export class MainFooter extends Block {
-    constructor(props?: {}) {
+    constructor(props?: Record<string, unknown>) {
         const link = new Link({
             href: 'https://github.com/eldarknz',
             content: '@eldarknz',
