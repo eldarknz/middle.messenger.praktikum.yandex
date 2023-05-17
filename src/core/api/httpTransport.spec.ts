@@ -3,13 +3,14 @@ import { HTTPTransport } from './httpTransport';
 import { API_TEST_PATH } from '@utils/constants';
 import app from '../../../test/server';
 
-const BASE_URL = 'http://localhost:5000';
 let server: any;
 
 describe('HTTP module ', () => {
 
-  before((done) => {
-    server = app.listen(5000, done);
+  before(() => {
+    server = app.listen(3000, () => {
+      console.log('JSON Server is running on port 3000');
+    });
   });
 
   after(() => {
