@@ -12,8 +12,13 @@
     "stylelint": "stylelint \"**/*.scss\"",
     "stylelint-fix": "stylelint --fix .",
     "test": "ts-mocha src/**/*.spec.ts -require tsconfig-paths/register -r test/mock.js",
-    "server": "json-server --watch ./test/db.json --port 3000",
+    "json-server": "json-server --watch ./test/db.json --port 3000",
     "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run test"
+    }
   },
   "repository": {
     "type": "git",
