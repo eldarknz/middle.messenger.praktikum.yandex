@@ -1,23 +1,21 @@
 .list {
+  & .list-item {
+    display: flex;
+    align-items: center;
+    min-height: 32px;
+  }
+
+  &.list-flush {
     & .list-item {
-        display: flex;
-        align-items: center;
-        min-height: 32px;
+      border-bottom: 1px solid var(--light);
     }
 
-    &.list-flush {
-        & .list-item {
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: var(--light);
-        }
-        
-        & .list-item:last-child {
-            border-bottom-color: transparent;
-        }
+    & .list-item:last-child {
+      border-bottom-color: transparent;
     }
+  }
 
-    &.list-fluid {
-        width: 100%;
-    }
+  &.list-fluid {
+    width: 100%;
+  }
 }

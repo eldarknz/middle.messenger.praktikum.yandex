@@ -1,200 +1,193 @@
 .chat-header {
-    width: 100%;
-    height: 68px;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: var(--white);
-    z-index: 1;
+  width: 100%;
+  height: 68px;
+  transition: all 0.3s;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--white);
+  z-index: 1;
 }
 
 .chat-header__container {
-    display: flex;
-    align-items: center;
-    margin: 0 var(--spacing-10);
-    height: 100%;
-    border: 0;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: var(--light);
+  display: flex;
+  align-items: center;
+  margin: 0 var(--spacing-10);
+  height: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--light);
 }
 
 .chat-header__container__content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 var(--spacing-10);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 var(--spacing-10);
 }
 
 .chat-info,
 .chat-info__text-empty,
 .chat-info__title,
 .chat-info__subtitle {
-    display: flex;
+  display: flex;
 }
 
 .chat-header__container__content .chat-info {
-    &:not(.empty) {
-        cursor: pointer;
-    }
+  &:not(.empty) {
+    cursor: pointer;
+  }
 }
 
 .chat-info {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    height: 100%;
-    gap: var(--spacing-6);
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  gap: var(--spacing-6);
 }
 
 .chat-info__text-empty {
-    width: 120px;
+  width: 120px;
 }
 
 .chat-info__title {
-    font-size: var(--font-size-14);
-    font-weight: 600;
+  font-size: var(--font-size-14);
+  font-weight: 600;
 }
 
 .chat-info__subtitle {
-    font-size: var(--font-size-12);
+  font-size: var(--font-size-12);
 }
 
 .chat-avatar {
-    margin-right: var(--spacing-16);
-    background-color: transparent;
-    border-radius: 50%;
+  margin-right: var(--spacing-16);
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  & .chat-avatar__overlay {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    flex-direction: column;
+    font-size: var(--font-size-13);
+    font-weight: 400;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: var(--common-transition);
+  }
 
-    & .chat-avatar__overlay {
-        display: flex;
-        align-items: center;                                                                        
-        justify-content: center;
-        flex-direction: column;
-        font-size: var(--font-size-13);
-        font-weight: 400;
-        background-color: var(--black);
-        color: var(--white);
-        border-radius: 50%;
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        opacity: 0;
-        transition: var(--common-transition);
-    }
-
-    &:hover .chat-avatar__overlay {
-        opacity: .5;
-    }
+  &:hover .chat-avatar__overlay {
+    opacity: 0.5;
+  }
 }
 
 .user-group-block,
 .user-block {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .user-group-block {
-    &:hover {
-        cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .user-block__name {
-    margin-left: 10px;
-    font-size: var(--font-size-14);
-    font-weight: 600;
+  margin-left: 10px;
+  font-size: var(--font-size-14);
+  font-weight: 600;
 }
 
 .user-block__name-empty {
-    margin-left: 10px;
-    height: 18px;
+  margin-left: 10px;
+  height: 18px;
 }
 
 .avatar-group {
-    display: inline-flex;
-    flex-direction: row-reverse;
+  display: inline-flex;
+  flex-direction: row-reverse;
 
-    & .avatar {
-        position: relative;
-        border: 2px solid #fff;
-        overflow: hidden;
-      }
-      
-    & .avatar:not(:last-child) {
-        margin-left: -10px;
-    }
-    
-    & .avatar img {
-        display: block;
-    }
+  & .avatar {
+    position: relative;
+    border: 2px solid #fff;
+    overflow: hidden;
+  }
+
+  & .avatar:not(:last-child) {
+    margin-left: -10px;
+  }
+
+  & .avatar img {
+    display: block;
+  }
 }
 
 .user-list__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: var(--spacing-30);
-    margin-bottom: var(--spacing-10);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: var(--spacing-30);
+  margin-bottom: var(--spacing-10);
 }
 
 .user-list__header__title {
-    font-weight: 600;
+  font-weight: 600;
 }
 
-.user-list__header__add-user{
-    cursor: pointer;
+.user-list__header__add-user {
+  cursor: pointer;
 }
 
 .user-list {
-    max-height: 235px;
-    overflow-y: auto;
-    overflow-x: hidden;
+  max-height: 235px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .user-list-empty {
-    margin-top: var(--spacing-30);
-    text-align: center;
-    font-weight: 600;
+  margin-top: var(--spacing-30);
+  text-align: center;
+  font-weight: 600;
 }
 
 .user-list__info-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: var(--spacing-6) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--spacing-6) 0;
 }
 
 .user-list__info-item__addition {
-    margin-right: var(--spacing-10);
+  margin-right: var(--spacing-10);
 }
 
 .user-list__info-item__addition.action-item {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .found-user-list {
-    max-height: 235px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-found-user-list-container {
-
+  max-height: 235px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .user-list + .text-notification-base,
 .user-list + .text-notification-error {
-    margin-top: var(--spacing-30);
+  margin-top: var(--spacing-30);
 }
-
