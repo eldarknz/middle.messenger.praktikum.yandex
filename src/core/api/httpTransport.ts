@@ -66,7 +66,7 @@ export class HTTPTransport {
             const xhr = new XMLHttpRequest();
 
             xhr.open(method, url);
-            xhr.responseType = 'json';
+            xhr.responseType = "json";
             xhr.withCredentials = true;
 
             Object.keys(headers).forEach((key) => {

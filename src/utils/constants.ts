@@ -17,6 +17,8 @@ export const API_PATH = 'https://ya-praktikum.tech/api/v2';
 export const API_RESOURCES_PATH = `${API_PATH}/resources`;
 export const WSS_PATH = 'wss://ya-praktikum.tech/ws/chats';
 
+export const API_TEST_PATH = 'http://localhost:5000';
+
 export const API_ENDPOINTS = {
     auth: {
         signUp: `${API_PATH}/auth/signup`,

@@ -11,7 +11,8 @@
     "lint-fix": "eslint --fix .",
     "stylelint": "stylelint \"**/*.scss\"",
     "stylelint-fix": "stylelint --fix .",
-    "test": "ts-mocha src/**/*.spec.ts -require tsconfig-paths/register -require test/mock.js",
+    "test": "ts-mocha src/**/*.spec.ts -require tsconfig-paths/register -r test/mock.js",
+    "server": "json-server --watch ./test/db.json --port 5000",
     "prepare": "husky install"
   },
   "repository": {

@@ -1,4 +1,4 @@
-export const queryStringify = (data: { [key: string]: string }): string => {
+export const queryStringify = (data: any): string => {
     if (typeof data !== 'object') {
         throw new Error('Data must be object');
     }

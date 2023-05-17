@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { assert } from "chai";
 import { Block } from "./block";
 

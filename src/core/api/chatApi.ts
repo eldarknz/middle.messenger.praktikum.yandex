@@ -16,7 +16,7 @@ export class ChatAPI extends HTTPTransport {
 
     /**
      * Получение списка чатов
-     * @param {string} data
+     * @param {TChatsQueryParams} data
      * @returns {Promise<XMLHttpRequest>}
      */
     public getChatList(data?: TChatsQueryParams): Promise<XMLHttpRequest> {

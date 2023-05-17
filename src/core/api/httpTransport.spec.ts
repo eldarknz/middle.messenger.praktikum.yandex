@@ -1,38 +1,38 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { expect } from 'chai';
 import { HTTPTransport } from './httpTransport';
-import app from "../../../test/server";
+import { API_TEST_PATH } from '@utils/constants';
+import app from '../../../test/server';
 
-const baseUrl = 'http://localhost:5000';
+const BASE_URL = 'http://localhost:5000';
 let server: any;
 
 describe('HTTP module ', () => {
-  before(() => {
-    server = app.listen(5000, () => {
-      console.log('JSON Server is running on port 5000');
-    });
+
+  before((done) => {
+    server = app.listen(5000, done);
   });
 
   after(() => {
     server.close();
   });
 
-  /*it('do HTTP GET requests', async () => {
+  it('GET request', async function () {
     const http = new HTTPTransport();
-
-    const response = await http.get(`${baseUrl}/api/test`);
-    expect(response).equal('Ok');
+    const response = await http.get(`${API_TEST_PATH}/api/test`);
+    const result = response.response;
+    const status = result.status;
+    expect(status).equal("OK")
   });
 
-  it('do HTTP POST requests', async () => {
+  it('POST request', async () => {
+    const text = 'test message';
     const http = new HTTPTransport();
-    const text = 'test message text';
-    const response = await http.post(`${baseUrl}/messages`, {
-      body: JSON.stringify({ text }),
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
+    const response = await http.post(`${API_TEST_PATH}/messages`, {
+      data: JSON.stringify({ text }),
+      headers: { 'Content-Type': 'application/json; charset=utf-8' }
     });
-    expect(JSON.parse(response)).to.have.property('text').and.equal(text);
-  });*/
+    const result = response.response;
+    expect(result).to.have.property('text').and.equal(text);
+  });
+
 });
