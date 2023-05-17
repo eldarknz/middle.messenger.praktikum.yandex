@@ -1,11 +1,11 @@
 {
-    "exclude": [
-      "./node_modules/",
-      "./dist/",
-      "./test/"
-    ],
-    "extension": [
-      "ts"
-    ],
-    "spec": "src/**/*.spec.ts"
+  "exclude": [
+    "./node_modules/",
+    "./dist/",
+    "./test/"
+  ],
+  "extension": [
+    "ts"
+  ],
+  "spec": "src/**/*.spec.ts"
 }
