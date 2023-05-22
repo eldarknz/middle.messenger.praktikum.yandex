@@ -5,4 +5,4 @@ export default `
         <p class="chat-message__text">{{content}}</p>
         {{{ datetime }}}
     </div>
-`
+`;

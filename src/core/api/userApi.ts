@@ -1,43 +1,53 @@
 // Core
-import { HTTPTransport } from "./httpTransport";
 // Utils
-import { API_ENDPOINTS } from "@utils/constants";
+import { API_ENDPOINTS } from '@utils/constants';
 // Types
-import { TUserProfileData, TUserPasswordData, TUserLogin } from "@custom_types/index";
+import {
+    TUserProfileData,
+    TUserPasswordData,
+    TUserLogin,
+} from '@custom_types/index';
+import { HTTPTransport } from './httpTransport';
 
 export class UserAPI extends HTTPTransport {
-    contentType = "application/json; charset=utf-8";
+    contentType = 'application/json; charset=utf-8';
 
     /**
      * Изменение данных пользователя
-     * @param {TUserProfileData} data 
+     * @param {TUserProfileData} data
      * @returns {Promise<XMLHttpRequest>}
      */
     public changeProfile(data: TUserProfileData): Promise<XMLHttpRequest> {
-        return this.put(API_ENDPOINTS.users.changeProfile, { data: JSON.stringify(data), headers: { "Content-Type": this.contentType } });
+        return this.put(API_ENDPOINTS.users.changeProfile, {
+            data: JSON.stringify(data),
+            headers: { 'Content-Type': this.contentType },
+        });
     }
 
     /**
      * Изменение аватара пользователя
-     * @param {FormData} data 
+     * @param {FormData} data
      * @returns {Promise<XMLHttpRequest>}
      */
     public changeAvatar(data: FormData): Promise<XMLHttpRequest> {
         return this.put(API_ENDPOINTS.users.changeAvatar, { data });
     }
-    
+
     /**
      * Изменение пароля пользователя
-     * @param {TUserPasswordData} data 
+     * @param {TUserPasswordData} data
      * @returns {Promise<XMLHttpRequest>}
      */
     public changePassword(data: TUserPasswordData): Promise<XMLHttpRequest> {
-        return this.put(API_ENDPOINTS.users.changePassword, { data: JSON.stringify(data), headers: { "Content-Type": this.contentType } });
+        return this.put(API_ENDPOINTS.users.changePassword, {
+            data: JSON.stringify(data),
+            headers: { 'Content-Type': this.contentType },
+        });
     }
-    
+
     /**
      * Получение пользователя по id
-     * @param {string} id 
+     * @param {string} id
      * @returns {Promise<XMLHttpRequest>}
      */
     public getUserById(id: string): Promise<XMLHttpRequest> {
@@ -50,6 +60,9 @@ export class UserAPI extends HTTPTransport {
      * @returns {Promise<XMLHttpRequest>}
      */
     public searchUserByLogin(login: TUserLogin): Promise<XMLHttpRequest> {
-        return this.post(API_ENDPOINTS.users.searchUserByLogin, { data: JSON.stringify(login), headers: { "Content-Type": this.contentType } });
+        return this.post(API_ENDPOINTS.users.searchUserByLogin, {
+            data: JSON.stringify(login),
+            headers: { 'Content-Type': this.contentType },
+        });
     }
 }

@@ -1,16 +1,16 @@
 .nav {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .nav-link {
-    display: block;
-    padding: var(--spacing-8);
+  display: block;
+  padding: var(--spacing-8);
 
-    &:hover,
-    &.active {
-        border-radius: var(--spacing-10);
-        background-color: var(--nav-link-background-color-hover);
-        cursor: pointer;
-    }
+  &:hover,
+  &.active {
+    border-radius: var(--spacing-10);
+    background-color: var(--nav-link-background-color-hover);
+    cursor: pointer;
+  }
 }

@@ -1,40 +1,43 @@
 // Core
-import { Block } from "@core/block";
+import { Block } from '@core/block';
 // Components
-import { Button } from "@components/ui/button";
-import { Logo } from "@components/ui/logo";
+import { Button } from '@components/ui/button';
+import { Logo } from '@components/ui/logo';
 // Utils
-import { ROUTES } from "@utils/constants";
-import { AppRouter } from "src";
+import { ROUTES } from '@utils/constants';
+import { AppRouter } from '../../../index';
 // Template
-import template from "./mainHeader.tmpl";
+import template from './mainHeader.tmpl';
 // Styles
-import "./mainHeader.scss";
+import './mainHeader.scss';
 
 export class MainHeader extends Block {
-    constructor(props?: {}) {
-
+    constructor(props?: Record<string, unknown>) {
         const logoLink = new Logo({
-            style: "white"
+            style: 'white',
         });
 
         const siginLink = new Button({
-            color: "light",
-            shape: "rounded",
-            view: "link",
-            content: "Войти",
+            color: 'light',
+            shape: 'rounded',
+            view: 'link',
+            content: 'Войти',
             events: {
-                click: () => { AppRouter.go(ROUTES.login.path); }
-            }
+                click: () => {
+                    AppRouter.go(ROUTES.login.path);
+                },
+            },
         });
 
         const signupLink = new Button({
-            color: "primary",
-            shape: "rounded",
-            content: "Регистрация",
+            color: 'primary',
+            shape: 'rounded',
+            content: 'Регистрация',
             events: {
-                click: () => { AppRouter.go(ROUTES.register.path); }
-            }
+                click: () => {
+                    AppRouter.go(ROUTES.register.path);
+                },
+            },
         });
 
         super({ ...props, logoLink, siginLink, signupLink });

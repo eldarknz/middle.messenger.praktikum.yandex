@@ -1,33 +1,33 @@
 .logo-container {
-    margin-right: auto;
+  margin-right: auto;
 }
 
 .logo {
-    height: 28px;
-    width: 163px;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    border: 0;
-    position: relative;
+  height: 28px;
+  width: 163px;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  position: relative;
 }
 
 .logo-dark {
-    background-image: url(../../../../static/images/logo.svg);
+  background-image: url("../../../../static/images/logo.svg");
 }
 
 .logo-white {
-    background-image: url(../../../../static/images/logo-white.svg);
+  background-image: url("../../../../static/images/logo-white.svg");
 }
 
 .logo-small {
-    background-image: url(../../../../static/images/logo-small.svg);
-    width: 28px;
+  background-image: url("../../../../static/images/logo-small.svg");
+  width: 28px;
 }
 
 .logo-link a {
-    display: block;
-    height: 100%;
-    width: 100%;
-    cursor: pointer;
+  display: block;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
 }

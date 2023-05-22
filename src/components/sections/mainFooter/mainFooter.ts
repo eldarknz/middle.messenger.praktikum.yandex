@@ -1,18 +1,17 @@
 // Core
-import { Block } from "@core/block";
+import { Block } from '@core/block';
 // Components
-import { Link } from "@components/ui/link";
+import { Link } from '@components/ui/link';
 // Template
-import template from "./mainFooter.tmpl";
+import template from './mainFooter.tmpl';
 // Styles
-import "./mainFooter.scss";
+import './mainFooter.scss';
 
 export class MainFooter extends Block {
-    constructor(props?: {}) {
-
+    constructor(props?: Record<string, unknown>) {
         const link = new Link({
-            href: "https://github.com/eldarknz",
-            content: "@eldarknz"
+            href: 'https://github.com/eldarknz',
+            content: '@eldarknz',
         });
 
         super({ ...props, link });

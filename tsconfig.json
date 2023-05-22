@@ -32,8 +32,8 @@
             "@config/*": [
                 "src/core/config/*"
             ],
-            "@controlles/*": [
-                "src/core/controlles/*"
+            "@controllers/*": [
+                "src/core/controllers/*"
             ],
             "@router/*": [
                 "src/core/router/*"
@@ -48,8 +48,12 @@
                 "static/*"
             ]
         },
+        "lib": [
+            "es5", "es6", "dom", "dom.iterable"
+        ],
         "outDir": "dist",
-        "sourceMap": true,
+        "declaration": true,
+        "sourceMap": true,   
         "removeComments": true,
         "target": "es2017",
         "module": "commonjs",
@@ -60,8 +64,8 @@
         "strictFunctionTypes": false,
         "noImplicitThis": true,
         "strictBindCallApply": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
         "allowSyntheticDefaultImports": true
     },
     "include": [

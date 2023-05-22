@@ -1,35 +1,35 @@
 // Core
-import { Block } from "@core/block";
+import { Block } from '@core/block';
 // Template
-import template from "./list.tmpl";
+import template from './list.tmpl';
 // Styles
-import "./list.scss";
+import './list.scss';
 
 interface IList {
-  isFlush?: boolean;
-  isFluid?: boolean;
-  className?: string;
-  content: Block[] | string[];
+    isFlush?: boolean;
+    isFluid?: boolean;
+    className?: string;
+    content: Block[] | string[];
 }
 
 export class List extends Block {
-  constructor(props: IList) {
-    super(props);
-    this.listClassName = this.listClassName.bind(this);
-  }
-  
-  listClassName() {
-      let className = "list";
-      if (this.props.isFlush) className += " list-flush"
-      if (this.props.isFluid) className += " list-fluid"
-      if (this.props.className) className += ` ${this.props.className}`
-      return className;
-  }
+    constructor(props: IList) {
+        super(props);
+        this.listClassName = this.listClassName.bind(this);
+    }
 
-  render() {
-    return this.compile(template, {
-      className: this.listClassName(),
-      content: this.props.content
-    });
-  }
+    listClassName() {
+        let className = 'list';
+        if (this.props.isFlush) className += ' list-flush';
+        if (this.props.isFluid) className += ' list-fluid';
+        if (this.props.className) className += ` ${this.props.className}`;
+        return className;
+    }
+
+    render() {
+        return this.compile(template, {
+            className: this.listClassName(),
+            content: this.props.content,
+        });
+    }
 }

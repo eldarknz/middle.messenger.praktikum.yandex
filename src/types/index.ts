@@ -1,96 +1,118 @@
-export type APIError = {
-    reason: string;
-    status: string;
-};
+export type ApiError = {
+  reason: string;
+  status: string;
+}
 
-export type ResponseData = {} | APIError;
-
-export type TRoutes = { [key: string]: { title: string, path: string } }
+export type TRoutes = { [key: string]: { title: string; path: string; } }
 
 // Авторизация, регистрация
 export type TSignUpData = {
-    first_name: string,
-    second_name: string,
-    login: string,
-    email: string,
-    password: string,
-    phone: string,
+  first_name: string;
+  second_name: string;
+  login: string;
+  email: string;
+  password: string;
+  phone: string;
 };
 
 export type TSignInData = {
-    login: string,
-    password: string,
-};
+  login: string;
+  password: string;
+}
 
 // Профиль
 export type TUserProfileData = {
-    first_name: string,
-    second_name: string,
-    display_name: string,
-    login: string,
-    email: string,
-    phone: string,
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  email: string;
+  phone: string;
 };
 
 export type TUserPasswordData = {
-    oldPassword: string,
-    newPassword: string
-};
-  
+  oldPassword: string;
+  newPassword: string;
+}
+
 export type TUserPasswordFormData = {
-    new_password: string,
-    password: string,
-    confirm_password: string
-};
+  new_password: string;
+  password: string;
+  confirm_password: string;
+}
 
 export type TUserLogin = {
-    login: string,
-};
+  login: string;
+}
 
 export interface IUser {
-    id: number;
-    first_name: string;
-    second_name: string;
-    display_name: string;
-    login: string;
-    email: string;
-    phone: string;
-    avatar: string;
+  id: number;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  email: string;
+  phone: string;
+  avatar: string;
 }
 
 // Чат
 export type TLastMessageUser = {
-    first_name: string,
-    second_name: string,
-    avatar: string | null
-    email: string,
-    login: string,
-    phone: string
-}
+  first_name: string;
+  second_name: string;
+  avatar: string | null;
+  email: string;
+  login: string;
+  phone: string;
+};
 
 export type TLastMessage = {
-    user: TLastMessageUser,
-    time: string,
-    content: string,
-};
-  
+  user: TLastMessageUser;
+  time: string;
+  content: string;
+}
+
 export type TChatItem = {
-    id: number,
-    title: string,
-    avatar: string | null,
-    unread_count: number,
-    last_message: TLastMessage | null,
-    created_by: number
-};
+  id: number;
+  title: string;
+  avatar: string | null;
+  unread_count: number;
+  last_message: TLastMessage | null;
+  created_by: number;
+}
 
 export interface IChatUser extends IUser {
-    role: string;
+  role: string;
 }
 
 export type TChatTitleData = {
-    title: string
-};
+  title: string;
+}
 
 export type TChatIdData = {
-    chatId: number
-};
+  chatid: number;
+}
+
+export type TActiveChat = {
+  users: IChatUser[];
+  id: number;
+}
+
+export interface IChatMessage {
+  id: number;
+  chat_id: number;
+  time: string;
+  type: string;
+  user_id: string;
+  content: string;
+  user?: boolean;
+  file?: {
+    id: number;
+    user_id: number;
+    path: string;
+    filename: string;
+    content_type: string;
+    content_size: number;
+    upload_date: string;
+  };
+}

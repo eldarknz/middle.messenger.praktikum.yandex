@@ -1,49 +1,51 @@
 // Core
-import { Block } from "@core/block";
-import { Router } from "@core/router";
+import { Block } from '@core/block';
+import { Router } from '@core/router';
 // Utils
-import { AppRouter } from "src";
+import { AppRouter } from '../../../index';
 // Template
-import template from "./link.tmpl";
+import template from './link.tmpl';
 
 interface ILink {
-  className?: string;
-  href?: string;
-  content?: Block | string;
-  events?: { 
-    click?: (e: Event) => void;
-  };
-};
+    className?: string;
+    href?: string;
+    content?: Block | string;
+    events?: {
+        click?: (e: Event) => void;
+    };
+}
 
 export const linkPathRedirect = (event: MouseEvent, path: string) => {
-  window.location.href = path;
+    window.location.href = path;
 
-  event.preventDefault();
-}
+    event.preventDefault();
+};
 
 export const routerGo = (event: MouseEvent, router: Router, path: string) => {
-  router.go(path);
+    router.go(path);
 
-  event.preventDefault();
-}
+    event.preventDefault();
+};
 
 export class Link extends Block {
-  constructor(props: ILink) {
-    const defaultClickHandler = (e: MouseEvent) => {
-      if (this.props.href)
-        AppRouter.go(this.props.href);
+    constructor(props: ILink) {
+        const defaultClickHandler = (e: MouseEvent) => {
+            if (this.props.href) AppRouter.go(this.props.href);
 
-      e.preventDefault();
+            e.preventDefault();
+        };
+
+        super({
+            ...props,
+            events: { click: props.events?.click ?? defaultClickHandler },
+        });
     }
 
-    super({...props, events: { click: props.events?.click ?? defaultClickHandler }});
-  }
-
-  render() {
-    return this.compile(template, {
-      className: this.props.className,
-      href: this.props.href,
-      content: this.props.content
-    });
-  }
+    render() {
+        return this.compile(template, {
+            className: this.props.className,
+            href: this.props.href,
+            content: this.props.content,
+        });
+    }
 }

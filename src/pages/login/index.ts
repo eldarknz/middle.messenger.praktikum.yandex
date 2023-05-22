@@ -1,21 +1,21 @@
 // Core
-import { Block } from "@core/block";
-import { Router } from "@core/router";
-import { AuthController } from "@core/controllers/authContorller";
+import { Block } from '@core/block';
+import { Router } from '@core/router';
+import { AuthController } from '@core/controllers/authContorller';
 // Components
-import { Button } from "@components/ui/button";
-import { Grid } from "@components/ui/grid";
-import { Form } from "@components/ui/form";
-import { Input } from "@components/ui/input";
-import { Link } from "@components/ui/link";
-import { Logo } from "@components/ui/logo";
+import { Button } from '@components/ui/button';
+import { Grid } from '@components/ui/grid';
+import { Form } from '@components/ui/form';
+import { Input } from '@components/ui/input';
+import { Link } from '@components/ui/link';
+import { Logo } from '@components/ui/logo';
 // Utils
-import { formDataSubmissionsHandler } from "@utils/formHandler";
-import { validateInput } from "@utils/validation";
-import { inputValueHandler } from "@utils/inputValueHandler";
-import { ROUTES } from "@utils/constants";
+import { formDataSubmissionsHandler } from '@utils/formHandler';
+import { validateInput } from '@utils/validation';
+import { inputValueHandler } from '@utils/inputValueHandler';
+import { ROUTES } from '@utils/constants';
 // Template
-import template from "./login.tmpl";
+import template from './login.tmpl';
 
 interface ILogin {
     title: string;
@@ -28,72 +28,83 @@ interface ILogin {
 
 export class LoginPage extends Block {
     constructor(props: ILogin) {
-
         const logoLink = new Logo({
-            style: "white",
-            link: ROUTES.home.path
+            style: 'white',
+            link: ROUTES.home.path,
         });
 
-        const title = "Вход";
+        const title = 'Вход';
 
         const form = new Form({
-            className: "sign-container__form",
+            className: 'sign-container__form',
             content: [
                 new Grid.Container({
                     isFluid: true,
-                    className: "sign-container__form__input-group",
+                    className: 'sign-container__form__input-group',
                     content: [
                         new Input({
-                            id: "login",
-                            name: "login",
-                            style: "flush",
-                            placeholderText: "Логин",
+                            id: 'login',
+                            name: 'login',
+                            style: 'flush',
+                            placeholderText: 'Логин',
                             events: {
-                                blur: (event: Event) => validateInput(event.target as HTMLInputElement),
-                                input: (event: Event) => inputValueHandler(event.target as HTMLInputElement)
-                            }
+                                blur: (event: Event) =>
+                                    validateInput(
+                                        event.target as HTMLInputElement
+                                    ),
+                                input: (event: Event) =>
+                                    inputValueHandler(
+                                        event.target as HTMLInputElement
+                                    ),
+                            },
                         }),
                         new Input({
-                            type: "password",
-                            id: "password",
-                            name: "password",
-                            style: "flush",
-                            placeholderText: "Пароль",
+                            type: 'password',
+                            id: 'password',
+                            name: 'password',
+                            style: 'flush',
+                            placeholderText: 'Пароль',
                             events: {
-                                blur: (event: Event) => validateInput(event.target as HTMLInputElement),
-                                input: (event: Event) => inputValueHandler(event.target as HTMLInputElement)
-                            }
-                        })
-                    ]
+                                blur: (event: Event) =>
+                                    validateInput(
+                                        event.target as HTMLInputElement
+                                    ),
+                                input: (event: Event) =>
+                                    inputValueHandler(
+                                        event.target as HTMLInputElement
+                                    ),
+                            },
+                        }),
+                    ],
                 }),
                 new Button({
-                    color: "primary",
-                    size: "lg",
+                    color: 'primary',
+                    size: 'lg',
                     isFluid: true,
-                    content: "Авторизоваться"
-                })
-            ],      
+                    content: 'Авторизоваться',
+                }),
+            ],
             events: {
                 submit: (event: Event) => {
                     formDataSubmissionsHandler({
-                        event: event,
+                        event,
                         handler: AuthController.signIn,
-                        selector: ".sign-container__form__input-group",
+                        selector: '.sign-container__form__input-group',
                         isCheckInputs: true,
-                        action: () => Router.getInstanse().go(ROUTES.chat.path)
+                        action: () => Router.getInstanse().go(ROUTES.chat.path),
                     });
-                }
-            }
+                },
+            },
         });
 
         const link = new Link({
             href: ROUTES.register.path,
-            content: "Создайте её сейчас"
+            content: 'Создайте её сейчас',
         });
 
         super({ ...props, logoLink, title, form, link });
     }
-  
+
     render() {
         return this.compile(template, this.props);
     }

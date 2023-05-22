@@ -1,43 +1,49 @@
 // Core
-import { Block } from "@core/block";
+import { Block } from '@core/block';
 // Components
-import { Button } from "@components/ui/button";
+import { Button } from '@components/ui/button';
 // Template
-import template from "./dropdown.tmpl";
+import template from './dropdown.tmpl';
 // Styles
-import "./dropdown.scss";
+import './dropdown.scss';
 
 interface IDropdown {
     className?: string;
     id?: string;
-    dropdownButtonSize?: "sm" | "lg" | "xl";
-    dropdownButtonColor?: "primary" | "secondary" | "light";
+    dropdownButtonSize?: 'sm' | 'lg' | 'xl';
+    dropdownButtonColor?: 'primary' | 'secondary' | 'light';
     dropdownButtonIsFluid?: boolean;
-    dropdownButtonShape?: "rounded" | "circle" | "square";
-    dropdownButtonView?: "outline" | "link";
+    dropdownButtonShape?: 'rounded' | 'circle' | 'square';
+    dropdownButtonView?: 'outline' | 'link';
     dropdownButtonContent: Block;
     dropdownMenuContent: Block | string;
 }
 
 const dropdownHide = () => {
-    const dropdowns: NodeListOf<HTMLElement> = document.querySelectorAll('.dropdown');
+    const dropdowns: NodeListOf<HTMLElement> =
+        document.querySelectorAll('.dropdown');
     dropdowns.forEach((dropdown: HTMLElement) => {
         if (dropdown.classList.contains('show')) {
-            let button = <HTMLElement>dropdown.querySelector('#dropdownMenuButton');
+            const button = <HTMLElement>(
+                dropdown.querySelector('#dropdownMenuButton')
+            );
             button.classList.remove('active');
             dropdown.classList.remove('show');
         }
     });
     window.removeEventListener('click', dropdownHidehandler);
-}
+};
 
 const dropdownHidehandler = (event: Event) => {
     const target = event.target as HTMLElement;
-    if (target.closest('.dropdown-menu') || target.closest('#dropdownMenuButton')) {
+    if (
+        target.closest('.dropdown-menu') ||
+        target.closest('#dropdownMenuButton')
+    ) {
         if (!target.closest('.dropdown-item')) {
             return;
         }
-    };
+    }
 
     dropdownHide();
 };
@@ -56,14 +62,13 @@ const dropdownHandler = (event: Event) => {
             dropdown.classList.add('show');
             window.addEventListener('click', dropdownHidehandler);
         }
-    };
+    }
 };
 
 export class Dropdown extends Block {
     constructor(props: IDropdown) {
-
         const dropdownButton = new Button({
-            id: "dropdownMenuButton",
+            id: 'dropdownMenuButton',
             size: props.dropdownButtonSize,
             color: props.dropdownButtonColor,
             isFluid: props.dropdownButtonIsFluid,
@@ -71,17 +76,17 @@ export class Dropdown extends Block {
             view: props.dropdownButtonView,
             content: props.dropdownButtonContent,
             events: {
-                click: dropdownHandler
-            }
-        })
+                click: dropdownHandler,
+            },
+        });
 
-        super({ ...props, dropdownButton })
+        super({ ...props, dropdownButton });
         this.dropdownClassName = this.dropdownClassName.bind(this);
     }
 
     dropdownClassName() {
-        let className = "dropdown";
-        if (this.props.className) className += ` ${this.props.className}`
+        let className = 'dropdown';
+        if (this.props.className) className += ` ${this.props.className}`;
         return className;
     }
 
@@ -89,7 +94,7 @@ export class Dropdown extends Block {
         return this.compile(template, {
             className: this.dropdownClassName(),
             id: this.props.id,
-            dropdownMenuContent: this.props.dropdownMenuContent
-        })
+            dropdownMenuContent: this.props.dropdownMenuContent,
+        });
     }
 }

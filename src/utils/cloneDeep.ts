@@ -1,3 +1,3 @@
-export function cloneDeep<T> (obj: T) {
+export function cloneDeep<T>(obj: T) {
     return obj;
 }

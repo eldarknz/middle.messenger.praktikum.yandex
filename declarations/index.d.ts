@@ -1,8 +1,9 @@
-import { Router } from "@core/router";
+import { Router } from '@core/router';
 
 declare global {
-
-    export interface Window { router: Router; }
+    export interface Window {
+        router: Router;
+    }
 
     export type Nullable<T> = T | null;
 
@@ -11,7 +12,7 @@ declare global {
 
     export type TProps = Record<string, any>;
 
-    export type Key = keyof Object;
+    export type Key = keyof object;
 
     export type Indexed<T = unknown> = {
         [key in string]: T;
@@ -19,5 +20,5 @@ declare global {
 }
 
 declare module '*.png';
-  
+
 export {};

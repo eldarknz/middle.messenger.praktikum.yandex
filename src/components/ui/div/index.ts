@@ -1,5 +1,5 @@
 // Core
-import { Block } from "@core/block";
+import { Block } from '@core/block';
 
 interface IDivBlock {
     id?: string;
@@ -7,7 +7,7 @@ interface IDivBlock {
     content?: Block | Block[] | string;
     events?: {
         click: (e: Event) => void;
-    }
+    };
 }
 
 export class DivBlock extends Block {
@@ -15,7 +15,7 @@ export class DivBlock extends Block {
         const isArray = Array.isArray(props.content);
         super({ ...props, isArray });
     }
-    
+
     render() {
         return this.compile(
             `<div
@@ -29,7 +29,7 @@ export class DivBlock extends Block {
                 {{else}}
                     {{{content}}}
                 {{/if}}
-            </div>`, 
+            </div>`,
             this.props
         );
     }

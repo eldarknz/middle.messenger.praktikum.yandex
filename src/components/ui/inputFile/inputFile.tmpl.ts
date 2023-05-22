@@ -1,4 +1,3 @@
-
 // language=hbs
 
 export default `
@@ -15,4 +14,4 @@ export default `
             <label class="input-file-container__label" for="{{id}}" id="label-{{id}}">{{placeholderText}}</label>
         </div>
     </div>
-`
+`;

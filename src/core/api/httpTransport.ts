@@ -1,5 +1,5 @@
 // Utils
-import { queryStringify } from "@utils/queryStringify";
+import { queryStringify } from '@utils/queryStringify';
 
 type RequestOptions = {
     method?: METHODS;
@@ -15,25 +15,40 @@ enum METHODS {
     DELETE = 'DELETE',
 }
 
-type HTTPRequest = (url: string, options?: RequestOptions, timeout?: number) => Promise<XMLHttpRequest>;
+type HTTPRequest = (
+    url: string,
+    options?: RequestOptions,
+    timeout?: number
+) => Promise<XMLHttpRequest>;
 
 export class HTTPTransport {
     get: HTTPRequest = (url, options = {}) => {
-        const query = options.data ? url + queryStringify(options.data as { [key: string]: string }) : url;
-        return this.request(query, { ...options, method: METHODS.GET }, options.timeout);
+        const query = options.data
+            ? url + queryStringify(options.data as { [key: string]: string })
+            : url;
+        return this.request(
+            query,
+            { ...options, method: METHODS.GET },
+            options.timeout
+        );
     };
 
-    post: HTTPRequest = (url, options = {}) => {
-        return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
-    };
+    post: HTTPRequest = (url, options = {}) =>
+        this.request(
+            url,
+            { ...options, method: METHODS.POST },
+            options.timeout
+        );
 
-    put: HTTPRequest = (url, options = {}) => {
-        return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
-    };
+    put: HTTPRequest = (url, options = {}) =>
+        this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
 
-    delete: HTTPRequest = (url, options = {}) => {
-        return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
-    };
+    delete: HTTPRequest = (url, options = {}) =>
+        this.request(
+            url,
+            { ...options, method: METHODS.DELETE },
+            options.timeout
+        );
 
     request: HTTPRequest = (
         url,
@@ -51,10 +66,10 @@ export class HTTPTransport {
             const xhr = new XMLHttpRequest();
 
             xhr.open(method, url);
-            xhr.responseType = 'json';
+            xhr.responseType = "json";
             xhr.withCredentials = true;
 
-            Object.keys(headers).forEach(key => {
+            Object.keys(headers).forEach((key) => {
                 xhr.setRequestHeader(key, headers[key]);
             });
 
@@ -70,7 +85,7 @@ export class HTTPTransport {
                 } else {
                     reject({
                         status: xhr.status,
-                        statusText: xhr.statusText
+                        statusText: xhr.statusText,
                     });
                 }
             };
@@ -80,7 +95,6 @@ export class HTTPTransport {
 
             xhr.timeout = timeout;
             xhr.ontimeout = reject;
-
         });
     };
 }

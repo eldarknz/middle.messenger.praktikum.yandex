@@ -1,243 +1,240 @@
-@import "../../node_modules/normalize.css/normalize.css";
-@import "./fonts.scss";
-@import "./vars.scss";
+@import url("../../node_modules/normalize.css/normalize.css");
+@import url("./fonts.scss");
+@import url("./vars.scss");
 
 * {
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray-300) var(--white);
+}
+
+/* Scrollable Works on Chrome, Edge, and Safari */
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--white);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray-300);
+  border-radius: 0;
+  border: 0;
 }
 
 html,
 body,
 #root {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
-html, body {
-    font-family: var(--font-family-base);
-    font-weight: 500;
-    font-size: var(--font-size-14);
-    background-color: var(--body-bg);
-    color: var(--body-color);
+html,
+body {
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  font-size: var(--font-size-14);
+  background-color: var(--body-bg);
+  color: var(--body-color);
 }
 
 #notification-root {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    gap: 10px;
-    z-index: var(--zindex-notification);
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  z-index: var(--zindex-notification);
 
-    & .notification:first-child {
-        margin-top: 10px;
-    }
-    & .notification {
-        margin-right: 10px;
-    }
+  & .notification {
+    margin-right: 10px;
+  }
+
+  & .notification:first-child {
+    margin-top: 10px;
+  }
 }
 
 .wrapper {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 /* Link */
 
 a {
-    color: var(--link-primary-color);
+  color: var(--link-primary-color);
+  text-decoration: var(--link-decoration);
+  transition: color 0.15s ease-out;
+
+  &:hover {
+    color: var(--link-primary-color-hover);
     text-decoration: var(--link-decoration);
-    transition: color 0.15s ease-out;
-  
-    &:hover {
-      color: var(--link-primary-color-hover);
-      text-decoration: var(--link-decoration);
-      cursor: pointer;
-    }
+    cursor: pointer;
+  }
 }
 
 .link-red,
 .link-red a {
-    color: var(--color-red);
+  color: var(--color-red);
 
-    &:hover {
-        color: var(--color-red-dark);  
-    }
+  &:hover {
+    color: var(--color-red-dark);
+  }
 }
 
 /* Text */
 
 .text-notification-error {
-    color: var(--color-red);
-    font-size: var(--font-size-12);
-    text-align: center;
-    line-height: 1;
+  color: var(--color-red);
+  font-size: var(--font-size-12);
+  text-align: center;
+  line-height: 1;
 }
 
 .text-notification-base {
-    color: var(--color-black);
-    font-size: var(--font-size-12);
-    text-align: center;
-    line-height: 1;
+  color: var(--color-black);
+  font-size: var(--font-size-12);
+  text-align: center;
+  line-height: 1;
 }
 
 .text-silver {
-    color: var(--silver);
+  color: var(--silver);
 }
 
 .text-gray {
-    color: var(--gray);
+  color: var(--gray);
 }
 
 .text-dark {
-    color: var(--dark);
+  color: var(--dark);
 }
 
 .text-extra-dark {
-    color: var(--extra-dark);
+  color: var(--extra-dark);
 }
 
 .text-black {
-    color: var(--black);
+  color: var(--black);
 }
 
 /* Sign pages */
 
 .sign-container {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: var(--black);
-    background-image: url(../../static/images/starry-night-bg.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    overflow-y: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--black);
+  background-image: url("../../static/images/starry-night-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  overflow-y: auto;
 }
 
 .sign-container__content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .sign-container__block {
-    max-width: 360px;
-    width: 100%;
-    background-color: var(--color-white);
-    padding: calc(var(--spacing-20) * 2);
-    border-radius: calc(var(--radius-6) * 2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    box-shadow: var(--box-shadow-light-md);
+  max-width: 360px;
+  width: 100%;
+  background-color: var(--color-white);
+  padding: calc(var(--spacing-20) * 2);
+  border-radius: calc(var(--radius-6) * 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: var(--box-shadow-light-md);
 }
 
 .sign-container__logo-container {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .sign-container__title {
-    font-size: var(--font-size-20);
-    font-family: var(--font-family-base);
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 40px;
+  font-size: var(--font-size-20);
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .sign-container__form {
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 
-    & + .sign-container__text-block {
-        margin-top: 20px;
-    }
+  & + .sign-container__text-block {
+    margin-top: 20px;
+  }
 
-    & > .btn {
-        margin-top: 25px;
-    }
+  & > .btn {
+    margin-top: 25px;
+  }
 }
 
 .sign-container__text-block {
-    text-align: center;
-    font-size: var(--font-size-12);
+  text-align: center;
+  font-size: var(--font-size-12);
 }
 
 .sign-container__form__input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 25px;
 }
 
-/* Forms */ 
+/* Forms */
 
 .add-value__form {
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 
-    & + .add-value__text-block {
-        margin-top: 20px;
-    }
+  & + .add-value__text-block {
+    margin-top: 20px;
+  }
 
-    & > .btn {
-        margin-top: 15px;
-    }
+  & > .btn {
+    margin-top: 15px;
+  }
 }
 
 .add-value__text-block {
-    text-align: center;
-    font-size: var(--font-size-12);
+  text-align: center;
+  font-size: var(--font-size-12);
 }
 
 .add-value__form__input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 15px;
-}
-
-/* Scrollable */
-
-* {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-gray-300) var(--white);
-}
-  
-/* Works on Chrome, Edge, and Safari */
-
-*::-webkit-scrollbar {
-    width: 8px;
-}
-
-*::-webkit-scrollbar-track {
-    background: var(--white);
-}
-
-*::-webkit-scrollbar-thumb {
-    background-color: var(--color-gray-300);
-    border-radius: 0;
-    border: 0
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 15px;
 }

@@ -1,11 +1,11 @@
 // Core
-import { Block } from "@core/block";
+import { Block } from '@core/block';
 // Template
-import template from "./chatMessage.tmpl";
+import template from './chatMessage.tmpl';
 // Styles
-import "./chatMessage.scss";
+import './chatMessage.scss';
 
-export interface IChatMessage {
+interface IChatMessage {
     id: number;
     chat_id: number;
     user_id: string;
@@ -16,7 +16,6 @@ export interface IChatMessage {
 
 export class ChatMessage extends Block {
     constructor(props: IChatMessage) {
-
         super(props);
     }
 
@@ -27,7 +26,7 @@ export class ChatMessage extends Block {
             userId: this.props.user_id,
             content: this.props.content,
             datetime: this.props.datetime,
-            user: this.props.user
-        })
+            user: this.props.user,
+        });
     }
 }

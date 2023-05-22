@@ -1,4 +1,3 @@
-
 // language=hbs
 
 export default `
@@ -19,4 +18,4 @@ export default `
             </label>
         </div>
     </div>
-`
+`;

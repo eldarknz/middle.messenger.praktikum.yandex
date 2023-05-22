@@ -1,38 +1,37 @@
 // Core
-import { TState } from "@core/store";
-//Components
-import { Avatar } from "@components/ui/avatar";
-import { Image } from "@components/ui/image";
-import { IconMedia } from "@components/ui/icon";
-import { Skeleton } from "@components/ui/skeleton";
+import { TState } from '@core/store';
+// Components
+import { Avatar } from '@components/ui/avatar';
+import { Image } from '@components/ui/image';
+import { Icon } from '@components/ui/icon';
+import { Skeleton } from '@components/ui/skeleton';
 // Handlers
-import { API_RESOURCES_PATH } from "@utils/constants";
+import { API_RESOURCES_PATH } from '@utils/constants';
 // Types
-import { IUser } from "@custom_types/index";
+import { IUser } from '@custom_types/index';
 
 export const ProfileUserAvatar = (state: TState) => {
-    if (Object.keys(state).length !== 0 && state.user) {
+    if (Object.keys(state).length !== 0 && (Boolean(state.user))) {
         if ((state.user as IUser).avatar != null) {
             return new Avatar({
-                size: "lg",
+                size: 'lg',
                 content: new Image({
-                    src: API_RESOURCES_PATH + (state.user as IUser).avatar
-                })
-            });
-        } else {
-            return new Avatar({
-                size: "lg",
-                content: new IconMedia({
-                    color: "white",
-                    size: "xxl",
-                })
+                    src: API_RESOURCES_PATH + (state.user as IUser).avatar,
+                }),
             });
         }
-    } else {
-        return new Skeleton({
-            width: 130,
-            isAnimation: true,
-            isCircle: true
+        return new Avatar({
+            size: 'lg',
+            content: new Icon({
+                name: "media",
+                color: 'white',
+                size: 'xxl',
+            }),
         });
     }
+    return new Skeleton({
+        width: 130,
+        isAnimation: true,
+        isCircle: true,
+    });
 };

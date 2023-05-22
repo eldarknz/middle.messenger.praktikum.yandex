@@ -7,4 +7,4 @@ export default `
     >
         {{{ content }}}
     </button>
-`
+`;

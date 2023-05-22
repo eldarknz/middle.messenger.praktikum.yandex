@@ -8,4 +8,4 @@ export default `
             <li class="list-item">{{{this}}}</li>
         {{/each}}
     </ul>
-`
+`;

@@ -1,26 +1,26 @@
 .main-header {
-    width: 100%;
-    min-height: 60px;
-    margin-bottom: auto !important;
+  width: 100%;
+  min-height: 60px;
+  margin-bottom: auto !important;
 }
 
 .main-header__container {
-    display: flex;
-    align-items: center;
-    margin: 0 10px;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+  height: 100%;
 }
 
 .main-header__container__content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .main-header__action-block {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }

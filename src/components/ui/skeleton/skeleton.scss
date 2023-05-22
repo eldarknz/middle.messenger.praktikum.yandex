@@ -1,4 +1,4 @@
-/*.skeleton-loader {
+/* .skeleton-loader {
     width: 100%;
     height: 40px;
     border-radius: var(--spacing-10);
@@ -28,36 +28,35 @@
 
 .skeleton-text {
     height: 16;
-}*/
+} */
 
 .skeleton {
-    display: inline-block;
-    width: 100%;
-    background-color: var(--color-gray-400);
-    line-height: 1;
-    border-radius: var(--spacing-6);
+  display: inline-block;
+  width: 100%;
+  background-color: var(--color-gray-400);
+  line-height: 1;
+  border-radius: var(--spacing-6);
 }
 
 .skeleton-circle {
-    border-radius: 50%;
-    line-height: 0;
+  border-radius: 50%;
+  line-height: 0;
 }
 
 .skeleton-animation {
-    animation: opacity-loading 2.5s infinite;
+  animation: opacity-loading 2.5s infinite;
 }
 
 @keyframes opacity-loading {
-    0% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 1;
+  }
 
-    50% {
-        opacity: 0.25;
-    }
+  50% {
+    opacity: 0.25;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
 }
-
